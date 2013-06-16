@@ -1,1 +1,4 @@
-/out/**
+/out/
+/VoyageQuest/nbproject/private/
+/VoyageQuest/build/
+/VoyageQuest/dist/
