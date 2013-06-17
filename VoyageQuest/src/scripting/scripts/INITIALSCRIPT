@@ -1,6 +1,6 @@
-writeGlobal 75 --> GAME_STATE
-mapChange "CRATEEXPECTATIONS" 300 2100
-endthread
+-- writeGlobal 75 --> GAME_STATE
+-- mapChange "CRATEEXPECTATIONS" 300 2100
+-- endthread
 
 
 mapChange "SCENE1" 5000 5000
