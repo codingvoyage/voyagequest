@@ -1,11 +1,13 @@
 package scripting;
 
-import java.util.HashMap;
-import java.util.ArrayList;
-import map.*;
+import map.Entity;
+import map.Map;
 import voyagequest.Global;
 import voyagequest.Util;
 import voyagequest.VoyageQuest;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 //
 //import spaceinvaders.entity.*;
@@ -896,14 +898,13 @@ public class ScriptReader
                     Util.p("entities null");
                 else if (player == null)
                     Util.p("player null");
-                
+
+                // Play teleport music
+                voyagequest.Res.playEffect("Teleport");
+
                 Global.currentMap.entities.add(player);
                 Global.currentMap.collisions.addEntity(player);
-                
-                 // play teleport music
-                //voyagequest.Res.teleport.play();
-                //System.out.println("Sound play");
-                
+
                 break;
                 
             //freezeCamera ULX ULY

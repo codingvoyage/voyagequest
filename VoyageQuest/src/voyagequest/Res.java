@@ -1,15 +1,18 @@
 package voyagequest;
 
-import java.io.InputStream;
-import java.net.URL;
+import org.newdawn.slick.Animation;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.openal.Audio;
+import org.newdawn.slick.openal.AudioLoader;
+import org.newdawn.slick.util.ResourceLoader;
+import voyagequest.special.LoadAnimations;
+import voyagequest.special.LoadAudio;
+
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.ListIterator;
-import org.newdawn.slick.Animation;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.Music;
-import org.newdawn.slick.SlickException;
-import voyagequest.special.LoadAnimations;
 
 /**
  * Global resources, like animations, sprites, etc...
@@ -41,38 +44,23 @@ public class Res {
     
     /** Sebastian animation, data mapped by JSON */
     public static LinkedList<LoadAnimations> animationData = new LinkedList<>();
-    
-    /** Every image */
-    //public static HashMap<String, Image> images = new HashMap<>();
-    
     /** The actual animations, mapped by ID strings */
     public static HashMap<String, Animation> animations = new HashMap<>();
-    
-    /** Main background music */
-    public static Music mainmusic;
-    static {
-        try {
-            URL is = Res.class.getClassLoader().getResource("res/sounds/main.ogg");
-            mainmusic = new Music(is);
-        } catch (SlickException e) {}
-    }
-    
-    /** Teleport music - credit: Wizet (Maplestory) */
-    public static Music teleport;
-    static {
-        try {
-            URL is = Res.class.getClassLoader().getResource("res/sounds/teleport.ogg");
-            teleport = new Music(is);
-        } catch (SlickException e) {}
-    }
-    
+
+    /** Music data mapped by JSON */
+    public static LinkedList<LoadAudio> musicData = new LinkedList<>();
+    /** Hashmap of background music */
+    public static HashMap<String, Audio> music = new HashMap<>();
+
     /**
      * Initialize all the remaining resources. 
      * Must be called <em>after</em> data is loaded from JSON
      */
     public static void init() {
-        mainmusic.loop();
-        
+        initAudio();
+
+        playMusic("Route 3");
+
         ListIterator<LoadAnimations> animationIterator = animationData.listIterator();
         while (animationIterator.hasNext()) {
             LoadAnimations next = animationIterator.next();
@@ -108,9 +96,43 @@ public class Res {
                 
             animations.put(next.getName(), new Animation(frames, next.getDuration()));
         }
-        
-        
-        
+
     }
-    
+
+    /**
+     * Initialize music and sound effects
+     */
+    private static void initAudio() {
+        ListIterator<LoadAudio> audioIterator = musicData.listIterator();
+        while (audioIterator.hasNext()) {
+            LoadAudio next = audioIterator.next();
+            try {
+                music.put(next.getName(), AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream(next.getPath())));
+            } catch (IOException e) {}
+        }
+    }
+
+    /**
+     * Play Music (shorthand)
+     * @param name audio name
+     */
+    public static void play(String name) {
+        playMusic(name);
+    }
+
+    /**
+     * Play Music
+     * @param name audio name
+     */
+    public static void playMusic(String name) {
+        music.get(name).playAsMusic(1.0f, 1.0f, true);
+    }
+
+    /**
+     * Play Effect
+     * @param name audio name
+     */
+    public static void playEffect(String name) {
+        music.get(name).playAsSoundEffect(1.0f, 7.0f, false);
+    }
 }

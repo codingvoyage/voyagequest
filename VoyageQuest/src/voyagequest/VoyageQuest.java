@@ -3,21 +3,10 @@ package voyagequest;
 import gui.GuiManager;
 import gui.VoyageGuiException;
 import gui.special.DialogBox;
-
 import map.Camera;
 import map.Entity;
-import map.Map;
 import map.Player;
-
-import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.BasicGame;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
-import org.newdawn.slick.Music;
-import org.newdawn.slick.SlickException;
-
+import org.newdawn.slick.*;
 import scripting.ScriptManager;
 import scripting.ScriptReader;
 import scripting.Thread;
@@ -33,11 +22,11 @@ import scripting.ThreadManager;
 
 public class VoyageQuest extends BasicGame {
     /** x resolution */
-    public static int X_RESOLUTION = 1024;
+    public static final int X_RESOLUTION = 1024;
     /** y resolution */
-    public static int Y_RESOLUTION = 768;
+    public static final int Y_RESOLUTION = 768;
     /** full screen mode */
-    public static boolean FULLSCREEN = false;
+    public static final boolean FULLSCREEN = false;
     /** Are we debugging? */
     public static final boolean DEBUG_MODE = false;
     
@@ -48,15 +37,8 @@ public class VoyageQuest extends BasicGame {
     /** Manages all the scripting threads */
     public static ThreadManager threadManager;
     
-    /** menu */
-    public static final int MENU = 0;
-    /** regular RPG */
-    public static final int RPG = 1;
-    /** navy shooter */
-    public static final int SHOOTER = 2;
-    
-    /** status */
-    public static int state;
+    /** game state */
+    public static GameState state = GameState.RPG;
     
     public static Entity player;
     double time;
@@ -86,19 +68,29 @@ public class VoyageQuest extends BasicGame {
         gc.setMinimumLogicUpdateInterval(20);
         gc.setMaximumLogicUpdateInterval(20);
         
+        initRpg(gc);
+        
+    }
+
+
+    private void initRpg(GameContainer gc) throws SlickException {
         // Load animation data
         JsonReader<Res> reader = new JsonReader<>(Res.class, "res/Animations.json");
         reader.readJson();
-        
+
+        // Load audio data
+        reader = new JsonReader<>(Res.class, "res/Audio.json");
+        reader.readJson();
+
         // Initialize the rest of the resource manager
         Res.init();
-        
+
         // Load all the scripts
         loadScripts();
-        
+
         // IDK what this is for.
         EventListener.initGc(gc);
-        
+
         //Create the player
         //The player needs to have a thread...
         Thread playerThread = new Thread(1);
@@ -106,7 +98,7 @@ public class VoyageQuest extends BasicGame {
         playerThread.setName("SebastianThread");
         threadManager.addThread(playerThread);
         player = new Player(new DoubleRect(1400, 4300, 64, 128));
-                
+
         player.setMainScriptID(1);
         player.setMainThread(threadManager.getThreadAtName("SebastianThread"));
 
@@ -114,7 +106,7 @@ public class VoyageQuest extends BasicGame {
         player.backward = Res.animations.get("Sebastian Backwards");
         player.left = Res.animations.get("Sebastian Left");
         player.right = Res.animations.get("Sebastian Right");
-        
+
         player.name = "Sebastian";
 
         player.profile = Res.animations.get("Sebastian Profile");
@@ -123,10 +115,10 @@ public class VoyageQuest extends BasicGame {
 
 
         player.setAnimation(0);
-      
+
         //Now create the Camera.
         Global.camera = new Camera();
-        
+
         //Now that we're done with the player and camera, we can load the map itself...
         threadManager.clear();
         Thread loadingThread = new Thread(42);
@@ -134,18 +126,7 @@ public class VoyageQuest extends BasicGame {
         loadingThread.setLineNumber(0);
         threadManager.addThread(loadingThread);
         threadManager.act(0.0);
-       
-        
-//        String lorem = "Welcome to VoyageQuest! I am your commander, Bakesale. I will now guide you through this test "
-//                + "of my dialog box system. When this dialog box is finished, press E to create a new one. "
-//                + "This box should automatically disappear after you press Z for the last time when it's done printing. "
-//                + "This has been a successful test of my dialog box system. Remember, press E gently or it will spawn multiple ones stacked on top of each other for now. ! "
-//                + "Thank you and I hope you enjoy your adventure, which beings NOW!";
-//        dialog = new DialogBox(lorem);
-        //dialog.start();
-        
     }
-
 
      /**
      * Loads all scripting relating things
@@ -181,32 +162,28 @@ public class VoyageQuest extends BasicGame {
      */
     @Override
     public void update(GameContainer gc, int delta) throws SlickException {
-        for (int i = 0; i < Global.currentMap.entities.size(); i++)
-        {
-            Entity e = Global.currentMap.entities.get(i);
-            if (e != null)
-            {
-                e.act(gc, delta);
-            }
+        switch (state) {
+            case RPG:
+                for (int i = 0; i < Global.currentMap.entities.size(); i++) {
+                    Entity e = Global.currentMap.entities.get(i);
+                    if (e != null) {
+                        e.act(gc, delta);
+                    }
+                }
+
+                Input input = gc.getInput();
+
+                EventListener.keyboardControl(player, delta);
+
+                threadManager.act(delta);
+
+                GuiManager.update(gc, delta);
+                break;
+            case COMBAT:
+                break;
+            default:
+                break;
         }
-        
-        Input input = gc.getInput();
-        
-        EventListener.keyboardControl(player, delta);
-        
-        threadManager.act(delta);
-        
-//        if(input.isKeyDown(Input.KEY_E))
-//        {
-//            
-//            String lorem = "Hi I'm Panther. I'm a cool tester entity that Edmund is using to test his new fancy map "
-//                    + "system with cool collision boxes. But check it out, I'm speaking! I'm actually speaking! "
-//                    + "This is filler space so the dialog box overflows and requires you to press Z to continue. "
-//                    + "This has been a successful test of my dialog boxes. Good day to you sir.  ";
-//            player.speak(lorem);
-//        } 
-           
-        GuiManager.update(gc, delta);
         
     }
 
@@ -219,24 +196,31 @@ public class VoyageQuest extends BasicGame {
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException
     {
-        //If there isn't a full screen GUI... draw what the Camera sees
-        Global.camera.display(g);
-        
-        try {
-            GuiManager.draw();
-            GuiManager.display();
-        } catch (VoyageGuiException ex) {}
-        
-        
-        Util.FONT.drawString(10, 10, "FPS: " + gc.getFPS());
-        
-        double entityX = player.r.x;
-        double entityY = player.r.y;
-        
-        
-        Util.FONT.drawString(10, 40, "Coordinates of player: (" + entityX + ", " + entityY + ")");
-        
-        // Res.sebastian.getSprite("sf1").draw(200, 500);
+        switch (state) {
+            case RPG:
+                //If there isn't a full screen GUI... draw what the Camera sees
+                Global.camera.display(g);
+
+                try {
+                    GuiManager.draw();
+                    GuiManager.display();
+                } catch (VoyageGuiException ex) {}
+
+
+                Util.FONT.drawString(10, 10, "FPS: " + gc.getFPS());
+
+                double entityX = player.r.x;
+                double entityY = player.r.y;
+
+
+                Util.FONT.drawString(10, 40, "Coordinates of player: (" + entityX + ", " + entityY + ")");
+
+                break;
+            case COMBAT:
+                break;
+            default:
+                break;
+        }
     }
 
     /**

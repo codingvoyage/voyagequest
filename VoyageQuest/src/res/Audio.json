@@ -1,0 +1,24 @@
+{
+    "about_file": "This file stores information about the different audio files. By Brian Yang",
+
+    "musicData": [
+        {
+            "name" : "Route 3",
+            "path" : "res/music/pkxy3.ogg",
+            "credit" : "http://www.youtube.com/watch?v=oq4i0ormzg4",
+            "type" : "music"
+        },
+        {
+            "name" : "Redstone",
+            "path" : "res/music/redstone.ogg",
+            "credit" : "Redstone",
+            "type" : "music"
+        },
+        {
+            "name" : "Teleport",
+            "path" : "res/sounds/teleport.ogg",
+            "credit" : "Maplestory (Wizet)",
+            "type" : "effect"
+        }
+    ]
+}
