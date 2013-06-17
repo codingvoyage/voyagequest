@@ -1,3 +1,4 @@
-mapChange "res/MALENTIA.tmx" 2280 2500
+fadeout
+mapChange "MALENTIA" 2280 2500
 
 endthread

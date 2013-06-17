@@ -102,7 +102,7 @@ wend
 
 label [break]
 
-mapChange "res/FOREST.tmx" 1000 1700
+mapChange "FOREST" 1000 1700
 endthread
 
 
@@ -110,6 +110,6 @@ label [DEBUG]
 
 writeGlobal 50 --> GAME_STATE
 unfreezeInputs
--- mapChange "res/FOREST.tmx" 1000 1700
-mapChange "res/MALENTIA.tmx" 2280 2500
+-- mapChange "FOREST" 1000 1700
+mapChange "MALENTIA" 2280 2500
 endthread

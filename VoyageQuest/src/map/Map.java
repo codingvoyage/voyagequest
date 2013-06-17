@@ -58,12 +58,11 @@ public class Map {
             
     
     
-    public Map(String mapFileLocation) throws SlickException
+    public Map(String mapID) throws SlickException
     {
-        //Load the TiledMapPlus and extract dimensions from it
+        //Load the TiledMapPlus and extract dimensions from it      
+        tileMap = Res.allMaps.get(mapID);
         
-        InputStream is = getClass().getClassLoader().getResourceAsStream(mapFileLocation);
-        tileMap = new TiledMapPlus(is, "res");
         TILE_LENGTH = tileMap.getTileHeight();
         MAP_WIDTH = tileMap.getWidth() * TILE_LENGTH;
         MAP_HEIGHT = tileMap.getHeight() * TILE_LENGTH;
@@ -144,7 +143,7 @@ public class Map {
         
         //Alright, if the map file is at "res/mapname.tmx" the json will be at
         //"res/mapname.json". so...
-        String jsonFileLocation = mapFileLocation.replaceFirst(".tmx",".json");
+        String jsonFileLocation = Res.idToJsonUrlMappings.get(mapID);
         
         JsonReader<Map> reader = new JsonReader<>(Map.class, jsonFileLocation);
         reader.readJson();

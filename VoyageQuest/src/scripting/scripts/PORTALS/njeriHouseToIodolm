@@ -1,3 +1,4 @@
-mapChange "res/IODOLM.tmx" 1250 1170
+fadeout
+mapChange "IODOLM" 1250 1170
 
 endthread

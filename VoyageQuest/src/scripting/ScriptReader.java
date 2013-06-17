@@ -182,6 +182,41 @@ public class ScriptReader
                 result = currentThread.continueSpeak();
                 break;
                 
+            //fade in
+            case 161:
+                //Relies on VoyageQuest.fade
+                if (VoyageQuest.fade < 255)
+                {
+                    VoyageQuest.fade += 8;
+                    result = true;
+                }
+                else
+                {
+                    //Fade is already less than 0, we're done
+                    currentThread.setRunningState(false);
+                    result = false;
+                }
+                
+                
+                
+                break;
+                
+            //fade out
+            case 162:
+                //Relies on VoyageQuest.fade
+                if (VoyageQuest.fade > 50)
+                {
+                    VoyageQuest.fade -= 4;
+                    result = true;
+                }
+                else
+                {
+                    //Fade is already less than 0, we're done
+                    currentThread.setRunningState(false);
+                    result = false;
+                }
+                
+                break;
         }
         
         return result;
@@ -905,6 +940,14 @@ public class ScriptReader
                 Global.currentMap.entities.add(player);
                 Global.currentMap.collisions.addEntity(player);
 
+                
+                //Fade in, son
+                Thread fadeIn = new Thread(71);
+                fadeIn.setLineNumber(0);
+                fadeIn.setRunningState(false);
+                fadeIn.setName("FADEIN");
+                VoyageQuest.threadManager.addThread(fadeIn);
+                
                 break;
                 
             //freezeCamera ULX ULY
@@ -933,6 +976,20 @@ public class ScriptReader
                         identifierCheck(currentLine, 1).getStringValue(),
                         identifierCheck(currentLine, 0).getStringValue());
                 
+                continueExecuting = false;
+                break;
+                
+                
+            //fade in
+            case 161:
+                currentThread.setRunningState(true);
+                
+                continueExecuting = false;
+                break;
+                
+            //fade out
+            case 162:
+                currentThread.setRunningState(true);
                 continueExecuting = false;
                 break;
                 

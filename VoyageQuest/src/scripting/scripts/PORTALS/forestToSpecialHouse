@@ -21,7 +21,7 @@ if gameState < 65
     endthread
 endif
 
-
-mapChange "res/SPECIALHOUSE.tmx" 730 1400
+fadeout
+mapChange "SPECIALHOUSE" 730 1400
 
 endthread

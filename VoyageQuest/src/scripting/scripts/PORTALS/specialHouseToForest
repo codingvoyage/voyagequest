@@ -1,3 +1,4 @@
-mapChange "res/FOREST.tmx" 500 270
+fadeout
+mapChange "FOREST" 500 270
 
 endthread

@@ -59,7 +59,7 @@ for i = 4 and i > 0
 next i - 1 --> i
 wait 1000
 
-mapChange "res/House.tmx" 620 1430
+mapChange "House" 620 1430
 
 setVelocity 2.0 2.0
 

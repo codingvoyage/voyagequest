@@ -1,0 +1,4 @@
+print "DEBUG - TIME TO FADE IN"
+fadein
+print "DONE FADING IN"
+endthread

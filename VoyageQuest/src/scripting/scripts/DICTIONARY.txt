@@ -198,3 +198,8 @@ genericMessageBox 150
 -- the one with a profile animation
 -- dialogbox animationname text
 dialogBox 151
+
+
+fadein 161
+
+fadeout 162

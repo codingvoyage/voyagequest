@@ -1,9 +1,9 @@
--- writeGlobal 55 --> GAME_STATE
--- mapChange "res/IODOLM.tmx" 400 400
+-- writeGlobal 75 --> GAME_STATE
+-- mapChange "CRATEEXPECTATIONS" 300 2100
 -- endthread
 
 
-mapChange "res/SCENE1.tmx" 5000 5000
+mapChange "SCENE1" 5000 5000
 freezeCamera 100 500
 writeGlobal 0 --> GAME_STATE
 freezeInputs

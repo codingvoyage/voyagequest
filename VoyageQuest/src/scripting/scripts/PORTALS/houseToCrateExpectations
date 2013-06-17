@@ -1,3 +1,4 @@
+
 getGlobal GAME_STATE --> gameState
 
 if gameState < 75
@@ -18,7 +19,8 @@ if gameState < 75
 endif
 
 if gameState == 75
-    mapChange "res/CRATEEXPECTATIONS.tmx" 1535 175
+    fadeout
+    mapChange "CRATEEXPECTATIONS" 1535 175
 endif
 
 if gameState > 75

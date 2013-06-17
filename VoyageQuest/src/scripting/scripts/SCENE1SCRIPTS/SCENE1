@@ -77,6 +77,6 @@ wait 1000
 label [DEBUGSKIP]
 
 unfreezeCamera
-mapChange "res/SCENE2.tmx" -64 1200
+mapChange "SCENE2" -64 1200
 
 endthread

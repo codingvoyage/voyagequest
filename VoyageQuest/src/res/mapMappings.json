@@ -1,0 +1,52 @@
+{
+    "about_file": "This file stores information about the different maps used in \n\
+                   VoyageQuest RPG. File by Brian Yang and Edmund Qiu. Graphics by Wenyu Deng.",
+            
+    "mapLoadingMappings": [
+        {
+            "mapID" : "CRATEEXPECTATIONS",
+            "mapURL" : "res/CRATEEXPECTATIONS.tmx",
+            "mapJsonURL" : "res/CRATEEXPECTATIONS.json"
+        },
+        {
+            "mapID" : "FOREST",
+            "mapURL" : "res/FOREST.tmx",
+            "mapJsonURL" : "res/FOREST.json"
+        },
+        {
+            "mapID" : "House",
+            "mapURL" : "res/House.tmx",
+            "mapJsonURL" : "res/House.json"
+        },
+        {
+            "mapID" : "IODOLM",
+            "mapURL" : "res/IODOLM.tmx",
+            "mapJsonURL" : "res/IODOLM.json"
+        },
+        {
+            "mapID" : "MALENTIA",
+            "mapURL" : "res/MALENTIA.tmx",
+            "mapJsonURL" : "res/MALENTIA.json" 
+        },
+        {
+            "mapID" : "MALENTIACASTLE",
+            "mapURL" : "res/MALENTIACASTLE.tmx",
+            "mapJsonURL" : "res/MALENTIACASTLE.json"
+        },
+        {
+            "mapID" : "SCENE1",
+            "mapURL" : "res/SCENE1.tmx",
+            "mapJsonURL" : "res/SCENE1.json"
+        },
+        {
+            "mapID" : "SCENE2",
+            "mapURL" : "res/SCENE2.tmx",
+            "mapJsonURL" : "res/SCENE2.json"
+        },
+        {
+            "mapID" : "SPECIALHOUSE",
+            "mapURL" : "res/SPECIALHOUSE.tmx",
+            "mapJsonURL" : "res/SPECIALHOUSE.json"
+        }
+    ]
+}

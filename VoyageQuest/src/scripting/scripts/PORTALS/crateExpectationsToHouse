@@ -1,3 +1,4 @@
+fadeout
 
-mapChange "res/HOUSE.tmx" 1170 530
+mapChange "HOUSE" 1170 530
 endthread
