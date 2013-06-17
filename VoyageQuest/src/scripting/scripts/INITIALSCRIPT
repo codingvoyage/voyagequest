@@ -1,4 +1,5 @@
--- writeGlobal 75 --> GAME_STATE
+-- writeGlobal 10 --> GAME_STATE
+-- mapChange "SCENE2" -64 1200
 -- mapChange "CRATEEXPECTATIONS" 300 2100
 -- endthread
 

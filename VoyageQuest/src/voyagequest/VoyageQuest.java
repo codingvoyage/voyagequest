@@ -3,31 +3,18 @@ package voyagequest;
 import gui.GuiManager;
 import gui.VoyageGuiException;
 import gui.special.DialogBox;
-import java.io.InputStream;
-
 import map.Camera;
 import map.Entity;
 import map.Player;
-
-import org.newdawn.slick.AppGameContainer;
-import org.newdawn.slick.BasicGame;
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.Image;
-import org.newdawn.slick.Input;
-import org.newdawn.slick.Music;
-import org.newdawn.slick.ShapeFill;
-import org.newdawn.slick.geom.Rectangle;
-import org.newdawn.slick.Color;
-import org.newdawn.slick.SlickException;
-
+import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Rectangle;
 import scripting.ScriptManager;
 import scripting.ScriptReader;
 import scripting.Thread;
 import scripting.ThreadManager;
 
-import org.lwjgl.opengl.GL11;
+import java.io.InputStream;
 /**
  * Voyage Quest RPG
  * Copyright (c) 2013 Team Coding Voyage.
@@ -214,26 +201,6 @@ public class VoyageQuest extends BasicGame {
             default:
                 break;
         }
-        
-        Input input = gc.getInput();
-        
-        EventListener.keyboardControl(player, delta);
-        
-        threadManager.act(delta);
-        
-//        if(input.isKeyDown(Input.KEY_E))
-//        {
-//            
-//            String lorem = "Hi I'm Panther. I'm a cool tester entity that Edmund is using to test his new fancy map "
-//                    + "system with cool collision boxes. But check it out, I'm speaking! I'm actually speaking! "
-//                    + "This is filler space so the dialog box overflows and requires you to press Z to continue. "
-//                    + "This has been a successful test of my dialog boxes. Good day to you sir.  ";
-//            player.speak(lorem);
-//        } 
-           
-        GuiManager.update(gc, delta);
-        
-        
     }
 
     /**
@@ -250,19 +217,16 @@ public class VoyageQuest extends BasicGame {
                 //If there isn't a full screen GUI... draw what the Camera sees
                 Global.camera.display(g);
 
+                fading(g);
+
                 try {
                     GuiManager.draw();
                     GuiManager.display();
                 } catch (VoyageGuiException ex) {}
 
-
                 Util.FONT.drawString(10, 10, "FPS: " + gc.getFPS());
-
-                double entityX = player.r.x;
-                double entityY = player.r.y;
-
-
-                Util.FONT.drawString(10, 40, "Coordinates of player: (" + entityX + ", " + entityY + ")");
+                Util.FONT.drawString(10, 40,
+                        "Coordinates of player: (" + player.r.x + ", " + player.r.y + ")");
 
                 break;
             case COMBAT:
@@ -270,21 +234,6 @@ public class VoyageQuest extends BasicGame {
             default:
                 break;
         }
-        
-        //If there isn't a full screen GUI... draw what the Camera sees
-        Global.camera.display(g);
-        
-        fading(g);
-        
-        try {
-            GuiManager.draw();
-            GuiManager.display();
-        } catch (VoyageGuiException ex) {}
-      
-        Util.FONT.drawString(10, 10, "FPS: " + gc.getFPS());
-        Util.FONT.drawString(10, 40,
-                "Coordinates of player: (" + player.r.x + ", " + player.r.y + ")");
-        
     }
 
     

@@ -2,18 +2,17 @@ package voyagequest;
 
 import org.newdawn.slick.Animation;
 import org.newdawn.slick.Image;
-import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.openal.Audio;
+import org.newdawn.slick.openal.AudioLoader;
+import org.newdawn.slick.tiled.TiledMapPlus;
+import org.newdawn.slick.util.ResourceLoader;
 import voyagequest.special.LoadAnimations;
-
-import java.net.URL;
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.ListIterator;
 import voyagequest.special.LoadAudio;
 import voyagequest.special.LoadMaps;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.ListIterator;
@@ -95,10 +94,6 @@ public class Res {
         initAudio();
 
         playMusic("Route 3");
-
-        
-        mainmusic.loop();
-            
             
         ListIterator<LoadAnimations> animationIterator = animationData.listIterator();
         while (animationIterator.hasNext()) {
