@@ -2,9 +2,6 @@
   <artifact type="jar" name="VoyageQuest:jar">
     <output-path>$PROJECT_DIR$/out/artifacts/VoyageQuest_jar</output-path>
     <root id="archive" name="VoyageQuest.jar">
-      <element id="directory" name="META-INF">
-        <element id="file-copy" path="$PROJECT_DIR$/out/META-INF/MANIFEST.MF" />
-      </element>
       <element id="module-output" name="VoyageQuest" />
       <element id="extracted-dir" path="$PROJECT_DIR$/VoyageQuest/lib/CodingVoyage/slick.jar" path-in-jar="/" />
       <element id="extracted-dir" path="$PROJECT_DIR$/VoyageQuest/lib/CodingVoyage/jorbis-0.0.15.jar" path-in-jar="/" />
