@@ -72,7 +72,7 @@ public class Script {
                 {
                     String myNextLine = in.nextLine();
 
-                    System.out.println(myNextLine);
+                    //System.out.println(myNextLine);
 
                     //Of course, if the next line contains nothing, then ignore
                     //Everything else that happens will happen if the line isn't ""
