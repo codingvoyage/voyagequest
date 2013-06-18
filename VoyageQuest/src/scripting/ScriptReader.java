@@ -775,12 +775,50 @@ public class ScriptReader
                 currentThread.setVariable(currentLine.getStringParameter(2),
                             sqrt);
                 break;
-                
-                
-                
-                
-                
-                
+
+
+            //newArray arrayName size
+            case 90:
+                String newArrayName = currentLine.getStringParameter(0);
+                int newArraySize = currentLine.getIntegerParameter(1);
+                Parameter newArray = new Parameter(new Object[newArraySize]);
+
+                currentThread.setVariable(newArrayName, newArray);
+                break;
+
+            //getArraySize arrayName --> variable
+            case 91:
+                int arraySize = currentThread.getVariable(currentLine.getStringParameter(0)).
+                        getObjectArrayValue().length;
+
+                currentThread.setVariable(
+                        currentLine.getStringParameter(2),
+                        new Parameter(arraySize));
+                break;
+
+            //getArray arrayName index --> variable
+            case 92:
+                //Gets the Parameter with the name arrayName, and grabs the Object[] from that.
+                Object[] objArray = currentThread.getVariable(currentLine.getStringParameter(0)).getObjectArrayValue();
+
+                //Extract variable Index, get parameter at that.
+                int variableIndex = (int)identifierCheck(currentLine, 1).getDoubleValue();
+                Parameter indexedVariable = (Parameter)objArray[variableIndex];
+
+                //Put in variable.
+                currentThread.setVariable(
+                        currentLine.getStringParameter(3),
+                        indexedVariable);
+                break;
+
+            //putArray arrayName index <-- variable
+            case 93:
+                Parameter newVariable = identifierCheck(currentLine, 3);
+                int newVariableIndex = (int)identifierCheck(currentLine, 1).getDoubleValue();
+                Object[] array = currentThread.getVariable(currentLine.getStringParameter(0)).getObjectArrayValue();
+                array[newVariableIndex] = newVariable;
+                break;
+
             //setAnimationDirection 100
             case 100:
                 ((Entity)currentScriptable).setAnimation(

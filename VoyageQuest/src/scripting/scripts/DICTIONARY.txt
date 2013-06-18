@@ -150,6 +150,19 @@ tan 87
 sqrt 88
 squareroot 88
 
+-- Array functionality
+
+-- newArray arrayName size
+newArray 90
+
+-- getArraySize arrayName --> variable
+getArraySize 91
+
+-- getArray arrayName index --> variable
+getArray 92
+
+-- putArray arrayName index <-- variable
+putArray 93
 
 -- ---------------------------------------------------
 -- ---------------------------------------------------
