@@ -1,20 +1,14 @@
 package scripting;
 
-
-import voyagequest.VoyageQuest;
-
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.io.File;
 import java.net.URL;
 import java.security.CodeSource;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
-
-import java.io.File;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
@@ -25,21 +19,21 @@ import java.util.zip.ZipInputStream;
 public class ScriptManager {
     //An array of all the Script objects
     private Script[] scriptCollection;
+    public final int SCRIPT_CAPACITY = 100;
 
+    //A hashmap of all the Script objects
     private HashMap<String, Script> scriptHash;
     
     //A HashMap which acts as a dictionary which ties command names with
     //their corresponding integer IDs
     public final HashMap<String, Integer> commandIDDictionary;
-    
-    public final int SCRIPT_CAPACITY = 100;
-    
+
     /** path to scripts folder */
     public final String SCRIPT_FOLDER = "scripting/scripts/";
     
     public ScriptManager() 
     {
-        //Let's make space for 20 scripts
+        //Let's make space for scripts
         scriptCollection = new Script[SCRIPT_CAPACITY];
         scriptHash = new HashMap<>();
         
