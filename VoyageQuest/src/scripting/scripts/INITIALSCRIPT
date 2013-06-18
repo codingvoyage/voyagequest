@@ -1,7 +1,7 @@
--- writeGlobal 10 --> GAME_STATE
--- mapChange "SCENE2" -64 1200
+writeGlobal 50 --> GAME_STATE
+mapChange "MALENTIA" 70 4280
 -- mapChange "CRATEEXPECTATIONS" 300 2100
--- endthread
+endthread
 
 
 mapChange "SCENE1" 5000 5000

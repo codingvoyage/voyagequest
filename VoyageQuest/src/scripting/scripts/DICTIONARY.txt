@@ -1,3 +1,7 @@
+-- Absolutely do not delete DICTIONARY.txt, or else the entire
+-- Scripting Engine breaks. The Scripting Engine uses this
+-- to map commands to opCodes.
+
 -- From 0-9 will be very system-like things
 wait 0
 goto 1

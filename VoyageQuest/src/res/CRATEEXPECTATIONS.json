@@ -3,7 +3,7 @@
             
     "mapName" : "CRATE EXPECTATIONS",
     
-    "mapBackgroundScript": 49,
+    "mapBackgroundScript": "CRATEEXPECTATIONSSCRIPT",
     
     "allEntities": [
     ]

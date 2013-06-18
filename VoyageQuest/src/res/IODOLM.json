@@ -3,7 +3,7 @@
             
     "mapName" : "Iodolm Capital",
     
-    "mapBackgroundScript": 19,
+    "mapBackgroundScript": "IODOLMMAINSCRIPT",
     
     "allEntities": [
         {
@@ -12,13 +12,13 @@
             "initialY" : 1750,
             "width" : 64,
             "height" : 128,
-            "mainScriptID" : 5,
+            "mainScriptID" : "NjeriTest",
             "mainThreadName" : "Njeri Thread",
             "animations" : [
                 "Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right"
             ],
             "startingAnimationDirection" : 0,
-            "onClickScript" : 30
+            "onClickScript" : "NjeriOutsideDescription"
         },
         {
             "name" : "Li Fei",
@@ -26,14 +26,14 @@
             "initialY" : 1365,
             "width" : 64,
             "height" : 128,
-            "mainScriptID" : 58,
+            "mainScriptID" : "LIFEISCRIPT",
             "mainThreadName" : "Li Fei Thread",
             "animations" : [
                 "Li Fei", "Li Fei", "Li Fei", "Li Fei"
             ],
             "startingAnimationDirection" : 0,
-            "onClickScript" : 59,
-            "onTouchScript" : 60
+            "onClickScript" : "LiFeiDescription",
+            "onTouchScript" : "LIFEIDIALOGSCRIPT"
         }
     ]
 }

@@ -66,7 +66,7 @@ public class ScriptReader
         
         //We need to know what line of what script the Thread is on
         int currentLineNumber = currentThread.getCurrentLine();
-        int currentScriptID = currentThread.getScriptID();
+        String currentScriptID = currentThread.getScriptID();
         
         //Now we call ScriptManager to have it return a reference to the
         //Script class which currentScriptID refers to
@@ -554,7 +554,7 @@ public class ScriptReader
 //                Entity spawnedEntity = entities.spawn(entityTypeName, nameID, xLoc, yLoc);
 //                
 //                //Now, load the thread
-//                int mainScriptID = spawnedEntity.getMainScriptID();
+//                String mainScriptID = spawnedEntity.getMainScriptID();
 //                System.out.println("we now create a thread from script ID # " + mainScriptID);
 //                
 //                //I'm just going to name the Thread the same as the Entity
@@ -942,7 +942,7 @@ public class ScriptReader
 
                 
                 //Fade in, son
-                Thread fadeIn = new Thread(71);
+                Thread fadeIn = new Thread("FADEIN");
                 fadeIn.setLineNumber(0);
                 fadeIn.setRunningState(false);
                 fadeIn.setName("FADEIN");
@@ -1099,7 +1099,7 @@ public class ScriptReader
     private void createNewThread(Line currentLine) 
     {
         //Extract from currentLine...
-        int scriptID = (int)currentLine.getDoubleParameter(0);
+        String scriptID = currentLine.getStringParameter(0);
         String threadName = identifierCheck(currentLine, 1).getStringValue();
 
         //Create a new thread with that scriptID, giving it scriptName
@@ -1109,7 +1109,7 @@ public class ScriptReader
         threadManager.addThread(newThread);
     }
     
-    private Thread createNewThread(int scriptID, String threadName) 
+    private Thread createNewThread(String scriptID, String threadName)
     {
         //Create a new thread with that scriptID, giving it scriptName
         Thread newThread = new Thread(scriptID);
@@ -1207,7 +1207,7 @@ public class ScriptReader
         //callFunction 5 [act] param1 param2 param3 --> returned1 returned2
         
         //Get the Script object that 5 refers to
-        int scriptID = currentLine.getIntegerParameter(0);
+        String scriptID = currentLine.getStringParameter(0);
         Script jumpedScript = scr.getScriptAtID(scriptID);
         
         //Basically, extracting the label [that'smyshit]
@@ -1268,7 +1268,7 @@ public class ScriptReader
         //Thread --> what is its first script ID number?
         //Go find that Script object at the scriptID
         //Get the label index
-        int threadScriptID = jumpedThread.baseScriptID;
+       String threadScriptID = jumpedThread.baseScriptID;
         //System.out.println(threadScriptID + " is the ID of the thread I'm jumping TO");
         
         Script jumpedScript = scr.getScriptAtID(threadScriptID);

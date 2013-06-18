@@ -54,8 +54,8 @@ public class Entity extends ScriptableClass implements Rectangular {
     public Animation profile;
     public boolean profLeft;
     
-    public int onClickScript;
-    public int onTouchScript;
+    public String onClickScript;
+    public String onTouchScript;
             
 
     /**
@@ -70,8 +70,8 @@ public class Entity extends ScriptableClass implements Rectangular {
         this.collRect = new DoubleRect(5.0d, 70.0d, 50.0d, 50.0d);
         
         //-1 unless set otherwise later.
-        onTouchScript = -1;
-        onClickScript = -1;
+        onTouchScript = null;
+        onClickScript = null;
     }
     
     public void setAnimation(int index)
@@ -276,7 +276,7 @@ public class Entity extends ScriptableClass implements Rectangular {
             //respond accordingly.
             if (this instanceof Player && 
                 collRectangular instanceof Entity &&
-                ((Entity)collRectangular).onTouchScript != -1)
+                ((Entity)collRectangular).onTouchScript != null)
             {
                 new Interaction(((Entity)collRectangular).onTouchScript);
             }

@@ -12,10 +12,10 @@ public class Thread {
     private String name;
     
     /** The script which this Thread is currently running */
-    private int scriptID;
-    
+    private String scriptID;
+
     /** The "main" scriptID for this Thread. */
-    public final int baseScriptID;
+    public final String baseScriptID;
     
     /** The current line of the current script this Thread is on */
     private int currentLineNumber;
@@ -56,7 +56,7 @@ public class Thread {
     
     
     
-    public Thread(int scriptID) 
+    public Thread(String scriptID)
     {
         markedForDeletion = false;
         
@@ -126,12 +126,12 @@ public class Thread {
     }
     
     //Accessors and mutators for ScriptID
-    protected void setScriptID(int newScriptID)
+    protected void setScriptID(String newScriptID)
     {
         scriptID = newScriptID;
     }
    
-    public int getScriptID()
+    public String getScriptID()
     {
         return scriptID;
     }
@@ -359,13 +359,13 @@ public class Thread {
     
     private class returnPoint
     {
-        private int scriptID;
+        private String scriptID;
         private int lastLine;
         private HashMap<String, Parameter> memoryBox;
         private HashMap<String, Parameter> temporaryVariables;
         private String[] functionReturns;        
         
-        returnPoint(int newScriptID, int newCurrentLine, 
+        returnPoint(String newScriptID, int newCurrentLine,
                 HashMap<String, Parameter> lastMemoryBox, 
                 HashMap<String, Parameter> lastTemporaryVarBox,
                 String[] lastFunctionReturns)
@@ -379,30 +379,15 @@ public class Thread {
             
         }
         
-        int getScriptID()
-        {
-            return scriptID;
-        }
+        String getScriptID() { return scriptID; }
                 
-        int getLastLine()
-        {
-            return lastLine;
-        }
+        int getLastLine() { return lastLine; }
         
-        HashMap<String, Parameter> getMemoryBox()
-        {
-            return memoryBox;
-        }
+        HashMap<String, Parameter> getMemoryBox() { return memoryBox; }
         
-        HashMap<String, Parameter> getTemporaryMemoryBox()
-        {
-            return temporaryVariables;
-        }
+        HashMap<String, Parameter> getTemporaryMemoryBox() { return temporaryVariables; }
         
-        private String[] getFunctionReturns()
-        {
-            return functionReturns;
-        }
+        private String[] getFunctionReturns() { return functionReturns; }
         
     }
 }

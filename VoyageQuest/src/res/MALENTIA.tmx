@@ -27,37 +27,37 @@
  <tileset firstgid="3725" name="TREE" tilewidth="64" tileheight="64">
   <image source="test/TREE.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
- <layer name="tiles" width="50" height="70">
+ <layer name="tiles" width="50" height="70" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2awWrcMBCGBT3UPmQJIaQ0lLL0UnIroaSl9ODHyHGPeQw/iq/tU+wtfYawBJ96LD30FMLSEbG6siJpZ8ZjS2k88LMbR5Lny8zIkpzDhVKHeLUBUcYYSyHfYtrXPwVHfQGfH5D66PTPxTTHEfjz5wCnxcwxqs0cM8cYNnPsOL69UOp7YklwXMM4PxJr5hiPQ9tT5vBZzhw/LeU0Xw2JhyDHysPRap3DGhx+1/6Ga0bHCI4UFuBQ2v8LxH7C5Uhlvrz6ddDbH0X3LzlzwM81dh82c0zP4bTPleNRncc4uj7/BUfIXo/g30tkO0mOM5ancXuFbCfJ8ZnladzeI9tR6zxmlyxP4/YJ2W4Ix03R16Xnmq195uvjjhnhYOeVe8+rETn2GYbDsGCfjYnigXqeUzgo2sdhYoyIR9YchLHE8+opcWwLVd8/SHG0LeK1xOBg5dXbUtVL0NdSKaqgn+6fDcdpiV/f2zodhwOVV65cDsw7LfMuy+awayRFfbgcmDOXRYBDIBZiefWcOQRrI3le3SHm5qk4dI2fEznelWqlfVXw/U0Xm03x8N182rk3RV5hz1UNxxfnWaIZbjttOjZ9LXeO3rjl4zhsOp7cOSAeFcSiurf+9tp/k2ObghWPwfVB5YB+FdTH0uRV2+VUW+xyjBEPLsca/FlzOaB/ZWrexKC1an3C+hDjEMqr5BxzXslynCx276tiOg5wJJ53/3FQlVt9wJy55uxpl568EliXcPfnmmHN2ddCvwr69+IhsC5Jel4iGI8h51dtRGiOKdaJro0Rj9B8RbxfNK+m4AjNV2NySBl2fEI7Ul5JmVt73DZW2+Qc7n18eYMYL2le+fydgoNbz0PHQfS386rWovxfRkZaWevVWuukz9Ei5WtL8uWOfmbV4yD4G2oXY0b7AmuvBtZezcC4pOTQvjcWB5mF+z5JUvBMb7SWAzg4625pwXqwMdoyOUxMMxSJ4y9g0ZDdsDYAAA==
   </data>
  </layer>
- <layer name="background]" width="50" height="70">
+ <layer name="background]" width="50" height="70" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2ZyUoDQRCGWwTNTFQUlyiJQXHHBcWFEDUoLvgIOXrMy/gISsSbBy+5+A4uKDm6EPExXPBvyGATezo9Yyc9gfrgo5IJmak/BQWhGSOIaHJtuwFDZGw3YIi87QYMQTmiRcF2AwRBtDQnju0OzHCKHGfwQrAIz2uuRR2e4wq+C1bgW801m+j8nq2Qo+T86oeNHE+43zN8gfewXPUBPgq1LDGqOV4lz/VqSaKMD8d+jqDzkM0k7jL2ietf8Jt/jvdt7t/a7jYuR5B5+JFEf12wG/bAXtgnqf0Bcnj/XS9rrnfCGHRY+Hn4MY/+UnAUpuEYHJfUCQPzSMBhOAJv0NMtvDM0D84CelyES3AZrkjqqmYOv1lwZuAsnGON2VcmyQhVpel9ZZojoXLzPpXvSd394tlheNeoyAtVZTzAfhmAg3CoiTkKQlWZDLBfJuEUnG5iDl34ntTdL2twHW5EMMcmetqC2zAHd+CupO7BfXgADyOYgyAIgiBEErYbIAiCIAiCIAiCaGFijBVDfOc4zLPSivOEMH3YQpUjamT52Q9+3FS1iq9zDcxR7wzETxU8S0Xonx+a1ssQ5P7NyuFl8WahM4f/5qh3luOnDlnNDLI+CIIgCCIMP65pYYqwNgAA
   </data>
  </layer>
- <layer name="below entit" width="50" height="70">
+ <layer name="below entit" width="50" height="70" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2ax24UMRyHnRPJHnKFzQtQXoDAC4A4UrSrABeKEgW4UASiXCgCUS4EBKIJEhCIJsol70ARiCpRBKI+Bt8oO2IYPMXr/3g9kX/SJx8Se/3FnsyM/6tUyBzoh4FO64oBTWuTuTAPmp3WFU1Na+sxrWbWZYFDFmpaCY8hGHbIEk0r5bEc2j1spTzaPSZ4/Osx1mOkPOqc4OFXgodfsfV4wgPeU3gGz+EFvIRX8BrewFvbh8ASsfX4wBw/wif4DF/gK3yD7zXySK7HbPGo876aLetRdH38gJ9CHsl310aHOK721Tt4b+mTfncdSv3Mxb6S8phWf9+N4/Xpd+AR76tf8FvQo5lBtynaV7FH1hlJsi3KfDVzTcRroXvvl/DIW4/kvs5qi7JYVfccVdYj64wk2RZlmSOPKzn7KuuMJNkWpVWhR/L+cT/n/1WZM5OijFbokb7Or8I1zf1D6pzBxXpE18cDeKi5Pnz3KHs/lzovcbUeVT5fRen1ekglrEd+VvYptQpWwxpoQRtGYC2sg/V9cp9XxmNyUKmpQbNxNzDHjbAJNsMojME4bIGtsM2xxyMcHht6bGeOO2An7ILdsAf2wj7YDwcce3STg8zxEByGI3AUjsFxOAEn4VQNPE4zxwk4A2fhHJyHC3ARLsHlGnhMMscpuA434CbcgttwB+7CvRp4uE7w8CvBw68ED78SPPxK8PArwcOvBA8/EtdsJDzSNYtG/q9r55HsbxLd90GzvnuaV2NpaMYx+ZuUmUeZ/lXQjUceeYlqUbqaicT3VRcZeJSZR16iWtRwiqUGny81jm3/qBYV10rieskKg/5S49j2b6n/6wwjBv2lxrHtH9Wi0nWGcYP+UuNIzSMkJCQkRC5/AJfpUluwNgAA
   </data>
  </layer>
- <layer name="entity level" width="50" height="70">
+ <layer name="entity level" width="50" height="70" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2ZQUsDMRSEH8i2sNje9deq9Fj1F1SPSkH9AQqe9CZW1LOK9q6oJz04wV2IcRelyTMmnQ8ezS4lzCQ72Q0RIYQQQgiZH3a6Irvd2Cr8OYGH0wx8HJYiR2VsFf6swMMqai0DL4QQQgghhBCSGtPF5nYqDAuRAX4Xep9tqdqpMS6+t4dF839TYxzBx6QvctH368PkwdQb9L8re7iE1ivUtaP5Ftd3nj5MHkwtdUSWO359/cQ9tD6gpo7mR1w/efqw50E7G8/Q+oJ69dTcRD0P5tmKkY3QaK63bblouz8L9ntPK+ttuWi7PwtmHs4qL1pZt3Nhr7Gh8mKP/8Cvq18TYo11ccdf49tqHZo3UJuV9hBrbBv1XGhkfQTNW6htJe0Gd/w1cr4H/fuoA8dHiG+RGnf8/+KdXqORkxh7Do2c2POS4j6qiRT3UaMSa0kG54v2mW9u56W5+SGEEELmnePYAgJxHltAIG5iCyBfYD7+F7nk4wO8R39osDYAAA==
   </data>
  </layer>
- <layer name="above entity" width="50" height="70">
+ <layer name="above entity" width="50" height="70" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3BMQEAAADCoPVPbQhfoAAAAAAAAAAAAAAAAADgN2YIZcmwNgAA
   </data>
  </layer>
- <layer name="above all" width="50" height="70">
+ <layer name="above all" width="50" height="70" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3SawoBURiH8fN1LMBaLUG5RC6pMaLBF5dosA52wE78P5hMhykaMw49v3o6ekvNeTvGAAAAoOYZU1cN1fTu845+d1VP9b30/xctKBkzKj3OfX3jUAVqpI7qpEI1VTM1d+geaRb6xqVaqbU6q4uK1E7t1eHJPVqatX/gft+W9t7j/f3KHu33Ht4aq0nijOeust97dGujtokzngMA/lclw8wl1QyzT7L39O7eBhlmn2TvKe+95cXeU957AwC4r/bizHX+izMAAAAAQLHK1gkAAACgWFd15fSZsDYAAA==
   </data>
  </layer>
- <objectgroup name="Collisions" width="50" height="70">
+ <objectgroup name="Collisions" width="50" height="70" visible="0">
   <object x="1986" y="2477" width="635" height="22"/>
   <object x="1986" y="2189" width="21" height="300"/>
   <object x="1994" y="2352" width="109" height="132"/>
@@ -202,12 +202,12 @@
  <objectgroup name="Events" width="50" height="70">
   <object type="onTouch" x="2191" y="2362" width="221" height="165">
    <properties>
-    <property name="runScript" value="52"/>
+    <property name="runScript" value="malentiaToCastle"/>
    </properties>
   </object>
   <object type="onTouch" x="7" y="4229" width="49" height="178">
    <properties>
-    <property name="runScript" value="51"/>
+    <property name="runScript" value="malentiaToForest"/>
    </properties>
   </object>
  </objectgroup>

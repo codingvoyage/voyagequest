@@ -3,7 +3,7 @@
             
     "mapName" : "Sebastian's Study",
     
-    "mapBackgroundScript": 2,
+    "mapBackgroundScript": "SCENE2",
     
     "allEntities": [
         {
@@ -12,7 +12,7 @@
             "initialY" : 300,
             "width" : 64,
             "height" : 128,
-            "mainScriptID" : 3,
+            "mainScriptID" : "SCENE2SOLDIER",
             "mainThreadName" : "Soldier Thread",
             "animations" : [
                 "Soldier Forward", "Soldier Backwards", "Soldier Left", "Soldier Right"

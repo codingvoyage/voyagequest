@@ -21,37 +21,37 @@
  <tileset firstgid="1217" name="hyptosis_tile-art-batch-4" tilewidth="64" tileheight="64">
   <image source="test/hyptosis_tile-art-batch-4.png" trans="4b637f" width="1920" height="1920"/>
  </tileset>
- <layer name="Grass and ground" width="30" height="30">
+ <layer name="Grass and ground" width="30" height="30" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC9NgYGDQGMWjeBSP4lE8ikfxKCYDOw0CN6BjtQGy120A7MwC4rRBEOajeBSP4qGLATEqPPAQDgAA
   </data>
  </layer>
- <layer name="Lower background" width="30" height="30">
+ <layer name="Lower background" width="30" height="30" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC9vCyMCwZRSP4iGALYHYis52goAnkA6FsvGpo7a9kUj24gPUtpdUMFB2D5R/cdk/hQhMDXthdhNjHwxTGwyEvbjCjh7+xQVoZa8SEH9hhGAvEvWpoGE1EvQ7AbELFGeRYJ8LFuxFgt1JQJwCxWkkuhMXpgVIYkCETQYd7YX5FxSmHljsJCauyAEw/+LCbjSyF91ukP9SGEhLI5TaDbNHg8Z2jYJRMFgAAG+ZNYoQDgAA
   </data>
  </layer>
- <layer name="Still behind entities" width="30" height="30">
+ <layer name="Still behind entities" width="30" height="30" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2UwUrDQBCGd1rRB6hU9KroA1Rb9CoielRE9DVb9AEqiqInD9KiD6DoSUFaFPyG7LCh0DYkURD2h49kw2b+mZ1JnIuK+j96F+c+5O/8NvG64VqtODdTGb+v7Jx60IcanvNwrXnALdxJWE/KKY8WibkEy8RdgR73fXiEJwlrzansXgyhQdx1eCbuC7zCm4S15jStF1nVId7A+5oGPBvCF3xLWGtO1ouGFK991HeSrBfbkr/2S0lQ362MeVsvDiXU3pbk3M7gPDWH03w/JbtvWlZ7l3cvfKyr1ByO89d9s7w3B/s5fK32ex9HeUjNofmPSr+fOnsX4LTgt9HxZ62yOTR/ncENaHn0P7WK51rJ/wOT+esM7sCuZw+aeLZ+yVd1IMkMHsGx50SKn29UVFRUVNAPz1dB3hAOAAA=
   </data>
  </layer>
- <layer name="Entity Layer" width="30" height="30">
+ <layer name="Entity Layer" width="30" height="30" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2VQRLBMBSGM+n0YDgBNrbYOAiDPdN2z+AAWHIDDmCGAziChb+LjMzzmiaViU2/mX+RaP/3Xl+8CFHzb5JYiBTK4rBx94h3gI6B49bUFDGWQkxk+LgLxFySuCFyWcF/DU2hGTSXfC6+UbUlUApl8pPLrzTg0YRajJeqbQNtoZ3HOtvw6kBdxrNKbafIbq8P3wE0tPDvkWfOjN/Fcs+FEYl7ZfzulntVyWt9VPQznakyuFpN6D0ynakyXGvVe+Rypji4cxUC12/tC9dvbZrt+iz2jT7baQ76LDblyPW27K7S55/KQb1DZ3HR/cP11nRX0ZxUDvQd9X8rmtFcb9WzN/Jbvi7KifrTmejCM/pe+7o/Tbwi8/pX3jIEodAQDgAA
   </data>
  </layer>
- <layer name="Above entity" width="30" height="30">
+ <layer name="Above entity" width="30" height="30" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC2NgGAWjYBQMN8DEwsDAAsVsLPSzVwholwgUi9HRXiWgXSpQrEZHe51YsLOHq71uLNjZo2AUjIJRMApGwSgYugAAGtbQ6RAOAAA=
   </data>
  </layer>
- <layer name="Always highest" width="30" height="30">
+ <layer name="Always highest" width="30" height="30" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3KoQ0AMAgAQQQTVbD/aEhUgya5Uy8+AoBLXk5X/j8AgE0D3pds1BAOAAA=
   </data>
  </layer>
- <objectgroup name="Collisions" width="30" height="30">
+ <objectgroup name="Collisions" width="30" height="30" visible="0">
   <object x="12" y="1179" width="42" height="27"/>
   <object x="14" y="1497" width="38" height="28"/>
   <object x="265" y="1737" width="105" height="41"/>
@@ -124,7 +124,7 @@
   <object x="1914" y="685" width="4" height="357"/>
   <object x="1913" y="1044" width="6" height="197"/>
  </objectgroup>
- <objectgroup name="Boundaries" width="30" height="30">
+ <objectgroup name="Boundaries" width="30" height="30" visible="0">
   <object x="257" y="1601" width="123" height="188"/>
   <object x="1091" y="1602" width="123" height="187"/>
   <object x="963" y="1539" width="121" height="185"/>
@@ -159,17 +159,17 @@
   </object>
   <object name="toIodolm" type="onTouch" x="7" y="1218" width="45" height="273">
    <properties>
-    <property name="runScript" value="44"/>
+    <property name="runScript" value="forestToIodolm"/>
    </properties>
   </object>
   <object name="warp" type="onTouch" x="1861" y="1291" width="49" height="386">
    <properties>
-    <property name="runScript" value="46"/>
+    <property name="runScript" value="forestToMalentia"/>
    </properties>
   </object>
   <object name="warp" type="onTouch" x="509" y="289" width="68" height="42">
    <properties>
-    <property name="runScript" value="66"/>
+    <property name="runScript" value="forestToSpecialHouse"/>
    </properties>
   </object>
  </objectgroup>

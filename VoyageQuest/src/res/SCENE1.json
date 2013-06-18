@@ -3,7 +3,7 @@
             
     "mapName" : "My House",
     
-    "mapBackgroundScript": 25,
+    "mapBackgroundScript": "SCENE1",
     
     "allEntities": [
         {
@@ -13,16 +13,13 @@
             "initialY" : 1000,
             "width" : 64,
             "height" : 128,
-            "mainScriptID" : 6,
+            "mainScriptID" : "SCENE1COMMANDER",
             "mainThreadName" : "CommanderScene1Thread",
             "animations" : [
                 "Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right", "Njeri Profile"
             ],
             "profLeft" : true,
-            "startingAnimationDirection" : 3,
-            "onClickScript" : 31,
-            "onTouchScript" : 16
-            
+            "startingAnimationDirection" : 3
         },
         {
             
@@ -31,16 +28,13 @@
             "initialY" : 940,
             "width" : 64,
             "height" : 128,
-            "mainScriptID" : 7,
+            "mainScriptID" : "SCENE1SEBASTIAN",
             "mainThreadName" : "SebastianScene1Thread",
             "animations" : [
                 "Sebastian Forward", "Sebastian Backwards", "Sebastian Left", "Sebastian Right", "Sebastian Profile"
             ],
             "profLeft" : false,
-            "startingAnimationDirection" : 0,
-            "onClickScript" : 31,
-            "onTouchScript" : 16
-            
+            "startingAnimationDirection" : 0
         }
     ]
 }

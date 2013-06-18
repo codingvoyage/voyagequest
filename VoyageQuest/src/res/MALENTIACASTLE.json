@@ -3,7 +3,7 @@
             
     "mapName" : "Ze MALENTIA COUNTRY",
     
-    "mapBackgroundScript": 53,
+    "mapBackgroundScript": "MALENTIACASTLESCRIPT",
     
     "allEntities": [
         {
@@ -12,14 +12,14 @@
             "initialY" : 700,
             "width" : 64,
             "height" : 128,
-            "mainScriptID" : 5,
-            "mainThreadName" : "Commander in Castle Thread",
+            "mainScriptID" : "NjeriTest",
+            "mainThreadName" : "Actually Anika Tho",
             "animations" : [
                 "Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right"
             ],
             "startingAnimationDirection" : 0,
-            "onClickScript" : 68,
-            "onTouchScript" : 55
+            "onClickScript" : "CommanderDescription",
+            "onTouchScript" : "PASTCOMMANDERSCRIPT"
         }
     ]
 }

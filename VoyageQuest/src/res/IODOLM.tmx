@@ -15,37 +15,37 @@
  <tileset firstgid="2957" name="hyptosis_tile-art-batch-4" tilewidth="64" tileheight="64">
   <image source="test/hyptosis_tile-art-batch-4.png" width="1920" height="1920"/>
  </tileset>
- <layer name="Background 1" width="50" height="70">
+ <layer name="Background 1" width="50" height="70" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2aS07DMBBALWVRNnxWfI8AXZXvMfjfI6ueooI9N4C2F2ALqx6hR4hUuAFjtVaN5X/GsUFj6QlRu8m8xHZn0taMsdqTATABRsA04H0l8gq8AeMCYiGIv8QBcAgcFRBLGy6AS+CqgFgIIheu9Wzq73IfeAKepb+6Ma71bOrvah/gsY8kpoZreA88AI+G45j6Ta+/VLgek1XsIhc0XcNUDcuD54A8/xP3hc8r3TXk1w+r8WOJ47WNX547Prn5fHXerY0ln9Wa0CaOgeGhzh1Xbq56yLHEerxXS9p4iLnjO75J4DGrltcHc737gO0xL8jDB9P7+D1uMnjUkR42cjiQRx4PXV5y3WJ95PLQ5SWyx6LH2JeD715+D11eIntsesS3XcD90PFfPOoCPWJrNHHuUjxiazRx7mPgxEG/Aw9XbefywAK7JvSdb1jxyy2Fh2u+MSQXnq/PkOrBmPlm81gEfP6l9nBh8xB7GN+ndhxzqpFqYYy4fJ5bqR58bYZ6CH/M2GUH9bmV6DOtd9FcHup6Vv/H9NA9txKY1nuoh3pPUtSxuudWos+03kv0GLDw75R1bQxxfVS/PUwtRT0uPEK+U9a1ehWf7NEYns1hxp8K2UPtS/ndQeixXeNtHqZ9I3Tf1xGa87rG2zx0+4Zt3w8hNOd1jbd56LDt+znmm85jaGAXxu0B+8y+72MQW2P5eJzCuDPgnK1fS/Vbotgay8fjBsbdAneSR2m/JfLxcJHbgSNq9n6HHrHnIQiCIAiCIAiCIAgCjx8fUdYxsDYAAA==
   </data>
  </layer>
- <layer name="Background 2" width="50" height="70">
+ <layer name="Background 2" width="50" height="70" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3YsQ0CMQwF0EjZf5yrYACOCRAgFrgTM2CUlIEiNFF4T/pyYxe/dUoAAMA/WHL/7SFujz/cj+IeHR4T9Nijw3OCHjN0AAAAAPrdcvnXfMopskbOX3ZG+PVsufxrWnm71Hmts7XnTwIAAAAAwExeK5GfZbA2AAA=
   </data>
  </layer>
- <layer name="Under Entities" width="50" height="70">
+ <layer name="Under Entities" width="50" height="70" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3TsQmAMBQE0EAaV3MSJ3EkK3tHcB4FSWGTQoXEz3tw/V1xKQEAAJFt+cpyZs2t2zxXdpT81Z7vAQAAAAAAAAB4axxaN/jGFGTHHGQHffHzvvg51B04/cjXsDYAAA==
   </data>
  </layer>
- <layer name="Entity Layer" width="50" height="70" opacity="0.97">
+ <layer name="Entity Layer" width="50" height="70" visible="0" opacity="0.97">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2YwS4DQRjHN5lNS+rAgQMXJNx5AsSZEGeCurpwllA3rRdouy+gPADlBTTuovECFc/gm3Qm+3XMbrXdnZ2J75f8s9t2sjO/2ZntzngeQRAEQRAEIblhnldGuWVm6qykkBqkLo6BAY+qqAunPkTUa+CY8LiDOh5QnfcjpiLGEe4TEx6vLLwnan3PbLA0IS+s2zfSoyH6KW0+Ijy4X1ukhc77ffcGeRLXDJBb2nQiPLjfpO95U/7v9qrB5T5ZeI8D5GYCnQf3m4e2LUC+mD7T8NuM31vum4X3OGChWxYem358+THx+xIclzVlO8hDuplA9dj7g0euT5kqM/OcUuvEHsWYNs753Zxa7nExoS+zAu1e9UOPWcs9ahEe69DuDdH2ggMej8JD9r9kB853kQcfV4UYl6w9JLj/OYdwfqS02wUP3P+cLTjf1njI/5BxJbZ4qP2/D+cHigd/9sr/kJwSWzySuCZ5DF/nKB7qOrYs3tVd88BrygaKiXWHrh1JeMhrtA2tO3TtSNrD1Pt6kmAPuT4x9b6eJCb3RtIkq7mN4fsCzZhgosrIOW16bmP4vkArJpioMnIvwcW5rcPWub2Y7x7fWe9n11jLx382zTGs84qQk4h1qytcQvuvIKUBPdRxROPKHc5gHXjeZx8lKwYZVyVwuLbU4z+OK5uh5xVBEARBEARBEARB/F9+AEods2+wNgAA
   </data>
  </layer>
- <layer name="Above entities" width="50" height="70">
+ <layer name="Above entities" width="50" height="70" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3XOwoCUQwF0IEZsLK2snaxugM/G1B7FVyaYOTx0MLC6SbPc+B2CeSW6ToAAOCfPPqS7OZDSXbLoeSbWQP9XhaN9Fg10gMAALLYxu+6ixxG/rDrmN/0ZX8Kao9616+pe/uJ9DjGHaePnEek7mRw79/J7BL3XyO35D0AAAAAAICcnivJzsywNgAA
   </data>
  </layer>
- <layer name="Highest" width="50" height="70">
+ <layer name="Highest" width="50" height="70" visible="0">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3YMQqAMAxA0YId9Qb2/pdUcHArNJO0GN47QEjG/FIAAABi97Z6g28cNcctrb63ZNCS3AEAAMA/XEEX6JvBqCFEM2bZg3+6bwajhhDNmOUMduibwaghRDMAAAAAAIA1HnL3+iqwNgAA
   </data>
  </layer>
- <objectgroup name="Collisions" width="50" height="70">
+ <objectgroup name="Collisions" width="50" height="70" visible="0">
   <object x="1414" y="1605" width="116" height="40"/>
   <object x="1414" y="1734" width="116" height="50"/>
   <object x="1158" y="1734" width="118" height="44"/>
@@ -90,7 +90,7 @@
   <object x="3147" y="3869" width="47" height="25"/>
   <object x="3147" y="4192" width="43" height="21"/>
  </objectgroup>
- <objectgroup name="Boundaries" width="50" height="70">
+ <objectgroup name="Boundaries" width="50" height="70" visible="0">
   <object x="1150" y="1535" width="133" height="253"/>
   <object x="1018" y="1431" width="72" height="173"/>
   <object x="1412" y="1668" width="119" height="119"/>
@@ -112,12 +112,12 @@
  <objectgroup name="Events" width="50" height="70">
   <object name="WarpInside" type="onTouch" x="1256" y="1125" width="46" height="94">
    <properties>
-    <property name="runScript" value="20"/>
+    <property name="runScript" value="iodolmToNjeriHouse"/>
    </properties>
   </object>
   <object name="to forest" type="onTouch" x="3141" y="3912" width="51" height="240">
    <properties>
-    <property name="runScript" value="45"/>
+    <property name="runScript" value="iodolmToForest"/>
    </properties>
   </object>
  </objectgroup>

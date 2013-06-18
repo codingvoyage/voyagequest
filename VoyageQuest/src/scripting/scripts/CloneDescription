@@ -1,9 +1,0 @@
-freezeInputs
-
-playerMessageBox "That's my evil twin right here..."
-playerMessageBox "... alright that doesn't even make sense. This is all just for testing purposes."
-playerMessageBox "Quite frankly I don't want to write up the XML to import another character, but I really should later."
-
-unfreezeInputs
-
-endthread

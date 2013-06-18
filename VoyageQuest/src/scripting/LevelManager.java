@@ -7,7 +7,7 @@ package scripting;
 public class LevelManager extends ScriptableClass {
     public LevelManager()
     {
-        super(0);
+        super();
     }
     
     

@@ -3,7 +3,7 @@
             
     "mapName" : "Ze SPECIAL CASTLE",
     
-    "mapBackgroundScript": 53,
+    "mapBackgroundScript": "SPECIALHOUSE",
     
     "allEntities": [
         {
@@ -12,13 +12,12 @@
             "initialY" : 5000,
             "width" : 64,
             "height" : 128,
-            "mainScriptID" : 67,
+            "mainScriptID" : "MRYOUNGPICTUREWAITING",
             "mainThreadName" : "MRYOUNG",
             "animations" : [
                 "young", "young", "young", "young"
             ],
-            "startingAnimationDirection" : 0,
-            "onClickScript" : 15
+            "startingAnimationDirection" : 0
         }
     ]
 }

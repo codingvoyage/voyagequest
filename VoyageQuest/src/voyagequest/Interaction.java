@@ -12,18 +12,17 @@ public class Interaction {
     public Interaction(Properties props)
     {
         if (props.containsKey("runScript")) 
-            executeScript(Integer.parseInt((String)props.get("runScript")));
+            executeScript((String)props.get("runScript"));
     }
     
-    public Interaction(int scriptID)
+    public Interaction(String scriptID)
     {
         executeScript(scriptID);
     }
     
     
-    public void executeScript(int scriptIndex)
+    public void executeScript(String scriptIndex)
     {
-        
         Thread t = new Thread(scriptIndex);
         t.setRunningState(false);
         t.setLineNumber(0);

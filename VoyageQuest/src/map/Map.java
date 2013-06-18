@@ -30,7 +30,7 @@ public class Map {
     public TiledMapPlus tileMap;
     
     //The script associated with this map...
-    public static int mapBackgroundScript;
+    public static String mapBackgroundScript;
     
     //For collision detection and such
     public QuadTree collisions;
@@ -41,8 +41,7 @@ public class Map {
     
     //all the entities
     public static LinkedList<Entity> entities;
-    
-            
+
     //The length and width of each tile.
     public static int TILE_LENGTH;
     
@@ -161,7 +160,7 @@ public class Map {
                     new DoubleRect(l.getInitialX(), l.getInitialY(), 
                     l.getWidth(), l.getHeight()));
             
-            int mainScriptID = l.getMainScriptID();
+            String mainScriptID = l.getMainScriptID();
             String mainThreadName = l.getMainThreadName();
             
             e.onClickScript = l.getOnClickScript();

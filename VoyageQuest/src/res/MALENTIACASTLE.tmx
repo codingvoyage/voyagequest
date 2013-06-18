@@ -72,7 +72,7 @@
  <objectgroup name="Events" width="25" height="25">
   <object type="onTouch" x="577" y="1548" width="249" height="47">
    <properties>
-    <property name="runScript" value="54"/>
+    <property name="runScript" value="castleToMalentia"/>
    </properties>
   </object>
  </objectgroup>

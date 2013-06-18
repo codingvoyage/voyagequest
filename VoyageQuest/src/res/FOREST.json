@@ -3,7 +3,7 @@
             
     "mapName" : "Ze Forest",
     
-    "mapBackgroundScript": 10,
+    "mapBackgroundScript": "FORESTMAINSCRIPT",
     
     "allEntities": []
 }

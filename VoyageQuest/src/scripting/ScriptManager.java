@@ -115,7 +115,7 @@ public class ScriptManager {
         try
         {
             //IF WE'RE RUNNING FROM A JAR FILE...
-            if (src.getLocation().getPath().endsWith(".jar") && src != null ) {
+            if ( src != null && src.getLocation().getPath().endsWith(".jar") ) {
 
                 //Creates a ZipInputStream of this JAR file
                 URL jar = src.getLocation();

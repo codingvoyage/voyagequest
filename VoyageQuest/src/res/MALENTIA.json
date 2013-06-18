@@ -3,7 +3,7 @@
             
     "mapName" : "Ze MALENTIA CASTLE",
     
-    "mapBackgroundScript": 53,
+    "mapBackgroundScript": "MALENTIAMAINSCRIPT",
     
     "allEntities": [
         {
@@ -12,7 +12,7 @@
             "initialY" : 700,
             "width" : 64,
             "height" : 128,
-            "mainScriptID" : 5,
+            "mainScriptID" : "NjeriTest",
             "mainThreadName" : "Njeri in castle testing Thread",
             "animations" : [
                 "Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right"

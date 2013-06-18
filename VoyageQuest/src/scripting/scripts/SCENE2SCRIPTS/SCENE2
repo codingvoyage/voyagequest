@@ -70,7 +70,7 @@ dialogBox "Sebastian Profile" "I AM CHANNELING MY INNER CHI"
 writeGlobal 15 --> GAME_STATE
 
 -- CREATE A LISTENER FOR THE PLAYER TO FLY 
-newthread 4 "newThreadLyfe"
+newthread "LIFTOFF" "Lift-off thread"
 
 -- spinny spin time
 var continue false

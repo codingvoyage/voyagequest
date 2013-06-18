@@ -69,17 +69,7 @@ public abstract class EventListener {
 
         if(input.isKeyDown(Input.KEY_ENTER))
         {
-            //map changing test. hardcoded for now
-            if (VoyageQuest.haschangedmaps == false)
-            {
-                VoyageQuest.threadManager.markForDeletion("Njeri Thread");
-                
-                Global.currentMap = new Map("res/House.tmx");
-                VoyageQuest.player.r = new DoubleRect(620, 1300, 64, 128);
-                Global.currentMap.entities.add(player);
-                Global.currentMap.collisions.addEntity(player);
-                VoyageQuest.haschangedmaps = true;
-            }
+
         }
     }
     
@@ -161,7 +151,7 @@ public abstract class EventListener {
         }
         
         if (clickedEntity != null &&
-            clickedEntity.onClickScript != -1)
+            clickedEntity.onClickScript != null)
         {   
             //From here on, clickedBoundary should contain a valid BoundaryWrapper
             new Interaction(clickedEntity.onClickScript);

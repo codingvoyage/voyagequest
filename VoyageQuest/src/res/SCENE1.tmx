@@ -68,7 +68,7 @@
  <objectgroup name="Events" width="25" height="25">
   <object name="warp!!" type="onClick" x="589" y="519" width="111" height="50">
    <properties>
-    <property name="runScript" value="21"/>
+    <property name="runScript" value="njeriHouseToIodolm"/>
    </properties>
   </object>
  </objectgroup>

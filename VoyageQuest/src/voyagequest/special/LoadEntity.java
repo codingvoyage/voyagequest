@@ -14,13 +14,13 @@ public class LoadEntity {
     private int initialY;
     private int width;
     private int height;
-    private int mainScriptID;
+    private String mainScriptID;
     private String mainThreadName;
     private LinkedList<String> animations;
     private boolean profLeft;
     private int startingAnimationDirection;
-    private int onClickScript;
-    private int onTouchScript;
+    private String onClickScript;
+    private String onTouchScript;
     
     public String getName() {
         return name;
@@ -42,7 +42,7 @@ public class LoadEntity {
         return height;
     }
     
-    public int getMainScriptID() {
+    public String getMainScriptID() {
         return mainScriptID;
     }
     
@@ -62,11 +62,11 @@ public class LoadEntity {
         return startingAnimationDirection;
     }
     
-    public int getOnClickScript() {
+    public String getOnClickScript() {
         return onClickScript;
     }
     
-    public int getOnTouchScript() {
+    public String getOnTouchScript() {
         return onTouchScript;
     }
     

@@ -81,7 +81,7 @@ public class VoyageQuest extends BasicGame {
         gc.setMaximumLogicUpdateInterval(20);
         
         initRpg(gc);
-        
+
     }
 
 
@@ -105,36 +105,28 @@ public class VoyageQuest extends BasicGame {
 
         //Create the player
         //The player needs to have a thread...
-        Thread playerThread = new Thread(1);
-        playerThread.setLineNumber(0);
-        playerThread.setName("SebastianThread");
-        threadManager.addThread(playerThread);
+        Thread playerThread = new Thread("PLAYERDOESNOTHING");
+            playerThread.setLineNumber(0);
+            playerThread.setName("SebastianThread");
+            threadManager.addThread(playerThread);
+
         player = new Player(new DoubleRect(1400, 4300, 64, 128));
-
-        player.setMainScriptID(1);
-        player.setMainThread(threadManager.getThreadAtName("SebastianThread"));
-
-        player.forward = Res.animations.get("Sebastian Forward");
-        player.backward = Res.animations.get("Sebastian Backwards");
-        player.left = Res.animations.get("Sebastian Left");
-        player.right = Res.animations.get("Sebastian Right");
-
-        player.name = "Sebastian";
-
-        player.profile = Res.animations.get("Sebastian Profile");
-        if (player.profile == null)
-            System.out.println("Still null");
-
-
-        player.setAnimation(0);
+            player.setMainScriptID("Cutscene.txt");
+            player.setMainThread(threadManager.getThreadAtName("SebastianThread"));
+            player.forward = Res.animations.get("Sebastian Forward");
+            player.backward = Res.animations.get("Sebastian Backwards");
+            player.left = Res.animations.get("Sebastian Left");
+            player.right = Res.animations.get("Sebastian Right");
+            player.name = "Sebastian";
+            player.profile = Res.animations.get("Sebastian Profile");
+            player.setAnimation(0);
 
         //Now create the Camera.
         Global.camera = new Camera();
 
         //Now that we're done with the player and camera, we can load the map itself...
         threadManager.clear();
-        Thread loadingThread = new Thread(42);
-        loadingThread.setName("LOADINITIALSCRIPT");
+        Thread loadingThread = new Thread("INITIALSCRIPT");
         loadingThread.setLineNumber(0);
         threadManager.addThread(loadingThread);
         threadManager.act(0.0);
@@ -148,7 +140,7 @@ public class VoyageQuest extends BasicGame {
         scriptCollection = new ScriptManager();
         
         //Load the loader script...
-        scriptCollection.loadScript("loader.cfg", 0);
+        //scriptCollection.loadScript("loader.cfg", 0);
         
         //Initialize ScriptReader, passing it the ScriptManager handle
         scriptReader = new ScriptReader(scriptCollection);
@@ -159,11 +151,11 @@ public class VoyageQuest extends BasicGame {
         
         //Now create a thread that uses the loading script, 
         //adding it to threadManager and running it
-        Thread loadingThread = new Thread(0);
-        loadingThread.setName("LOADINGTHREAD");
-        loadingThread.setLineNumber(0);
-        threadManager.addThread(loadingThread);
-        threadManager.act(0.0);
+        //Thread loadingThread = new Thread(0);
+        //loadingThread.setName("LOADINGTHREAD");
+        //loadingThread.setLineNumber(0);
+        //threadManager.addThread(loadingThread);
+        //threadManager.act(0.0);
         
         
         InputStream is = getClass().getClassLoader().getResourceAsStream("res/alphamini.png");

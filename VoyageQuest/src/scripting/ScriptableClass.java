@@ -17,7 +17,7 @@ public class ScriptableClass implements Scriptable {
     private HashMap<String, Parameter> memoryBox;
     
     /** Script ID for Entity */
-    private Integer scriptID;
+    private String scriptID;
     
     protected boolean isMarkedForDeletion = false;
     
@@ -30,7 +30,7 @@ public class ScriptableClass implements Scriptable {
         return isMarkedForDeletion;
     }
     
-    public ScriptableClass(int newScriptID) 
+    public ScriptableClass(String newScriptID)
     {
         mainThread.setScriptID(newScriptID);
         mainThread.setLineNumber(0);
@@ -69,7 +69,7 @@ public class ScriptableClass implements Scriptable {
      * Set the main script ID
      * @param scriptID entity script ID
      */
-    public void setMainScriptID(int scriptID) {
+    public void setMainScriptID(String scriptID) {
         this.scriptID = scriptID;
     }
     
@@ -77,7 +77,7 @@ public class ScriptableClass implements Scriptable {
      * Get the main script ID
      * @return the main script ID
      */
-    public int getMainScriptID() {
+    public String getMainScriptID() {
         return scriptID;
     }
     

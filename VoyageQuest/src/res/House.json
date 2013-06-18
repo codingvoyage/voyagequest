@@ -3,7 +3,7 @@
             
     "mapName" : "My House",
     
-    "mapBackgroundScript": 22,
+    "mapBackgroundScript": "NJERIHOUSESCRIPT",
     
     "allEntities": [
         {
@@ -12,14 +12,14 @@
             "initialY" : 730,
             "width" : 64,
             "height" : 128,
-            "mainScriptID" : 5,
+            "mainScriptID" : "NjeriTest",
             "mainThreadName" : "Njeri House Thread",
             "animations" : [
                 "Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right"
             ],
             "startingAnimationDirection" : 0,
-            "onClickScript" : 57,
-            "onTouchScript" : 56
+            "onClickScript" : "NjeriInsideDescription",
+            "onTouchScript" : "NJERIDIALOGSCRIPT"
         }
     ]
 }

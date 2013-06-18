@@ -2,10 +2,10 @@
 -- be made here..
 existsGlobal "DAMN_CRATES" --> result
 if result == false
-    wait 3000
+    wait 2000
     freezeInputs
     dialogBox "Sebastian Profile" " ... wow... "
-    dialogBox "Sebastian Profile" "The amount of crates in this room... "
+    dialogBox "Sebastian Profile" "The number of crates in this room... "
     dialogBox "Sebastian Profile" "Is. Too. Damn. High!" 
     writeGlobal true --> "DAMN_CRATES"
 
@@ -26,7 +26,7 @@ if result == false
     dialogBox "Sebastian Profile" "Crate Expectations, by Charles Dickens..."
 
     wait 10000
-    dialogBox "Sebastian Profile" "UGH"
+    dialogBox "Sebastian Profile" "UGH!!"
 
 
 endif
