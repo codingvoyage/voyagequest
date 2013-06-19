@@ -1,6 +1,6 @@
 writeGlobal 50 --> GAME_STATE
-mapChange "MALENTIA" 70 4280
--- mapChange "CRATEEXPECTATIONS" 300 2100
+-- mapChange "MALENTIA" 70 4280
+mapChange "CRATEEXPECTATIONS" 300 2100
 endthread
 
 

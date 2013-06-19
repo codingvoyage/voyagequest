@@ -207,3 +207,8 @@ dialogBox 151
 fadein 161
 
 fadeout 162
+
+-- some sound effects may be automatic with certain actions
+soundEffect 163
+-- music is automatic with maps, so this isn't usually necessary
+playMusic 164

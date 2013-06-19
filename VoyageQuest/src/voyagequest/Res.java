@@ -85,6 +85,8 @@ public class Res {
     public static LinkedList<LoadAudio> musicData = new LinkedList<>();
     /** Hashmap of background music */
     public static HashMap<String, Audio> music = new HashMap<>();
+    /** Currently playing music */
+    public static Audio currentMusic;
 
     /**
      * Initialize all the remaining resources. 
@@ -92,8 +94,6 @@ public class Res {
      */
     public static void init() {
         initAudio();
-
-        playMusic("Route 3");
             
         ListIterator<LoadAnimations> animationIterator = animationData.listIterator();
         while (animationIterator.hasNext()) {
@@ -155,18 +155,37 @@ public class Res {
     }
 
     /**
-     * Play Music
+     * Play Music if it exists
      * @param name audio name
      */
     public static void playMusic(String name) {
-        music.get(name).playAsMusic(1.0f, 1.0f, true);
+        if (music.containsKey(name) && currentMusic != getAudio(name)) {
+                if (currentMusic != null)
+                    currentMusic.stop();
+                music.get(name).playAsMusic(1.0f, 1.0f, true);
+                currentMusic = music.get(name);
+                System.out.println("Playing " + name);
+        }
     }
 
     /**
-     * Play Effect
+     * Play Effect if it exists
      * @param name audio name
      */
     public static void playEffect(String name) {
-        music.get(name).playAsSoundEffect(1.0f, 7.0f, false);
+        if (music.containsKey(name))
+            music.get(name).playAsSoundEffect(1.0f, 7.0f, false);
+    }
+
+    /**
+     * Get Audio by Name
+     * @param name name of audio file
+     * @return audio file or null if it doesn't exist
+     */
+    public static Audio getAudio(String name) {
+        if (music.containsKey(name))
+            return music.get(name);
+        else
+            return null;
     }
 }

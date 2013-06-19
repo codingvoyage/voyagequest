@@ -1,22 +1,19 @@
 package map;
 
-import java.io.InputStream;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.tiled.GroupObject;
+import org.newdawn.slick.tiled.ObjectGroup;
+import org.newdawn.slick.tiled.TiledMapPlus;
+import scripting.Thread;
+import voyagequest.DoubleRect;
+import voyagequest.JsonReader;
+import voyagequest.Res;
+import voyagequest.special.LoadEntity;
+
 import java.util.ArrayList;
 import java.util.LinkedList;
 
-import org.newdawn.slick.tiled.*;
-import org.newdawn.slick.SlickException;
-
-import voyagequest.special.LoadEntity;
-import voyagequest.DoubleRect;
-import voyagequest.Global;
-import voyagequest.JsonReader;
-import voyagequest.Res;
-import voyagequest.VoyageQuest;
-
 import static voyagequest.VoyageQuest.threadManager;
-import scripting.Thread;
-import voyagequest.Util;
 
 
 /**
@@ -26,34 +23,37 @@ import voyagequest.Util;
 public class Map {
     public String mapName;
     
-    //The tile based map provided by slick and tiled
+    /** The tile based map provided by slick and tiled */
     public TiledMapPlus tileMap;
     
-    //The script associated with this map...
+    /**The script associated with this map... */
     public static String mapBackgroundScript;
     
-    //For collision detection and such
+    /**For collision detection and such */
     public QuadTree collisions;
     public QuadTree boundaries;
     public QuadTree events;
     public static LinkedList<Rectangular> allCollisions;
     public static LinkedList<Rectangular> allBoundaries;
     
-    //all the entities
+    /**all the entities */
     public static LinkedList<Entity> entities;
 
-    //The length and width of each tile.
+    /**The length and width of each tile. */
     public static int TILE_LENGTH;
     
-    //The width and length of the entire map in pixels.
+    /**The width and length of the entire map in pixels. */
     public static int MAP_WIDTH;
     public static int MAP_HEIGHT;
     
-    //A rectangle of the entire map.
+    /**A rectangle of the entire map. */
     public static DoubleRect MAP_RECT;
     
-    //For loading all the entities...
+    /**For loading all the entities... */
     public static LinkedList<LoadEntity> allEntities = new LinkedList<>();
+    
+    /** map music */
+    private static String music;
             
     
     
@@ -198,6 +198,17 @@ public class Map {
         
         
         
+    }
+
+    /**
+     * Return the name of the map's background music.
+     * If no music exists, then use "Route 3"
+     * @return name of map's background music
+     */
+    public static String getMusic() {
+        if (music == null)
+            music = "Route 3";
+        return music;
     }
     
 }

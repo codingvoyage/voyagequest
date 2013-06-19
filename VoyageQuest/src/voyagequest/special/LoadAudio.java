@@ -9,8 +9,6 @@ public class LoadAudio {
 
     private String name;
     private String path;
-    private String credit;
-    private String type;
 
     public String getName() {
         return name;

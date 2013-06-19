@@ -5,5 +5,7 @@
     
     "mapBackgroundScript": "FORESTMAINSCRIPT",
     
-    "allEntities": []
+    "allEntities": [],
+
+    "music" : "Elinia"
 }

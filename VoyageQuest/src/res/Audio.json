@@ -5,20 +5,40 @@
         {
             "name" : "Route 3",
             "path" : "res/music/pkxy3.ogg",
-            "credit" : "http://www.youtube.com/watch?v=oq4i0ormzg4",
+            "credit" : "Pokemon Fanmade - http://www.youtube.com/watch?v=oq4i0ormzg4",
             "type" : "music"
         },
         {
-            "name" : "Redstone",
-            "path" : "res/music/redstone.ogg",
-            "credit" : "Redstone",
+              "name" : "Redstone",
+              "path" : "res/music/redstone.ogg",
+              "credit" : "Redstone",
+              "type" : "music"
+        },
+        {
+            "name" : "Elinia",
+            "path" : "res/music/elinia.ogg",
+            "credit" : "Maplestory",
             "type" : "music"
+        },
+        {
+            "name" : "Lith Harbor",
+            "path" : "res/music/elinia.ogg",
+            "credit" : "MS Remix - http://www.youtube.com/watch?v=__bmhrawjK4",
+            "type" : "music",
+            "note" : "I AM STILL CONVERTING THE FILE. NOT AVAILABLE YET!"
         },
         {
             "name" : "Teleport",
             "path" : "res/sounds/teleport.ogg",
-            "credit" : "Maplestory (Wizet)",
+            "credit" : "Maplestory",
             "type" : "effect"
+        },
+        {
+            "name" : "Explosion",
+            "path" : "res/sounds/teleport.ogg",
+            "credit" : "Unknown",
+            "type" : "effect",
+            "note" : "Not yet available"
         }
     ]
 }

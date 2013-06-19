@@ -20,5 +20,7 @@
             "startingAnimationDirection" : 0,
             "onClickScript" : 15
         }
-    ]
+    ],
+
+    "music" : "Redstone"
 }

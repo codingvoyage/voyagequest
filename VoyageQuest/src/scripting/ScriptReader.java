@@ -3,7 +3,6 @@ package scripting;
 import map.Entity;
 import map.Map;
 import voyagequest.Global;
-import voyagequest.Util;
 import voyagequest.VoyageQuest;
 
 import java.util.ArrayList;
@@ -911,7 +910,10 @@ public class ScriptReader
             case 145:
                 //Clear the threads of the current map
                 VoyageQuest.threadManager.clear();
-                
+
+                // Play teleport music
+                voyagequest.Res.playEffect("Teleport");
+
                 //Load map with name
                 try {
                 Global.currentMap = 
@@ -919,27 +921,18 @@ public class ScriptReader
                 } 
                 catch (Exception e) {
                 }  //Swallow any exceptions because I'm a rebel like that.
-                
-               
-                
+
+                // Change background music if needed
+                System.out.println(Global.currentMap.getMusic() + " is " + voyagequest.Res.getAudio(Global.currentMap.getMusic()).isPlaying());
+                voyagequest.Res.playMusic(Global.currentMap.getMusic());
+
                 //Now put the player where the player is supposed to be
                 Entity player = VoyageQuest.player;
                 player.r.x = identifierCheck(currentLine, 1).getDoubleValue();
                 player.r.y = identifierCheck(currentLine, 2).getDoubleValue();
-                
-                if (Global.currentMap == null)
-                    Util.p("currentMap null");
-                else if (Global.currentMap.entities == null)
-                    Util.p("entities null");
-                else if (player == null)
-                    Util.p("player null");
-
-                // Play teleport music
-                voyagequest.Res.playEffect("Teleport");
 
                 Global.currentMap.entities.add(player);
                 Global.currentMap.collisions.addEntity(player);
-
                 
                 //Fade in, son
                 Thread fadeIn = new Thread("FADEIN");
@@ -991,6 +984,16 @@ public class ScriptReader
             case 162:
                 currentThread.setRunningState(true);
                 continueExecuting = false;
+                break;
+
+            // sound effect
+            case 163:
+                voyagequest.Res.playEffect(identifierCheck(currentLine, 0).getStringValue());
+                break;
+
+            // play background music
+            case 164:
+                voyagequest.Res.playMusic(identifierCheck(currentLine, 0).getStringValue());
                 break;
                 
         }
