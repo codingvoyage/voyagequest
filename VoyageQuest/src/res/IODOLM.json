@@ -35,5 +35,7 @@
             "onClickScript" : "LiFeiDescription",
             "onTouchScript" : "LIFEIDIALOGSCRIPT"
         }
-    ]
+    ],
+
+    "music" : "Lith Harbor"
 }

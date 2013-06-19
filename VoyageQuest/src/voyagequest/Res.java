@@ -134,14 +134,19 @@ public class Res {
     }
 
     /**
-     * Initialize music and sound effects
+     * Initialize music and sound effects.
+     * Background music are loaded as streams while sound effects
+     * are loaded directly into memory
      */
     private static void initAudio() {
         ListIterator<LoadAudio> audioIterator = musicData.listIterator();
         while (audioIterator.hasNext()) {
             LoadAudio next = audioIterator.next();
             try {
-                music.put(next.getName(), AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream(next.getPath())));
+                if (next.getType().equals("music"))
+                    music.put(next.getName(), AudioLoader.getStreamingAudio("OGG", ResourceLoader.getResource(next.getPath())));
+                else
+                    music.put(next.getName(), AudioLoader.getAudio("OGG", ResourceLoader.getResourceAsStream(next.getPath())));
             } catch (IOException e) {}
         }
     }

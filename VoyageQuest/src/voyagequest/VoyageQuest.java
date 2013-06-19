@@ -9,12 +9,14 @@ import map.Player;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.*;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.openal.SoundStore;
 import scripting.ScriptManager;
 import scripting.ScriptReader;
 import scripting.Thread;
 import scripting.ThreadManager;
 
 import java.io.InputStream;
+
 /**
  * Voyage Quest RPG
  * Copyright (c) 2013 Team Coding Voyage.
@@ -83,7 +85,6 @@ public class VoyageQuest extends BasicGame {
         initRpg(gc);
 
     }
-
 
     private void initRpg(GameContainer gc) throws SlickException {
         // Load animation data
@@ -187,12 +188,15 @@ public class VoyageQuest extends BasicGame {
                 threadManager.act(delta);
 
                 GuiManager.update(gc, delta);
+
                 break;
             case COMBAT:
                 break;
             default:
                 break;
         }
+        // Stream polling
+        SoundStore.get().poll(0);
     }
 
     /**

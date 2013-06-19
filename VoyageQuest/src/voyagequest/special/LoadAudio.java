@@ -9,6 +9,7 @@ public class LoadAudio {
 
     private String name;
     private String path;
+    private String type;
 
     public String getName() {
         return name;
@@ -16,5 +17,9 @@ public class LoadAudio {
 
     public String getPath() {
         return path;
+    }
+
+    public String getType() {
+        return type;
     }
 }
