@@ -56,6 +56,7 @@ public class Map {
     /** map music */
     private static String music;
 
+    /** the chance of an encounter happening in this tick, as a percentage*/
     private static double encounterChance;
 
     /** The enemies which spawn in danger-areas of the map */
@@ -196,13 +197,6 @@ public class Map {
             entities.add(e);
             collisions.addEntity(e);
         }
-
-        int hitcount = 0;
-        for (int i = 0; i < 100000; i++)
-        {
-            if (encounterPoll()) hitcount++;
-        }
-        System.out.println(hitcount + " is the # of hits");
     }
 
     public boolean encounterPoll()
