@@ -3,6 +3,7 @@ package voyagequest;
 import gui.GuiManager;
 import gui.VoyageGuiException;
 import gui.special.DialogBox;
+import item.ItemManager;
 import map.Camera;
 import map.Entity;
 import map.Player;
@@ -87,16 +88,13 @@ public class VoyageQuest extends BasicGame {
     }
 
     private void initRpg(GameContainer gc) throws SlickException {
-        // Load animation data
-        JsonReader<Res> reader = new JsonReader<>(Res.class, "res/Animations.json");
-        reader.readJson();
-
-        // Load audio data
-        reader = new JsonReader<>(Res.class, "res/Audio.json");
-        reader.readJson();
 
         // Initialize the rest of the resource manager
-        Res.init();
+        Res.initAnimations();
+        Res.initAudio();
+
+        //Initialize all Itemdata
+        ItemManager.init();
 
         // Load all the scripts
         loadScripts();

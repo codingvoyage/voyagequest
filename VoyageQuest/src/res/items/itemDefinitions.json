@@ -1,0 +1,22 @@
+{
+    "about_file": "This file stores information about the different items. By Edmund Qiu",
+
+    "loadItemDefs": [
+        {
+            "itemID" : "forestteleportscroll",
+            "itemName" : "Teleport to Forest",
+            "imageID" : "IDK",
+            "effectScript" : "TELEPORTTOFOREST",
+            "uponRemovalScript" : "N/A",
+            "description" : "This item would teleport me to the Malentian Forests"
+        },
+        {
+            "itemID" : "",
+            "itemName" : "",
+            "imageID" : "",
+            "effectScript" : "",
+            "uponRemovalScript" : "",
+            "description" : ""
+        }
+    ]
+}
