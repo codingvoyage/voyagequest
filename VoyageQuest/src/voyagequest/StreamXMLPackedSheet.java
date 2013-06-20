@@ -33,7 +33,7 @@ public class StreamXMLPackedSheet {
 	 */
 	public StreamXMLPackedSheet(String imageRef, String xmlRef) throws SlickException
 	{
-                InputStream is = getClass().getClassLoader().getResourceAsStream(imageRef);
+        InputStream is = getClass().getClassLoader().getResourceAsStream(imageRef);
 		image = new Image(is, imageRef, false, Image.FILTER_NEAREST);
 
 		try {

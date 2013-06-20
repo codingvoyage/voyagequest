@@ -1,0 +1,18 @@
+{
+    "about_file": "This file manages all of the battleID to script associations for VoyageQuest",
+
+    "loadBattleDefs": [
+        {
+            "battleID" : "FUNNY BEAR",
+            "description" : "An odd bear wearing a hat attacks you!",
+            "ScriptID" : "FUNNYBEARFIGHTSCRIPT",
+            "rewardScript" : "FUNNYBEARREWARDSCRIPT"
+        },
+        {
+            "battleID" : "DARK DEER",
+            "description" : "An evil deer rushes at you!!",
+            "ScriptID" : "DARKDEERFIGHTSCRIPT",
+            "rewardScript" : "DARKDEERREWARDSCRIPT"
+        }
+    ]
+}

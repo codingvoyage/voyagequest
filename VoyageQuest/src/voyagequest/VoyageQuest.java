@@ -1,8 +1,10 @@
 package voyagequest;
 
+import battle.BattleManager;
 import gui.GuiManager;
 import gui.VoyageGuiException;
 import gui.special.DialogBox;
+import item.ItemManager;
 import map.Camera;
 import map.Entity;
 import map.Player;
@@ -39,8 +41,12 @@ public class VoyageQuest extends BasicGame {
     public static ScriptManager scriptCollection;
     /** The actual script reader */
     public static ScriptReader scriptReader;
-    /** Manages all the scripting threads */
+
+    /** Manages all the scripting threads for the RPG */
     public static ThreadManager threadManager;
+    /** Manages all the scripting threads for the Combat */
+    public static ThreadManager battleThreadManager;
+
     
     /** game state */
     public static GameState state = GameState.RPG;
@@ -84,16 +90,13 @@ public class VoyageQuest extends BasicGame {
     }
 
     private void initRpg(GameContainer gc) throws SlickException {
-        // Load animation data
-        JsonReader<Res> reader = new JsonReader<>(Res.class, "res/Animations.json");
-        reader.readJson();
-
-        // Load audio data
-        reader = new JsonReader<>(Res.class, "res/Audio.json");
-        reader.readJson();
 
         // Initialize the rest of the resource manager
-        Res.init();
+        Res.initAnimations();
+        Res.initAudio();
+
+        //Initialize all Itemdata
+        ItemManager.init();
 
         // Load all the scripts
         loadScripts();
@@ -122,6 +125,10 @@ public class VoyageQuest extends BasicGame {
         //Now create the Camera.
         Global.camera = new Camera();
 
+        //Load the lighting... This will be changed later, of course.
+        InputStream is = getClass().getClassLoader().getResourceAsStream("res/alphamini.png");
+        alphaMap = new Image(is, "res/alphamini.png", false, Image.FILTER_NEAREST);
+
         //Now that we're done with the player and camera, we can load the map itself...
         threadManager.clear();
         Thread loadingThread = new Thread("INITIALSCRIPT");
@@ -134,31 +141,17 @@ public class VoyageQuest extends BasicGame {
      * Loads all scripting relating things
      */
     private void loadScripts() throws SlickException {
-        //Initialize the ScriptManager
+        //Initialize the ScriptManager, which loads every script
         scriptCollection = new ScriptManager();
-        
-        //Load the loader script...
-        //scriptCollection.loadScript("loader.cfg", 0);
         
         //Initialize ScriptReader, passing it the ScriptManager handle
         scriptReader = new ScriptReader(scriptCollection);
-        
+
         //Initialize the collection of threads
         threadManager = new ThreadManager(scriptReader);
+        battleThreadManager = new ThreadManager(scriptReader);
+
         scriptReader.setThreadHandle(threadManager);
-        
-        //Now create a thread that uses the loading script, 
-        //adding it to threadManager and running it
-        //Thread loadingThread = new Thread(0);
-        //loadingThread.setName("LOADINGTHREAD");
-        //loadingThread.setLineNumber(0);
-        //threadManager.addThread(loadingThread);
-        //threadManager.act(0.0);
-        
-        
-        InputStream is = getClass().getClassLoader().getResourceAsStream("res/alphamini.png");
-        alphaMap = new Image(is, "res/alphamini.png", false, Image.FILTER_NEAREST);
-      
     }
     
     /**
