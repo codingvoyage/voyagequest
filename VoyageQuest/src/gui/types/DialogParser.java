@@ -19,36 +19,36 @@ import java.util.ListIterator;
  * @author Brian Yang
  */
 public class DialogParser {
-    
+
     /** The dialog box */
     private Dialog box;
-    
+
     /** Elapsed time */
     private int time;
     /** Font */
     public static final UnicodeFont FONT = Util.FONT;
-    
+
     /** Linked list of characters to be printed */
     private LinkedList<LinkedList<String>> chars;
     /** Iterator for outer list to be printed */
     private ListIterator<LinkedList<String>> wordIterator;
     /** Iterator for inner list to be printed */
     private ListIterator<String> charIterator;
-    
+
     /** Linked list of printed characters mapped to their coordinates to avoid repetitive calculations */
     private LinkedList<Coordinate> printedChars;
-    
+
     /** Begin a new word */
     private boolean newWord;
-    
+
     /** x coordinate */
     private float x;
     /** y coordinate */
     private float y;
-    
+
     /** dialog box offset */
     public static final float DIALOG_PADDING = 25.0f;
-    
+
     /** left margin */
     private float xStart;
     /** top margin */
@@ -57,21 +57,21 @@ public class DialogParser {
     private int totalWidth;
     /** height of the text area */
     private int totalHeight;
-    
+
     /** speed of text printing in milliseconds */
     public static final int PRINT_SPEED = 20;
-    
+
     /** waiting for user */
     private boolean waiting = false;
-    
+
     /** blink continue cursor */
     private boolean blink = true;
     /** blink speed */
     public int blinkTimer = 0;
-    
+
     /** status */
     private boolean continuePrinting = true;
-    
+
     /** profile animation */
     private Animation profile;
     private boolean profileLeft;
@@ -87,8 +87,10 @@ public class DialogParser {
     private Menu menuObject;
     /** selected option index */
     private int selected = -1;
+    /** are we printing? */
+    private boolean optionsDisplaying;
 
-    
+
     /**
      * Print a new dialog message
      * @param text the text to print
@@ -98,29 +100,29 @@ public class DialogParser {
      */
     public DialogParser(String text, Dialog box, float x, float y) {
         this.box = box;
-        
+
         this.x = x;
         this.y = y;
-        
+
         // Split the text up into different words
         String[] words = text.split(" ");
-        
+
         xStart = x + DIALOG_PADDING;
         yStart = y + DIALOG_PADDING;
         this.x += DIALOG_PADDING;
         this.y += DIALOG_PADDING;
         totalWidth = box.getWidth() + (int)xStart - (int)DIALOG_PADDING * 3;
         totalHeight = box.getHeight() + (int)yStart - (int)DIALOG_PADDING * 3;
-        
+
         chars = new LinkedList<>();
-        
+
         newWord = true;
-        
+
         boolean first = true;
         // For each word, split into characters
         for (String s : words) {
             char[] tempChars = s.toCharArray();
-            
+
             // For each character array, make a new linked list
             LinkedList<String> charList = new LinkedList<>();
             for (char c : tempChars) {
@@ -136,13 +138,13 @@ public class DialogParser {
                 first = false;
             }
         }
-        
+
         wordIterator = chars.listIterator();
         if (wordIterator.hasNext())
             wordIterator.next();
         printedChars = new LinkedList<>();
     }
-    
+
     /**
      * Print a new dialog message
      * @param text the text to print
@@ -153,7 +155,7 @@ public class DialogParser {
      */
     public DialogParser(String text, Dialog box, float x, float y, String animationId) {
         this(text, box, x, y);
-        
+
         profile = Res.animations.get(animationId);
         // profileLeft = box.getSpeaker().profLeft;
         int namePart = animationId.indexOf(" Profile");
@@ -224,18 +226,19 @@ public class DialogParser {
                 new Menu(optionsX, optionsYStart, (int)maxWidth, (int)optionsY, this.options));
         menuObject = menu.getObject();
     }
-    
+
     /**
      * Update the time
      * @param delta the time interval
      */
     public void update(GameContainer gc, int delta) {
         time += delta;
-        
+
         if (waiting) {
             Input input = gc.getInput();
             if (!hasNext()) {
                 if (options != null) {
+                    optionsDisplaying = true;
                     menu.next(gc, delta);
                 }
             }
@@ -249,8 +252,6 @@ public class DialogParser {
                     y = yStart;
 
                 } else {
-                    if (getStatus())
-                        options = null;
                     // dialog is done printing, but are there options to display?
                     if (options == null) {
                         // the box has no more to print. close it.
@@ -261,15 +262,15 @@ public class DialogParser {
                 }
             }
         }
-        
+
         blinkTimer += delta;
-        
+
         if (blinkTimer >= 400) {
             blink = !blink;
             blinkTimer = 0;
         }
     }
-    
+
     /**
      * Check if there is more to print
      * @return boolean indicating whether or not there is more to print
@@ -277,7 +278,7 @@ public class DialogParser {
     public boolean hasNext() {
         return charIterator.hasNext() || wordIterator.hasNext();
     }
-    
+
     /**
      * Get the next character
      * @return the next character
@@ -291,18 +292,18 @@ public class DialogParser {
             return next();
         } else {
             waiting = true;
-            return ""; 
+            return "";
         }
     }
-    
+
     /**
      * Processes and prints the dialog box
      */
     public void drawNext() throws VoyageGuiException {
-        
+
         if (profile != null)
             drawProfile();
-        if (getStatus()) {
+        if (optionsDisplaying) {
             menu.draw();
             menu.display();
         }
@@ -339,29 +340,29 @@ public class DialogParser {
 
                 FONT.drawString(x, y, next);
                 printedChars.add(new Coordinate<>(next, x, y));
-                x += FONT.getWidth(next);  
+                x += FONT.getWidth(next);
 
             }
         } else {
             if (blink)
                 Util.WHITE_FONT.drawString(xStart + box.getWidth(), yStart + box.getHeight(), "Press Z");
         }
-        
+
     }
-    
+
     /**
      * Render what is already printed
      */
     private void printPrevious() {
-        
+
         ListIterator<Coordinate> print = printedChars.listIterator();
         while (print.hasNext()) {
             Coordinate<String> next = print.next();
             FONT.drawString(next.getPosition()[0], next.getPosition()[1], next.getObject());
         }
-        
+
     }
-    
+
     /**
      * Draw profile
      */
@@ -374,7 +375,7 @@ public class DialogParser {
             profile.draw(totalWidth - 305, yStart - 525);
             Util.WHITE_FONT.drawString(totalWidth - 305, yStart - 256, name);
         }
-        
+
     }
 
     /**
@@ -382,8 +383,6 @@ public class DialogParser {
      * @return whether or not it should continue printing
      */
     public boolean getStatus() {
-        if (menuObject != null)
-            continuePrinting = !menuObject.isDone();
         return continuePrinting;
     }
 
@@ -394,5 +393,5 @@ public class DialogParser {
     public int getOption() {
         return menuObject.getOption();
     }
-    
+
 }
