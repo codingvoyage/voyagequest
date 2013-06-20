@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    VoyageQuest Sprite Data
+    Created by Edmund Qiu
+-->
+
+<sheet>
+    <!-- Njeri Front -->
+    <sprite name="nf1" x="0" y="0" width="64" height="128" />
+    <sprite name="nf2" x="64" y="0" width="64" height="128" />
+    <sprite name="nf3" x="128" y="0" width="64" height="128" />
+    <sprite name="nf4" x="192" y="0" width="64" height="128" />
+    <sprite name="nf5" x="0" y="128" width="64" height="128" />
+    <sprite name="nf6" x="64" y="128" width="64" height="128" />
+    <sprite name="nf7" x="128" y="128" width="64" height="128" />
+    <sprite name="nf8" x="192" y="128" width="64" height="128" />
+    
+    <!-- Njeri Back -->
+    <sprite name="nb1" x="256" y="0" width="64" height="128" />
+    <sprite name="nb2" x="320" y="0" width="64" height="128" />
+    <sprite name="nb3" x="384" y="0" width="64" height="128" />
+    <sprite name="nb4" x="448" y="0" width="64" height="128" />
+    <sprite name="nb5" x="256" y="128" width="64" height="128" />
+    <sprite name="nb6" x="320" y="128" width="64" height="128" />
+    <sprite name="nb7" x="384" y="128" width="64" height="128" />
+    <sprite name="nb8" x="448" y="128" width="64" height="128" />
+    
+    <!-- Njeri Left -->
+    <sprite name="nl1" x="0" y="256" width="64" height="128" />
+    <sprite name="nl2" x="64" y="256" width="64" height="128" />
+    <sprite name="nl3" x="128" y="256" width="64" height="128" />
+    <sprite name="nl4" x="192" y="256" width="64" height="128" />
+    <sprite name="nl5" x="0" y="384" width="64" height="128" />
+    <sprite name="nl6" x="64" y="384" width="64" height="128" />
+    <sprite name="nl7" x="128" y="384" width="64" height="128" />
+    <sprite name="nl8" x="192" y="384" width="64" height="128" />
+    
+    <!-- Njeri Right -->
+    <sprite name="nr8" x="256" y="256" width="64" height="128" />
+    <sprite name="nr7" x="320" y="256" width="64" height="128" />
+    <sprite name="nr6" x="384" y="256" width="64" height="128" />
+    <sprite name="nr5" x="448" y="256" width="64" height="128" />
+    <sprite name="nr4" x="256" y="384" width="64" height="128" />
+    <sprite name="nr3" x="320" y="384" width="64" height="128" />
+    <sprite name="nr2" x="384" y="384" width="64" height="128" />
+    <sprite name="nr1" x="448" y="384" width="64" height="128" />
+    
+    <!-- Njeri Profile -->
+    <sprite name="np1" x="0" y="512" width="316" height="500" />
+    <sprite name="np2" x="316" y="512" width="316" height="500" />
+    <sprite name="np3" x="632" y="512" width="316" height="500" />
+</sheet>

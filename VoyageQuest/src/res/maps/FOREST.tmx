@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="GRS2ROC" tilewidth="64" tileheight="64">
+  <image source="test/GRS2ROC.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="193" name="CLIFFVEG" tilewidth="64" tileheight="64">
+  <image source="test/CLIFFVEG.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="385" name="CLIFVEG2" tilewidth="64" tileheight="64">
+  <image source="test/CLIFVEG2.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="577" name="TREE" tilewidth="64" tileheight="64">
+  <image source="test/TREE.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="769" name="Castle2" tilewidth="64" tileheight="64">
+  <image source="test/Castle2.png" trans="4b637f" width="1024" height="1024"/>
+ </tileset>
+ <tileset firstgid="1025" name="FENCE" tilewidth="64" tileheight="64">
+  <image source="test/FENCE.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="1217" name="hyptosis_tile-art-batch-4" tilewidth="64" tileheight="64">
+  <image source="test/hyptosis_tile-art-batch-4.png" trans="4b637f" width="1920" height="1920"/>
+ </tileset>
+ <layer name="Grass and ground" width="30" height="30" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC9NgYGDQGMWjeBSP4lE8ikfxKCYDOw0CN6BjtQGy120A7MwC4rRBEOajeBSP4qGLATEqPPAQDgAA
+  </data>
+ </layer>
+ <layer name="Lower background" width="30" height="30" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC9vCyMCwZRSP4iGALYHYis52goAnkA6FsvGpo7a9kUj24gPUtpdUMFB2D5R/cdk/hQhMDXthdhNjHwxTGwyEvbjCjh7+xQVoZa8SEH9hhGAvEvWpoGE1EvQ7AbELFGeRYJ8LFuxFgt1JQJwCxWkkuhMXpgVIYkCETQYd7YX5FxSmHljsJCauyAEw/+LCbjSyF91ukP9SGEhLI5TaDbNHg8Z2jYJRMFgAAG+ZNYoQDgAA
+  </data>
+ </layer>
+ <layer name="Still behind entities" width="30" height="30" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2UwUrDQBCGd1rRB6hU9KroA1Rb9CoielRE9DVb9AEqiqInD9KiD6DoSUFaFPyG7LCh0DYkURD2h49kw2b+mZ1JnIuK+j96F+c+5O/8NvG64VqtODdTGb+v7Jx60IcanvNwrXnALdxJWE/KKY8WibkEy8RdgR73fXiEJwlrzansXgyhQdx1eCbuC7zCm4S15jStF1nVId7A+5oGPBvCF3xLWGtO1ouGFK991HeSrBfbkr/2S0lQ362MeVsvDiXU3pbk3M7gPDWH03w/JbtvWlZ7l3cvfKyr1ByO89d9s7w3B/s5fK32ex9HeUjNofmPSr+fOnsX4LTgt9HxZ62yOTR/ncENaHn0P7WK51rJ/wOT+esM7sCuZw+aeLZ+yVd1IMkMHsGx50SKn29UVFRUVNAPz1dB3hAOAAA=
+  </data>
+ </layer>
+ <layer name="Entity Layer" width="30" height="30" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2VQRLBMBSGM+n0YDgBNrbYOAiDPdN2z+AAWHIDDmCGAziChb+LjMzzmiaViU2/mX+RaP/3Xl+8CFHzb5JYiBTK4rBx94h3gI6B49bUFDGWQkxk+LgLxFySuCFyWcF/DU2hGTSXfC6+UbUlUApl8pPLrzTg0YRajJeqbQNtoZ3HOtvw6kBdxrNKbafIbq8P3wE0tPDvkWfOjN/Fcs+FEYl7ZfzulntVyWt9VPQznakyuFpN6D0ynakyXGvVe+Rypji4cxUC12/tC9dvbZrt+iz2jT7baQ76LDblyPW27K7S55/KQb1DZ3HR/cP11nRX0ZxUDvQd9X8rmtFcb9WzN/Jbvi7KifrTmejCM/pe+7o/Tbwi8/pX3jIEodAQDgAA
+  </data>
+ </layer>
+ <layer name="Above entity" width="30" height="30" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBQMN8DEwsDAAsVsLPSzVwholwgUi9HRXiWgXSpQrEZHe51YsLOHq71uLNjZo2AUjIJRMApGwSgYugAAGtbQ6RAOAAA=
+  </data>
+ </layer>
+ <layer name="Always highest" width="30" height="30" visible="0">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3KoQ0AMAgAQQQTVbD/aEhUgya5Uy8+AoBLXk5X/j8AgE0D3pds1BAOAAA=
+  </data>
+ </layer>
+ <objectgroup name="Collisions" width="30" height="30" visible="0">
+  <object x="12" y="1179" width="42" height="27"/>
+  <object x="14" y="1497" width="38" height="28"/>
+  <object x="265" y="1737" width="105" height="41"/>
+  <object x="723" y="1797" width="90" height="42"/>
+  <object x="1110" y="1731" width="86" height="45"/>
+  <object x="978" y="1670" width="95" height="41"/>
+  <object x="787" y="1598" width="81" height="45"/>
+  <object x="1495" y="1661" width="88" height="48"/>
+  <object x="1349" y="1722" width="44" height="31"/>
+  <object x="1426" y="899" width="91" height="45"/>
+  <object x="1606" y="841" width="84" height="38"/>
+  <object x="1433" y="706" width="88" height="45"/>
+  <object x="1748" y="768" width="92" height="44"/>
+  <object x="1866" y="1687" width="43" height="32"/>
+  <object x="1867" y="1241" width="42" height="33"/>
+  <object x="1671" y="1019" width="41" height="31"/>
+  <object x="709" y="1279" width="42" height="27"/>
+  <object x="653" y="1109" width="40" height="33"/>
+  <object x="994" y="968" width="135" height="43"/>
+  <object x="330" y="1101" width="44" height="40"/>
+  <object x="1285" y="1605" width="72" height="43"/>
+  <object x="969" y="1288" width="78" height="38"/>
+  <object x="463" y="271" width="167" height="39"/>
+  <object x="1101" y="1029" width="104" height="169"/>
+  <object x="1201" y="977" width="58" height="154"/>
+  <object x="1351" y="333" width="50" height="147"/>
+  <object x="1396" y="371" width="59" height="159"/>
+  <object x="1449" y="457" width="79" height="159"/>
+  <object x="1525" y="491" width="69" height="148"/>
+  <object x="1580" y="519" width="127" height="171"/>
+  <object x="1698" y="525" width="75" height="104"/>
+  <object x="1338" y="482" width="31" height="165"/>
+  <object x="1325" y="635" width="41" height="186"/>
+  <object x="1329" y="829" width="37" height="115"/>
+  <object x="1309" y="903" width="32" height="99"/>
+  <object x="1251" y="945" width="57" height="75"/>
+  <object x="903" y="1090" width="189" height="109"/>
+  <object x="832" y="1043" width="93" height="95"/>
+  <object x="873" y="1114" width="41" height="44"/>
+  <object x="748" y="1022" width="95" height="72"/>
+  <object x="649" y="953" width="122" height="99"/>
+  <object x="595" y="933" width="106" height="68"/>
+  <object x="296" y="946" width="125" height="61"/>
+  <object x="288" y="904" width="96" height="47"/>
+  <object x="90" y="723" width="70" height="111"/>
+  <object x="140" y="785" width="117" height="95"/>
+  <object x="148" y="753" width="88" height="50"/>
+  <object x="244" y="831" width="61" height="59"/>
+  <object x="275" y="863" width="49" height="67"/>
+  <object x="5" y="659" width="95" height="101"/>
+  <object x="1" y="627" width="26" height="66"/>
+  <object x="1773" y="516" width="53" height="88"/>
+  <object x="1823" y="552" width="46" height="83"/>
+  <object x="1865" y="579" width="61" height="104"/>
+  <object x="584" y="972" width="27" height="63"/>
+  <object x="384" y="860" width="57" height="80"/>
+  <object x="584" y="862" width="54" height="84"/>
+  <object x="393" y="1876" width="45" height="30"/>
+  <object x="649" y="1878" width="45" height="27"/>
+  <object x="703" y="1911" width="967" height="6"/>
+  <object x="1670" y="1913" width="263" height="5"/>
+  <object x="1912" y="1722" width="4" height="189"/>
+  <object x="2" y="762" width="7" height="407"/>
+  <object x="3" y="2" width="6" height="624"/>
+  <object x="10" y="2" width="1027" height="6"/>
+  <object x="1005" y="2" width="915" height="6"/>
+  <object x="1913" y="8" width="5" height="572"/>
+  <object x="6" y="1914" width="379" height="3"/>
+  <object x="3" y="1536" width="3" height="378"/>
+  <object x="1914" y="685" width="4" height="357"/>
+  <object x="1913" y="1044" width="6" height="197"/>
+ </objectgroup>
+ <objectgroup name="Boundaries" width="30" height="30" visible="0">
+  <object x="257" y="1601" width="123" height="188"/>
+  <object x="1091" y="1602" width="123" height="187"/>
+  <object x="963" y="1539" width="121" height="185"/>
+  <object x="772" y="1475" width="118" height="183"/>
+  <object x="707" y="1666" width="121" height="186"/>
+  <object x="1476" y="1540" width="120" height="186"/>
+  <object x="1412" y="772" width="119" height="180"/>
+  <object x="1231" y="1493" width="169" height="162"/>
+  <object x="1346" y="1667" width="58" height="121"/>
+  <object x="1860" y="1540" width="57" height="183"/>
+  <object x="1862" y="1092" width="53" height="185"/>
+  <object x="1668" y="962" width="55" height="122"/>
+  <object x="1540" y="707" width="184" height="186"/>
+  <object x="1734" y="645" width="119" height="183"/>
+  <object x="1412" y="580" width="120" height="184"/>
+  <object x="965" y="835" width="182" height="181"/>
+  <object x="899" y="1157" width="180" height="181"/>
+  <object x="647" y="965" width="50" height="181"/>
+  <object x="707" y="1220" width="54" height="104"/>
+  <object x="323" y="964" width="57" height="183"/>
+  <object x="453" y="197" width="183" height="119"/>
+  <object x="7" y="1348" width="50" height="181"/>
+  <object x="7" y="1029" width="52" height="182"/>
+  <object x="643" y="1731" width="57" height="186"/>
+  <object x="387" y="1731" width="58" height="187"/>
+ </objectgroup>
+ <objectgroup name="Events" width="30" height="30">
+  <object name="warpToCoast" type="onTouch" x="452" y="1870" width="181" height="39">
+   <properties>
+    <property name="" value=""/>
+   </properties>
+  </object>
+  <object name="toIodolm" type="onTouch" x="7" y="1218" width="45" height="273">
+   <properties>
+    <property name="runScript" value="forestToIodolm"/>
+   </properties>
+  </object>
+  <object name="warp" type="onTouch" x="1861" y="1291" width="49" height="386">
+   <properties>
+    <property name="runScript" value="forestToMalentia"/>
+   </properties>
+  </object>
+  <object name="warp" type="onTouch" x="509" y="289" width="68" height="42">
+   <properties>
+    <property name="runScript" value="forestToSpecialHouse"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

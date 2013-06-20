@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="VILINT" tilewidth="64" tileheight="64">
+  <image source="test/VILINT.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="193" name="Castle2" tilewidth="64" tileheight="64">
+  <image source="test/Castle2.png" trans="4b637f" width="1024" height="1024"/>
+ </tileset>
+ <tileset firstgid="449" name="PAVEANDVILFLR" tilewidth="64" tileheight="64">
+  <image source="test/PAVEANDVILFLR.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="641" name="hyptosis_tile-art-batch-4" tilewidth="64" tileheight="64">
+  <image source="test/hyptosis_tile-art-batch-4.png" trans="4b637f" width="1920" height="1920"/>
+ </tileset>
+ <tileset firstgid="1541" name="TABLE1" tilewidth="64" tileheight="64">
+  <image source="test/TABLE1.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <layer name="Background tiles" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBQMNtDIQhoetYN+djRAMbXtQAYNLKiYGmaO2jGwdqCbQQiTmq4bSTSfXnbUE4mpmX9GEgAAYEo8IMQJAAA=
+  </data>
+ </layer>
+ <layer name="Walls" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3T26oBURgH8BFPQBI5lJ1EG0USYV+4dbh3yAs41Lhz4x24orggyX4zb+Gvmcn4WtbMN3EjX/1aM+v0nxVLUb71rfeXF3zgtykIIWZGHH4gYVMK0syMPBSgqCuR1nieubTnMlSYGSo0mGu6zPm3c1zcj31bj+ZVGare7sie9N2c6eQctGRncJKxhBX0oA8DMr5A3tD0voYNM2MPBzjCCMZkfAJTOOlzzvDPzDCX+qR/ztwnIBGGiHL/PW5tFG3MYh2VlPiFDPmmLOQs1lEliSrUSEYd/izWUaIy7kITWsrjf7cNHcFcWcnmiMZEd8Xos7q3ov3sfKOdOjp0YviUugKSuku0xAkAAA==
+  </data>
+ </layer>
+ <layer name="Below entities" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBRQA4ixMTBIALEUEK9koY0dYUCzI4A4io025mMDZUC/lNPIP6NgFIyCUTAKyAcADiBd5sQJAAA=
+  </data>
+ </layer>
+ <layer name="Entity Level" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSQAlIZGRjSGDFpdODGwsDgzkKeHaVA88oYMemHaOalAPmpZNpBCihipr0dE8i0Q4WVeLXryLTDiQQ7RsEoGAWjgF4AAF/fML/ECQAA
+  </data>
+ </layer>
+ <layer name="Above Entities" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYHiB3SwMDHtYEHxzRtxy1ATyrBD6EY3MHwWjYBSMglEwCpABABg3rtHECQAA
+  </data>
+ </layer>
+ <layer name="Way above" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBRQCxxmYWBoZxloV4yCUTAKRsEoGAkAAEIrrHHECQAA
+  </data>
+ </layer>
+ <objectgroup name="Collisions" width="25" height="25">
+  <object x="325" y="856" width="51" height="33"/>
+  <object x="1033" y="793" width="47" height="33"/>
+  <object x="322" y="579" width="379" height="57"/>
+  <object x="323" y="669" width="58" height="32"/>
+  <object x="314" y="894" width="196" height="48"/>
+  <object x="831" y="896" width="298" height="55"/>
+  <object x="1090" y="702" width="37" height="191"/>
+  <object x="962" y="516" width="122" height="120"/>
+  <object x="1102" y="424" width="12" height="261"/>
+  <object x="479" y="941" width="26" height="268"/>
+  <object x="836" y="937" width="29" height="270"/>
+  <object x="856" y="1156" width="400" height="50"/>
+  <object x="11" y="1415" width="1315" height="47"/>
+  <object x="13" y="1157" width="476" height="49"/>
+  <object x="287" y="703" width="27" height="184"/>
+  <object x="711" y="583" width="177" height="50"/>
+ </objectgroup>
+ <objectgroup name="Boundaries" width="25" height="25" visible="0">
+  <object x="321" y="770" width="60" height="123"/>
+  <object x="1026" y="643" width="59" height="187"/>
+  <object x="708" y="515" width="184" height="121"/>
+ </objectgroup>
+ <objectgroup name="Events" width="25" height="25"/>
+</map>

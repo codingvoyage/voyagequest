@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    VoyageQuest Sprite Data
+    Created by Edmund Qiu
+-->
+
+<sheet>
+    <!-- Soldier Front -->
+    <sprite name="solf1" x="0" y="0" width="64" height="128" />
+    <sprite name="solf2" x="64" y="0" width="64" height="128" />
+    <sprite name="solf3" x="128" y="0" width="64" height="128" />
+    <sprite name="solf4" x="192" y="0" width="64" height="128" />
+    <sprite name="solf5" x="256" y="0" width="64" height="128" />
+    <sprite name="solf6" x="320" y="0" width="64" height="128" />
+    
+    <!-- Soldier Back -->
+    <sprite name="solb1" x="0" y="128" width="64" height="128" />
+    <sprite name="solb2" x="64" y="128" width="64" height="128" />
+    <sprite name="solb3" x="128" y="128" width="64" height="128" />
+    <sprite name="solb4" x="192" y="128" width="64" height="128" />
+    <sprite name="solb5" x="256" y="128" width="64" height="128" />
+    <sprite name="solb6" x="320" y="128" width="64" height="128" />
+    
+    <!-- Soldier Left -->
+    <sprite name="soll1" x="0" y="256" width="64" height="128" />
+    <sprite name="soll2" x="64" y="256" width="64" height="128" />
+    <sprite name="soll3" x="128" y="256" width="64" height="128" />
+    <sprite name="soll4" x="192" y="256" width="64" height="128" />
+    <sprite name="soll5" x="256" y="256" width="64" height="128" />
+    <sprite name="soll6" x="320" y="256" width="64" height="128" />
+    
+    <!-- Soldier Right -->
+    <sprite name="solr1" x="0" y="384" width="64" height="128" />
+    <sprite name="solr2" x="64" y="384" width="64" height="128" />
+    <sprite name="solr3" x="128" y="384" width="64" height="128" />
+    <sprite name="solr4" x="192" y="384" width="64" height="128" />
+    <sprite name="solr5" x="256" y="384" width="64" height="128" />
+    <sprite name="solr6" x="320" y="384" width="64" height="128" />
+</sheet>

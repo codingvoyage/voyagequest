@@ -1,0 +1,27 @@
+{
+    "about_file": "This file spawns the Entities located in the map \"House\"",
+            
+    "mapName" : "My House",
+    
+    "mapBackgroundScript": "NJERIHOUSESCRIPT",
+    
+    "allEntities": [
+        {
+            "name" : "Njeri",
+            "initialX" : 515,
+            "initialY" : 730,
+            "width" : 64,
+            "height" : 128,
+            "mainScriptID" : "NjeriTest",
+            "mainThreadName" : "Njeri House Thread",
+            "animations" : [
+                "Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right"
+            ],
+            "startingAnimationDirection" : 0,
+            "onClickScript" : "NjeriInsideDescription",
+            "onTouchScript" : "NJERIDIALOGSCRIPT"
+        }
+    ],
+
+    "music" : "Lith Harbor"
+}

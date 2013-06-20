@@ -1,0 +1,41 @@
+{
+    "about_file": "This file spawns the Entities located in the map \"House\"",
+            
+    "mapName" : "My House",
+    
+    "mapBackgroundScript": "house",
+    
+    "allEntities": [
+        {
+            "name" : "Njeri",
+            "initialX" : 515,
+            "initialY" : 730,
+            "width" : 64,
+            "height" : 128,
+            "mainScriptID" : 5,
+            "mainThreadName" : "Njeri House Thread",
+            "animations" : [
+                "Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right"
+            ],
+            "startingAnimationDirection" : 0,
+            "onClickScript" : 15
+        },
+        {
+            
+            "name" : "Souless Sebastian clone",
+            "initialX" : 320,
+            "initialY" : 1140,
+            "width" : 64,
+            "height" : 128,
+            "mainScriptID" : 6,
+            "mainThreadName" : "Sebastian House Thread",
+            "animations" : [
+                "Sebastian Forward", "Sebastian Backwards", "Sebastian Left", "Sebastian Right"
+            ],
+            "startingAnimationDirection" : 0,
+            "onClickScript" : 31,
+            "onTouchScript" : 16
+            
+        }
+    ]
+}

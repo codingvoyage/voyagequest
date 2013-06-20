@@ -1,0 +1,41 @@
+{
+    "about_file": "This file stores information about the Packed Sheets. By Edmund Qiu",
+
+    "packedSheetLoadingMappings": [
+        {
+             "streamXMLPackedSheetID" : "sebastian",
+             "imageFile" : "res/entityimages/sebastian.png",
+             "xmlFileLocation" : "res/entityimages/sebastian.xml"
+        },
+        {
+             "streamXMLPackedSheetID" : "njeri",
+             "imageFile" : "res/entityimages/njeri.png",
+             "xmlFileLocation" : "res/entityimages/njeri.xml"
+        },
+        {
+             "streamXMLPackedSheetID" : "soldier",
+             "imageFile" : "res/entityimages/soldier_npc01_walk.png",
+             "xmlFileLocation" : "res/entityimages/soldier.xml"
+        },
+        {
+             "streamXMLPackedSheetID" : "lifei",
+             "imageFile" : "res/entityimages/lifei.png",
+             "xmlFileLocation" : "res/entityimages/lifei.xml"
+        },
+        {
+             "streamXMLPackedSheetID" : "lifeisprite",
+             "imageFile" : "res/entityimages/lifeifront.png",
+             "xmlFileLocation" : "res/entityimages/lifeisprite.xml"
+        },
+        {
+             "streamXMLPackedSheetID" : "young",
+             "imageFile" : "res/entityimages/young.png",
+             "xmlFileLocation" : "res/entityimages/young.xml"
+        },
+        {
+             "streamXMLPackedSheetID" : "anika",
+             "imageFile" : "res/entityimages/anika.png",
+             "xmlFileLocation" : "res/entityimages/anika.xml"
+        }
+    ]
+}
