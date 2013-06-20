@@ -1,8 +1,9 @@
 package voyagequest;
 
-import java.awt.Font;
-import java.io.InputStream;
 import org.newdawn.slick.UnicodeFont;
+
+import java.awt.*;
+import java.io.InputStream;
 
 /**
  * A utility class of random useful functions and variables
@@ -13,6 +14,23 @@ import org.newdawn.slick.UnicodeFont;
 public final class Util {
     
     /** Font to be used throughout */
+    public static final UnicodeFont WHITE_FONT;
+    static {
+        UnicodeFont newFont;
+        try {
+            InputStream is = Util.class.getClassLoader().getResourceAsStream("voyagequest/DroidSans.ttf");
+            Font droid = Font.createFont(Font.TRUETYPE_FONT, is);
+            newFont = new UnicodeFont(droid, 24, false, false);
+            newFont.addAsciiGlyphs();
+            newFont.getEffects().add(new org.newdawn.slick.font.effects.ColorEffect(new java.awt.Color(218, 249, 248)));
+            newFont.loadGlyphs(); 
+        } catch (Exception e) {
+            newFont = new UnicodeFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 24));
+        }
+        WHITE_FONT = newFont;
+    }
+
+    /** Font to be used throughout */
     public static final UnicodeFont FONT;
     static {
         UnicodeFont newFont;
@@ -21,8 +39,8 @@ public final class Util {
             Font droid = Font.createFont(Font.TRUETYPE_FONT, is);
             newFont = new UnicodeFont(droid, 24, false, false);
             newFont.addAsciiGlyphs();
-            newFont.getEffects().add(new org.newdawn.slick.font.effects.ColorEffect(new java.awt.Color(218, 249, 248))); 
-            newFont.loadGlyphs(); 
+            newFont.getEffects().add(new org.newdawn.slick.font.effects.ColorEffect(new java.awt.Color(0, 0, 0)));
+            newFont.loadGlyphs();
         } catch (Exception e) {
             newFont = new UnicodeFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 24));
         }

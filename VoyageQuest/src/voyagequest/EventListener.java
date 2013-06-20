@@ -1,6 +1,5 @@
 package voyagequest;
 
-import gui.Gui;
 import gui.GuiManager;
 import gui.types.Menu;
 import map.Entity;
@@ -20,13 +19,18 @@ public abstract class EventListener {
     
     public static GameContainer gc;
     public static final double STEP_SIZE = 0.25;
-    
+    public static Input input;
+
+    public static Menu menu;
+    public static boolean displayingMenu;
+
     /**
      * Initializes the event listener
      * @param gc game container of the game
      */
     public static void initGc(GameContainer gc) {
         EventListener.gc = gc;
+        input = gc.getInput();
     }
     
     /**
@@ -37,8 +41,6 @@ public abstract class EventListener {
     public static void keyboardControl(Entity player, int delta) throws SlickException {
         //We can't move if Input is frozen
         if (Global.isInputFrozen) return;
-        
-        Input input = gc.getInput();
         
         double step = STEP_SIZE*delta;
         if(input.isKeyDown(Input.KEY_UP)) {
@@ -75,18 +77,36 @@ public abstract class EventListener {
     }
 
     /**
-     *
-     * @param menu
-     * @return
+     * Acting on a menu
+     * @param menu the menu item
      */
-    public static int menuControl(Gui<Menu> menu) {
-        Input input = gc.getInput();
-
-        if(input.isKeyDown(Input.KEY_UP)) {
-
-        }
-        return 0;
+    public static void menuListenStart(Menu menu) {
+        EventListener.menu = menu;
+        displayingMenu = true;
     }
+
+    /**
+     * No longer acting on a menu
+     */
+    public static void menuListenStop() {
+        displayingMenu = false;
+    }
+
+    /**
+     * Called when the up key is pressed
+     */
+    public static void keyPressed(int key, char c) {
+        // controlling menus
+        if (displayingMenu) {
+            if (key == Input.KEY_UP)
+                menu.up();
+            if (key == Input.KEY_DOWN)
+                menu.down();
+            if (key == Input.KEY_Z)
+                menu.select();
+        }
+    }
+
 
     /**
      * Called when the mouse is moved
@@ -105,8 +125,8 @@ public abstract class EventListener {
     /**
      * Called when the mouse is clicked (but not dragged)
      */
-    public static void mouseClicked(int button, int x, int y, int clickCount) { 
-        
+    public static void mouseClicked(int button, int x, int y, int clickCount) {
+
         //If input is frozen, that includes mouse. Return now.
         if (Global.isInputFrozen == true) return;
         

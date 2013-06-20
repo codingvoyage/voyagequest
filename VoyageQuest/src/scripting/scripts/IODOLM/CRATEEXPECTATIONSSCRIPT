@@ -10,7 +10,7 @@ if result == false
     putArray testOptions 1 <-- "I hate crates even more"
     putArray testOptions 2 <-- "CRATES FTW"
 
-    dialogPrompt "Sebastian Profile" "Do I love crates?" testOptions
+    dialogPrompt "Sebastian Profile" "Do I love crates? Who doesn't love crates? Crates are amazing and totally do not cause headaches. Agreed?" testOptions
 
     dialogBox "Sebastian Profile" " ... wow... "
     dialogBox "Sebastian Profile" "The number of crates in this room... "
