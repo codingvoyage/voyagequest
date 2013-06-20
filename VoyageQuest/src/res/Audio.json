@@ -9,10 +9,10 @@
             "type" : "music"
         },
         {
-              "name" : "Redstone",
-              "path" : "res/music/redstone.ogg",
-              "credit" : "Redstone",
-              "type" : "music"
+            "name" : "Redstone",
+            "path" : "res/music/redstone.ogg",
+            "credit" : "Redstone",
+            "type" : "music"
         },
         {
             "name" : "Elinia",
@@ -24,8 +24,7 @@
             "name" : "Lith Harbor",
             "path" : "res/music/lith.ogg",
             "credit" : "MS Remix - http://www.youtube.com/watch?v=__bmhrawjK4",
-            "type" : "music",
-            "note" : "I AM STILL CONVERTING THE FILE. NOT AVAILABLE YET!"
+            "type" : "music"
         },
         {
             "name" : "Teleport",

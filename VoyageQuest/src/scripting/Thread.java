@@ -1,8 +1,9 @@
 package scripting;
 
+import gui.special.DialogBox;
+
 import java.util.HashMap;
 import java.util.Stack;
-import gui.special.DialogBox;
 /**
  *
  * @author Edmund
@@ -200,6 +201,26 @@ public class Thread {
      */
     public void speak(String text, String animation) {
         dialog = new DialogBox(text, animation);
+        dialog.start();
+        setRunningState(true);
+    }
+
+    /**
+     * Make a person speak with options using an Animation Profile
+     * @param text the dialog text
+     */
+    public void speak(String text, String animation, Object[] options) {
+        dialog = new DialogBox(text, animation, options);
+        dialog.start();
+        setRunningState(true);
+    }
+
+    /**
+     * Make a generic dialog with options using an Animation Profile
+     * @param text the dialog text
+     */
+    public void speak(String text, Object[] options) {
+        dialog = new DialogBox(text, options);
         dialog.start();
         setRunningState(true);
     }

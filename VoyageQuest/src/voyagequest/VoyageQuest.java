@@ -101,7 +101,7 @@ public class VoyageQuest extends BasicGame {
         // Load all the scripts
         loadScripts();
 
-        // IDK what this is for.
+        // Pass GameContainer to the event listener
         EventListener.initGc(gc);
 
         //Create the player
@@ -176,17 +176,12 @@ public class VoyageQuest extends BasicGame {
             case RPG:
                 for (int i = 0; i < Global.currentMap.entities.size(); i++) {
                     Entity e = Global.currentMap.entities.get(i);
-                    if (e != null) {
+                    if (e != null)
                         e.act(gc, delta);
-                    }
                 }
 
-                Input input = gc.getInput();
-
                 EventListener.keyboardControl(player, delta);
-
                 threadManager.act(delta);
-
                 GuiManager.update(gc, delta);
 
                 break;
@@ -206,8 +201,7 @@ public class VoyageQuest extends BasicGame {
      * @throws SlickException something went horribly wrong with Slick
      */
     @Override
-    public void render(GameContainer gc, Graphics g) throws SlickException
-    {
+    public void render(GameContainer gc, Graphics g) throws SlickException {
         switch (state) {
             case RPG:
                 //If there isn't a full screen GUI... draw what the Camera sees

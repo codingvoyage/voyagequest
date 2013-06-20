@@ -216,6 +216,11 @@ genericMessageBox 150
 -- dialogbox animationname text
 dialogBox 151
 
+-- dialog boxes with options
+dialogPrompt 152
+-- generic dialog box with options
+genericPrompt 153
+
 
 fadein 161
 

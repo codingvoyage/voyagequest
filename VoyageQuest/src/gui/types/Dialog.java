@@ -1,12 +1,10 @@
 package gui.types;
 
-import gui.Gui;
 import gui.Displayable;
 import gui.Gui;
 import gui.VoyageGuiException;
 import map.Entity;
 import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Image;
 
 /**
  * Dialog box GUI element
@@ -32,7 +30,9 @@ public class Dialog implements Displayable {
     private Gui<Dialog> window;
     /** speaker */
     private Entity speaker;
-    
+    /** options */
+    private Object[] options;
+
     public String animationId;
     
     /**
@@ -58,28 +58,48 @@ public class Dialog implements Displayable {
      * @param height
      * @param text 
      */
-    public Dialog(float x, float y, String text, Entity speaker, int width, int height) {
-        this.text = text;
-        this.speaker = speaker;
-        this.width = width;
-        this.height = height;
-        parser = new DialogParser(text, this, x, y);
-    }
-    
-    /**
-     * 
-     * @param x
-     * @param y
-     * @param width
-     * @param height
-     * @param text 
-     */
     public Dialog(float x, float y, String text, int width, int height, String animationId) {
         this.text = text;
         this.width = width;
         this.height = height;
         parser = new DialogParser(text, this, x, y, animationId);
         this.animationId = animationId;
+    }
+
+    /**
+     *
+     * @param x
+     * @param y
+     * @param text
+     * @param width
+     * @param height
+     * @param options
+     */
+    public Dialog(float x, float y, String text, int width, int height, Object[] options) {
+        this.text = text;
+        this.width = width;
+        this.height = height;
+        parser = new DialogParser(text, this, x, y, options);
+        this.options = options;
+    }
+
+    /**
+     *
+     * @param x
+     * @param y
+     * @param text
+     * @param width
+     * @param height
+     * @param animationId
+     * @param options
+     */
+    public Dialog(float x, float y, String text, int width, int height, String animationId, Object[] options) {
+        this.text = text;
+        this.width = width;
+        this.height = height;
+        parser = new DialogParser(text, this, x, y, animationId, options);
+        this.animationId = animationId;
+        this.options = options;
     }
     
     /**

@@ -4,6 +4,14 @@ existsGlobal "DAMN_CRATES" --> result
 if result == false
     wait 2000
     freezeInputs
+
+    newArray testOptions 3
+    putArray testOptions 0 <-- "I hate crates"
+    putArray testOptions 1 <-- "I hate crates even more"
+    putArray testOptions 2 <-- "CRATES FTW"
+
+    dialogPrompt "Sebastian Profile" "Do I love crates?" testOptions
+
     dialogBox "Sebastian Profile" " ... wow... "
     dialogBox "Sebastian Profile" "The number of crates in this room... "
     dialogBox "Sebastian Profile" "Is. Too. Damn. High!" 

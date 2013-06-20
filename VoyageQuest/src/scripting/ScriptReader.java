@@ -1009,7 +1009,25 @@ public class ScriptReader
                 
                 continueExecuting = false;
                 break;
-                
+
+            case 152:
+            // dialogprompt animationname text options
+                currentThread.speak(
+                        identifierCheck(currentLine, 1).getStringValue(),
+                        identifierCheck(currentLine, 0).getStringValue(),
+                        identifierCheck(currentLine, 2).getObjectArrayValue());
+
+                continueExecuting = false;
+                break;
+
+            case 153:
+            // genericprompt text options
+                currentThread.speak(
+                        identifierCheck(currentLine, 0).getStringValue(),
+                        identifierCheck(currentLine, 1).getObjectArrayValue());
+
+                continueExecuting = false;
+                break;
                 
             //fade in
             case 161:

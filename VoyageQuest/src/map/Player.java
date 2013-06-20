@@ -1,10 +1,7 @@
 package map;
 
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import voyagequest.DoubleRect;
-import static voyagequest.VoyageQuest.player;
 
 /**
  *

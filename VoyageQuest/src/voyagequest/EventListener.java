@@ -1,14 +1,16 @@
 package voyagequest;
 
+import gui.Gui;
 import gui.GuiManager;
-import map.*;
-
+import gui.types.Menu;
+import map.Entity;
+import map.GroupObjectWrapper;
+import map.Rectangular;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 
 import java.util.LinkedList;
-import voyagequest.Interaction;
 
 /**
  * Listener for keyboard input and mouse interactions
@@ -66,18 +68,31 @@ public abstract class EventListener {
                 player.setAnimation(3);
         }
 
-
         if(input.isKeyDown(Input.KEY_ENTER))
         {
 
         }
     }
-    
+
+    /**
+     *
+     * @param menu
+     * @return
+     */
+    public static int menuControl(Gui<Menu> menu) {
+        Input input = gc.getInput();
+
+        if(input.isKeyDown(Input.KEY_UP)) {
+
+        }
+        return 0;
+    }
+
     /**
      * Called when the mouse is moved
      */
     public static void mouseMoved(int oldx, int oldy, int newx, int newy) {
-        Util.p("Moved");
+
     }
 
     /**
