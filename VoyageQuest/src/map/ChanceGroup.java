@@ -5,7 +5,6 @@ package map;
  * To manage the chances of choosing something.
  * User: Edmund
  * Date: 6/20/13
- * Time: 12:37 AM
  */
 public class ChanceGroup {
     public int lowerBound;
