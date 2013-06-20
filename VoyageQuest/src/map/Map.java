@@ -21,6 +21,7 @@ import static voyagequest.VoyageQuest.threadManager;
  * @author Edmund
  */
 public class Map {
+    /** For future purposes it might be useful to have maps have a name */
     public String mapName;
     
     /** The tile based map provided by slick and tiled */
@@ -54,8 +55,11 @@ public class Map {
     
     /** map music */
     private static String music;
-            
-    
+
+    private static double encounterChance;
+
+    /** The enemies which spawn in danger-areas of the map */
+    private static ArrayList<ChanceGroup> spawns;
     
     public Map(String mapID) throws SlickException
     {
@@ -133,9 +137,6 @@ public class Map {
             events.addEntity(collisionBox);
         }
         
-        System.out.println("We have " + events.getSize() + " events this map");
-        
-        
         //Now we load the entities for this map from a Json file.
         //Bakesale! I understand your JsonReader class now! I understand why you did all of this.
         //Json is INCREDIBLE. It's such a convenient way of defining data. Thank you.  
@@ -143,7 +144,7 @@ public class Map {
         //Alright, if the map file is at "res/mapname.tmx" the json will be at
         //"res/mapname.json". so...
         String jsonFileLocation = Res.idToJsonUrlMappings.get(mapID);
-        
+
         JsonReader<Map> reader = new JsonReader<>(Map.class, jsonFileLocation);
         reader.readJson();
         
@@ -195,10 +196,24 @@ public class Map {
             entities.add(e);
             collisions.addEntity(e);
         }
-        
-        
-        
+
+        int hitcount = 0;
+        for (int i = 0; i < 100000; i++)
+        {
+            if (encounterPoll()) hitcount++;
+        }
+        System.out.println(hitcount + " is the # of hits");
     }
+
+    public boolean encounterPoll()
+    {
+        if (encounterChance == 0 ) return false;
+
+        double rand = (Math.random() * 1000);
+        double range = encounterChance * 10;
+        return rand <= range;
+    }
+
 
     /**
      * Return the name of the map's background music.

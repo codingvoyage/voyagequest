@@ -31,6 +31,19 @@ public class Res {
     public static HashMap<String, StreamXMLPackedSheet> idToPackedSheetMappings;
     public static LinkedList<LoadStreamXMLPackedSheets> packedSheetLoadingMappings;
 
+    /** Sebastian animation, data mapped by JSON */
+    public static LinkedList<LoadAnimations> animationData = new LinkedList<>();
+    /** The actual animations, mapped by ID strings */
+    public static HashMap<String, Animation> animations = new HashMap<>();
+
+    /** Music data mapped by JSON */
+    public static LinkedList<LoadAudio> musicData = new LinkedList<>();
+    /** Hashmap of background music */
+    public static HashMap<String, Audio> music = new HashMap<>();
+    /** Currently playing music */
+    public static Audio currentMusic;
+
+
     /**
      * Gets the StreamXMLPackedSheets loaded in the HashMap, and loads the maps.
      */
@@ -75,18 +88,7 @@ public class Res {
         
             
     }
-    
-    /** Sebastian animation, data mapped by JSON */
-    public static LinkedList<LoadAnimations> animationData = new LinkedList<>();
-    /** The actual animations, mapped by ID strings */
-    public static HashMap<String, Animation> animations = new HashMap<>();
 
-    /** Music data mapped by JSON */
-    public static LinkedList<LoadAudio> musicData = new LinkedList<>();
-    /** Hashmap of background music */
-    public static HashMap<String, Audio> music = new HashMap<>();
-    /** Currently playing music */
-    public static Audio currentMusic;
 
     /**
      * Initialize the Animations

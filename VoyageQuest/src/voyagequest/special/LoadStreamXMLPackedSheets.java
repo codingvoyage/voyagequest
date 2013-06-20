@@ -5,7 +5,6 @@ package voyagequest.special;
  * User: Edmund
  * Date: 6/19/13
  * Time: 10:49 PM
- * To change this template use File | Settings | File Templates.
  */
 public class LoadStreamXMLPackedSheets
 {
