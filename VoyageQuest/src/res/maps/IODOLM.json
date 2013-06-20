@@ -1,0 +1,41 @@
+{
+    "about_file": "This file spawns the Entities located in the map \"MAPTEST\"",
+            
+    "mapName" : "Iodolm Capital",
+    
+    "mapBackgroundScript": "IODOLMMAINSCRIPT",
+    
+    "allEntities": [
+        {
+            "name" : "Njeri",
+            "initialX" : 1735                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ,
+            "initialY" : 1750,
+            "width" : 64,
+            "height" : 128,
+            "mainScriptID" : "NjeriTest",
+            "mainThreadName" : "Njeri Thread",
+            "animations" : [
+                "Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right"
+            ],
+            "startingAnimationDirection" : 0,
+            "onClickScript" : "NjeriOutsideDescription"
+        },
+        {
+            "name" : "Li Fei",
+            "initialX" : 1100                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       ,
+            "initialY" : 1365,
+            "width" : 64,
+            "height" : 128,
+            "mainScriptID" : "LIFEISCRIPT",
+            "mainThreadName" : "Li Fei Thread",
+            "animations" : [
+                "Li Fei", "Li Fei", "Li Fei", "Li Fei"
+            ],
+            "startingAnimationDirection" : 0,
+            "onClickScript" : "LiFeiDescription",
+            "onTouchScript" : "LIFEIDIALOGSCRIPT"
+        }
+    ],
+
+    "music" : "Lith Harbor"
+}

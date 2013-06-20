@@ -1,0 +1,42 @@
+{
+    "about_file": "This file spawns the Entities located in the map \"House\"",
+            
+    "mapName" : "My House",
+    
+    "mapBackgroundScript": "SCENE1",
+    
+    "allEntities": [
+        {
+            
+            "name" : "COMMANDER",
+            "initialX" : 420,
+            "initialY" : 1000,
+            "width" : 64,
+            "height" : 128,
+            "mainScriptID" : "SCENE1COMMANDER",
+            "mainThreadName" : "CommanderScene1Thread",
+            "animations" : [
+                "Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right", "Njeri Profile"
+            ],
+            "profLeft" : true,
+            "startingAnimationDirection" : 3
+        },
+        {
+            
+            "name" : "Sebastian",
+            "initialX" : 320,
+            "initialY" : 940,
+            "width" : 64,
+            "height" : 128,
+            "mainScriptID" : "SCENE1SEBASTIAN",
+            "mainThreadName" : "SebastianScene1Thread",
+            "animations" : [
+                "Sebastian Forward", "Sebastian Backwards", "Sebastian Left", "Sebastian Right", "Sebastian Profile"
+            ],
+            "profLeft" : false,
+            "startingAnimationDirection" : 0
+        }
+    ],
+
+    "music" : "Route 3"
+}

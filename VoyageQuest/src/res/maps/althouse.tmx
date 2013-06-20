@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="VILDAM" tilewidth="64" tileheight="64">
+  <image source="test/VILDAM.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="193" name="TOWNJNT" tilewidth="64" tileheight="64">
+  <image source="test/TOWNJNT.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="385" name="TOWNBOT2" tilewidth="64" tileheight="64">
+  <image source="test/TOWNBOT2.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="577" name="TOWNBOT" tilewidth="64" tileheight="64">
+  <image source="test/TOWNBOT.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="769" name="TABLE1" tilewidth="64" tileheight="64">
+  <image source="test/TABLE1.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="961" name="GRS2ROC" tilewidth="64" tileheight="64">
+  <image source="test/GRS2ROC.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="1153" name="FENCE" tilewidth="64" tileheight="64">
+  <image source="test/FENCE.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="1345" name="Castle2" tilewidth="64" tileheight="64">
+  <image source="test/Castle2.png" trans="4b637f" width="1024" height="1024"/>
+ </tileset>
+ <tileset firstgid="1601" name="VILINT" tilewidth="64" tileheight="64">
+  <image source="test/VILINT.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="1793" name="PAVEANDVILFLR" tilewidth="64" tileheight="64">
+  <image source="test/PAVEANDVILFLR.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="1985" name="TOWNDOOR" tilewidth="64" tileheight="64">
+  <image source="test/TOWNDOOR.png" trans="4b637f" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="2177" name="hyptosis_tile-art-batch-3" tilewidth="64" tileheight="64">
+  <image source="test/hyptosis_tile-art-batch-3.png" trans="4b637f" width="1920" height="1920"/>
+ </tileset>
+ <layer name="Background 1" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2SXQqAIBCEffOeyyLitaJ7luDCNqyakj05MERS8+2Pzm1tba1Q8M6Rcn7/WvQDI/hnL6MM+T+bb8eKk8qnQQZBVjDySTFokiEZXJxUX7iLWYbkJpVv5VrnlhLk1eqkDk/MBgcZDDkyL6yb1fdyJvtqMWKjPoI8vL+jDOylNf83e8dZ4U56uTP36ixPzF4h7GMl448+VjKyjuJZXTZ5zxnECQAA
+  </data>
+ </layer>
+ <layer name="Background 2" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2UzwoBURTGz2qyJkRKkf9KkfxJeQaW9rJRSkl5DFYsSeK9vIdvmnua2zSXg2vnq19n5nLnu75zBtFff8kUBTGQBHFVUyBt0SMH8qCgmDlEFdSqRY8maIG2Yg2PHmpfuJ9z4Ay46mQMezdCDz2HEvlZlNT9FNd1w96J0EPPoUN+Fh11v8L14EuPnPB773joc/gsa4my5PUvOMecP+dtylqiBnn9C84x5895m7KWaEhe/4JzPP7imc+k98b1qGFWyu676vzOw1XXfVctehxCPGxoAS7gCm7a+hbsLHkcDOtHcAJndYazYm44J39+d/wadvZXGlF4hqZzfqplyJr0f1Uq7lM8QpQAe7L/O7hPBTy/GHk/b9YDt9RwmcQJAAA=
+  </data>
+ </layer>
+ <layer name="Under Entities" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYPCCw6y0t+MyHex4TAc7RsHQAxpsDAyabLS1wwJoviUQa9PYHhCgpR30DKtRMApAQJiD9nYoU2gHAI6DRH7ECQAA
+  </data>
+ </layer>
+ <layer name="Entity Layer" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBTQAsiw4ecTAxay4hfXQTMTnU8IaADVa6LpeYJmpw0bfj4hYAFUbwnE2kj6vuDwFz0BOfEBA0LMDAwiQCzGjF8dqfGBDIyAZpsAsRkBO0iND2QQBDQ7BIjDCNgBAteBcXYIiLXw2IeelgYrOIIn/Wkg+WE1F23sh+WJUTAKKAUA59kklsQJAAA=
+  </data>
+ </layer>
+ <layer name="Above Entities" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkYWmIlHTpONbs4gC+Bz+ygYWQAAYCqIVMQJAAA=
+  </data>
+ </layer>
+ <layer name="Highests" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
+  </data>
+ </layer>
+ <objectgroup name="Collisions" width="25" height="25">
+  <object x="768" y="1323" width="60" height="272"/>
+  <object x="463" y="1561" width="383" height="56"/>
+  <object x="445" y="1323" width="61" height="241"/>
+  <object x="80" y="1309" width="427" height="33"/>
+  <object x="337" y="523" width="44" height="431"/>
+  <object x="125" y="857" width="228" height="99"/>
+  <object x="168" y="956" width="149" height="188"/>
+  <object x="189" y="1223" width="125" height="59"/>
+  <object x="155" y="1113" width="96" height="133"/>
+  <object x="588" y="887" width="169" height="127"/>
+  <object x="710" y="704" width="55" height="60"/>
+  <object x="387" y="705" width="186" height="58"/>
+  <object x="390" y="652" width="564" height="45"/>
+  <object x="929" y="387" width="371" height="117"/>
+  <object x="917" y="338" width="36" height="333"/>
+  <object x="1475" y="792" width="53" height="437"/>
+  <object x="1280" y="1169" width="246" height="192"/>
+  <object x="1347" y="1093" width="58" height="55"/>
+  <object x="1226" y="913" width="47" height="38"/>
+  <object x="1224" y="660" width="51" height="34"/>
+  <object x="968" y="661" width="48" height="33"/>
+  <object x="395" y="1174" width="45" height="35"/>
+  <object x="1279" y="1151" width="203" height="21"/>
+  <object x="1286" y="962" width="183" height="55"/>
+  <object x="1285" y="707" width="23" height="59"/>
+  <object x="1287" y="770" width="31" height="66"/>
+  <object x="1287" y="838" width="36" height="120"/>
+  <object x="83" y="1282" width="425" height="25"/>
+  <object x="769" y="1282" width="123" height="60"/>
+  <object x="890" y="1284" width="150" height="47"/>
+  <object x="1034" y="1288" width="190" height="40"/>
+  <object x="1218" y="1290" width="105" height="37"/>
+  <object x="1282" y="515" width="19" height="188"/>
+ </objectgroup>
+ <objectgroup name="Boundaries" width="25" height="25">
+  <object x="580" y="835" width="183" height="185"/>
+  <object x="964" y="522" width="56" height="178"/>
+  <object x="1218" y="526" width="60" height="173"/>
+  <object x="1220" y="780" width="57" height="176"/>
+  <object x="389" y="1158" width="56" height="55"/>
+ </objectgroup>
+ <objectgroup name="Events" width="25" height="25">
+  <object name="WarpOutside" type="onTouch" x="582" y="1483" width="108" height="115">
+   <properties>
+    <property name="runScript" value="21"/>
+   </properties>
+  </object>
+  <object type="onClick" x="380" y="1150" width="71" height="70">
+   <properties>
+    <property name="runScript" value="28"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

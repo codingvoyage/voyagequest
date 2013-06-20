@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    VoyageQuest Sprite Data
+    Created by Brian Yang
+-->
+
+<sheet>
+    <!-- Sebastian Front -->
+    <sprite name="sf1" x="0" y="0" width="64" height="128" />
+    <sprite name="sf2" x="64" y="0" width="64" height="128" />
+    <sprite name="sf3" x="128" y="0" width="64" height="128" />
+    <sprite name="sf4" x="192" y="0" width="64" height="128" />
+    <sprite name="sf5" x="0" y="128" width="64" height="128" />
+    <sprite name="sf6" x="64" y="128" width="64" height="128" />
+    <sprite name="sf7" x="128" y="128" width="64" height="128" />
+    <sprite name="sf8" x="192" y="128" width="64" height="128" />
+    
+    <!-- Sebastian Back -->
+    <sprite name="sb1" x="256" y="0" width="64" height="128" />
+    <sprite name="sb2" x="320" y="0" width="64" height="128" />
+    <sprite name="sb3" x="384" y="0" width="64" height="128" />
+    <sprite name="sb4" x="448" y="0" width="64" height="128" />
+    <sprite name="sb5" x="256" y="128" width="64" height="128" />
+    <sprite name="sb6" x="320" y="128" width="64" height="128" />
+    <sprite name="sb7" x="384" y="128" width="64" height="128" />
+    <sprite name="sb8" x="448" y="128" width="64" height="128" />
+    
+    <!-- Sebastian Left -->
+    <sprite name="sl1" x="0" y="256" width="64" height="128" />
+    <sprite name="sl2" x="64" y="256" width="64" height="128" />
+    <sprite name="sl3" x="128" y="256" width="64" height="128" />
+    <sprite name="sl4" x="192" y="256" width="64" height="128" />
+    <sprite name="sl5" x="0" y="384" width="64" height="128" />
+    <sprite name="sl6" x="64" y="384" width="64" height="128" />
+    <sprite name="sl7" x="128" y="384" width="64" height="128" />
+    <sprite name="sl8" x="192" y="384" width="64" height="128" />
+    
+    <!-- Sebastian Right -->
+    <sprite name="sr8" x="256" y="256" width="64" height="128" />
+    <sprite name="sr7" x="320" y="256" width="64" height="128" />
+    <sprite name="sr6" x="384" y="256" width="64" height="128" />
+    <sprite name="sr5" x="448" y="256" width="64" height="128" />
+    <sprite name="sr4" x="256" y="384" width="64" height="128" />
+    <sprite name="sr3" x="320" y="384" width="64" height="128" />
+    <sprite name="sr2" x="384" y="384" width="64" height="128" />
+    <sprite name="sr1" x="448" y="384" width="64" height="128" />
+    
+    <!-- Sebastian Profile -->
+    <sprite name="sp1" x="0" y="512" width="316" height="500" />
+    <sprite name="sp2" x="316" y="512" width="316" height="500" />
+    <sprite name="sp3" x="632" y="512" width="316" height="500" />
+</sheet>

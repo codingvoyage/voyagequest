@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    VoyageQuest Sprite Data
+    Created by Edmund Qiu
+-->
+
+<sheet>
+    <!-- LiFei Profile -->
+    <sprite name="lifeisprite" x="0" y="0" width="64" height="128" />
+</sheet>

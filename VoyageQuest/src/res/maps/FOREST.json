@@ -1,0 +1,11 @@
+{
+    "about_file": "This file spawns the Entities located in the map \"FOREST\"",
+            
+    "mapName" : "Ze Forest",
+    
+    "mapBackgroundScript": "FORESTMAINSCRIPT",
+    
+    "allEntities": [],
+
+    "music" : "Elinia"
+}
