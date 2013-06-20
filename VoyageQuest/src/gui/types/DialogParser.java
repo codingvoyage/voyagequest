@@ -81,10 +81,12 @@ public class DialogParser {
     private String[] options;
     /** options coordinates */
     private LinkedList<Coordinate> optionCoordinates = new LinkedList<>();
-    /** options displaying */
-    private boolean optionsDisplaying = false;
     /** option box rectangle */
     private Gui<Menu> menu;
+    /** option box object */
+    private Menu menuObject;
+    /** selected option index */
+    private int selected = -1;
 
     
     /**
@@ -184,9 +186,11 @@ public class DialogParser {
                 maxWidth = FONT.getWidth(s);
             optionsY += FONT.getLineHeight();
         }
+        maxWidth += DIALOG_PADDING * 2;
         optionsY += DIALOG_PADDING;
         menu = new Gui<>(optionsX, optionsYStart, maxWidth, (int)(optionsY - optionsYStart),
                 new Menu(optionsX, optionsYStart, (int)maxWidth, (int)optionsY, this.options));
+        menuObject = menu.getObject();
     }
 
     /**
@@ -214,8 +218,11 @@ public class DialogParser {
                 maxWidth = FONT.getWidth(s);
             optionsY += FONT.getLineHeight();
         }
+        maxWidth += DIALOG_PADDING * 2;
+        optionsY += DIALOG_PADDING;
         menu = new Gui<>(optionsX, optionsYStart, maxWidth, (int)(optionsY - optionsYStart),
                 new Menu(optionsX, optionsYStart, (int)maxWidth, (int)optionsY, this.options));
+        menuObject = menu.getObject();
     }
     
     /**
@@ -229,7 +236,6 @@ public class DialogParser {
             Input input = gc.getInput();
             if (!hasNext()) {
                 if (options != null) {
-                    optionsDisplaying = true;
                     menu.next(gc, delta);
                 }
             }
@@ -243,6 +249,8 @@ public class DialogParser {
                     y = yStart;
 
                 } else {
+                    if (getStatus())
+                        options = null;
                     // dialog is done printing, but are there options to display?
                     if (options == null) {
                         // the box has no more to print. close it.
@@ -275,8 +283,6 @@ public class DialogParser {
      * @return the next character
      */
     public String next() {
-        if (optionsDisplaying)
-            voyagequest.EventListener.menuControl(menu);
         if (charIterator.hasNext()) {
             return charIterator.next();
         } else if (wordIterator.hasNext()) {
@@ -296,7 +302,7 @@ public class DialogParser {
         
         if (profile != null)
             drawProfile();
-        if (optionsDisplaying) {
+        if (getStatus()) {
             menu.draw();
             menu.display();
         }
@@ -338,7 +344,7 @@ public class DialogParser {
             }
         } else {
             if (blink)
-                FONT.drawString(xStart + box.getWidth(), yStart + box.getHeight(), "Press Z");
+                Util.WHITE_FONT.drawString(xStart + box.getWidth(), yStart + box.getHeight(), "Press Z");
         }
         
     }
@@ -363,10 +369,10 @@ public class DialogParser {
         profile.setSpeed((float)Math.random() * 4);
         if (profileLeft) {
             profile.draw(xStart, yStart - 530);
-            Util.FONT.drawString(xStart, yStart - 256, name);
+            Util.WHITE_FONT.drawString(xStart, yStart - 256, name);
         } else {
             profile.draw(totalWidth - 305, yStart - 525);
-            Util.FONT.drawString(totalWidth - 305, yStart - 256, name);
+            Util.WHITE_FONT.drawString(totalWidth - 305, yStart - 256, name);
         }
         
     }
@@ -376,7 +382,17 @@ public class DialogParser {
      * @return whether or not it should continue printing
      */
     public boolean getStatus() {
+        if (menuObject != null)
+            continuePrinting = !menuObject.isDone();
         return continuePrinting;
+    }
+
+    /**
+     * Get selected option index
+     * @return the index of the selected option or -1 if none has been selected yet
+     */
+    public int getOption() {
+        return menuObject.getOption();
     }
     
 }

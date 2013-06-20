@@ -46,14 +46,11 @@ public class VoyageQuest extends BasicGame {
     public static GameState state = GameState.RPG;
     
     public static Entity player;
-    double time;
     public DialogBox dialog;
     
     //testing
     public static boolean haschangedmaps = false;
-    
-    
-    
+
    // The alpha map being applied for cave effect
    private Image alphaMap;
    
@@ -214,8 +211,8 @@ public class VoyageQuest extends BasicGame {
                     GuiManager.display();
                 } catch (VoyageGuiException ex) {}
 
-                Util.FONT.drawString(10, 10, "FPS: " + gc.getFPS());
-                Util.FONT.drawString(10, 40,
+                Util.WHITE_FONT.drawString(10, 10, "FPS: " + gc.getFPS());
+                Util.WHITE_FONT.drawString(10, 40,
                         "Coordinates of player: (" + player.r.x + ", " + player.r.y + ")");
 
                 break;
@@ -285,11 +282,21 @@ public class VoyageQuest extends BasicGame {
         app.start();
         
     }
-    
+
+    /**
+     * Keypress Listener
+     * @param key the key mapping
+     * @param c character pressed
+     */
+    @Override
+    public void keyPressed(int key, char c) {
+        EventListener.keyPressed(key, c);
+    }
+
    /**
     * @see org.newdawn.slick.InputListener#mouseMoved(int, int, int, int)
     */
-    @Override
+   @Override
    public void mouseMoved(int oldx, int oldy, int newx, int newy) {
        //EventListener.mouseMoved(oldx, oldy, newx, newy);
    }
@@ -297,7 +304,7 @@ public class VoyageQuest extends BasicGame {
    /**
     * @see org.newdawn.slick.InputListener#mouseDragged(int, int, int, int)
     */
-    @Override
+   @Override
    public void mouseDragged(int oldx, int oldy, int newx, int newy) {
        EventListener.mouseDragged(oldx, oldy, newx, newy);
    }
@@ -305,7 +312,7 @@ public class VoyageQuest extends BasicGame {
    /**
     * @see org.newdawn.slick.InputListener#mouseClicked(int, int, int, int)
     */
-    @Override
+   @Override
    public void mouseClicked(int button, int x, int y, int clickCount) {
       EventListener.mouseClicked(button, x, y, clickCount);
    }

@@ -1,12 +1,13 @@
 package gui;
 
-import java.util.LinkedList;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.fills.GradientFill;
 import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.geom.ShapeRenderer;
 import org.newdawn.slick.geom.Vector2f;
+
+import java.util.LinkedList;
         
 /**
  * Fixed dimension GUI element
@@ -28,9 +29,9 @@ public class Gui<E extends Displayable> implements Displayable {
     public final float CORNER_RADIUS;
     
     /** gradient start color */
-    private Color start = new Color(166, 250, 252, 95); // Color: #A6FAFC with alpha
+    private Color start = new Color(166, 250, 252, 195); // Color: #A6FAFC with alpha
     /** gradient end color */
-    private Color end = new Color(205, 255, 145, 95); // Color #CDFF91 with alpha
+    private Color end = new Color(205, 255, 145, 195); // Color #CDFF91 with alpha
     
     /** the object contained in the GUI element */
     private E object;
@@ -51,7 +52,7 @@ public class Gui<E extends Displayable> implements Displayable {
         this.width = width;
         this.height = width;
         
-        CORNER_RADIUS = 40.0f;
+        CORNER_RADIUS = 20.0f;
         rect = new RoundedRectangle(x, y, width, height, CORNER_RADIUS);
         
         this.object = object;
