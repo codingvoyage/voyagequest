@@ -36,37 +36,37 @@
  <tileset firstgid="2177" name="hyptosis_tile-art-batch-3" tilewidth="64" tileheight="64">
   <image source="test/hyptosis_tile-art-batch-3.png" trans="4b637f" width="1920" height="1920"/>
  </tileset>
- <layer name="Background 1" width="25" height="25" visible="0">
+ <layer name="Background 1" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2SXQqAIBCEffOeyyLitaJ7luDCNqyakj05MERS8+2Pzm1tba1Q8M6Rcn7/WvQDI/hnL6MM+T+bb8eKk8qnQQZBVjDySTFokiEZXJxUX7iLWYbkJpVv5VrnlhLk1eqkDk/MBgcZDDkyL6yb1fdyJvtqMWKjPoI8vL+jDOylNf83e8dZ4U56uTP36ixPzF4h7GMl448+VjKyjuJZXTZ5zxnECQAA
   </data>
  </layer>
- <layer name="Background 2" width="25" height="25" visible="0">
+ <layer name="Background 2" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+2UzwoBURTGz2qyJkRKkf9KkfxJeQaW9rJRSkl5DFYsSeK9vIdvmnua2zSXg2vnq19n5nLnu75zBtFff8kUBTGQBHFVUyBt0SMH8qCgmDlEFdSqRY8maIG2Yg2PHmpfuJ9z4Ay46mQMezdCDz2HEvlZlNT9FNd1w96J0EPPoUN+Fh11v8L14EuPnPB773joc/gsa4my5PUvOMecP+dtylqiBnn9C84x5895m7KWaEhe/4JzPP7imc+k98b1qGFWyu676vzOw1XXfVctehxCPGxoAS7gCm7a+hbsLHkcDOtHcAJndYazYm44J39+d/wadvZXGlF4hqZzfqplyJr0f1Uq7lM8QpQAe7L/O7hPBTy/GHk/b9YDt9RwmcQJAAA=
   </data>
  </layer>
- <layer name="Under Entities" width="25" height="25" visible="0">
+ <layer name="Under Entities" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC2NgGAWjYPCCw6y0t+MyHex4TAc7RsHQAxpsDAyabLS1wwJoviUQa9PYHhCgpR30DKtRMApAQJiD9nYoU2gHAI6DRH7ECQAA
   </data>
  </layer>
- <layer name="Entity Layer" width="25" height="25" visible="0">
+ <layer name="Entity Layer" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC2NgGAWjYBTQAsiw4ecTAxay4hfXQTMTnU8IaADVa6LpeYJmpw0bfj4hYAFUbwnE2kj6vuDwFz0BOfEBA0LMDAwiQCzGjF8dqfGBDIyAZpsAsRkBO0iND2QQBDQ7BIjDCNgBAteBcXYIiLXw2IeelgYrOIIn/Wkg+WE1F23sh+WJUTAKKAUA59kklsQJAAA=
   </data>
  </layer>
- <layer name="Above Entities" width="25" height="25" visible="0">
+ <layer name="Above Entities" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC2NgGAWjYBSMglEwCkYWmIlHTpONbs4gC+Bz+ygYWQAAYCqIVMQJAAA=
   </data>
  </layer>
- <layer name="Highests" width="25" height="25" visible="0">
+ <layer name="Highests" width="25" height="25">
   <data encoding="base64" compression="gzip">
    H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ43oAAAeDP5i1XpxAkAAA==
   </data>
  </layer>
- <objectgroup name="Collisions" width="25" height="25" visible="0">
+ <objectgroup name="Collisions" width="25" height="25">
   <object x="768" y="1323" width="60" height="272"/>
   <object x="463" y="1561" width="383" height="56"/>
   <object x="445" y="1323" width="61" height="241"/>
@@ -100,8 +100,10 @@
   <object x="1034" y="1288" width="190" height="40"/>
   <object x="1218" y="1290" width="105" height="37"/>
   <object x="1282" y="515" width="19" height="188"/>
+  <object x="1151" y="500" width="5" height="71"/>
+  <object x="1212" y="500" width="4" height="71"/>
  </objectgroup>
- <objectgroup name="Boundaries" width="25" height="25" visible="0">
+ <objectgroup name="Boundaries" width="25" height="25">
   <object x="580" y="835" width="183" height="185"/>
   <object x="964" y="522" width="56" height="178"/>
   <object x="1218" y="526" width="60" height="173"/>

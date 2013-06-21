@@ -209,22 +209,25 @@ public class Thread {
      * Make a person speak with options using an Animation Profile
      * @param text the dialog text
      */
-    public void speak(String text, String animation, Object[] options) {
+    public void speak(String text, String animation, Object[] options, Parameter resultVar) {
         dialog = new DialogBox(text, animation, options);
         dialog.start();
         setRunningState(true);
+        //This is for the variable we put the result in.
+        setTemporaryParameter(resultVar);
     }
 
     /**
      * Make a generic dialog with options using an Animation Profile
      * @param text the dialog text
      */
-    public void speak(String text, Object[] options) {
+    public void speak(String text, Object[] options, Parameter resultVar) {
         dialog = new DialogBox(text, options);
         dialog.start();
         setRunningState(true);
+        setTemporaryParameter(resultVar);
     }
-    
+
     public boolean continueSpeak()
     {
         if (dialog.continuePrinting() == false)
@@ -232,9 +235,26 @@ public class Thread {
             setRunningState(false);
             return false;
         }
-        
+
         return true;
-        
+    }
+
+    public boolean continuePrompt()
+    {
+        if (dialog.continuePrinting() == false)
+        {
+            System.out.println("oh no");
+            setRunningState(false);
+
+            int selection = dialog.getDialog().getParser().getOption();
+            Parameter choice = new Parameter(selection);
+            this.getMemoryBox().put(getTemporaryParameter().getStringValue(),
+                    choice);
+
+            return false;
+        }
+
+        return true;
     }
     
     //Memory/variable magic

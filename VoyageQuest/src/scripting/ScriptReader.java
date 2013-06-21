@@ -176,9 +176,13 @@ public class ScriptReader
             //Dialogbox continue-speaks
             case 150:
             case 151:
+                result = currentThread.continueSpeak();
+                break;
+
+            //For the prompt boxes
             case 152:
             case 153:
-                result = currentThread.continueSpeak();
+                result = currentThread.continuePrompt();
                 break;
                 
             //fade in
@@ -1011,20 +1015,22 @@ public class ScriptReader
                 break;
 
             case 152:
-            // dialogprompt animationname text options
+            // dialogprompt animationname text options --> result
                 currentThread.speak(
                         identifierCheck(currentLine, 1).getStringValue(),
                         identifierCheck(currentLine, 0).getStringValue(),
-                        identifierCheck(currentLine, 2).getObjectArrayValue());
+                        identifierCheck(currentLine, 2).getObjectArrayValue(),
+                        currentLine.getParameter(4));
 
                 continueExecuting = false;
                 break;
 
             case 153:
-            // genericprompt text options
+            // genericprompt text options --> result
                 currentThread.speak(
                         identifierCheck(currentLine, 0).getStringValue(),
-                        identifierCheck(currentLine, 1).getObjectArrayValue());
+                        identifierCheck(currentLine, 1).getObjectArrayValue(),
+                        currentLine.getParameter(3));
 
                 continueExecuting = false;
                 break;

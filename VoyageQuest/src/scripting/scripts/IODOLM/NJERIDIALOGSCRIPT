@@ -61,7 +61,7 @@ endif
 
 if gameState == 80
         freezeInputs
-        dialogBox "Njeri Profile" "Hold on... I need to talk to Li Fei first!" 
+        dialogBox "Sebastian Profile" "Hold on... I need to talk to Li Fei first!"
         unfreezeInputs
 endif
 

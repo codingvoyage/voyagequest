@@ -217,8 +217,11 @@ genericMessageBox 150
 dialogBox 151
 
 -- dialog boxes with options
+-- dialogprompt animationname text options --> result
 dialogPrompt 152
+
 -- generic dialog box with options
+-- genericprompt text options --> result
 genericPrompt 153
 
 
