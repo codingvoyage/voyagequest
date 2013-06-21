@@ -36,6 +36,9 @@ public class Menu implements Displayable {
     private Rectangle box;
     /** are we done? */
     private boolean done = false;
+    /** first start */
+    private boolean first = true;
+
 
     /** selected box padding */
     public static final int BOX_PADDING = 10;
@@ -86,7 +89,10 @@ public class Menu implements Displayable {
      */
     @Override
     public void next(GameContainer gc, int delta) {
-        EventListener.menuListenStart(this);
+        if (first) {
+            EventListener.menuListenStart(this);
+            first = false;
+        }
     }
 
     /**
@@ -123,6 +129,7 @@ public class Menu implements Displayable {
     public void select() {
         done = true;
         EventListener.menuListenStop();
+        System.out.println(selected);
     }
 
     /**

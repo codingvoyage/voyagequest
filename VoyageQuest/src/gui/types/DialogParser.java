@@ -253,7 +253,7 @@ public class DialogParser {
 
                 } else {
                     // dialog is done printing, but are there options to display?
-                    if (options == null) {
+                    if ((options != null && menu.getObject().isDone()) || options == null) {
                         // the box has no more to print. close it.
                         GuiManager.close(box.getWindow());
                         continuePrinting = false;
