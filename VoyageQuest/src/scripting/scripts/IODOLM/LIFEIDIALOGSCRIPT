@@ -72,7 +72,23 @@ if gameState == 80
     eval m1 + [ m2 + m3 ] --> msg
     dialogBox "Li Fei Profile" msg
 
-    unfreezeInputs 
+    newArray testOptions 2
+            putArray testOptions 0 <-- "Of course!"
+            putArray testOptions 1 <-- "Absolutely not!!"
+    var promptquestion "So will you help me?"
+
+    dialogPrompt "Li Fei Profile" promptquestion testOptions --> result
+
+    if result == 0
+        dialogBox "Li Fei Profile" "Fantastic!"
+        dialogBox "Li Fei Profile" "Go... now!"
+    endif
+    if result == 1
+        dialogBox "Sebastian Profile" "Seriously? I just recovered from fainting and you're giving me work to do? What is wrong with you? I think you should be the one being sent to the crate expectations room. Crates are crate!"
+        dialogBox "Li Fei Profile" "Too bad. Now go!"
+    endif
+
+    unfreezeInputs
 
     -- 85 means report to Njeri
     writeGlobal 85 --> GAME_STATE

@@ -102,7 +102,7 @@ public class Menu implements Displayable {
         if (selected != 0) {
             selected--;
             System.out.println("Moving to: " + selected);
-            box.setY(box.getY() - Util.FONT.getHeight(options[selected]) - BOX_PADDING / 2);
+            box.setY(box.getY() - Util.FONT.getLineHeight());
             box.setWidth(Util.FONT.getWidth(options[selected]) + BOX_PADDING);
         } else
             System.out.println("Can't move up");
@@ -116,7 +116,7 @@ public class Menu implements Displayable {
         if (selected < options.length - 1) {
             selected++;
             System.out.println(options.length + " Moving to: " + selected);
-            box.setY(box.getY() + Util.FONT.getHeight(options[selected]) + BOX_PADDING / 2);
+            box.setY(box.getY() + Util.FONT.getLineHeight());
             box.setWidth(Util.FONT.getWidth(options[selected]) + BOX_PADDING);
         } else
             System.out.println("Can't move down");
