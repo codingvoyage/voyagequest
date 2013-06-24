@@ -962,6 +962,7 @@ public class ScriptReader
                         new Map(identifierCheck(currentLine, 0).getStringValue());
                 } 
                 catch (Exception e) {
+                    System.out.println("LOADING MAP FAILED");
                 }  //Swallow any exceptions because I'm a rebel like that.
 
                 // Change background music if needed

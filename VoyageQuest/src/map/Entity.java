@@ -13,7 +13,6 @@ import java.util.LinkedList;
 
 import voyagequest.*;
 import scripting.*;
-import static voyagequest.VoyageQuest.player;
 
 /**
  *
@@ -65,7 +64,7 @@ public class Entity extends ScriptableClass implements Rectangular {
      * @param r the boundary Rectangle
      * @throws SlickException 
      */
-    public Entity(DoubleRect boundaryRect) throws SlickException
+    public Entity(DoubleRect boundaryRect)
     {
         this.r = boundaryRect;
         this.collRect = new DoubleRect(5.0d, 70.0d, 50.0d, 50.0d);

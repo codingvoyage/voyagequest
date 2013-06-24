@@ -1,17 +1,31 @@
 package battle;
 
+import map.Entity;
+import voyagequest.DoubleRect;
+
 /**
- * battle
+ * Battle Entity
  *
- * @author Brian
- * @version 06 2013
+ * @author Brian Yang
+ * @author Edmund Qiu
  */
-//public class BattleEntity extends Entity {
-//
-//    public BattleEntity()
-//    {
-//        super();
-//    }
-//
-//
-//}
+public class BattleEntity extends Entity {
+
+    public BattleEntity(DoubleRect rect)
+    {
+        super(rect);
+    }
+
+    public BattleEntity(DoubleRect rect, DoubleRect collRect)
+    {
+        super(rect);
+        this.collRect = collRect;
+    }
+
+    public void changeAnimationDirection(int newAnimationDirection)
+    {
+        animationDirection = newAnimationDirection;
+    }
+
+
+}

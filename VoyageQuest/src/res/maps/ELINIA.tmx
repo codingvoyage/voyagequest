@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="TREE" tilewidth="64" tileheight="64">
-  <image source="../../../../../../Desktop/res/test/TREE.png" width="1024" height="768"/>
+  <image source="test/TREE.png" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="193" name="GRS2ROC" tilewidth="64" tileheight="64">
-  <image source="../../../../../../Desktop/res/test/GRS2ROC.png" width="1024" height="768"/>
+  <image source="test/GRS2ROC.png" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="385" name="CLIFFVEG" tilewidth="64" tileheight="64">
-  <image source="../../../../../../Desktop/res/test/CLIFFVEG.png" width="1024" height="768"/>
+  <image source="test/CLIFFVEG.png" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="577" name="CLIFVEG2" tilewidth="64" tileheight="64">
-  <image source="../../../../../../Desktop/res/test/CLIFVEG2.png" width="1024" height="768"/>
+  <image source="test/CLIFVEG2.png" width="1024" height="768"/>
  </tileset>
  <layer name="Map tiles" width="25" height="25">
   <data encoding="base64" compression="gzip">

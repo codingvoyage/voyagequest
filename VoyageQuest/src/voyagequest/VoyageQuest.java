@@ -28,9 +28,9 @@ import java.io.InputStream;
 
 public class VoyageQuest extends BasicGame {
     /** x resolution */
-    public static final int X_RESOLUTION = 1920;
+    public static final int X_RESOLUTION = 1024;
     /** y resolution */
-    public static final int Y_RESOLUTION = 1080;
+    public static final int Y_RESOLUTION = 768;
     /** full screen mode */
     public static final boolean FULLSCREEN = false;
     /** Are we debugging? */
