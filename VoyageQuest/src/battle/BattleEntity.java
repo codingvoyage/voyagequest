@@ -11,6 +11,8 @@ import voyagequest.DoubleRect;
  */
 public class BattleEntity extends Entity {
 
+    private String name;
+
     public BattleEntity(DoubleRect rect)
     {
         super(rect);

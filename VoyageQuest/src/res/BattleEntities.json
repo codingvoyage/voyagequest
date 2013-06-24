@@ -1,0 +1,35 @@
+{
+    "about_file" : "This file is used to load battle entity data. Please do not modify this file if you do \n\
+                    not know what you're doing. Created by Brian Yang and Edmund Qiu.",
+
+    "enemies": [
+        {
+            "name" : "Minion",
+            "id" : "m1",
+            "description" : "Weak minions sent from some unknown land.",
+            "defense" : 1,
+            "hp" : 250,
+            "velocityX" : 10,
+            "velocityY" : 10,
+            "width" : 64,
+            "height" : 128,
+            "mainScriptID" : "NjeriTest",
+            "mainThreadName" : "Njeri Thread",
+            "animations" : [
+                "Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right"
+            ],
+            "startingAnimationDirection" : 0,
+            "onClickScript" : "NjeriOutsideDescription"
+        },
+        {
+            "name" : "Bear",
+            "id" : "b1",
+            "description" : "Weak minions sent from some unknown land.",
+            "defense" : 1,
+            "hp" : 250,
+            "velocityX" : 10,
+            "velocityY" : 10,
+            "scriptID" : 36
+        }
+    ]
+}
