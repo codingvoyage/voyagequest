@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="TREE" tilewidth="64" tileheight="64">
+  <image source="../../../../../../Desktop/res/test/TREE.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="193" name="GRS2ROC" tilewidth="64" tileheight="64">
+  <image source="../../../../../../Desktop/res/test/GRS2ROC.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="385" name="CLIFFVEG" tilewidth="64" tileheight="64">
+  <image source="../../../../../../Desktop/res/test/CLIFFVEG.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="577" name="CLIFVEG2" tilewidth="64" tileheight="64">
+  <image source="../../../../../../Desktop/res/test/CLIFVEG2.png" width="1024" height="768"/>
+ </tileset>
+ <layer name="Map tiles" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC3vBwMDwYhSP4lE8ikc4ZmGEYErNeQTET3BgatnBBDVHC4hV0DC1wgNmBxsVzaSmHbjCGB1zUGAHLL6IxYPVDvQ0Qgir0TDORzF1MQB+hJ2oxAkAAA==
+  </data>
+ </layer>
+ <layer name="above tiles" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAXDDdxkZGC4xUh7O3ZRwY7NTAwMW5hQxbYB+duB+CfQ/F9UsOMw0KwjQFwCtacMSB8D4uNAzAnEXEz49RMDLgPNuALELUDcBcRtQHwNiK8DsSQQS1HBjsdAM54A8RSoHdOA+BkQPwfiF1QwHwQ+A835AjUfhr8B8Xcg/kElO0bBKBgFQw+oDbQDRgFWAADL1mvfxAkAAA==
+  </data>
+ </layer>
+ <layer name="below entities" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkYBLYDaQDtgFAxrAAChzsYlxAkAAA==
+  </data>
+ </layer>
+ <layer name="Entity layer" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglFACmABYlYa2yECxKI0tkMFiFVpbMcoGAWjgHYAAI5GfhTECQAA
+  </data>
+ </layer>
+ <layer name="Above entity" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCogDagPtgFEwCkYBHAAAiSuzZcQJAAA=
+  </data>
+ </layer>
+ <layer name="Above all" width="25" height="25">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMglEwCkbBUANqA+2AUTDgAAAL1XQuxAkAAA==
+  </data>
+ </layer>
+ <objectgroup name="Collisions" width="25" height="25">
+  <object x="588" y="960" width="107" height="55"/>
+  <object x="1165" y="264" width="36" height="200"/>
+  <object x="1139" y="416" width="19" height="97"/>
+  <object x="1107" y="450" width="16" height="91"/>
+  <object x="1057" y="485" width="35" height="71"/>
+  <object x="1016" y="516" width="40" height="90"/>
+  <object x="978" y="582" width="33" height="110"/>
+  <object x="650" y="461" width="24" height="97"/>
+  <object x="683" y="544" width="29" height="119"/>
+  <object x="726" y="583" width="27" height="105"/>
+ </objectgroup>
+ <objectgroup name="Boundaries" width="25" height="25">
+  <object x="582" y="837" width="117" height="182"/>
+ </objectgroup>
+ <objectgroup name="Events" width="25" height="25">
+  <object type="onTouch" x="781" y="654" width="161" height="31">
+   <properties>
+    <property name="runScript" value="castleToMalentia"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

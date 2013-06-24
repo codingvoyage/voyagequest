@@ -71,7 +71,7 @@ public class Map {
         MAP_WIDTH = tileMap.getWidth() * TILE_LENGTH;
         MAP_HEIGHT = tileMap.getHeight() * TILE_LENGTH;
         MAP_RECT = new DoubleRect(0, 0, MAP_WIDTH, MAP_HEIGHT);
-        
+
         //Create the LinkedList of all entities
         allCollisions = new LinkedList<>();
         allBoundaries = new LinkedList<>();
@@ -85,13 +85,13 @@ public class Map {
         //Now that QuadTree is initialized, we are free to initialize the
         //collision rects.
         ArrayList<ObjectGroup> objLayers = tileMap.getObjectGroups();
-        
+
         //Get the collision layer
         //Get the boundary layer
         ArrayList<GroupObject> collisionLayer = objLayers.get(0).getObjects();
         ArrayList<GroupObject> boundaryLayer = objLayers.get(1).getObjects();
         ArrayList<GroupObject> eventLayer = objLayers.get(2).getObjects();
-        
+
         //First up, fill the collisionlayer. I favor the wrapper over the GroupObject approach, since 
         //that enables easy access to the properties and other methods provided by GroupObject.
         for (GroupObject o : collisionLayer)
@@ -155,7 +155,7 @@ public class Map {
             backgroundThread.setLineNumber(0);
             backgroundThread.setRunningState(false);
         threadManager.addThread(backgroundThread);
-        
+
         for (LoadEntity l : allEntities)
         {
             Entity e = new Entity(

@@ -17,11 +17,13 @@ public class DialogBox {
     /** The GUI element */
     private Gui<Dialog> window;
     
-    public static final int DEFAULT_X = 150;
-    public static final int DEFAULT_Y = 550;
+
     public static final int DEFAULT_WIDTH = 750;
     public static final int DEFAULT_HEIGHT = 160;
-    
+
+    public static final int DEFAULT_X = (voyagequest.VoyageQuest.X_RESOLUTION / 2) - DEFAULT_WIDTH / 2;
+    public static final int DEFAULT_Y = voyagequest.VoyageQuest.Y_RESOLUTION - 300;
+
     public String animationId;
     
     /**

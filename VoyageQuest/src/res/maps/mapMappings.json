@@ -3,6 +3,11 @@
                    VoyageQuest RPG. File by Brian Yang and Edmund Qiu. Graphics by Wenyu Deng.",
             
     "mapLoadingMappings": [
+       {
+           "mapID" : "ELINIA",
+           "mapURL" : "res/maps/ELINIA.tmx",
+           "mapJsonURL" : "res/maps/ELINIA.json"
+       },
         {
             "mapID" : "CRATEEXPECTATIONS",
             "mapURL" : "res/maps/CRATEEXPECTATIONS.tmx",
@@ -48,5 +53,6 @@
             "mapURL" : "res/maps/SPECIALHOUSE.tmx",
             "mapJsonURL" : "res/maps/SPECIALHOUSE.json"
         }
+
     ]
 }

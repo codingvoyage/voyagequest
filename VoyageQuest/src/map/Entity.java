@@ -56,7 +56,8 @@ public class Entity extends ScriptableClass implements Rectangular {
     
     public String onClickScript;
     public String onTouchScript;
-            
+
+    public int animationDirection = 1;
 
     /**
      * Constructs an Entity with only its boundary Rectangle
@@ -125,26 +126,30 @@ public class Entity extends ScriptableClass implements Rectangular {
     {
         accumulatedDelta += delta;
         double currentFrameDuration = currentAnimation.getDuration(currentFrame);
-        
+
         if (accumulatedDelta > currentFrameDuration)
         {
-            currentFrame++;
+            currentFrame += animationDirection;
             if (currentFrame >= currentAnimation.getFrameCount())
             {
                 currentFrame = 0;
             }
-            
+            if (currentFrame < 0)
+            {
+                currentFrame = currentAnimation.getFrameCount() - 1;
+            }
+
             accumulatedDelta =- currentFrameDuration;
-            
+
         }
     }
-    
+
     public void draw(Graphics g, float xOffset, float yOffset)
     {
         currentAnimation.getImage(currentFrame).draw(xOffset, yOffset);
-        
+
         //Global.character.draw(xOffset, yOffset);
-        
+
         //If debugging, then draw the boundary boxes and the collision boxes
         if (VoyageQuest.DEBUG_MODE == true)
         {
@@ -154,27 +159,27 @@ public class Entity extends ScriptableClass implements Rectangular {
                        (float)collRect.width,
                        (float)collRect.height);
         }
-        
+
     }
-    
+
     public void setVelocity(double vx, double vy)
     {
         velocityX = vx;
         velocityY = vy;
     }
-    
+
     public void beginMove(double pixelsToMove) {
         setTemporaryParameter(new Parameter(pixelsToMove));
         mainThread.setRunningState(true);
     }
-    
+
     public void beginMove(int tilesToMove) {
         int pixelsToMove = tilesToMove * Global.currentMap.TILE_LENGTH;
         setTemporaryParameter(new Parameter(pixelsToMove));
         mainThread.setRunningState(true);
     }
-    
-    
+
+
     /**
      * Checks if the entity should continue moving (straight line)
      * @param delta elapsed time between checks
@@ -211,35 +216,29 @@ public class Entity extends ScriptableClass implements Rectangular {
         //Alright, we still have to move. Keep moving.
         return true;
     }
-    
-    //The collision --> event code sucks and should be replaced with something in 
-    //the overridden version of Entity --> Player since all of them work only
-    //for the player!
-    public boolean attemptMove(double xMove, double yMove, double delta)
+
+
+    public boolean checkCollsion(DoubleRect collCandidate)
     {
-        //Where would we end up at
-        DoubleRect collCandidate = this.getCollRect();
-        collCandidate.x += xMove;
-        collCandidate.y += yMove;
 
         //Now query the QuadTree for any possible collisions
         LinkedList<Rectangular> collisionCandidates = Global.currentMap.collisions.rectQuery(collCandidate);
 
         Rectangular collRectangular = null;
-        
+
         //Now we see if collides
         boolean collides = false;
         for (Rectangular e : collisionCandidates)
         {
             if (e.equals(this)) continue;
-            
+
             if (e instanceof Entity && collCandidate.intersects(((Entity)e).getCollRect()))
             {
                 collRectangular = e;
                 collides = true;
                 break;
             }
-            
+
             if (!(e instanceof Entity) && collCandidate.intersects(e.getRect()))
             {
                 collRectangular = e;
@@ -255,7 +254,7 @@ public class Entity extends ScriptableClass implements Rectangular {
             if (collCandidate.intersects(e.getRect()))
             {
                 GroupObject thisObject = ((GroupObjectWrapper)e).getObject();
-                
+
                 if (thisObject.type.equals("onTouch"))
                 {
                     Properties asdf = ((GroupObjectWrapper)e).getObject().props;
@@ -265,33 +264,50 @@ public class Entity extends ScriptableClass implements Rectangular {
             }
         }
 
-        
-        
-        if (collides == true)
+
+        if (collides)
         {
-            //Could not move
-            
+
             //If we were the player and we collided with an Entity, then see
             //if there is a TouchScript associated with the Entity and
             //respond accordingly.
-            if (this instanceof Player && 
-                collRectangular instanceof Entity &&
-                ((Entity)collRectangular).onTouchScript != null)
+            if (this instanceof Player &&
+                    collRectangular instanceof Entity &&
+                    ((Entity)collRectangular).onTouchScript != null)
             {
                 new Interaction(((Entity)collRectangular).onTouchScript);
             }
-            
-            
+
+
             //On the other hand if we were the Entity and we collided with the player...
             if (this instanceof Entity &&
-                collRectangular instanceof Player)
+                    collRectangular instanceof Player)
                 System.out.println("OMGGG");
-            
+        }
+        return collides;
+    }
+
+    //The collision --> event code sucks and should be replaced with something in 
+    //the overridden version of Entity --> Player since all of them work only
+    //for the player!
+    public boolean attemptMove(double xMove, double yMove, double delta)
+    {
+        //Where would we end up at
+        DoubleRect collCandidate = this.getCollRect();
+        collCandidate.x += xMove;
+        collCandidate.y += yMove;
+
+        boolean collides = this.checkCollsion(collCandidate);
+
+
+        if (collides == true)
+        {
+            //Could not move
             return false;
         }
         else
         {
-            
+
             //Update the animation:
             this.updateAnimation(delta);
         

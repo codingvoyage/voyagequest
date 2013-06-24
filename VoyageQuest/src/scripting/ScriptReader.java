@@ -958,7 +958,7 @@ public class ScriptReader
 
                 //Load map with name
                 try {
-                Global.currentMap = 
+                Global.currentMap =
                         new Map(identifierCheck(currentLine, 0).getStringValue());
                 } 
                 catch (Exception e) {

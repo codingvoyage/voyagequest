@@ -1,6 +1,5 @@
 package voyagequest;
 
-import battle.BattleManager;
 import gui.GuiManager;
 import gui.VoyageGuiException;
 import gui.special.DialogBox;
@@ -29,9 +28,9 @@ import java.io.InputStream;
 
 public class VoyageQuest extends BasicGame {
     /** x resolution */
-    public static final int X_RESOLUTION = 1024;
+    public static final int X_RESOLUTION = 1920;
     /** y resolution */
-    public static final int Y_RESOLUTION = 768;
+    public static final int Y_RESOLUTION = 1080;
     /** full screen mode */
     public static final boolean FULLSCREEN = false;
     /** Are we debugging? */
