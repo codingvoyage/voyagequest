@@ -1,5 +1,6 @@
 package scripting;
 
+import battle.BattleManager;
 import map.Entity;
 import map.Map;
 import voyagequest.Global;
@@ -1035,7 +1036,20 @@ public class ScriptReader
 
                 continueExecuting = false;
                 break;
-                
+
+            // startBattle battleID
+            case 154:
+                String battleID = identifierCheck(currentLine, 0).getStringValue();
+                BattleManager.initBattle(battleID);
+                break;
+
+            // endbattle
+            case 155:
+                BattleManager.endBattle();
+
+                break;
+
+
             //fade in
             case 161:
                 currentThread.setRunningState(true);

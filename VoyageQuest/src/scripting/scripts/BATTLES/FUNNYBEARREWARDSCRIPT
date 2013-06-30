@@ -1,0 +1,13 @@
+-- testing purposes
+
+newArray award 1
+    putArray award 0 <-- "BEAR FANG"
+
+writeGlobal award --> NEXT_REWARD
+writeGlobal 500 --> NEXT_EXP
+writeGlobal 2 --> NEXT_GOLD
+
+
+
+
+endthread

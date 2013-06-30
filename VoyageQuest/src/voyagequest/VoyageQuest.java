@@ -1,5 +1,6 @@
 package voyagequest;
 
+import battle.EntityManager;
 import gui.GuiManager;
 import gui.VoyageGuiException;
 import gui.special.DialogBox;
@@ -124,6 +125,9 @@ public class VoyageQuest extends BasicGame {
         //Now create the Camera.
         Global.camera = new Camera();
 
+        //Load the battle entities, shouldn't be too bad...
+        EntityManager.init();
+
         //Load the lighting... This will be changed later, of course.
         InputStream is = getClass().getClassLoader().getResourceAsStream("res/alphamini.png");
         alphaMap = new Image(is, "res/alphamini.png", false, Image.FILTER_NEAREST);
@@ -175,6 +179,10 @@ public class VoyageQuest extends BasicGame {
 
                 break;
             case COMBAT:
+                //IMPORTANT: Tell ScriptReader that now, we're using the
+                //battleThreadManager. This must be changed back after combat is over
+                VoyageQuest.scriptReader.setThreadHandle(VoyageQuest.battleThreadManager);
+                battleThreadManager.act(delta);
                 break;
             default:
                 break;
@@ -202,8 +210,6 @@ public class VoyageQuest extends BasicGame {
                     GuiManager.draw();
                     GuiManager.display();
                 } catch (VoyageGuiException ex) {}
-
-                Util.WHITE_FONT.drawString(10, 10, "FPS: " + gc.getFPS());
                 Util.WHITE_FONT.drawString(10, 40,
                         "Coordinates of player: (" + player.r.x + ", " + player.r.y + ")");
 
@@ -213,6 +219,9 @@ public class VoyageQuest extends BasicGame {
             default:
                 break;
         }
+
+        //We're using this for debugging no matter what, so...
+        Util.WHITE_FONT.drawString(10, 10, "FPS: " + gc.getFPS());
     }
 
     

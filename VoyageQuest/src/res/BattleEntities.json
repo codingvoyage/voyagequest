@@ -2,34 +2,30 @@
     "about_file" : "This file is used to load battle entity data. Please do not modify this file if you do \n\
                     not know what you're doing. Created by Brian Yang and Edmund Qiu.",
 
-    "enemies": [
+    "loadBattleEntities": [
         {
-            "name" : "Minion",
-            "id" : "m1",
-            "description" : "Weak minions sent from some unknown land.",
-            "defense" : 1,
-            "hp" : 250,
-            "velocityX" : 10,
-            "velocityY" : 10,
-            "width" : 64,
-            "height" : 128,
-            "mainScriptID" : "NjeriTest",
-            "mainThreadName" : "Njeri Thread",
-            "animations" : [
-                "Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right"
-            ],
-            "startingAnimationDirection" : 0,
-            "onClickScript" : "NjeriOutsideDescription"
-        },
-        {
-            "name" : "Bear",
-            "id" : "b1",
-            "description" : "Weak minions sent from some unknown land.",
-            "defense" : 1,
-            "hp" : 250,
-            "velocityX" : 10,
-            "velocityY" : 10,
-            "scriptID" : 36
+            "name" : "Anika",
+            "battleEntityID" : "Anika",
+            "description" : "A powerful magic user",
+
+            "width" : "64",
+            "height" : "128",
+            "velocityX" : "0.1",
+            "velocityY" : "0.1",
+
+            "collisionX" : 5,
+            "collisionY" : 70,
+            "collisionWidth" : 50,
+            "collisionHeight" : 50,
+
+            "mainScriptID" : "ANIKABATTLE",
+
+            "animations" : ["Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right"],
+            "startingAnimationName" : "Njeri Backwards",
+
+            "hp" : 9001,
+            "defense" : 50,
+            "attack" : 100
         }
     ]
 }

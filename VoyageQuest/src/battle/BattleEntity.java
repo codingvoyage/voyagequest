@@ -1,7 +1,10 @@
 package battle;
 
 import map.Entity;
+import org.newdawn.slick.Animation;
 import voyagequest.DoubleRect;
+
+import java.util.ArrayList;
 
 /**
  * Battle Entity
@@ -11,7 +14,15 @@ import voyagequest.DoubleRect;
  */
 public class BattleEntity extends Entity {
 
-    private String name;
+    /** BattleEntity handles Animation quite differently, so do this instead */
+    public ArrayList<Animation> animationArrayList;
+
+    /** Determines what hurts what */
+    public Allegiance entityAllegiance;
+
+    /** When the BattleEntity is a ghost, it can't be collided with by anything*/
+    public boolean isGhost;
+
 
     public BattleEntity(DoubleRect rect)
     {

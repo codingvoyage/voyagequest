@@ -38,6 +38,8 @@ public class BattleManager {
 
     public static void initBattle( String battleID )
     {
+        System.out.println("WE ARE INTIATING THE BATTLE");
+
         Battle battle = battles.get(battleID);
         if (battle == null) return;
 
@@ -47,29 +49,24 @@ public class BattleManager {
         //First, switch to Combat State
         VoyageQuest.state = GameState.COMBAT;
 
-        //IMPORTANT: Tell ScriptReader that now, we're using the
-        //battleThreadManager. This must be changed back after combat is over
-        ThreadManager battleThreadManager = VoyageQuest.battleThreadManager;
-        VoyageQuest.scriptReader.setThreadHandle(battleThreadManager);
-
         //Now, wipe the battleThreadManager of all previous threads
-        battleThreadManager.clear();
+        VoyageQuest.battleThreadManager.clear();
 
         //Find the reward
-        Thread rewardThread = new Thread(rewardScriptID);
-        battleThreadManager.addThread(rewardThread);
-        battleThreadManager.act(0.0);
-
-        //The reward thread will put the results in the globalMemory, so retrieve those values
-        int goldReward = (int)Global.globalMemory.get("NEXT_GOLD").getDoubleValue();
-        int expReward = (int)Global.globalMemory.get("NEXT_EXP").getDoubleValue();
-        String[] itemReward = (String[])Global.globalMemory.get("NEXT_REWARD").getObjectArrayValue();
-
-        //^ this stuff should be stored somewhere for after the battle is over, but I guess
-        //we're more occupied with getting the battle to work first, so that's for later.
+//        Thread rewardThread = new Thread(rewardScriptID);
+//        rewardThread.setLineNumber(0);
+//        VoyageQuest.battleThreadManager.addThread(rewardThread);
+//        VoyageQuest.battleThreadManager.act(0.0);
+//
+//        //The reward thread will put the results in the globalMemory, so retrieve those values
+//        int goldReward = (int)Global.globalMemory.get("NEXT_GOLD").getDoubleValue();
+//        int expReward = (int)Global.globalMemory.get("NEXT_EXP").getDoubleValue();
+//        Object[] itemReward = Global.globalMemory.get("NEXT_REWARD").getObjectArrayValue();
 
         //Finally, begin the fight by starting the script for it.
-        battleThreadManager.addThread((new Thread (battleScriptID)));
+        Thread newThread = new Thread(battleScriptID);
+        newThread.setLineNumber(0);
+        VoyageQuest.battleThreadManager.addThread(newThread);
     }
 
     public static void endBattle()

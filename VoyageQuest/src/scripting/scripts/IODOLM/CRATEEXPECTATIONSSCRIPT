@@ -2,6 +2,12 @@
 -- be made here..
 existsGlobal "DAMN_CRATES" --> result
 
+
+wait 3000
+fadeout
+startBattle "FUNNY BEAR"
+endthread
+
 if result == false
     writeGlobal true --> "DAMN_CRATES"
 

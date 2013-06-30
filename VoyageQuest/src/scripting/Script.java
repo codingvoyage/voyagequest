@@ -1,5 +1,7 @@
 package scripting;
 
+import voyagequest.VoyageQuest;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileNotFoundException;
@@ -62,7 +64,7 @@ public class Script {
         InputStream is = getClass().getClassLoader().getResourceAsStream(SCRIPT_FOLDER + filename);
         
         if (is == null)
-            System.out.println("Script don't exist");
+            System.out.println("Script doesn't exist");
         else {
         
             BufferedReader reader = new BufferedReader(new InputStreamReader(is));
@@ -72,7 +74,8 @@ public class Script {
                 {
                     String myNextLine = in.nextLine();
 
-                    System.out.println(myNextLine);
+                    if (VoyageQuest.DEBUG_MODE == true)
+                        System.out.println(myNextLine);
 
                     //Of course, if the next line contains nothing, then ignore
                     //Everything else that happens will happen if the line isn't ""

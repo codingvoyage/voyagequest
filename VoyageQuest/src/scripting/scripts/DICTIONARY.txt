@@ -224,9 +224,13 @@ dialogPrompt 152
 -- genericprompt text options --> result
 genericPrompt 153
 
+-- startBattle battleID
+startBattle 154
+
+-- endbattle
+endbattle 155
 
 fadein 161
-
 fadeout 162
 
 -- some sound effects may be automatic with certain actions

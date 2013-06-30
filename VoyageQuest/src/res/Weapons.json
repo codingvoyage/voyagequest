@@ -1,0 +1,11 @@
+{
+    "about_file": "This file manages all of the weaponID to script associations for VoyageQuest",
+
+    "loadWeapons": [
+        {
+            "weaponID" : "FUNNY BEAR",
+            "weaponScript" : "An odd bear wearing a hat attacks you!",
+            "weaponAttack" : 5
+        }
+    ]
+}

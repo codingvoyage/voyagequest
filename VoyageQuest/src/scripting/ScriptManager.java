@@ -1,5 +1,7 @@
 package scripting;
 
+import voyagequest.VoyageQuest;
+
 import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -215,7 +217,8 @@ public class ScriptManager {
         scriptID = filename.substring(lastDashIndex + 1);
 
         //Debug info
-        System.out.println(filename + " has been loaded as " + scriptID);
+        if (VoyageQuest.DEBUG_MODE == true)
+            System.out.println(filename + " has been loaded as " + scriptID);
 
         //Return false if it already exists or the ID somehow turned out to be blank
         if (scriptHash.containsKey(scriptID) || scriptID.equals("")) return false;

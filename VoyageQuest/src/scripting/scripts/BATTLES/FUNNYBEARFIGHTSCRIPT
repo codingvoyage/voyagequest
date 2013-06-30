@@ -1,0 +1,11 @@
+
+fadein
+
+
+print "well this is awkward. nothing is happening"
+
+wait 5000
+
+endbattle
+endthread
+
