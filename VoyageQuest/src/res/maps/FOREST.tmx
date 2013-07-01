@@ -1,25 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="30" height="30" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="GRS2ROC" tilewidth="64" tileheight="64">
-  <image source="test/GRS2ROC.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/GRS2ROC.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="193" name="CLIFFVEG" tilewidth="64" tileheight="64">
-  <image source="test/CLIFFVEG.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/CLIFFVEG.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="385" name="CLIFVEG2" tilewidth="64" tileheight="64">
-  <image source="test/CLIFVEG2.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/CLIFVEG2.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="577" name="TREE" tilewidth="64" tileheight="64">
-  <image source="test/TREE.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/TREE.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="769" name="Castle2" tilewidth="64" tileheight="64">
-  <image source="test/Castle2.png" trans="4b637f" width="1024" height="1024"/>
+  <image source="tilesets/Castle2.png" trans="4b637f" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="1025" name="FENCE" tilewidth="64" tileheight="64">
-  <image source="test/FENCE.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/FENCE.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="1217" name="hyptosis_tile-art-batch-4" tilewidth="64" tileheight="64">
-  <image source="test/hyptosis_tile-art-batch-4.png" trans="4b637f" width="1920" height="1920"/>
+  <image source="tilesets/hyptosis_tile-art-batch-4.png" trans="4b637f" width="1920" height="1920"/>
  </tileset>
  <layer name="Grass and ground" width="30" height="30" visible="0">
   <data encoding="base64" compression="gzip">

@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="50" tilewidth="64" tileheight="64" backgroundcolor="#3b3b3b">
+ <tileset firstgid="1" name="Trees and Ruin" tilewidth="64" tileheight="64">
+  <image source="tilesets/TILES RESIZED/DeviantArtists/Mataraelfay/tileset_bosque_expansion_rtp___rpg_maker_xp_by_mataraelfay-d5dn3fn.png" width="256" height="6000"/>
+ </tileset>
+ <tileset firstgid="373" name="Paths" tilewidth="64" tileheight="64">
+  <image source="tilesets/GRS2ROC.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="565" name="Cliff and Grass" tilewidth="64" tileheight="64">
+  <image source="tilesets/CLIFFVEG.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="757" name="Celianna Trees" tilewidth="64" tileheight="64">
+  <image source="tilesets/TILES RESIZED/DeviantArtists/CELIANNA/WORK/tilebs.png" width="1024" height="1024"/>
+ </tileset>
+ <tileset firstgid="1013" name="Mataraelfay Fence" tilewidth="64" tileheight="64">
+  <image source="tilesets/TILES RESIZED/DeviantArtists/MataraelFayForest/MataraelfayForest5Ruins-and-Fence.png" width="1024" height="1024"/>
+ </tileset>
+ <tileset firstgid="1269" name="Mataraelfay Trees" tilewidth="64" tileheight="64">
+  <image source="tilesets/TILES RESIZED/DeviantArtists/MataraelFayForest/MataraelfayForest2-Many-Trees.png" width="1024" height="1024"/>
+ </tileset>
+ <tileset firstgid="1525" name="Forest Camp" tilewidth="64" tileheight="64">
+  <image source="tilesets/TILES RESIZED/DeviantArtists/MataraelFayForest/MataraelfayForest4-Camp.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="Grass and Ground" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3VTQqDMBCG4diTdu99SiguegqRIj1GkRJ6lo64CUpSsTadoe/iwZ+AM5+DsamcawAAAAAAAIA/dRLnD9a1aMU10/d8Xauxz75yFy9HP50vri3kuIshIn0fg4jvPRT0uWU+Ft4/OWyxnGPca1P7lYV/RzyDLsHSbMihCzl0Icd6voA+k+O2U43U8/EbQwEhU/+5U4368H3vvvMSPZCDHFqRY70XXOykORAnAAA=
+  </data>
+ </layer>
+ <layer name="Lower Background" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3UQQ6CQAwF0BFw4QrlAqIHUPT+V/AIHsEzaJv0x2biRiiZQP5LKmHh8IcpTYmIKNa7kp86pY1UVZdOM14r2fdSB6luofvQ/EepXuokdV7oPjR/m/WU77MIOOs5DXYevqd8n0Xo7JyxLrSuF3AdS9e9up7ya0b1ma5x/5EV9xfLMEVv70h76WbP0zX1nHA/FfLm8zByTg719xuZC95JPg+j5yS+kblUlhWZkX9pc7KzrMiM/NH9W8LU+URERERERERERERE69dI7dz10ZTPs3V5/vmf38dzJft4rWQf7KsYpfrqA4b5ZjkQJwAA
+  </data>
+ </layer>
+ <layer name="Still Behind Entities" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3V0Q2AMAgFQJI6mDvoKI7QIV3APZzBRG1p7xL+IeRBBLPYSsReWnfRzuzzA89cHd8L94we9JyRVt7KpowDkJk/BgC5HIP87TrIHNmd9jC9dfm+/ugBAMjvBpz5xN8QJwAA
+  </data>
+ </layer>
+ <layer name="Entity Layer" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC82ZV5QVRRCGrzv3XrOrgglzzjlnzALmnJWgmMgoJjJKUDJKML4IiBheTOCrEXk04j6aD4+Y0zeHmbO1/3T3zJy9e9k65zuznaarurtqqu/2iiqV3WEPiKWXlIvKny2Vyl/wd0ux/m/x/rfhHXgX3oNVsBoOg8PhiJI6lJnDJ1vRtjVsU3DuD+j3IXwEH8Mn8CmsgdPgdDgjCuuia6f2h+ZIRW3L20ed83P6fQFfwlfwNXwD66Av9INLorAuunbW/rw5UlHbdC1Ub53zO57fww/wI/wEP8Mvsg4hXXTtrP1F51DbdC1UbzvnBmz7FX6D3+GPFr9/FbXXjv+nWqn8C/9BpVapbAYtEEG11nHN9X26FqFzVqOuDpvDFrCl44zk+aiW7fht0XU7aIXtYQfYEXpAz1rHNdf1C8UrbduJ8TvDLrAr7OY4I3k+qmU7fk903Qv2hn1gX9gP9ocDah3XXNdPy1Z3bTuQ50FwMBwCh0ZZ/8rzUS3b/TkSXY+Co+EYOBaOg+PhhFrHNdb107LVXdtO5HkSnAynwKlR1r/y/ELLdn/ORNez4GzoDefAuXAenC/+oeunZau7tl3A80K4CC6GPlHWv8qK3Z9L0fUyuByugCvhKrgarhH/0PXTstVd20JyLX2ug+vhBrgRboKb4ZbAeLs/t6LrbXA73AH9YQAMhEHiH7p+Wra6h9Z6KHXDYHjSdifPu2Aw3A33wL1wH9wPQ8w7fLnMEHQdCsNgOIyAkTAKRteyOqjYdxU9J+NoHw8Tkn4P8HwQxsBD8DA8Ao/CYzDWvM+Xy4xF13EwHibARJgEk2FKLaurSiguW7Fts+g7G+Yk73uc5xMwFabBdJgBT8JTMNPM68tlZqLrLJgNc2AuzIP5sKCW1VV1CsVlK7btBXgRXkr6Pc3zGVgIi2AxLIFn4Tl43rzP92135Qsqel6sTnavbLzSvbFtbfAGvJm872WeS2EZLIdXYAW8CivhNaOzb89d+UIs6ovWv6xOdq+sTbo3tq0tIXQOXTFM19COd+ULsagvWv/y+ba1Sb+DrjgcOocaw1Kx77XjXflCLOqL1r983wZrk8YFPZutYmurvEtjWCyaR9rxrnwhFvVF61958dXa2QN6mn72LITyA41hsWgeacWVL8TyetTRF8vcH6ydobtVKD/QGBaL5pE+vaxvqRS5P7jsCt2tQvmBxrBYNI/06aW+Zfe5yP1BdVYfSEXPWtpXpchvHS691LfsPhe5P4S+H3nlVscYGyN9Z9ill/qW3eci9wcreXcuV8zVOhsjfTHapZfLt1Ipe3/Iu3O5zpvW2Rjpu/u79FLf0jjgig2bqi4VvadoHuKKA92pLhbXPUXzEFcc6E51sbjuKTYPiSJ3HOhOdbG47imah7jiQHeqS8XeU2LRPMQVBzZVXeSoS8XeU8pIFLn/Tm13fatX1Jmrnn2XLw7Z72soVjUjLrZV2+dbhQ2r6+22pm2+OGS/r74+vvGNrrN2qKRtvjhkv6++Pr7xja4rYocvDtlz5evjG9/ouiJ2+OKQPVehWNWMuFjEDt8dzp4rXx/f+M7EQFe/InZ0VpqRwzXDjmbkcM2QZuRw/VnzATAQBlWz5VQ2yP3O9XumT7o6Vq3kmzcCXUfCKBhdzZZTG/J+kw1JV8eq97FjIrpOgskwpZotx9LZM9nVed1a9JwL82A+LHCU4z6uM9m7WpxGxyb9fSaNR2vYl88c+eGM+sY+rjNZZt5Gxyb9v/b6xI516PttYkc/nsthOiypb+zjOpNl5m10bNL/a69N7Bic2NCX57Lk78X19j6uM1lm3kbfL/V/ROm5GoPOfRK9p/KcluyH7aNSZt6uuF9aWS86LkX3hbCo3r4f2ieVMvP+D4DmnbAQJwAA
+  </data>
+ </layer>
+ <layer name="Above Entity" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3SsQkAIAwEQIsM5v7gCI7gDi6gYCFE5A6+S/N8SgEAAAAAAAAAgL0a99Iiu80d/eMeJxutbjK39VdvGYk9JiH6O5oQJwAA
+  </data>
+ </layer>
+ <layer name="Highest Layer" width="50" height="50">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQ0AAADCoPdPbQ43oAAAAAAAAAAAAODfAC7KO00QJwAA
+  </data>
+ </layer>
+ <objectgroup name="Collisions" width="50" height="50">
+  <object x="3" y="2861" width="1213" height="18"/>
+  <object x="85" y="2817" width="31" height="27"/>
+  <object x="408" y="2818" width="28" height="29"/>
+  <object x="725" y="2819" width="30" height="26"/>
+  <object x="1051" y="2826" width="26" height="26"/>
+  <object x="1217" y="2832" width="40" height="374"/>
+  <object x="1560" y="2841" width="42" height="370"/>
+  <object x="2111" y="2835" width="44" height="371"/>
+  <object x="1603" y="2842" width="508" height="37"/>
+  <object x="1561" y="2771" width="13" height="13"/>
+  <object x="1364" y="2836" width="32" height="27"/>
+  <object x="1358" y="3083" width="39" height="32"/>
+  <object x="2328" y="3021" width="28" height="34"/>
+  <object x="2449" y="2852" width="49" height="346"/>
+  <object x="2492" y="2862" width="709" height="21"/>
+  <object x="2092" y="2546" width="1130" height="13"/>
+  <object x="2072" y="2135" width="15" height="423"/>
+  <object x="2329" y="2398" width="24" height="17"/>
+  <object x="2634" y="2409" width="53" height="21"/>
+  <object x="2906" y="2395" width="23" height="18"/>
+  <object x="2631" y="2204" width="57" height="34"/>
+  <object x="2816" y="1997" width="63" height="49"/>
+  <object x="2965" y="2011" width="32" height="22"/>
+  <object x="2650" y="2012" width="27" height="19"/>
+  <object x="2330" y="2007" width="23" height="22"/>
+  <object x="2009" y="2008" width="26" height="21"/>
+  <object x="1686" y="2004" width="29" height="23"/>
+  <object x="1485" y="2059" width="103" height="57"/>
+  <object x="1153" y="2065" width="63" height="45"/>
+  <object x="1434" y="2458" width="26" height="21"/>
+  <object x="1113" y="2456" width="27" height="21"/>
+  <object x="961" y="2444" width="62" height="50"/>
+  <object x="795" y="2457" width="24" height="20"/>
+  <object x="475" y="2453" width="23" height="24"/>
+  <object x="150" y="2452" width="29" height="24"/>
+  <object x="1808" y="2124" width="92" height="15"/>
+  <object x="1364" y="2012" width="33" height="20"/>
+  <object x="1043" y="2004" width="34" height="26"/>
+  <object x="961" y="2057" width="62" height="55"/>
+  <object x="725" y="2014" width="31" height="16"/>
+  <object x="389" y="2013" width="61" height="35"/>
+  <object x="120" y="2059" width="71" height="40"/>
+  <object x="214" y="1687" width="29" height="23"/>
+  <object x="489" y="1668" width="50" height="37"/>
+  <object x="985" y="1621" width="30" height="27"/>
+  <object x="710" y="1570" width="59" height="31"/>
+  <object x="1220" y="1632" width="62" height="30"/>
+  <object x="1674" y="1627" width="56" height="27"/>
+  <object x="1932" y="1627" width="51" height="26"/>
+  <object x="1475" y="1504" width="64" height="21"/>
+  <object x="1805" y="1483" width="106" height="49"/>
+  <object x="1743" y="1226" width="101" height="50"/>
+  <object x="649" y="1313" width="56" height="29"/>
+  <object x="345" y="1302" width="28" height="18"/>
+  <object x="368" y="796" width="166" height="104"/>
+  <object x="69" y="929" width="63" height="29"/>
+  <object x="2007" y="593" width="32" height="29"/>
+  <object x="2054" y="1367" width="61" height="32"/>
+  <object x="2063" y="1420" width="100" height="47"/>
+  <object x="2185" y="1628" width="59" height="27"/>
+ </objectgroup>
+ <objectgroup name="Boundaries" width="50" height="50">
+  <object x="0" y="2820" width="1223" height="67"/>
+  <object x="2" y="2498" width="248" height="353"/>
+  <object x="265" y="2500" width="310" height="354"/>
+  <object x="588" y="2502" width="305" height="350"/>
+  <object x="913" y="2499" width="301" height="357"/>
+  <object x="1232" y="2502" width="299" height="369"/>
+  <object x="1295" y="2892" width="165" height="229"/>
+  <object x="1536" y="2696" width="68" height="93"/>
+  <object x="1553" y="2814" width="28" height="401"/>
+  <object x="1597" y="2618" width="520" height="267"/>
+  <object x="2131" y="2810" width="26" height="408"/>
+  <object x="2182" y="2690" width="314" height="373"/>
+  <object x="2489" y="2815" width="751" height="83"/>
+  <object x="1800" y="2055" width="107" height="91"/>
+  <object x="1293" y="2114" width="311" height="374"/>
+  <object x="1469" y="2041" width="131" height="82"/>
+  <object x="974" y="2112" width="315" height="375"/>
+  <object x="654" y="2103" width="307" height="386"/>
+  <object x="7" y="2113" width="321" height="383"/>
+  <object x="176" y="317" width="542" height="592"/>
+  <object x="1842" y="258" width="338" height="377"/>
+  <object x="2103" y="2489" width="1143" height="83"/>
+  <object x="1552" y="1660" width="304" height="386"/>
+  <object x="1871" y="1660" width="305" height="390"/>
+  <object x="1618" y="1470" width="164" height="193"/>
+  <object x="1870" y="1471" width="169" height="195"/>
+  <object x="1794" y="1459" width="122" height="82"/>
+  <object x="328" y="2110" width="320" height="381"/>
+  <object x="2174" y="2040" width="327" height="396"/>
+ </objectgroup>
+ <objectgroup name="Events" width="50" height="50">
+  <object name="Keep Out Sign" type="onTouch" x="1540" y="2740" width="55" height="47">
+   <properties>
+    <property name="runScript" value="ForestKeepOut"/>
+   </properties>
+  </object>
+  <object name="Objective" type="onTouch" x="1805" y="2092" width="98" height="51">
+   <properties>
+    <property name="runScript" value="ForestObjective"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

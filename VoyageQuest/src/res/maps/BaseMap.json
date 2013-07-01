@@ -1,0 +1,11 @@
+{
+    "about_file": "This is a base map with the layers setup. This map holds nothing.",
+
+    "mapName" : "BaseMap",
+
+    "mapBackgroundScript": "ELINIAMAINSCRIPT",
+
+    "allEntities": [],
+
+    "music" : "Route 3"
+}

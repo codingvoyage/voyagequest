@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="VILINT" tilewidth="64" tileheight="64">
-  <image source="test/VILINT.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/VILINT.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="193" name="Castle2" tilewidth="64" tileheight="64">
-  <image source="test/Castle2.png" trans="4b637f" width="1024" height="1024"/>
+  <image source="tilesets/Castle2.png" trans="4b637f" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="449" name="PAVEANDVILFLR" tilewidth="64" tileheight="64">
-  <image source="test/PAVEANDVILFLR.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/PAVEANDVILFLR.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="641" name="hyptosis_tile-art-batch-4" tilewidth="64" tileheight="64">
-  <image source="test/hyptosis_tile-art-batch-4.png" trans="4b637f" width="1920" height="1920"/>
+  <image source="tilesets/hyptosis_tile-art-batch-4.png" trans="4b637f" width="1920" height="1920"/>
  </tileset>
  <layer name="Background tiles" width="25" height="25" visible="0">
   <data encoding="base64" compression="gzip">

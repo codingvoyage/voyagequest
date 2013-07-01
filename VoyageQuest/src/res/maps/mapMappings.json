@@ -52,6 +52,11 @@
             "mapID" : "SPECIALHOUSE",
             "mapURL" : "res/maps/SPECIALHOUSE.tmx",
             "mapJsonURL" : "res/maps/SPECIALHOUSE.json"
+        },
+        {
+            "mapID" : "ForestVillage",
+            "mapURL" : "res/maps/ForestVillage.tmx",
+            "mapJsonURL" : "res/maps/ForestVillage.json"
         }
 
     ]
