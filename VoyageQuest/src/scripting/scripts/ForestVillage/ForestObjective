@@ -1,7 +1,7 @@
 freezeInputs
 
-messageBox "Welcome to the Mystic Forest!"
-messageBox "Please find the mystic tree for further instructions."
+genericMessageBox "Welcome to the Mystic Forest!"
+genericMessageBox "Please find the mystic tree for further instructions."
 
 unfreezeInputs
 
