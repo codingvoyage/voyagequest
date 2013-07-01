@@ -27,6 +27,12 @@
             "type" : "music"
         },
         {
+            "name" : "Boss Battle",
+            "path" : "res/music/teamgear.ogg",
+            "credit" : "Pokemon Fanmade - http://www.youtube.com/watch?v=eefNrNwsMaM",
+            "type" : "music"
+        },
+        {
             "name" : "Teleport",
             "path" : "res/sounds/teleport.ogg",
             "credit" : "Maplestory",
