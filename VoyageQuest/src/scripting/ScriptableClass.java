@@ -6,7 +6,7 @@ import java.util.HashMap;
  *
  * @author Edmund
  */
-public class ScriptableClass implements Scriptable {
+public class  ScriptableClass implements Scriptable {
     
     protected Thread mainThread;
     

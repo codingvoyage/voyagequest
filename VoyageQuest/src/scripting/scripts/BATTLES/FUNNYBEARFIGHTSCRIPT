@@ -1,10 +1,14 @@
-
 fadein
-
 
 print "well this is awkward. nothing is happening"
 
 wait 5000
+
+print "huh..."
+
+spawnEnemy "Anika" 400 50 "anika" "anikathread"
+
+wait 50000
 
 endbattle
 endthread

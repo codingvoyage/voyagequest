@@ -11,7 +11,8 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
- * battle
+ * Loads all the BattleEntity data into memory. Provides a number of methods
+ * which create the individual ...
  *
  * @author Brian
  * @version 06 2013
@@ -63,19 +64,48 @@ public class EntityManager {
 
         }
 
-//        //Let's do a few tests...
-//        LoadBattleEntity anika = entityData.get("Anika");
-//            System.out.println(anika.description);
-//            System.out.println(anika.velocityX);
-//            System.out.println(anika.collisionBox.getHeight());
-//            System.out.println(anika.startingAnimationName);
 
 
     }
 
     public static void init() { }
 
+    //Reminder: EntityManager just loads the Entity. It doesn't create threads, it doesn't
+    //add the Enemy to the BattleField... the Scripting Engine is responsible for that.
+    public static Enemy spawnEnemy(String loadEntityID, int xLocation, int yLocation)
+    {
+        LoadBattleEntity spawnBase = entityData.get(loadEntityID);
+
+        //Load and set positioning
+        DoubleRect newEntityLocation = new DoubleRect(
+                xLocation,
+                yLocation,
+                spawnBase.width,
+                spawnBase.height);
+        DoubleRect newEntityCollision = spawnBase.collisionBox;
+        Enemy newEnemy = new Enemy(newEntityLocation, newEntityCollision);
+
+        //Loads the things general to all BattleEntities
+        loadFromBase(newEnemy, loadEntityID);
 
 
+        return newEnemy;
+    }
+
+
+
+
+    public static void loadFromBase(BattleEntity needsLoading, String loadEntityID)
+    {
+        LoadBattleEntity spawnBase = entityData.get(loadEntityID);
+
+        needsLoading.velocityX = spawnBase.velocityX;
+        needsLoading.velocityY = spawnBase.velocityY;
+        needsLoading.animations = spawnBase.loadedAnimations;
+        needsLoading.currentAnimation = spawnBase.loadedAnimations.get(
+                spawnBase.startingAnimationName);
+        needsLoading.mainScriptID = spawnBase.mainScriptID;
+
+    }
 
 }

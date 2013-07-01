@@ -1,8 +1,9 @@
 package scripting;
 
-import battle.BattleManager;
+import battle.*;
 import map.Entity;
 import map.Map;
+import voyagequest.GameState;
 import voyagequest.Global;
 import voyagequest.VoyageQuest;
 
@@ -221,6 +222,8 @@ public class ScriptReader
                 }
                 
                 break;
+
+
         }
         
         return result;
@@ -532,13 +535,28 @@ public class ScriptReader
 //                
 //                break;
                 
-//            //The manipulation of the locations of Displayables goes here    
-//            case 50:
-//                //Facing a direction
-//                int rotation = (int)(identifierCheck(currentLine, 0).getDoubleValue());
-//                ((MovableEntity)currentScriptable).setRotation(rotation);
-//                break;
-//                
+            //The manipulation of the locations of Displayables goes here
+            case 50:
+                //Depends on whether it's THIS Scriptable or another one
+                int determinant = currentLine.getParameterCount();
+                if (determinant == 1)
+                {
+                    //This scriptable
+                    int rotation = (int)(identifierCheck(currentLine, 0).getDoubleValue());
+                    ((Entity)currentScriptable).setRotation(rotation);
+                }
+                else if (determinant == 2)
+                {
+                    //InstanceID determines which to set
+                    String instanceID = identifierCheck(currentLine, 0).getStringValue();
+                    int newRotation = (int)identifierCheck(currentLine, 1).getDoubleValue();
+
+                    BattleEntity rotatedEntity = BattleField.entityInstances.get(instanceID);
+                    rotatedEntity.setRotation(newRotation);
+                }
+
+                break;
+
 //            case 51:
 //                //Moving
 //                System.out.println("Starting to walk....");
@@ -1072,7 +1090,45 @@ public class ScriptReader
             case 164:
                 voyagequest.Res.playMusic(identifierCheck(currentLine, 0).getStringValue());
                 break;
-                
+
+            //spawnEnemy enemyID x y instanceName threadName
+            case 170:
+
+                String enemyID = identifierCheck(currentLine, 0).getStringValue();
+                int xLoc = (int)identifierCheck(currentLine, 1).getDoubleValue();
+                int yLoc = (int)identifierCheck(currentLine, 2).getDoubleValue();
+                String enemyInstanceName = identifierCheck(currentLine, 3).getStringValue();
+                String threadName = identifierCheck(currentLine, 4).getStringValue();
+
+                System.out.println(xLoc + " " + yLoc);
+                Enemy newEnemy = EntityManager.spawnEnemy(enemyID, xLoc, yLoc);
+
+                //Now we have to create the thread
+                Thread enemyThread = new Thread(newEnemy.mainScriptID);
+                enemyThread.setLineNumber(0);
+                enemyThread.setName(threadName);
+                enemyThread.setScriptable(newEnemy);
+                newEnemy.setMainThread(enemyThread);
+
+                //Add thread
+                VoyageQuest.battleThreadManager.addThread(enemyThread);
+
+                //Finally, add to spawns
+                BattleField.addBattleEntity(newEnemy, enemyInstanceName);
+
+                break;
+
+            //setAnimation animationID
+            case 180:
+                ((BattleEntity)currentScriptable).setAnimation(
+                        identifierCheck(currentLine, 0).getStringValue());
+                break;
+
+            //changeAnimationDirection 1/-1
+            case 181:
+                ((Entity)currentScriptable).changeAnimationDirection(
+                        (int)identifierCheck(currentLine, 0).getDoubleValue());
+                break;
         }
         
         

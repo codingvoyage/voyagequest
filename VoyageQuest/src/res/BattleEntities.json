@@ -21,7 +21,7 @@
             "mainScriptID" : "ANIKABATTLE",
 
             "animations" : ["Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right"],
-            "startingAnimationName" : "Njeri Backwards",
+            "startingAnimationName" : "Njeri Forward",
 
             "hp" : 9001,
             "defense" : 50,

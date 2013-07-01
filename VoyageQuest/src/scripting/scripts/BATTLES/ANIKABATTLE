@@ -1,0 +1,9 @@
+print "OH GOD THIS WORKS"
+setVelocity 0 0.25
+movePixelAmount 500
+
+setAnimation "Njeri Backwards"
+setVelocity 0 -0.25
+movePixelAmount 500
+
+endthread

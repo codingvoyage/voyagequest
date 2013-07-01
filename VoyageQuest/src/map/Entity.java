@@ -2,10 +2,7 @@ package map;
 
 import java.util.Properties;
 
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.Animation;
-import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.*;
 import org.newdawn.slick.tiled.GroupObject;
 
 import gui.special.DialogBox;
@@ -39,7 +36,7 @@ public class Entity extends ScriptableClass implements Rectangular {
     //Animation
     double accumulatedDelta = 0.0d;
     int currentFrame = 0;
-    protected Animation currentAnimation;
+    public Animation currentAnimation;
     
     //Automated movement with scripting uses these
     public double velocityX;
@@ -57,6 +54,7 @@ public class Entity extends ScriptableClass implements Rectangular {
     public String onTouchScript;
 
     public int animationDirection = 1;
+    public int rotationInDegrees = 0;
 
     /**
      * Constructs an Entity with only its boundary Rectangle
@@ -110,8 +108,12 @@ public class Entity extends ScriptableClass implements Rectangular {
         currentFrame = 0;
         accumulatedDelta = 0.0d;
     }
-            
-            
+
+    public void changeAnimationDirection(int newAnimationDirection)
+    {
+        animationDirection = newAnimationDirection;
+    }
+
     public DoubleRect getCollRect()
     {
         return new DoubleRect(
@@ -119,6 +121,11 @@ public class Entity extends ScriptableClass implements Rectangular {
                 r.y + collRect.y,
                 collRect.width,
                 collRect.height);
+    }
+
+    public void setRotation(int newRotationDegrees)
+    {
+        rotationInDegrees = newRotationDegrees;
     }
     
     public void updateAnimation(double delta)
@@ -145,9 +152,11 @@ public class Entity extends ScriptableClass implements Rectangular {
 
     public void draw(Graphics g, float xOffset, float yOffset)
     {
-        currentAnimation.getImage(currentFrame).draw(xOffset, yOffset);
-
-        //Global.character.draw(xOffset, yOffset);
+        //Lawd I am sorry for this code.
+        Image img = currentAnimation.getImage(currentFrame);
+        img.setRotation(rotationInDegrees);
+        img.draw(xOffset, yOffset);
+        img.setRotation(0);
 
         //If debugging, then draw the boundary boxes and the collision boxes
         if (VoyageQuest.DEBUG_MODE == true)
@@ -217,7 +226,7 @@ public class Entity extends ScriptableClass implements Rectangular {
     }
 
 
-    public boolean checkCollsion(DoubleRect collCandidate)
+    public boolean checkCollision(DoubleRect collCandidate)
     {
 
         //Now query the QuadTree for any possible collisions
@@ -296,10 +305,10 @@ public class Entity extends ScriptableClass implements Rectangular {
         collCandidate.x += xMove;
         collCandidate.y += yMove;
 
-        boolean collides = this.checkCollsion(collCandidate);
+        boolean collides = this.checkCollision(collCandidate);
 
 
-        if (collides == true)
+        if (collides)
         {
             //Could not move
             return false;
@@ -312,7 +321,7 @@ public class Entity extends ScriptableClass implements Rectangular {
         
         
             //Move to the proposed location
-            this.place(r.x + xMove, r.y + yMove);;
+            place(r.x + xMove, r.y + yMove);
             
             return true;
         }

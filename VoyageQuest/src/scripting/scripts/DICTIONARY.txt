@@ -82,7 +82,6 @@ endtextbox 37
 endtext 37
 
 -- From 50-79 are stuff specific to Entities
-setRotation 50
 move 51
 
 -- Here we go...
@@ -123,7 +122,6 @@ getEntityHP 64
 
 -- spawnbullet xLoc yLoc myAngle
 spawnBullet 65
-
 spawnBulletAtVelocity 66
 
 -- isThereEntity "entityname" --> resultbool
@@ -237,3 +235,35 @@ fadeout 162
 soundEffect 163
 -- music is automatic with maps, so this isn't usually necessary
 playMusic 164
+
+-- BATTLE
+
+-- 170 to 175 are for spawning things...
+-- spawnEnemy enemyID x y instanceName threadName OR
+-- spawnEnemy enemyID x y --> instanceName threadName,
+--          which basically comes up with names for you.
+-- spawnProjectile projectileID x y allegiance
+-- spawnPlayer
+spawnEnemy 170
+spawnProjectile 171
+spawnPlayer 172
+
+
+-- setAnimation animationID. This is for BattleEntities
+setAnimation 180
+
+-- changeAnimationDirection 1/-1
+changeAnimationDirection 181
+
+-- getHP instanceID --> variable
+-- setHP instanceID newHP
+-- getLocation instanceID --> x y
+-- setLocation instanceID x y
+-- existsInstance instanceID --> variable
+-- existsThread threadID --> variable
+--
+
+-- setRotation instanceID newRotation OR
+-- setRotation newRotation (Thread's currently affliated Scriptable)
+-- both IN DEGREES
+setRotation 50

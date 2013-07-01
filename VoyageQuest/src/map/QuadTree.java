@@ -18,7 +18,13 @@ public class QuadTree<E extends Rectangular> {
         MAX_OBJECTS = maxObjects;
         treeRootNode = new TreeNode<>(null, boundary, 0, this);
     }
-    
+
+    public void clear()
+    {
+        for (E e : treeRootNode.getEntities())
+            treeRootNode.removeEntity(e);
+    }
+
     public void addEntity(E e)
     {  
         treeRootNode.addEntity(e);

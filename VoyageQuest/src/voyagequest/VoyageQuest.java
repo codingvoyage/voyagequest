@@ -1,5 +1,6 @@
 package voyagequest;
 
+import battle.BattleField;
 import battle.EntityManager;
 import gui.GuiManager;
 import gui.VoyageGuiException;
@@ -53,15 +54,12 @@ public class VoyageQuest extends BasicGame {
     
     public static Entity player;
     public DialogBox dialog;
-    
-    //testing
-    public static boolean haschangedmaps = false;
 
-   // The alpha map being applied for cave effect
-   private Image alphaMap;
-   
-   //Fade is how visible the screen is. 255 for max, 0 for completely dark.
-   public static int fade = 255;
+    // The alpha map being applied for cave effect
+    private Image alphaMap;
+
+    //Fade is how visible the screen is. 255 for max, 0 for completely dark.
+    public static int fade = 255;
     
     
     /**
@@ -189,6 +187,7 @@ public class VoyageQuest extends BasicGame {
         }
         // Stream polling
         SoundStore.get().poll(0);
+
     }
 
     /**
@@ -199,6 +198,7 @@ public class VoyageQuest extends BasicGame {
      */
     @Override
     public void render(GameContainer gc, Graphics g) throws SlickException {
+
         switch (state) {
             case RPG:
                 //If there isn't a full screen GUI... draw what the Camera sees
@@ -215,6 +215,12 @@ public class VoyageQuest extends BasicGame {
 
                 break;
             case COMBAT:
+                //Render the background
+
+                //Render everything in the thang
+                BattleField.render(gc, g);
+
+
                 break;
             default:
                 break;
