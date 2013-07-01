@@ -1,0 +1,10 @@
+freezeInputs
+
+messageBox "PRIVATE PROPERTY"
+messageBox "KEEP OUT."
+messageBox "LEAVE IMMEDIATELY OR FACE SEVERE CONSEQUENCES!"
+messageBox "WHY ARE YOU STILL READING THIS. GET OUT!"
+
+unfreezeInputs
+
+endthread

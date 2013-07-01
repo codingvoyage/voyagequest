@@ -1,7 +1,8 @@
 writeGlobal 50 --> GAME_STATE
 -- mapChange "MALENTIA" 70 4280
-mapChange "CRATEEXPECTATIONS" 300 2100
+-- mapChange "CRATEEXPECTATIONS" 300 2100
 -- mapChange "ELINIA" 300 300
+mapChange "ForestVillage" 100 2500
 endthread
 
 

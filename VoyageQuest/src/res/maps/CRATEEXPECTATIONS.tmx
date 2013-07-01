@@ -1,31 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="30" height="41" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="VILINT" tilewidth="64" tileheight="64">
-  <image source="test/VILINT.png" width="1024" height="768"/>
+  <image source="tilesets/VILINT.png" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="193" name="VILDAM" tilewidth="64" tileheight="64">
-  <image source="test/VILDAM.png" width="1024" height="768"/>
+  <image source="tilesets/VILDAM.png" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="385" name="PAVEANDVILFLR" tilewidth="64" tileheight="64">
-  <image source="test/PAVEANDVILFLR.png" width="1024" height="768"/>
+  <image source="tilesets/PAVEANDVILFLR.png" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="577" name="Castle2" tilewidth="64" tileheight="64">
-  <image source="test/Castle2.png" width="1024" height="1024"/>
+  <image source="tilesets/Castle2.png" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="833" name="base_out_atlas" tilewidth="64" tileheight="64">
-  <image source="test/base_out_atlas.png" width="2048" height="2048"/>
+  <image source="tilesets/base_out_atlas.png" width="2048" height="2048"/>
  </tileset>
  <tileset firstgid="1857" name="hyptosis_tile-art-batch-1" tilewidth="64" tileheight="64">
-  <image source="test/hyptosis_tile-art-batch-1.png" width="1920" height="1920"/>
+  <image source="tilesets/hyptosis_tile-art-batch-1.png" width="1920" height="1920"/>
  </tileset>
  <tileset firstgid="2757" name="hyptosis_tile-art-batch-4" tilewidth="64" tileheight="64">
-  <image source="test/hyptosis_tile-art-batch-4.png" width="1920" height="1920"/>
+  <image source="tilesets/hyptosis_tile-art-batch-4.png" width="1920" height="1920"/>
  </tileset>
  <tileset firstgid="3657" name="Castle2" tilewidth="64" tileheight="64">
-  <image source="test/Castle2.png" width="1024" height="1024"/>
+  <image source="tilesets/Castle2.png" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="3913" name="TABLE1" tilewidth="64" tileheight="64">
-  <image source="test/TABLE1.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/TABLE1.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <layer name="tile" width="30" height="41" visible="0">
   <data encoding="base64" compression="zlib">

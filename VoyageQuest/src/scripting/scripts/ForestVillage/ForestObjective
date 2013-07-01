@@ -1,0 +1,8 @@
+freezeInputs
+
+messageBox "Welcome to the Mystic Forest!"
+messageBox "Please find the mystic tree for further instructions."
+
+unfreezeInputs
+
+endthread

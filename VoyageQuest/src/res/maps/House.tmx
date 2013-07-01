@@ -1,40 +1,40 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="VILDAM" tilewidth="64" tileheight="64">
-  <image source="test/VILDAM.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/VILDAM.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="193" name="TOWNJNT" tilewidth="64" tileheight="64">
-  <image source="test/TOWNJNT.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/TOWNJNT.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="385" name="TOWNBOT2" tilewidth="64" tileheight="64">
-  <image source="test/TOWNBOT2.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/TOWNBOT2.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="577" name="TOWNBOT" tilewidth="64" tileheight="64">
-  <image source="test/TOWNBOT.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/TOWNBOT.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="769" name="TABLE1" tilewidth="64" tileheight="64">
-  <image source="test/TABLE1.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/TABLE1.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="961" name="GRS2ROC" tilewidth="64" tileheight="64">
-  <image source="test/GRS2ROC.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/GRS2ROC.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="1153" name="FENCE" tilewidth="64" tileheight="64">
-  <image source="test/FENCE.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/FENCE.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="1345" name="Castle2" tilewidth="64" tileheight="64">
-  <image source="test/Castle2.png" trans="4b637f" width="1024" height="1024"/>
+  <image source="tilesets/Castle2.png" trans="4b637f" width="1024" height="1024"/>
  </tileset>
  <tileset firstgid="1601" name="VILINT" tilewidth="64" tileheight="64">
-  <image source="test/VILINT.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/VILINT.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="1793" name="PAVEANDVILFLR" tilewidth="64" tileheight="64">
-  <image source="test/PAVEANDVILFLR.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/PAVEANDVILFLR.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="1985" name="TOWNDOOR" tilewidth="64" tileheight="64">
-  <image source="test/TOWNDOOR.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/TOWNDOOR.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <tileset firstgid="2177" name="hyptosis_tile-art-batch-3" tilewidth="64" tileheight="64">
-  <image source="test/hyptosis_tile-art-batch-3.png" trans="4b637f" width="1920" height="1920"/>
+  <image source="tilesets/hyptosis_tile-art-batch-3.png" trans="4b637f" width="1920" height="1920"/>
  </tileset>
  <layer name="Background 1" width="25" height="25">
   <data encoding="base64" compression="gzip">

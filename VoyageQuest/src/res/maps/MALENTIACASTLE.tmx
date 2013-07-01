@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="64" tileheight="64">
  <tileset firstgid="1" name="hyptosis_tile-art-batch-4" tilewidth="64" tileheight="64">
-  <image source="test/hyptosis_tile-art-batch-4.png" trans="4b637f" width="1920" height="1920"/>
+  <image source="tilesets/hyptosis_tile-art-batch-4.png" trans="4b637f" width="1920" height="1920"/>
  </tileset>
  <tileset firstgid="901" name="3" tilewidth="64" tileheight="64">
-  <image source="test/hyptosis_tile-art-batch-3.png" trans="4b637f" width="1920" height="1920"/>
+  <image source="tilesets/hyptosis_tile-art-batch-3.png" trans="4b637f" width="1920" height="1920"/>
  </tileset>
  <tileset firstgid="1801" name="2" tilewidth="64" tileheight="64">
-  <image source="test/hyptosis_til-art-batch-2.png" trans="4b637f" width="1920" height="1920"/>
+  <image source="tilesets/hyptosis_til-art-batch-2.png" trans="4b637f" width="1920" height="1920"/>
  </tileset>
  <tileset firstgid="2701" name="hyptosis_tile-art-batch-1" tilewidth="64" tileheight="64">
-  <image source="test/hyptosis_tile-art-batch-1.png" trans="4b637f" width="1920" height="1920"/>
+  <image source="tilesets/hyptosis_tile-art-batch-1.png" trans="4b637f" width="1920" height="1920"/>
  </tileset>
  <tileset firstgid="3601" name="PAVEANDVILFLR" tilewidth="64" tileheight="64">
-  <image source="test/PAVEANDVILFLR.png" trans="4b637f" width="1024" height="768"/>
+  <image source="tilesets/PAVEANDVILFLR.png" trans="4b637f" width="1024" height="768"/>
  </tileset>
  <layer name="Tiles" width="25" height="25">
   <data encoding="base64" compression="gzip">
