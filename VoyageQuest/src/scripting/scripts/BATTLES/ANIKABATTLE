@@ -1,4 +1,7 @@
 print "OH GOD THIS WORKS"
+
+setRotation 70
+
 setVelocity 0 0.25
 movePixelAmount 500
 
