@@ -2,11 +2,14 @@ package battle;
 
 import map.Entity;
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.GameContainer;
 import voyagequest.DoubleRect;
 import voyagequest.Global;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.ListIterator;
 
 /**
  * Battle Entity
@@ -15,6 +18,7 @@ import java.util.HashMap;
  * @author Edmund Qiu
  */
 public class BattleEntity extends Entity {
+    public int health;
 
     /** BattleEntity handles Animation quite differently, so do this instead */
     public HashMap<String, Animation> animations;
@@ -33,6 +37,7 @@ public class BattleEntity extends Entity {
     {
         super(rect);
         this.isGhost = false;
+        isMarkedForDeletion = false;
     }
 
     public BattleEntity(DoubleRect rect, DoubleRect collRect)
@@ -40,6 +45,8 @@ public class BattleEntity extends Entity {
         super(rect);
         this.collRect = collRect;
         this.isGhost = false;
+        isMarkedForDeletion = false;
+
     }
 
     public void setAnimation(String animationID)
@@ -63,10 +70,36 @@ public class BattleEntity extends Entity {
         BattleField.entityCollisions.addEntity(this);
     }
 
+    //This is the attemptMove's checkCollision. It's useless in the battle portion
+    //of the game, so just make it return false here.
     public boolean checkCollision(DoubleRect collCandidate)
     {
         return false;
     }
 
+    public void act(int delta)
+    {
+        //Query BattleField for things to check collision with.
+        LinkedList<BattleEntity> collidedEntities = BattleField.entityCollisions.rectQuery(this.getCollRect());
+
+        //Now eliminate from this list anything that doesn't collide:
+        ListIterator<BattleEntity> iter = collidedEntities.listIterator();
+        while (iter.hasNext())
+        {
+            BattleEntity candidate = iter.next();
+            if (!candidate.getCollRect().intersects(this.getCollRect())) iter.remove();
+        }
+
+        //Now with this adjusted list, process collisions
+        processCollision(collidedEntities);
+
+        //Die if hp < 0
+        if (health < 0) markForDeletion();
+    }
+
+    public void processCollision(LinkedList<BattleEntity> collisions)
+    {
+
+    }
 
 }

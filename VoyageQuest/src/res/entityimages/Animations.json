@@ -164,6 +164,20 @@
                     "akp1","akp2","akp3"
             ],
             "duration" : 200
-        }
+        },
+		{
+			"name" : "Blast Animation",
+			"packedSheetID" : "blast",
+			"id" : "blast",
+			"images" : [ "blast1","blast2","blast3","blast4","blast5","blast6","blast7","blast8"],
+			"duration" : 50
+		},
+		{
+			"name" : "Blast",
+			"packedSheetID" : "blast",
+			"id" : "blast",
+			"images" : [ "blast1","blast1","blast1","blast1","blast1","blast1","blast1","blast1"],
+			"duration" : 5000
+		}
     ]
 }

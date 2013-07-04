@@ -15,4 +15,6 @@ public class Player extends BattleEntity
         this.entityAllegiance = Allegiance.FRIENDLY;
     }
 
+
+
 }

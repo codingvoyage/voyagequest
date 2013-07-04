@@ -1,13 +1,17 @@
 package battle;
 
 import map.QuadTree;
+import map.Rectangular;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import voyagequest.DoubleRect;
+import voyagequest.Global;
 import voyagequest.VoyageQuest;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.ListIterator;
 
 /**
  * Created with IntelliJ IDEA.
@@ -25,7 +29,7 @@ public class BattleField {
     public static LinkedList<BattleEntity> entityList;
 
     /** We need a data structure for all our projectiles */
-    public static LinkedList<Projectile> projectiles;
+   // public static LinkedList<Projectile> projectiles;
 
     private static int nextInstanceNumber;
 
@@ -37,7 +41,7 @@ public class BattleField {
                 new DoubleRect(0, 0, VoyageQuest.X_RESOLUTION,VoyageQuest.Y_RESOLUTION));
         entityInstances = new HashMap<>();
         entityList = new LinkedList<>();
-        projectiles = new LinkedList<>();
+        //projectiles = new LinkedList<>();
         nextInstanceNumber = 0;
     }
 
@@ -47,13 +51,31 @@ public class BattleField {
         {
             b.draw(g, (float)b.r.x, (float)b.r.y);
         }
+        drawCollRects(g);
+    }
+
+    public static void drawCollRects(Graphics g)
+    {
+        g.setColor(Color.red);
+        LinkedList<BattleEntity> entList = BattleField.entityCollisions.rectQuery(
+                new DoubleRect(0, 0, VoyageQuest.X_RESOLUTION, VoyageQuest.Y_RESOLUTION));
+        for (BattleEntity b : entList)
+        {
+            g.drawRect((float)b.r.x, (float)b.r.y, (float)b.r.getWidth(), (float)b.r.getHeight());
+        }
     }
 
     public static void addBattleEntity(BattleEntity newEntity, String instanceID)
     {
         entityCollisions.addEntity(newEntity);
         entityInstances.put(instanceID, newEntity);
+        entityList.add(newEntity);
+    }
 
+    //For projectiles without an instanceID
+    public static void addBattleEntity(BattleEntity newEntity)
+    {
+        entityCollisions.addEntity(newEntity);
         entityList.add(newEntity);
     }
 
@@ -65,10 +87,32 @@ public class BattleField {
         entityInstances.remove(instanceID);
     }
 
-    public boolean existsBattleEntity(String instanceID)
+    public static boolean hasEntity(String instanceID)
     {
         return entityInstances.containsKey(instanceID);
     }
+
+    public static void update(int delta)
+    {
+        ListIterator<BattleEntity> iter = entityList.listIterator();
+        while (iter.hasNext())
+        {
+            BattleEntity currentEntity = iter.next();
+            if (currentEntity.isMarkedForDeletion())
+            {
+                iter.remove();
+            }
+            else
+            {
+                currentEntity.act(delta);
+            }
+
+
+        }
+
+
+    }
+
 
     public static void clearBattleField()
     {

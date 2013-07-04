@@ -36,6 +36,11 @@
              "streamXMLPackedSheetID" : "anika",
              "imageFile" : "res/entityimages/anika.png",
              "xmlFileLocation" : "res/entityimages/anika.xml"
-        }
+        },
+		{
+             "streamXMLPackedSheetID" : "blast",
+             "imageFile" : "res/entityimages/blast.png",
+             "xmlFileLocation" : "res/entityimages/blast.xml"
+		}
     ]
 }

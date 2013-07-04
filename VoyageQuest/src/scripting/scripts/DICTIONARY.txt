@@ -242,7 +242,7 @@ playMusic 164
 -- spawnEnemy enemyID x y instanceName threadName OR
 -- spawnEnemy enemyID x y --> instanceName threadName,
 --          which basically comes up with names for you.
--- spawnProjectile projectileID x y allegiance
+-- spawnProjectile projectileID x y vx vy allegiance
 -- spawnPlayer
 spawnEnemy 170
 spawnProjectile 171

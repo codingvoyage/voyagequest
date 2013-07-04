@@ -88,10 +88,39 @@ public class EntityManager {
         //Loads the things general to all BattleEntities
         loadFromBase(newEnemy, loadEntityID);
 
+        newEnemy.health = spawnBase.hp;
+        newEnemy.contactDamage = spawnBase.contactDamage;
 
         return newEnemy;
     }
 
+    //Spawning projectiles should involve a special explosion animation
+    //By the way, it's the responsibility of whatever spawns the Projectile
+    //to set its rotation and its velocity
+    public static Projectile spawnProjectile(String loadEntityID, int xLocation, int yLocation, Allegiance allegiance)
+    {
+        LoadBattleEntity spawnBase = entityData.get(loadEntityID);
+
+        //Load and set positioning
+        DoubleRect newEntityLocation = new DoubleRect(
+                xLocation,
+                yLocation,
+                spawnBase.width,
+                spawnBase.height);
+        DoubleRect newEntityCollision = spawnBase.collisionBox;
+        Projectile newProjectile = new Projectile(newEntityLocation, newEntityCollision, allegiance);
+
+        //Loads the things general to all BattleEntities
+        loadFromBase(newProjectile, loadEntityID);
+
+        //Things specific to the projectile are loaded
+        newProjectile.explosionAnimation = Res.animations.get(spawnBase.explosionAnimation);
+        newProjectile.health = 9001;
+        newProjectile.contactDamage = spawnBase.contactDamage;
+        newProjectile.setAnimation(spawnBase.animations.getFirst());
+
+        return newProjectile;
+    }
 
 
 

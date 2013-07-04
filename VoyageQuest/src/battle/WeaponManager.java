@@ -29,6 +29,12 @@ public class WeaponManager {
     }
 
 
+    /**
+     * Launches the script of the Weapon indexed by weaponID
+     * @param weaponID the String ID of the Weapon which is to be fired
+     * @param scriptable the thing firing the weapon
+     * @return
+     */
     public String fireWeapon(String weaponID, Scriptable scriptable)
     {
 

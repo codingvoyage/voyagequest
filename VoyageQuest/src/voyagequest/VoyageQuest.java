@@ -168,7 +168,7 @@ public class VoyageQuest extends BasicGame {
                 for (int i = 0; i < Global.currentMap.entities.size(); i++) {
                     Entity e = Global.currentMap.entities.get(i);
                     if (e != null)
-                        e.act(gc, delta);
+                        e.act(delta);
                 }
 
                 EventListener.keyboardControl(player, delta);
@@ -178,11 +178,15 @@ public class VoyageQuest extends BasicGame {
                 break;
             case COMBAT:
                 //IMPORTANT: Tell ScriptReader that now, we're using the
-                //battleThreadManager. This must be changed back after combat is over
+                //battleThreadManager.
                 VoyageQuest.scriptReader.setThreadHandle(VoyageQuest.battleThreadManager);
                 battleThreadManager.act(delta);
+
+                BattleField.update(delta);
                 break;
             default:
+                System.out.println("DROPPING THE NUKE LOL");
+                System.out.print(1/0);
                 break;
         }
         // Stream polling

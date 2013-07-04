@@ -37,6 +37,12 @@ public class LoadBattleEntity
     public HashMap<String, Animation> loadedAnimations;
     public String startingAnimationName;
 
+    //For projectiles
+    public String explosionAnimation;
+
+    //For enemies and projectiles
+    public int contactDamage;
+
     //Stats
     public int hp;
     public int defense;

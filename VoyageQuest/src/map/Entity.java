@@ -59,7 +59,7 @@ public class Entity extends ScriptableClass implements Rectangular {
     /**
      * Constructs an Entity with only its boundary Rectangle
      * 
-     * @param r the boundary Rectangle
+     * @param boundaryRect the boundary Rectangle
      * @throws SlickException 
      */
     public Entity(DoubleRect boundaryRect)
@@ -349,7 +349,7 @@ public class Entity extends ScriptableClass implements Rectangular {
         return r;
     }
     
-    public void act(GameContainer gc, int delta)
+    public void act(int delta)
     {
         
     }

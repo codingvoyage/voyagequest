@@ -1118,6 +1118,27 @@ public class ScriptReader
 
                 break;
 
+            //spawnProjectile projectileID x y vx vy allegiance
+            case 171:
+                String projectileID = identifierCheck(currentLine, 0).getStringValue();
+                int projectileX = (int)identifierCheck(currentLine, 1).getDoubleValue();
+                int projectileY = (int)identifierCheck(currentLine, 2).getDoubleValue();
+                double projectileVx = identifierCheck(currentLine, 3).getDoubleValue();
+                double projectileVy = identifierCheck(currentLine, 4).getDoubleValue();
+                //For now, we'll just make allegiance friendly.
+                Allegiance projectileAllegiance = Allegiance.FRIENDLY;
+
+                Projectile newProjectile = EntityManager.spawnProjectile(
+                        projectileID,projectileX, projectileY, projectileAllegiance);
+
+                newProjectile.velocityX = projectileVx;
+                newProjectile.velocityY = projectileVy;
+
+
+                BattleField.addBattleEntity(newProjectile);
+
+                break;
+
             //setAnimation animationID
             case 180:
                 ((BattleEntity)currentScriptable).setAnimation(
