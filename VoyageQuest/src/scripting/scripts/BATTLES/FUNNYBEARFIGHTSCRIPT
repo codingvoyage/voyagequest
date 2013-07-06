@@ -1,18 +1,14 @@
 fadein
 
-print "well this is awkward. nothing is happening"
-
 wait 2000
 
-print "huh..."
-
-spawnEnemy "Anika" 400 50 "anika" "anikathread"
+spawnEnemy "Anika" 430 -100 "anika" "anikathread"
 
 wait 1000
 
 -- spawnProjectile projectileID x y vx vy rotation allegiance
-spawnProjectile "Bullet" 400 600 0.0 -0.2 180 "FRIENDLY"
-wait 50000
+-- spawnProjectile "Bullet" 400 600 0.0 -0.5 20 "FRIENDLY"
+wait 500000
 
 endbattle
 endthread

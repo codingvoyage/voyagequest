@@ -169,14 +169,14 @@
 			"name" : "Blast Animation",
 			"packedSheetID" : "blast",
 			"id" : "blast",
-			"images" : [ "blast1","blast2","blast3","blast4","blast5","blast6","blast7","blast8"],
+			"images" : [ "blast1","blast2","blast3","blast4","blast5","blast6","blast7","blast8","blast9","blast10"],
 			"duration" : 50
 		},
 		{
 			"name" : "Blast",
 			"packedSheetID" : "blast",
 			"id" : "blast",
-			"images" : [ "blast1","blast1","blast1","blast1","blast1","blast1","blast1","blast1"],
+			"images" : [ "blast3","blast3","blast3","blast3","blast3","blast3","blast3","blast3"],
 			"duration" : 5000
 		}
     ]

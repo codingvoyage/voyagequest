@@ -1,12 +1,66 @@
-print "OH GOD THIS WORKS"
+-- there is something wrong with the BattleField system
+-- I will sort this out later.
+-- setRotation -2535
 
-setRotation 70
+setVelocity 0 4.0
+movePixelAmount 650
 
-setVelocity 0 0.25
-movePixelAmount 500
+var startAngle 0
+var distanceAway 50
+var bulletVelocity 5.0
+
+while true == true
+
+    -- shoot the 6 bullets
+    for i = 0 and i < 360
+        eval startAngle + i --> thisBulletAngle
+
+        -- Find the center of the enemy
+        getLocation --> enemyX enemyY
+        eval enemyX + 32 --> enemyCenterX
+        eval enemyY + 64 --> enemyCenterY
+
+        -- Calculate the displacement of this bullet
+        toradian thisBulletAngle --> angleInRad
+        cos angleInRad --> cosVal
+        sin angleInRad --> sinVal
+        eval cosVal * distanceAway --> distanceOffsetX
+        eval sinVal * distanceAway --> distanceOffsetY
+
+        -- var enemyCenterX 430
+        -- var enemyCenterY 300
+
+        -- Get this bullet's x and y coordinates
+        eval enemyCenterX + distanceOffsetX --> bulletX
+        eval enemyCenterY + distanceOffsetY --> bulletY
+
+        -- The bullet's rotation when spawned is negative
+        -- the angle we have, because Slick rotates the other freaking way
+        eval thisBulletAngle * -1 --> thisBulletAngle
+
+        -- Subtract a further 90 degrees to make up for the fact that
+        -- our bullets face down, not right.
+        eval thisBulletAngle - 90 --> thisBulletAngle
+
+        -- We still need the bullet's velocity!
+        eval cosVal * bulletVelocity --> bulletVx
+        eval sinVal * bulletVelocity --> bulletVy
+
+        -- Now spawn the bullet and cross our fingers
+        spawnProjectile "Bullet" bulletX bulletY bulletVx bulletVy thisBulletAngle "UNFRIENDLY"
+
+    next i + 50 --> i
+
+    wait 50
+    eval startAngle + 6 --> startAngle
+wend
+
+
 
 setAnimation "Njeri Backwards"
-setVelocity 0 -0.25
+setVelocity 0 -0.05
 movePixelAmount 500
+
+
 
 endthread

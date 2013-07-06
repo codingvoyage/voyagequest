@@ -42,8 +42,8 @@ public class Enemy extends BattleEntity
             //I guess I'm keeping it like this just because...
             switch(entityAllegiance)
             {
-                case FRIENDLY:
-                    causeDamage = (collided.entityAllegiance == Allegiance.UNFRIENDLY);
+                case UNFRIENDLY:
+//                    causeDamage = (collided.entityAllegiance == Allegiance.FRIENDLY);
                     break;
             }
 

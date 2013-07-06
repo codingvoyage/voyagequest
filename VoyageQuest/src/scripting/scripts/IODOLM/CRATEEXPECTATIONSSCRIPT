@@ -2,7 +2,7 @@
 -- be made here..
 existsGlobal "DAMN_CRATES" --> result
 
-wait 3000
+wait 500
 fadeout
 startBattle "FUNNY BEAR"
 endthread

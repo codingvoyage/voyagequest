@@ -257,7 +257,9 @@ changeAnimationDirection 181
 
 -- getHP instanceID --> variable
 -- setHP instanceID newHP
+
 -- getLocation instanceID --> x y
+getLocation 190
 -- setLocation instanceID x y
 -- existsInstance instanceID --> variable
 -- existsThread threadID --> variable

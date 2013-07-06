@@ -76,11 +76,12 @@ public class BattleField {
 
             if (currentEntity.isMarkedForDeletion())
             {
+                System.out.println("REMOVING");
                 removeEntity(currentEntity);
             }
             else
             {
-                System.out.println("Collision content size: " + entityCollisions.getSize());
+//                System.out.println("Collision content size: " + entityCollisions.getSize());
                 currentEntity.act(delta);
                 index++;
             }
@@ -97,8 +98,8 @@ public class BattleField {
     public static void addBattleEntity(BattleEntity newEntity, String instanceID)
     {
         entityCollisions.addEntity(newEntity);
-        System.out.println("adding " + instanceID + "! Number of total entities: " +
-            entityCollisions.getSize());
+//        System.out.println("adding " + instanceID + "! Number of total entities: " +
+//            entityCollisions.getSize());
         entityInstances.put(instanceID, newEntity);
         entityList.add(newEntity);
     }
@@ -124,9 +125,6 @@ public class BattleField {
         entityCollisions.removeEntity(entityToRemove);
         entityInstances.remove(entityToRemove);
         entityList.remove(entityToRemove);
-
-        System.out.println(entityInstances.size() + " is size of hash");
-        System.out.println(entityCollisions.getSize() + " is size of coll map");
     }
 
     public static boolean hasEntity(String instanceID)

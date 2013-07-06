@@ -1155,6 +1155,19 @@ public class ScriptReader
                 ((Entity)currentScriptable).changeAnimationDirection(
                         (int)identifierCheck(currentLine, 0).getDoubleValue());
                 break;
+
+            // getLocation instanceID --> x y or getLocation --> x y
+            // I'll implement the second one first
+            case 190:
+                String xVariable = currentLine.getStringParameter(1);
+                String yVariable = currentLine.getStringParameter(2);
+                double scriptableXLoc = ((Entity)currentScriptable).r.getX();
+                double scriptableYLoc = ((Entity)currentScriptable).r.getY();
+
+                currentThread.setVariable(xVariable, new Parameter(scriptableXLoc));
+                currentThread.setVariable(yVariable, new Parameter(scriptableYLoc));
+
+                break;
         }
         
         

@@ -72,7 +72,8 @@ public class Projectile extends BattleEntity {
                     if (collided.entityAllegiance.equals(Allegiance.UNFRIENDLY)) causeDamage = true;
                     break;
                 case UNFRIENDLY:
-                    causeDamage = (collided.entityAllegiance == Allegiance.FRIENDLY);
+                    if (collided.entityAllegiance.equals(Allegiance.FRIENDLY)) causeDamage = true;
+                    //causeDamage = (collided.entityAllegiance == Allegiance.FRIENDLY);
                     break;
                 case DANGER:
                     causeDamage = (collided.entityAllegiance == Allegiance.FRIENDLY ||
