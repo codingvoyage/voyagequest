@@ -1093,7 +1093,6 @@ public class ScriptReader
 
             //spawnEnemy enemyID x y instanceName threadName
             case 170:
-
                 String enemyID = identifierCheck(currentLine, 0).getStringValue();
                 int xLoc = (int)identifierCheck(currentLine, 1).getDoubleValue();
                 int yLoc = (int)identifierCheck(currentLine, 2).getDoubleValue();
@@ -1107,8 +1106,13 @@ public class ScriptReader
                 Thread enemyThread = new Thread(newEnemy.mainScriptID);
                 enemyThread.setLineNumber(0);
                 enemyThread.setName(threadName);
+
+                System.out.println(threadName + " IS DA NAAME!!");
+
                 enemyThread.setScriptable(newEnemy);
+
                 newEnemy.setMainThread(enemyThread);
+                newEnemy.associatedThreadInstances.add(threadName);
 
                 //Add thread
                 VoyageQuest.battleThreadManager.addThread(enemyThread);
@@ -1118,13 +1122,14 @@ public class ScriptReader
 
                 break;
 
-            //spawnProjectile projectileID x y vx vy allegiance
+            //spawnProjectile projectileID x y vx vy rotation allegiance
             case 171:
                 String projectileID = identifierCheck(currentLine, 0).getStringValue();
                 int projectileX = (int)identifierCheck(currentLine, 1).getDoubleValue();
                 int projectileY = (int)identifierCheck(currentLine, 2).getDoubleValue();
                 double projectileVx = identifierCheck(currentLine, 3).getDoubleValue();
                 double projectileVy = identifierCheck(currentLine, 4).getDoubleValue();
+                int rotation = (int)identifierCheck(currentLine, 5).getDoubleValue();
                 //For now, we'll just make allegiance friendly.
                 Allegiance projectileAllegiance = Allegiance.FRIENDLY;
 
@@ -1133,7 +1138,7 @@ public class ScriptReader
 
                 newProjectile.velocityX = projectileVx;
                 newProjectile.velocityY = projectileVy;
-
+                newProjectile.rotationInDegrees = rotation;
 
                 BattleField.addBattleEntity(newProjectile);
 

@@ -1,6 +1,8 @@
 package scripting;
 
 import java.util.ArrayList;
+import java.util.ListIterator;
+
 import voyagequest.Global;
 
 /**
@@ -26,10 +28,10 @@ public class ThreadManager {
     
     public Thread getThreadAtName(String targetThread)
     {
-        
         for (Thread t: threadCollection)
         {
-            if (t.getName().equals(targetThread))
+            String threadName = t.getName();
+            if (threadName != null && threadName.equals(targetThread))
             {
                 return t;
             }
@@ -54,28 +56,22 @@ public class ThreadManager {
     
     public void markForDeletion(String targetThread)
     {
-        boolean targetFound = false;
-        int index = 0;
-        Thread t;
-        
-        //While you haven't found it and we are still under the size limit
-        while (!targetFound && ( index < getThreadCount() ))
+        Thread markedThread = getThreadAtName(targetThread);
+        if (markedThread != null)
         {
-            t = threadCollection.get(index);
-            
-            //If this one is it...
-            if (t.getName().equals(targetThread))
-            {
-                //Look no further.
-                targetFound = true;
-                
-                //Mark for deletion.
-                t.markForDeletion();
-            }
-            index++;
+            System.out.println("Marking the thread for deletion!");
+            //Mark for deletion.
+            markedThread.markForDeletion();
+        }
+        else
+        {
+            System.out.println(targetThread + " does not exist; hence it could " +
+                    "not be marked for deletion!");
         }
     }
-            
+
+    //Unfortunately a clunky while-based loop is necessary to avoid problems we'd otherwise
+    //encounter is we used a ListIterator.
     public void act(double delta)
     {
         boolean continueStepping = !threadCollection.isEmpty();
@@ -88,11 +84,11 @@ public class ThreadManager {
             //Should any threads be deleted right now?
             if (currentThread.isMarkedForDeletion())
             {
+                System.out.println("Removing " + currentThread.getName() + "!");
                 threadCollection.remove(index);
                 //index is unchanged, since everything shifts back by one
-                //we'll be on track for the next one by NOT MOVING
             }
-            else 
+            else
             //Otherwise, just act on it.
             {
                 if (!Global.isFrozen)
@@ -103,15 +99,12 @@ public class ThreadManager {
                 {
                     //Else if frozen, run only the one that's permitted to run
                     if (currentThread.equals(Global.unfrozenThread))
-                        scriptReader.act(currentThread, delta);   
+                        scriptReader.act(currentThread, delta);
                 }
-                    
-                
-                
-                
+
                 index++;
             }
-            
+
             //Stop when we've reached the last thread.
             if (index >= getThreadCount()) {
                 continueStepping = false;

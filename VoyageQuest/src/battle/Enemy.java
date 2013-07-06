@@ -27,8 +27,6 @@ public class Enemy extends BattleEntity
     {
         if (isGhost || collisions.size() == 1) return;
 
-        System.out.println("Checking collision - Enemy");
-
         //Iterate through the LinkedList of BattleEntities.
         ListIterator<BattleEntity> iter = collisions.listIterator();
 

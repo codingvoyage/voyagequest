@@ -34,8 +34,8 @@ public class Entity extends ScriptableClass implements Rectangular {
     public RenderSetting renderSetting;
     
     //Animation
-    double accumulatedDelta = 0.0d;
-    int currentFrame = 0;
+    protected double accumulatedDelta = 0.0d;
+    protected int currentFrame = 0;
     public Animation currentAnimation;
     
     //Automated movement with scripting uses these

@@ -33,18 +33,15 @@ public class Projectile extends BattleEntity {
         //Process collisions too
         super.act(delta);
 
-        //I mean.. it's a bullet. It won't have much of an animation
+        //I mean.. it's a bullet. It won't have much of an animation outside of this
         updateAnimation(delta);
 
         attemptMove(velocityX, velocityY, delta);
 
         //If we're on the explosion animation and we're on the last frame, then we're basically done.
-        //This may or may not work.
-        if (hasExploded && explosionAnimation.getFrame() == explosionAnimation.getFrameCount())
+        if (hasExploded && currentFrame == explosionAnimation.getFrameCount() - 1)
         {
             markForDeletion();
-            System.out.println("Marking this bullet for deletion!");
-
         }
     }
 
@@ -74,18 +71,17 @@ public class Projectile extends BattleEntity {
                 case FRIENDLY:
                     if (collided.entityAllegiance.equals(Allegiance.UNFRIENDLY)) causeDamage = true;
                     break;
-//                case UNFRIENDLY:
-//                    causeDamage = (collided.entityAllegiance == Allegiance.FRIENDLY);
-//                    break;
-//                case DANGER:
-//                    causeDamage = (collided.entityAllegiance == Allegiance.FRIENDLY ||
-//                                   collided.entityAllegiance == Allegiance.UNFRIENDLY);
-//                    break;
+                case UNFRIENDLY:
+                    causeDamage = (collided.entityAllegiance == Allegiance.FRIENDLY);
+                    break;
+                case DANGER:
+                    causeDamage = (collided.entityAllegiance == Allegiance.FRIENDLY ||
+                                   collided.entityAllegiance == Allegiance.UNFRIENDLY);
+                    break;
             }
 
             if (causeDamage)
             {
-
                 collided.health -= contactDamage;
                 explodes = true;
             }

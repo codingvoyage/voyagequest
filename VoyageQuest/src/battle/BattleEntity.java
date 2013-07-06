@@ -5,6 +5,7 @@ import org.newdawn.slick.Animation;
 import org.newdawn.slick.GameContainer;
 import voyagequest.DoubleRect;
 import voyagequest.Global;
+import voyagequest.VoyageQuest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -32,12 +33,16 @@ public class BattleEntity extends Entity {
     /** The scriptID of the main thread*/
     public String mainScriptID;
 
+    /** All associated threads */
+    public ArrayList<String> associatedThreadInstances;
+
 
     public BattleEntity(DoubleRect rect)
     {
         super(rect);
         this.isGhost = false;
         isMarkedForDeletion = false;
+        associatedThreadInstances = new ArrayList<>();
     }
 
     public BattleEntity(DoubleRect rect, DoubleRect collRect)
@@ -46,7 +51,7 @@ public class BattleEntity extends Entity {
         this.collRect = collRect;
         this.isGhost = false;
         isMarkedForDeletion = false;
-
+        associatedThreadInstances = new ArrayList<>();
     }
 
     public void setAnimation(String animationID)
@@ -94,7 +99,17 @@ public class BattleEntity extends Entity {
         processCollision(collidedEntities);
 
         //Die if hp < 0
-        if (health < 0) markForDeletion();
+        if (health < 0)
+        {
+            markForDeletion();
+
+            //Also remove all associated thread instances:
+            for (String deadThread : associatedThreadInstances)
+            {
+                VoyageQuest.battleThreadManager.markForDeletion(deadThread);
+
+            }
+        }
     }
 
     public void processCollision(LinkedList<BattleEntity> collisions)

@@ -5,10 +5,12 @@ import map.Rectangular;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import scripting.*;
 import voyagequest.DoubleRect;
 import voyagequest.Global;
 import voyagequest.VoyageQuest;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.ListIterator;
@@ -26,11 +28,9 @@ public class BattleField {
     public static HashMap<String, BattleEntity> entityInstances;
 
     /** A list of the BattleEntities we can iterate through. Excludes Projectiles*/
-    public static LinkedList<BattleEntity> entityList;
+    public static ArrayList<BattleEntity> entityList;
 
-    /** We need a data structure for all our projectiles */
-   // public static LinkedList<Projectile> projectiles;
-
+    // For spawning things and avoiding the repetition of names.
     private static int nextInstanceNumber;
 
 
@@ -40,8 +40,7 @@ public class BattleField {
                 20, 10,
                 new DoubleRect(0, 0, VoyageQuest.X_RESOLUTION,VoyageQuest.Y_RESOLUTION));
         entityInstances = new HashMap<>();
-        entityList = new LinkedList<>();
-        //projectiles = new LinkedList<>();
+        entityList = new ArrayList<>();
         nextInstanceNumber = 0;
     }
 
@@ -57,17 +56,49 @@ public class BattleField {
     public static void drawCollRects(Graphics g)
     {
         g.setColor(Color.red);
-        LinkedList<BattleEntity> entList = BattleField.entityCollisions.rectQuery(
+        LinkedList<BattleEntity> entList = entityCollisions.rectQuery(
                 new DoubleRect(0, 0, VoyageQuest.X_RESOLUTION, VoyageQuest.Y_RESOLUTION));
         for (BattleEntity b : entList)
         {
-            g.drawRect((float)b.r.x, (float)b.r.y, (float)b.r.getWidth(), (float)b.r.getHeight());
+            g.drawRect((float) b.r.x, (float) b.r.y, (float) b.r.getWidth(), (float) b.r.getHeight());
         }
     }
+
+
+    public static void update(int delta)
+    {
+        boolean cont = !entityList.isEmpty();
+        int index = 0;
+        while (cont)
+        {
+            //Get current entity.
+            BattleEntity currentEntity = entityList.get(index);
+
+            if (currentEntity.isMarkedForDeletion())
+            {
+                removeEntity(currentEntity);
+            }
+            else
+            {
+                System.out.println("Collision content size: " + entityCollisions.getSize());
+                currentEntity.act(delta);
+                index++;
+            }
+
+            if (index >= entityList.size()) {
+                cont = false;
+            }
+        }
+
+
+    }
+
 
     public static void addBattleEntity(BattleEntity newEntity, String instanceID)
     {
         entityCollisions.addEntity(newEntity);
+        System.out.println("adding " + instanceID + "! Number of total entities: " +
+            entityCollisions.getSize());
         entityInstances.put(instanceID, newEntity);
         entityList.add(newEntity);
     }
@@ -77,9 +108,10 @@ public class BattleField {
     {
         entityCollisions.addEntity(newEntity);
         entityList.add(newEntity);
+
+        System.out.println("adding a new projectile! Number of total entities: " +
+                entityCollisions.getSize());
     }
-
-
 
     public static void removeEntity(String instanceID)
     {
@@ -87,43 +119,30 @@ public class BattleField {
         entityInstances.remove(instanceID);
     }
 
+    public static void removeEntity(BattleEntity entityToRemove)
+    {
+        entityCollisions.removeEntity(entityToRemove);
+        entityInstances.remove(entityToRemove);
+        entityList.remove(entityToRemove);
+
+        System.out.println(entityInstances.size() + " is size of hash");
+        System.out.println(entityCollisions.getSize() + " is size of coll map");
+    }
+
     public static boolean hasEntity(String instanceID)
     {
         return entityInstances.containsKey(instanceID);
     }
 
-    public static void update(int delta)
-    {
-        ListIterator<BattleEntity> iter = entityList.listIterator();
-        while (iter.hasNext())
-        {
-            BattleEntity currentEntity = iter.next();
-            if (currentEntity.isMarkedForDeletion())
-            {
-                iter.remove();
-            }
-            else
-            {
-                currentEntity.act(delta);
-            }
-
-
-        }
-
-
-    }
-
-
-    public static void clearBattleField()
+    public static void clear()
     {
         //Untested
         entityCollisions.clear();
-
         entityInstances.clear();
     }
 
     /**
-     *
+     * For generating unique instanceIDs
      * @return
      */
     public static int getInstanceNumber()

@@ -8,9 +8,10 @@ print "huh..."
 
 spawnEnemy "Anika" 400 50 "anika" "anikathread"
 
+wait 1000
 
 -- spawnProjectile projectileID x y vx vy rotation allegiance
-spawnProjectile "Bullet" 400 600 0.0 -0.2 "FRIENDLY"
+spawnProjectile "Bullet" 400 600 0.0 -0.2 180 "FRIENDLY"
 wait 50000
 
 endbattle
