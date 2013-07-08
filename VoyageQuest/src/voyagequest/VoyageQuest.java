@@ -165,15 +165,17 @@ public class VoyageQuest extends BasicGame {
     public void update(GameContainer gc, int delta) throws SlickException {
         switch (state) {
             case RPG:
-                for (int i = 0; i < Global.currentMap.entities.size(); i++) {
-                    Entity e = Global.currentMap.entities.get(i);
-                    if (e != null)
-                        e.act(delta);
-                }
+                //Not sure of this actually does anything... I don't think it does.
+                //No. It really doesn't. I'll keep this here just in case in the future
+                //we somehow need to call act on all the RPG entities.
+//                for (int i = 0; i < Global.currentMap.entities.size(); i++) {
+//                    Entity e = Global.currentMap.entities.get(i);
+//                    if (e != null)
+//                        e.act(delta);
+//                }
 
                 EventListener.keyboardControl(player, delta);
                 threadManager.act(delta);
-                GuiManager.update(gc, delta);
 
                 break;
             case COMBAT:
@@ -183,14 +185,19 @@ public class VoyageQuest extends BasicGame {
                 battleThreadManager.act(delta);
 
                 BattleField.update(delta);
+
+                EventListener.battleKeyboardControl(BattleField.player, delta);
+
                 break;
             default:
-                System.out.println("DROPPING THE NUKE LOL");
-                System.out.print(1/0);
                 break;
         }
+
         // Stream polling
         SoundStore.get().poll(0);
+
+        // Updating the GUI happens regardless of what mode we're in.
+        GuiManager.update(gc, delta);
 
     }
 
@@ -207,28 +214,35 @@ public class VoyageQuest extends BasicGame {
             case RPG:
                 //If there isn't a full screen GUI... draw what the Camera sees
                 Global.camera.display(g);
-
                 fading(g);
 
-                try {
-                    GuiManager.draw();
-                    GuiManager.display();
-                } catch (VoyageGuiException ex) {}
                 Util.WHITE_FONT.drawString(10, 40,
                         "Coordinates of player: (" + player.r.x + ", " + player.r.y + ")");
-
                 break;
             case COMBAT:
                 //Render the background
 
-                //Render everything in the thang
+                //Render everything in the BattleField
                 BattleField.render(gc, g);
 
+                //This might be good to know
+                Util.WHITE_FONT.drawString(10, 30, "Instances: " + BattleField.getInstanceCount());
 
                 break;
             default:
                 break;
+
+
         }
+
+        //The GUI gets drawn regardless of whether we're in RPG or COMBAT
+        try
+        {
+            GuiManager.draw();
+            GuiManager.display();
+        }
+        catch (VoyageGuiException ex) {}
+
 
         //We're using this for debugging no matter what, so...
         Util.WHITE_FONT.drawString(10, 10, "FPS: " + gc.getFPS());

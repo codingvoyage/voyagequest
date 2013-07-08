@@ -1,5 +1,6 @@
 package voyagequest;
 
+import battle.BattleEntity;
 import gui.GuiManager;
 import gui.types.Menu;
 import map.Entity;
@@ -45,13 +46,11 @@ public abstract class EventListener {
         double step = STEP_SIZE*delta;
         if(input.isKeyDown(Input.KEY_UP)) {
             player.attemptMove(0, -step, delta);
-            
             player.setAnimation(0);
         }
         
         if(input.isKeyDown(Input.KEY_DOWN)) {
             player.attemptMove(0, step, delta);
-            
             player.setAnimation(1);
         }
         
@@ -68,6 +67,49 @@ public abstract class EventListener {
             
             if (!input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP))
                 player.setAnimation(3);
+        }
+
+        if(input.isKeyDown(Input.KEY_ENTER))
+        {
+
+        }
+    }
+
+    /**
+     * Controls an entity, typically the player by keyboard
+     * @param player the entity to control
+     * @param delta delta time
+     */
+    public static void battleKeyboardControl(BattleEntity player, int delta) throws SlickException {
+        //We can't move if Input is frozen
+        if (Global.isInputFrozen) return;
+
+        double step = STEP_SIZE*delta;
+        if(input.isKeyDown(Input.KEY_UP)) {
+            player.attemptMove(0, -step, delta);
+            player.changeAnimationDirection(1);
+//            player.setAnimation("Sebastian Forward");
+        }
+
+        if(input.isKeyDown(Input.KEY_DOWN)) {
+            player.attemptMove(0, step, delta);
+            player.changeAnimationDirection(-1);
+//            player.setAnimation("Sebastian Backwards");
+        }
+
+        if (input.isKeyDown(Input.KEY_LEFT)) {
+            player.attemptMove(-step, 0, delta);
+            player.changeAnimationDirection(1);
+            //unless we're moving up or down already in animation
+//            if (!input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP))
+//                player.setAnimation("Sebastian Left");
+        }
+
+        if(input.isKeyDown(Input.KEY_RIGHT)) {
+            player.attemptMove(step, 0, delta);
+            player.changeAnimationDirection(1);
+//            if (!input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP))
+//                player.setAnimation("Sebastian Right");
         }
 
         if(input.isKeyDown(Input.KEY_ENTER))

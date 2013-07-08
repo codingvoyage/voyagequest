@@ -16,5 +16,13 @@ public class Player extends BattleEntity
     }
 
 
+    @Override
+    public void act(int delta) {
+        super.act(delta);
+
+        //If we're still alive and for some reason the collision thing doesn't contain us, re-add ourselves
+        this.place(r.x, r.y);
+
+    }
 
 }

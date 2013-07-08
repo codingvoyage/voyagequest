@@ -173,11 +173,25 @@
 			"duration" : 50
 		},
 		{
-			"name" : "Blast",
+			"name" : "Wave Bullet",
 			"packedSheetID" : "blast",
 			"id" : "blast",
 			"images" : [ "blast3","blast3","blast3","blast3","blast3","blast3","blast3","blast3"],
 			"duration" : 5000
-		}
+		},
+		{
+			"name" : "Water Bullet",
+			"packedSheetID" : "oldimages",
+			"id" : "waterbullet",
+			"images" : [ "water","water","water","water","water","water","water","water"],
+			"duration" : 5000
+		},
+        {
+            "name" : "Normal Bullet",
+            "packedSheetID" : "oldimages",
+            "id" : "normalbullet",
+            "images" : [ "bluedot","bluedot","bluedot","bluedot","bluedot","bluedot","bluedot","bluedot"],
+            "duration" : 5000
+        }
     ]
 }

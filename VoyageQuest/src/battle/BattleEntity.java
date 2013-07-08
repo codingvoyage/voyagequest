@@ -103,7 +103,6 @@ public class BattleEntity extends Entity {
         //Die if hp < 0
         if (health < 0)
         {
-            System.out.println("GJAIOEFJOPIAJEIOPAJFIOAJ");
             markForDeletion();
 
             //Also remove all associated thread instances:
@@ -112,6 +111,7 @@ public class BattleEntity extends Entity {
                 VoyageQuest.battleThreadManager.markForDeletion(deadThread);
             }
         }
+
     }
 
     public void processCollision(LinkedList<BattleEntity> collisions)

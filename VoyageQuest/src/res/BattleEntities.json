@@ -8,10 +8,10 @@
             "battleEntityID" : "Anika",
             "description" : "A powerful magic user",
 
-            "width" : "64",
-            "height" : "128",
-            "velocityX" : "0.02",
-            "velocityY" : "0.02",
+            "width" : 64,
+            "height" : 128,
+            "velocityX" : 0.02,
+            "velocityY" : 0.02,
 
             "collisionX" : 5,
             "collisionY" : 70,
@@ -28,25 +28,68 @@
             "attack" : 100
         },
         {
-            "name" : "Bullet",
-            "battleEntityID" : "Bullet",
-            "description" : "A basic, magical bullet",
+            "name" : "SebastianPlayer",
+            "battleEntityID" : "sebastianplayer",
+            "description" : "This is the player",
 
-            "width" : "64",
-            "height" : "64",
-            "velocityX" : "0.1",
-            "velocityY" : "0.1",
+            "width" : 64,
+            "height" : 128,
+            "velocityX" : 0.02,
+            "velocityY" : 0.02,
+
+            "collisionX" : 5,
+            "collisionY" : 70,
+            "collisionWidth" : 50,
+            "collisionHeight" : 50,
+
+            "animations" : ["Sebastian Forward", "Sebastian Backwards", "Sebastian Left", "Sebastian Right"],
+            "startingAnimationName" : "Sebastian Backwards",
+
+            "hp" : 1000,
+            "defense" : 50,
+            "attack" : 100
+        },
+        {
+            "name" : "Wave Bullet",
+            "battleEntityID" : "Wavebullet",
+            "description" : "A magic wave bullet",
+
+            "width" : 64,
+            "height" : 64,
+            "velocityX" : 0.1,
+            "velocityY" : 0.1,
 
             "collisionX" : 5,
             "collisionY" : 5,
             "collisionWidth" : 59,
             "collisionHeight" : 59,
 
-            "animations" : ["Blast"],
+            "animations" : ["Wave Bullet"],
             "explosionAnimation" : "Blast Animation",
-            "startingAnimationName" : "Njeri Forward",
+            "startingAnimationName" : "Wave Bullet",
 
             "contactDamage" : 5
+        },
+        {
+             "name" : "Normal Bullet",
+             "battleEntityID" : "Bullet",
+             "description" : "A basic, magical bullet",
+
+             "width" : 20,
+             "height" : 20,
+             "velocityX" : 0.1,
+             "velocityY" : 0.1,
+
+             "collisionX" : 1,
+             "collisionY" : 1,
+             "collisionWidth" : 19,
+             "collisionHeight" : 19,
+
+             "animations" : ["Normal Bullet"],
+             "explosionAnimation" : "Normal Bullet",
+             "startingAnimationName" : "Normal Bullet",
+
+             "contactDamage" : 5
         }
     ]
 }

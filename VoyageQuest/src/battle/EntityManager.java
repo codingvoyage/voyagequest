@@ -70,6 +70,33 @@ public class EntityManager {
 
     public static void init() { }
 
+    public static Player spawnPlayer(String loadEntityID, int xLocation, int yLocation)
+    {
+        LoadBattleEntity spawnBase = entityData.get(loadEntityID);
+
+        //Load and set positioning
+        DoubleRect newEntityLocation = new DoubleRect(
+                xLocation,
+                yLocation,
+                spawnBase.width,
+                spawnBase.height);
+        DoubleRect newEntityCollision = spawnBase.collisionBox;
+        Player newPlayer = new Player(newEntityLocation, newEntityCollision);
+
+        //Loads the things general to all BattleEntities
+        loadFromBase(newPlayer, loadEntityID);
+
+        newPlayer.health = spawnBase.hp;
+
+        newPlayer.setAnimation(spawnBase.startingAnimationName);
+
+        System.out.println(spawnBase.startingAnimationName);
+        return newPlayer;
+    }
+
+
+
+
     //Reminder: EntityManager just loads the Entity. It doesn't create threads, it doesn't
     //add the Enemy to the BattleField... the Scripting Engine is responsible for that.
     public static Enemy spawnEnemy(String loadEntityID, int xLocation, int yLocation)
@@ -93,6 +120,8 @@ public class EntityManager {
 
         return newEnemy;
     }
+
+
 
     //Spawning projectiles should involve a special explosion animation
     //By the way, it's the responsibility of whatever spawns the Projectile

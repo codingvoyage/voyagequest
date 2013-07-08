@@ -41,7 +41,7 @@ public class Entity extends ScriptableClass implements Rectangular {
     //Automated movement with scripting uses these
     public double velocityX;
     public double velocityY;
-    
+
     public Animation forward;
     public Animation backward;
     public Animation left;

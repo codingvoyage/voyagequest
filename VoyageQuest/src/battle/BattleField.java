@@ -34,16 +34,30 @@ public class BattleField {
     // For spawning things and avoiding the repetition of names.
     private static int nextInstanceNumber;
 
+    //Easy access to the player
+    public static Player player;
+
 
     static
     {
         entityCollisions = new QuadTree<>(
-                5, 30,
+                5, 20,
                 new DoubleRect(0, 0, VoyageQuest.X_RESOLUTION,VoyageQuest.Y_RESOLUTION));
         entityInstances = new HashMap<>();
         entityList = new ArrayList<>();
         nextInstanceNumber = 0;
+
+        //Temporary usage
+        int playerX = VoyageQuest.X_RESOLUTION/2 - 32;
+        int playerY = (int)(0.8 * VoyageQuest.Y_RESOLUTION);
+        System.out.println("SPAWNING PLAYER");
+        player = EntityManager.spawnPlayer("sebastianplayer", playerX, playerY);
+        addBattleEntity(player);
+
+
     }
+
+
 
     public static void render(GameContainer gc, Graphics g)
     {
@@ -151,6 +165,11 @@ public class BattleField {
         //Untested
         entityCollisions.clear();
         entityInstances.clear();
+    }
+
+    public static int getInstanceCount()
+    {
+        return entityList.size();
     }
 
     /**

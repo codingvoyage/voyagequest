@@ -5,7 +5,12 @@ wait 1000
 
 spawnEnemy "Anika" 480 -100 "anika" "anikathread"
 
-wait 2000
+wait 5000
+
+dialogBox "Sebastian Profile" "OH GOD WHY"
+
+wait 5000000
+endthread
 
 var startAngle 0
 var distanceAway 50
@@ -55,9 +60,9 @@ while continueshooting == true
         spawnProjectile "Bullet" bulletX bulletY bulletVx bulletVy thisBulletAngle "UNFRIENDLY"
         eval totaltospawn - 1 --> totaltospawn
 
-    next i + 60 --> i
+    next i + 30 --> i
 
-    wait 150
+    wait 30
     eval startAngle + 6 --> startAngle
 
     if totaltospawn <= 0

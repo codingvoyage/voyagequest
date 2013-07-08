@@ -1130,8 +1130,12 @@ public class ScriptReader
                 double projectileVx = identifierCheck(currentLine, 3).getDoubleValue();
                 double projectileVy = identifierCheck(currentLine, 4).getDoubleValue();
                 int rotation = (int)identifierCheck(currentLine, 5).getDoubleValue();
-                //For now, we'll just make allegiance friendly.
-                Allegiance projectileAllegiance = Allegiance.FRIENDLY;
+
+                //Allegiance is unfriendly by default.
+                String allegiance = currentLine.getStringParameter(6);
+                Allegiance projectileAllegiance = Allegiance.UNFRIENDLY;
+                if (allegiance.equalsIgnoreCase("FRIENDLY")) projectileAllegiance = Allegiance.FRIENDLY;
+                if (allegiance.equalsIgnoreCase("DANGER")) projectileAllegiance = Allegiance.DANGER;
 
                 Projectile newProjectile = EntityManager.spawnProjectile(
                         projectileID,projectileX, projectileY, projectileAllegiance);

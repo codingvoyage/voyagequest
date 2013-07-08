@@ -41,11 +41,11 @@ public class Projectile extends BattleEntity {
 
         //Projectiles need to die when they're far away. When distance from the center
         //of the screen is greater than...
-//        double tempX = r.x - VoyageQuest.X_RESOLUTION/2;
-//        double tempY = r.y - VoyageQuest.Y_RESOLUTION/2;
-//        double distSq = tempX*tempX + tempY*tempY;
-//        if (distSq > 400000)
-//            markForDeletion();
+        double tempX = r.x - VoyageQuest.X_RESOLUTION/2;
+        double tempY = r.y - VoyageQuest.Y_RESOLUTION/2;
+        double distSq = tempX*tempX + tempY*tempY;
+        if (distSq > 400000)
+            markForDeletion();
 
 
         //If we're on the explosion animation and we're on the last frame, then we're basically done.

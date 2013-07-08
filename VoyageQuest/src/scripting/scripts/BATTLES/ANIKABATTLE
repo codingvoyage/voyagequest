@@ -5,15 +5,14 @@
 setVelocity 0 1.0
 movePixelAmount 200
 
-wait 500000
-
 var startAngle 0
 var distanceAway 50
 var bulletVelocity 5.0
+var totaltospawn 5000
+var continueshooting true
 
-wait 5000
 
-while true == true
+while continueshooting == true
 
     -- shoot the 6 bullets
     for i = 0 and i < 360
@@ -31,8 +30,8 @@ while true == true
         eval cosVal * distanceAway --> distanceOffsetX
         eval sinVal * distanceAway --> distanceOffsetY
 
-        var enemyCenterX 200
-        var enemyCenterY 300
+        -- var enemyCenterX 500
+        -- var enemyCenterY 300
 
         -- Get this bullet's x and y coordinates
         eval enemyCenterX + distanceOffsetX --> bulletX
@@ -44,7 +43,7 @@ while true == true
 
         -- Subtract a further 90 degrees to make up for the fact that
         -- our bullets face down, not right.
-        eval thisBulletAngle - 90 --> thisBulletAngle
+        eval thisBulletAngle + 0 --> thisBulletAngle
 
         -- We still need the bullet's velocity!
         eval cosVal * bulletVelocity --> bulletVx
@@ -52,19 +51,24 @@ while true == true
 
         -- Now spawn the bullet and cross our fingers
         spawnProjectile "Bullet" bulletX bulletY bulletVx bulletVy thisBulletAngle "UNFRIENDLY"
+        eval totaltospawn - 1 --> totaltospawn
 
-    next i + 360 --> i
+    next i + 30 --> i
 
-    wait 500
+    wait 30
     eval startAngle + 6 --> startAngle
+
+    if totaltospawn <= 0
+        var continueshooting false
+    endif
 wend
+
 
 
 
 setAnimation "Njeri Backwards"
 setVelocity 0 -0.05
 movePixelAmount 500
-
 
 
 endthread

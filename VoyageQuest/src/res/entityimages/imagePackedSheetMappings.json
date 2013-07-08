@@ -41,6 +41,11 @@
              "streamXMLPackedSheetID" : "blast",
              "imageFile" : "res/entityimages/blast.png",
              "xmlFileLocation" : "res/entityimages/blast.xml"
+		},
+		{
+             "streamXMLPackedSheetID" : "oldimages",
+             "imageFile" : "res/entityimages/voyageshooterimages.png",
+             "xmlFileLocation" : "res/entityimages/voyageshooterimages.xml"
 		}
     ]
 }
