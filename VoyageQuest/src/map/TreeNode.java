@@ -19,7 +19,7 @@ public class TreeNode<E extends Rectangular> {
     private TreeNode[] children;
     
     public int level;
-    DoubleRect boundary; 
+    public DoubleRect boundary;
     private boolean isLeaf;
     private LinkedList<E> entities = new LinkedList<>();
     

@@ -2,6 +2,7 @@ package battle;
 
 import map.QuadTree;
 import map.Rectangular;
+import map.TreeNode;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -27,7 +28,7 @@ public class BattleField {
     /** HashMap<String, BattleEntity> maps String IDs to Entity instances */
     public static HashMap<String, BattleEntity> entityInstances;
 
-    /** A list of the BattleEntities we can iterate through. Excludes Projectiles*/
+    /** A list of the BattleEntities we can iterate through. */
     public static ArrayList<BattleEntity> entityList;
 
     // For spawning things and avoiding the repetition of names.
@@ -37,7 +38,7 @@ public class BattleField {
     static
     {
         entityCollisions = new QuadTree<>(
-                20, 10,
+                5, 20,
                 new DoubleRect(0, 0, VoyageQuest.X_RESOLUTION,VoyageQuest.Y_RESOLUTION));
         entityInstances = new HashMap<>();
         entityList = new ArrayList<>();
@@ -51,6 +52,7 @@ public class BattleField {
             b.draw(g, (float)b.r.x, (float)b.r.y);
         }
         drawCollRects(g);
+        drawPartitions(g);
     }
 
     public static void drawCollRects(Graphics g)
@@ -64,6 +66,18 @@ public class BattleField {
         }
     }
 
+    public static void drawPartitions(Graphics g)
+    {
+        LinkedList<TreeNode> partitions = entityCollisions.getPartitions();
+        for (TreeNode node : partitions)
+        {
+            g.drawRect(
+                    (float) node.boundary.getX(),
+                    (float) node.boundary.getY(),
+                    (float) node.boundary.getWidth(),
+                    (float) node.boundary.getHeight());
+        }
+    }
 
     public static void update(int delta)
     {
@@ -130,6 +144,12 @@ public class BattleField {
     public static boolean hasEntity(String instanceID)
     {
         return entityInstances.containsKey(instanceID);
+
+    }
+
+    public static boolean hasEntity(BattleEntity instance)
+    {
+        return entityList.contains(instance);
     }
 
     public static void clear()

@@ -2,12 +2,14 @@
 -- I will sort this out later.
 -- setRotation -2535
 
-setVelocity 0 4.0
-movePixelAmount 650
+setVelocity 0 0.2
+movePixelAmount 350
 
 var startAngle 0
 var distanceAway 50
 var bulletVelocity 5.0
+
+wait 5000
 
 while true == true
 
@@ -27,8 +29,8 @@ while true == true
         eval cosVal * distanceAway --> distanceOffsetX
         eval sinVal * distanceAway --> distanceOffsetY
 
-        -- var enemyCenterX 430
-        -- var enemyCenterY 300
+        var enemyCenterX 200
+        var enemyCenterY 300
 
         -- Get this bullet's x and y coordinates
         eval enemyCenterX + distanceOffsetX --> bulletX
@@ -49,9 +51,9 @@ while true == true
         -- Now spawn the bullet and cross our fingers
         spawnProjectile "Bullet" bulletX bulletY bulletVx bulletVy thisBulletAngle "UNFRIENDLY"
 
-    next i + 50 --> i
+    next i + 360 --> i
 
-    wait 50
+    wait 500
     eval startAngle + 6 --> startAngle
 wend
 

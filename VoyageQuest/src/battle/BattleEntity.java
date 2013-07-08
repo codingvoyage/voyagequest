@@ -88,12 +88,12 @@ public class BattleEntity extends Entity {
         LinkedList<BattleEntity> collidedEntities = BattleField.entityCollisions.rectQuery(this.getCollRect());
 
         //Now eliminate from this list anything that doesn't collide:
-        ListIterator<BattleEntity> iter = collidedEntities.listIterator();
-        while (iter.hasNext())
-        {
-            BattleEntity candidate = iter.next();
-            if (!candidate.getCollRect().intersects(this.getCollRect())) iter.remove();
-        }
+//        ListIterator<BattleEntity> iter = collidedEntities.listIterator();
+//        while (iter.hasNext())
+//        {
+//            BattleEntity candidate = iter.next();
+//            if (!candidate.getCollRect().intersects(this.getCollRect())) iter.remove();
+//        }
 
         //Now with this adjusted list, process collisions
         processCollision(collidedEntities);

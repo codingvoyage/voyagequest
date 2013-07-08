@@ -2,6 +2,7 @@ package battle;
 
 import org.newdawn.slick.Animation;
 import voyagequest.DoubleRect;
+import voyagequest.VoyageQuest;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
@@ -37,6 +38,15 @@ public class Projectile extends BattleEntity {
         updateAnimation(delta);
 
         attemptMove(velocityX, velocityY, delta);
+
+        //Projectiles need to die when they're far away. When distance from the center
+        //of the screen is greater than...
+        double tempX = r.x - VoyageQuest.X_RESOLUTION/2;
+        double tempY = r.y - VoyageQuest.Y_RESOLUTION/2;
+        double distSq = tempX*tempX + tempY*tempY;
+        if (distSq > 300000)
+            markForDeletion();
+
 
         //If we're on the explosion animation and we're on the last frame, then we're basically done.
         if (hasExploded && currentFrame == explosionAnimation.getFrameCount() - 1)

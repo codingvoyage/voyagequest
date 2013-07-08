@@ -33,14 +33,14 @@
             "description" : "A basic, magical bullet",
 
             "width" : "64",
-            "height" : "128",
+            "height" : "64",
             "velocityX" : "0.1",
             "velocityY" : "0.1",
 
-            "collisionX" : 0,
-            "collisionY" : 0,
-            "collisionWidth" : 64,
-            "collisionHeight" : 64,
+            "collisionX" : 5,
+            "collisionY" : 5,
+            "collisionWidth" : 59,
+            "collisionHeight" : 59,
 
             "animations" : ["Blast"],
             "explosionAnimation" : "Blast Animation",

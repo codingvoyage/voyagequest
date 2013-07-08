@@ -10,7 +10,7 @@ import java.util.LinkedList;
 public class QuadTree<E extends Rectangular> {
     public final int MAX_LEVELS;
     public final int MAX_OBJECTS;
-    private TreeNode<E> treeRootNode;
+    public TreeNode<E> treeRootNode;
     
     public QuadTree(int maxLevel, int maxObjects, DoubleRect boundary)
     {
