@@ -38,7 +38,7 @@ public class BattleField {
     static
     {
         entityCollisions = new QuadTree<>(
-                5, 20,
+                5, 30,
                 new DoubleRect(0, 0, VoyageQuest.X_RESOLUTION,VoyageQuest.Y_RESOLUTION));
         entityInstances = new HashMap<>();
         entityList = new ArrayList<>();
@@ -49,7 +49,7 @@ public class BattleField {
     {
         for (BattleEntity b : entityList)
         {
-            b.draw(g, (float)b.r.x, (float)b.r.y);
+                b.draw(g, (float)b.r.x, (float)b.r.y);
         }
         drawCollRects(g);
         drawPartitions(g);
@@ -90,12 +90,11 @@ public class BattleField {
 
             if (currentEntity.isMarkedForDeletion())
             {
-                System.out.println("REMOVING");
+
                 removeEntity(currentEntity);
             }
             else
             {
-//                System.out.println("Collision content size: " + entityCollisions.getSize());
                 currentEntity.act(delta);
                 index++;
             }
@@ -112,8 +111,6 @@ public class BattleField {
     public static void addBattleEntity(BattleEntity newEntity, String instanceID)
     {
         entityCollisions.addEntity(newEntity);
-//        System.out.println("adding " + instanceID + "! Number of total entities: " +
-//            entityCollisions.getSize());
         entityInstances.put(instanceID, newEntity);
         entityList.add(newEntity);
     }
@@ -123,9 +120,6 @@ public class BattleField {
     {
         entityCollisions.addEntity(newEntity);
         entityList.add(newEntity);
-
-        System.out.println("adding a new projectile! Number of total entities: " +
-                entityCollisions.getSize());
     }
 
     public static void removeEntity(String instanceID)

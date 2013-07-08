@@ -2,8 +2,10 @@
 -- I will sort this out later.
 -- setRotation -2535
 
-setVelocity 0 0.2
-movePixelAmount 350
+setVelocity 0 1.0
+movePixelAmount 200
+
+wait 500000
 
 var startAngle 0
 var distanceAway 50

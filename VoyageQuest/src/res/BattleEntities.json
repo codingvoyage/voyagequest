@@ -23,7 +23,7 @@
             "animations" : ["Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right"],
             "startingAnimationName" : "Njeri Forward",
 
-            "hp" : 50,
+            "hp" : 1000,
             "defense" : 50,
             "attack" : 100
         },
@@ -46,7 +46,7 @@
             "explosionAnimation" : "Blast Animation",
             "startingAnimationName" : "Njeri Forward",
 
-            "contactDamage" : 100
-            }
+            "contactDamage" : 5
+        }
     ]
 }

@@ -1,15 +1,18 @@
 fadein
 
+wait 1000
+
+
+spawnEnemy "Anika" 480 -100 "anika" "anikathread"
+
 wait 2000
-
-
 
 var startAngle 0
 var distanceAway 50
 var bulletVelocity 5.0
 var totaltospawn 5000
 var continueshooting true
-wait 5000
+
 
 while continueshooting == true
 
@@ -42,7 +45,7 @@ while continueshooting == true
 
         -- Subtract a further 90 degrees to make up for the fact that
         -- our bullets face down, not right.
-        eval thisBulletAngle - 90 --> thisBulletAngle
+        eval thisBulletAngle + 0 --> thisBulletAngle
 
         -- We still need the bullet's velocity!
         eval cosVal * bulletVelocity --> bulletVx
@@ -54,7 +57,7 @@ while continueshooting == true
 
     next i + 60 --> i
 
-    wait 20
+    wait 150
     eval startAngle + 6 --> startAngle
 
     if totaltospawn <= 0
@@ -65,7 +68,6 @@ wend
 endbattle
 endthread
 
-spawnEnemy "Anika" 430 100 "anika" "anikathread"
 
 wait 1000
 

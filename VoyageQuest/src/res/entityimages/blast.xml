@@ -15,5 +15,7 @@
     <sprite name="blast6" x="320" y="0" width="64" height="64" />
     <sprite name="blast7" x="384" y="0" width="64" height="64" />
     <sprite name="blast8" x="448" y="0" width="64" height="64" />
+    <sprite name="blast9" x="448" y="0" width="64" height="64" />
+    <sprite name="blast10" x="448" y="0" width="64" height="64" />
     
 </sheet>

@@ -85,15 +85,17 @@ public class BattleEntity extends Entity {
     public void act(int delta)
     {
         //Query BattleField for things to check collision with.
-        LinkedList<BattleEntity> collidedEntities = BattleField.entityCollisions.rectQuery(this.getCollRect());
+        LinkedList<BattleEntity> candidates = BattleField.entityCollisions.rectQuery(this.getCollRect());
+        LinkedList<BattleEntity> collidedEntities = new LinkedList<>();
 
         //Now eliminate from this list anything that doesn't collide:
-//        ListIterator<BattleEntity> iter = collidedEntities.listIterator();
-//        while (iter.hasNext())
-//        {
-//            BattleEntity candidate = iter.next();
-//            if (!candidate.getCollRect().intersects(this.getCollRect())) iter.remove();
-//        }
+        ListIterator<BattleEntity> iter = candidates.listIterator();
+        while (iter.hasNext())
+        {
+            BattleEntity candidate = iter.next();
+            if (candidate.getCollRect().intersects(this.getCollRect()))
+                collidedEntities.add(candidate);
+        }
 
         //Now with this adjusted list, process collisions
         processCollision(collidedEntities);
@@ -101,13 +103,13 @@ public class BattleEntity extends Entity {
         //Die if hp < 0
         if (health < 0)
         {
+            System.out.println("GJAIOEFJOPIAJEIOPAJFIOAJ");
             markForDeletion();
 
             //Also remove all associated thread instances:
             for (String deadThread : associatedThreadInstances)
             {
                 VoyageQuest.battleThreadManager.markForDeletion(deadThread);
-
             }
         }
     }
