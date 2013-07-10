@@ -172,7 +172,7 @@ public class ScriptReader
 //                break;
             case 103:
             case 104:
-                result = ((Entity)currentScriptable).continueMove(currentDeltaTime);
+                result = ((Entity)currentScriptable).continueMove(currentDeltaTime, currentThread);
                 break;
                 
             //Dialogbox continue-speaks
@@ -891,7 +891,7 @@ public class ScriptReader
             //moveByTiles tile_distance
             case 103:
                 int tile_distance = (int)identifierCheck(currentLine, 0).getDoubleValue();
-                ((Entity)currentScriptable).beginMove(tile_distance);
+                ((Entity)currentScriptable).beginMove(tile_distance, currentThread);
                 continueExecuting = false;
                 
                 break;
@@ -900,7 +900,7 @@ public class ScriptReader
             //moveByPixels distance_in_pixels
             case 104:
                 double pixel_distance = (int)identifierCheck(currentLine, 0).getDoubleValue();
-                ((Entity)currentScriptable).beginMove(pixel_distance);
+                ((Entity)currentScriptable).beginMove(pixel_distance, currentThread);
                 continueExecuting = false;
                 
                 break;

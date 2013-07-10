@@ -6,7 +6,7 @@ import java.util.HashMap;
  *
  * @author Edmund
  */
-public class  ScriptableClass implements Scriptable {
+public class ScriptableClass implements Scriptable {
     
     protected Thread mainThread;
     
@@ -52,17 +52,6 @@ public class  ScriptableClass implements Scriptable {
     public Thread getMainThread()
     {
         return mainThread;
-    }
-    
-    //Accessors and mutators for the temporary variable
-    protected void setTemporaryParameter(Parameter newParameter) 
-    {
-        progressTemp = newParameter;
-    }
-    
-    protected Parameter getTemporaryParameter() 
-    {
-        return progressTemp;
     }
     
     /**

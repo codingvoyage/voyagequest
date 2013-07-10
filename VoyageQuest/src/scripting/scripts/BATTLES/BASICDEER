@@ -1,9 +1,10 @@
 newThread "DEERMOVEMENT" "movementOfDeer"
+
 print "MADE THE MOVEMENT THREAD"
 
 wait 20
 
 setThreadScriptable "movementOfDeer" "deer"
 wait 5000
-movePixelAmount 500
+-- movePixelAmount 500
 endthread

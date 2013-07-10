@@ -3,9 +3,9 @@
 existsGlobal "DAMN_CRATES" --> result
 
 wait 5000
-fadeout
-startBattle "FUNNY BEAR"
-endthread
+-- fadeout
+-- startBattle "FUNNY BEAR"
+-- endthread
 
 if result == false
     writeGlobal true --> "DAMN_CRATES"

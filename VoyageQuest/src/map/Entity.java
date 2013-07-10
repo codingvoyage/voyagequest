@@ -8,6 +8,7 @@ import org.newdawn.slick.tiled.GroupObject;
 import gui.special.DialogBox;
 import java.util.LinkedList;
 
+import scripting.Thread;
 import voyagequest.*;
 import scripting.*;
 
@@ -176,15 +177,15 @@ public class Entity extends ScriptableClass implements Rectangular {
         velocityY = vy;
     }
 
-    public void beginMove(double pixelsToMove) {
-        setTemporaryParameter(new Parameter(pixelsToMove));
-        mainThread.setRunningState(true);
+    public void beginMove(double pixelsToMove, Thread actingThread) {
+        actingThread.setTemporaryParameter(new Parameter(pixelsToMove));
+        actingThread.setRunningState(true);
     }
 
-    public void beginMove(int tilesToMove) {
+    public void beginMove(int tilesToMove, Thread actingThread) {
         int pixelsToMove = tilesToMove * Global.currentMap.TILE_LENGTH;
-        setTemporaryParameter(new Parameter(pixelsToMove));
-        mainThread.setRunningState(true);
+        actingThread.setTemporaryParameter(new Parameter(pixelsToMove));
+        actingThread.setRunningState(true);
     }
 
 
@@ -193,9 +194,9 @@ public class Entity extends ScriptableClass implements Rectangular {
      * @param delta elapsed time between checks
      * @return boolean indicating whether or not the entity should continue moving
      */
-    public boolean continueMove(double delta) {
+    public boolean continueMove(double delta, Thread actingThread) {
         //Get the distance left to move...
-        Parameter tempParam = getTemporaryParameter();
+        Parameter tempParam = actingThread.getTemporaryParameter();
 
         double xStep = velocityX * delta;
         double yStep = velocityY * delta;
@@ -212,12 +213,12 @@ public class Entity extends ScriptableClass implements Rectangular {
                    tempParam.getDoubleValue() - 
                    movedDistance);
 
-            setTemporaryParameter(tempParam);
+            actingThread.setTemporaryParameter(tempParam);
 
             if (tempParam.getDoubleValue() < 0)
             {
                 //Oh, so we're done moving. Great.
-                mainThread.setRunningState(false);
+                actingThread.setRunningState(false);
                 return false;
             }
         }

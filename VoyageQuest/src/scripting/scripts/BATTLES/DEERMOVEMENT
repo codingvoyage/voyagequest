@@ -2,7 +2,6 @@ print "hayy"
 wait 500
 print "hayyyyYYYY"
 test
-fireWeapon "Danmaku"
 print "did we ever reach here?"
 setVelocity 0 5.0
 print "what about here??"
