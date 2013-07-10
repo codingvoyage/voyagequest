@@ -197,12 +197,19 @@
 		,
         {
             "name" : "Deer Left",
-            "packedSheetID" : "deerleft",
+            "packedSheetID" : "deer",
             "id" : "deerleft",
             "images" : [ "deerleft1","deerleft2","deerleft3","deerleft4"],
-            "duration" : 5000
+            "duration" : 50
+        },
+        {
+            "name" : "Deer Right",
+            "packedSheetID" : "deer",
+            "id" : "deerleft",
+            "images" : [ "deerright1","deerright2","deerright3","deerright4"],
+            "duration" : 50
         }
-		
+
 		
 		
     ]

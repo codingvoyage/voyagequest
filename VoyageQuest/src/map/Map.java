@@ -2,6 +2,7 @@ package map;
 
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.GroupObject;
+import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.tiled.ObjectGroup;
 import org.newdawn.slick.tiled.TiledMapPlus;
 import scripting.Thread;
@@ -42,6 +43,12 @@ public class Map {
 
     /**The length and width of each tile. */
     public static int TILE_LENGTH;
+
+    /** */
+    public int MAP_TILE_LAYERS;
+
+    /** */
+    public int MAP_ENTITY_LAYER;
     
     /**The width and length of the entire map in pixels. */
     public static int MAP_WIDTH;
@@ -64,13 +71,25 @@ public class Map {
     
     public Map(String mapID) throws SlickException
     {
-        //Load the TiledMapPlus and extract dimensions from it      
+        //Load the TiledMapPlus
         tileMap = Res.allMaps.get(mapID);
-        
+
+        //Extract important information from it
         TILE_LENGTH = tileMap.getTileHeight();
         MAP_WIDTH = tileMap.getWidth() * TILE_LENGTH;
         MAP_HEIGHT = tileMap.getHeight() * TILE_LENGTH;
         MAP_RECT = new DoubleRect(0, 0, MAP_WIDTH, MAP_HEIGHT);
+
+        ArrayList<Layer> tileLayers = tileMap.getLayers();
+        MAP_TILE_LAYERS = tileLayers.size();
+        for (Layer l : tileLayers)
+        {
+            if (l.name.equalsIgnoreCase("entity layer"))
+                MAP_ENTITY_LAYER = l.index;
+        }
+
+        System.out.println(MAP_ENTITY_LAYER);
+        System.out.println(MAP_TILE_LAYERS);
 
         //Create the LinkedList of all entities
         allCollisions = new LinkedList<>();

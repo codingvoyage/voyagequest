@@ -1,11 +1,68 @@
-print "hayy"
 wait 500
-print "hayyyyYYYY"
-test
-print "did we ever reach here?"
-setVelocity 0 5.0
-print "what about here??"
-movePixelAmount 500
 
-print "what about here?? mfw"
+var screenWidth 1024
+var screenHeight 768
+var deerWidth 128
+var velocity 0.4
+
+while true == true
+
+    callthreadfunction "deerthread" [getCurrentState] --> currentState
+
+    -- ======================
+    -- Wandering sequence
+    -- ======================
+    if currentState == 0
+
+        -- Select a distance to move in
+        rand 100 200 --> chosenDistance
+
+        -- We're going to try to find a point we can go in.
+        label [findDesirablePoint]
+
+        -- Choose a direction, and extrapolate our future location
+        rand 0 360 --> selectedAngleInDegrees
+        toradian selectedAngleInDegrees --> angleInRad
+        cos angleInRad --> cosVal
+        sin angleInRad --> sinVal
+        eval cosVal * chosenDistance --> distanceOffsetX
+        eval sinVal * chosenDistance --> distanceOffsetY
+        getLocation --> deerX deerY
+        eval distanceOffsetX + deerX --> extrapolatedX
+        eval distanceOffsetY + deerY --> extrapolatedY
+
+        -- Is the extrapolated location within the range we want?
+        -- If not, try again.
+        eval [ extrapolatedX < 0 ] || [ extrapolatedX > [ screenWidth - deerWidth ] ] --> unacceptableX
+        if unacceptableX == true
+            goto [findDesirablePoint]
+        endif
+        eval [ extrapolatedY < 0 ] || [ extrapolatedY > 320 ] --> unacceptableY
+        if unacceptableY == true
+            goto [findDesirablePoint]
+        endif
+
+        -- Go there.
+        eval cosVal * velocity --> xVelocity
+        eval sinVal * velocity --> yVelocity
+        setVelocity xVelocity yVelocity
+        if xVelocity < 0
+            setAnimation "Deer Left"
+        endif
+        if xVelocity > 0
+            setAnimation "Deer Right"
+        endif
+        movePixelAmount chosenDistance
+
+    endif
+
+    -- wait 50
+wend
+
+setVelocity 0 1.0
+movePixelAmount 50
+
+
+
+
 endthread

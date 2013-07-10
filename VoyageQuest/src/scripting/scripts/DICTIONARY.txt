@@ -259,7 +259,9 @@ getLocation 190
 -- setLocation instanceID x y
 -- existsInstance instanceID --> variable
 -- existsThread threadID --> variable
---
+
+-- fireWeapon weaponID
+fireWeapon 195
 
 -- setRotation instanceID newRotation OR
 -- setRotation newRotation (Thread's currently affliated Scriptable)
@@ -270,6 +272,3 @@ setRotation 50
 -- Sets this Thread's "ourEntity" to the entity marked by entityID
 -- setThreadScriptable threadID ENTITYID
 setThreadScriptable 23
-
-
-test 9001

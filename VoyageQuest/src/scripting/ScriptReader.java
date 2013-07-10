@@ -1177,11 +1177,6 @@ public class ScriptReader
                 WeaponManager.fireWeapon(weaponID, currentScriptable);
                 break;
 
-            case 9001:
-                System.out.println(((BattleEntity)currentThread.getScriptable()).r.x);
-
-                break;
-
         }
         
         

@@ -83,6 +83,21 @@ public class DoubleRect
             return true;
     }
 
+    public boolean intersects(double x, double y, double width, double height) {
+        double otherX = x;
+        double otherY = y;
+        double otherW = width;
+        double otherH = height;
+
+        if (this.x + this.width <= otherX ||
+                this.y + this.height <= otherY ||
+                this.x >= otherX + otherW ||
+                this.y >= otherY + otherH)
+            return false;
+        else
+            return true;
+    }
+
     //Courtesy of Java.awt.Rectangle
     public boolean equals(Object obj) {
         if (obj instanceof java.awt.Rectangle) {

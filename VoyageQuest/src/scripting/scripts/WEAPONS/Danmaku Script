@@ -46,9 +46,9 @@ while continueshooting == true
         spawnProjectile "Bullet" bulletX bulletY bulletVx bulletVy thisBulletAngle "UNFRIENDLY"
         eval totaltospawn - 1 --> totaltospawn
 
-    next i + 30 --> i
+    next i + 40 --> i
 
-    wait 30
+    wait 800
     eval startAngle + 6 --> startAngle
 
     if totaltospawn <= 0

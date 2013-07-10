@@ -1,10 +1,42 @@
+-- Set up the movement thread
 newThread "DEERMOVEMENT" "movementOfDeer"
-
-print "MADE THE MOVEMENT THREAD"
-
 wait 20
-
 setThreadScriptable "movementOfDeer" "deer"
+
+-- The current state when starting is the wander state.
+var state 0
+
+fireWeapon "Danmaku"
+
+-- The basic deer enemy will cycle between these states
+while true == true
+
+    -- Back to wandering around.
+    var state 0
+
+    -- We just stay in wander state for a set amount of time
+    wait 6000
+
+    -- Switch to state 1, a quick dash offscreen.
+    -- State 1 ends when the deer has successfully dashed offscreen,
+    -- so we wait until that has happened
+
+    -- Then, we pause just a bit.
+    wait 1000
+
+
+    -- State 2 ends when the deer has made the specified number of charges
+
+
+
+wend
+
+
+
 wait 5000
--- movePixelAmount 500
+
+
 endthread
+
+function [getCurrentState]
+return state

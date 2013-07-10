@@ -8,7 +8,13 @@
 <sheet>
     <!-- Deer Left -->
     <sprite name="deerleft1" x="0" y="0" width="128" height="128" />
-    <sprite name="deerleft2" x="64" y="0" width="128" height="128" />
-    <sprite name="deerleft3" x="0" y="64" width="128" height="128" />
-    <sprite name="deerleft4" x="64" y="64" width="128" height="128" />
+    <sprite name="deerleft2" x="128" y="0" width="128" height="128" />
+    <sprite name="deerleft3" x="0" y="128" width="128" height="128" />
+    <sprite name="deerleft4" x="128" y="128" width="128" height="128" />
+
+    <!-- Deer Right -->
+    <sprite name="deerright1" x="256" y="0" width="128" height="128" />
+    <sprite name="deerright2" x="384" y="0" width="128" height="128" />
+    <sprite name="deerright3" x="256" y="128" width="128" height="128" />
+    <sprite name="deerright4" x="384" y="128" width="128" height="128" />
 </sheet>

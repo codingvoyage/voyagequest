@@ -34,6 +34,8 @@ public class VoyageQuest extends BasicGame {
     public static final int X_RESOLUTION = 1024;
     /** y resolution */
     public static final int Y_RESOLUTION = 768;
+    /** rectangle of the screen */
+    public static final DoubleRect SCREEN_RECT = new DoubleRect(0, 0, X_RESOLUTION, Y_RESOLUTION);
     /** full screen mode */
     public static final boolean FULLSCREEN = false;
     /** Are we debugging? */

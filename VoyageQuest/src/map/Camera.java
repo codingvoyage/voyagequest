@@ -110,12 +110,17 @@ public class Camera {
         
         
         //Draw the bottom three layers which are below everything else.
-        Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
-                tileColumnsNeeded, tileRowsNeeded, 0, false);
-        Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
-                tileColumnsNeeded, tileRowsNeeded, 1, false);
-        Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
-                tileColumnsNeeded, tileRowsNeeded, 2, false);
+        for (int layer = 0; layer < Global.currentMap.MAP_ENTITY_LAYER; layer++)
+        {
+            Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
+                    tileColumnsNeeded, tileRowsNeeded, layer, false);
+        }
+//        Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
+//                tileColumnsNeeded, tileRowsNeeded, 0, false);
+//        Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
+//                tileColumnsNeeded, tileRowsNeeded, 1, false);
+//        Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
+//                tileColumnsNeeded, tileRowsNeeded, 2, false);
      
         
         //The deferred list is the list of Entities which must wait...
@@ -222,7 +227,8 @@ public class Camera {
         
         //Perform important calculations
         //EXTRA_ROW_COUNT compensates for an extra tile leaking out
-        Layer objLayer = Global.currentMap.tileMap.getLayers().get(3);
+        Layer objLayer = Global.currentMap.tileMap.getLayers().get(
+                Global.currentMap.MAP_ENTITY_LAYER);
         int EXTRA_ROW_COUNT = 1;
         int startRow = (int)(vRect.y/64) - EXTRA_ROW_COUNT;
         int endRow = startRow + tileRowsNeeded + EXTRA_ROW_COUNT;
@@ -289,12 +295,19 @@ public class Camera {
                 }
             }
         }
-        
+
+        int layerAfterEntities = Global.currentMap.MAP_ENTITY_LAYER + 1;
+        int totalLayers = Global.currentMap.MAP_TILE_LAYERS;
+        for (int layer = layerAfterEntities; layer < totalLayers; layer++)
+        {
+            Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
+                tileColumnsNeeded, tileRowsNeeded, layer, false);
+        }
         //Draw the things which tower above all else.
-        Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
-                tileColumnsNeeded, tileRowsNeeded, 4, false);
-        Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
-                tileColumnsNeeded, tileRowsNeeded, 5, false);
+//        Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
+//                tileColumnsNeeded, tileRowsNeeded, 4, false);
+//        Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
+//                tileColumnsNeeded, tileRowsNeeded, 5, false);
         
         //All the extra things we draw on top if we're in debug mode
         if (VoyageQuest.DEBUG_MODE == true)

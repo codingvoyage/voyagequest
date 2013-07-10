@@ -41,7 +41,7 @@ public class BattleField {
     static
     {
         entityCollisions = new QuadTree<>(
-                5, 20,
+                3, 30,
                 new DoubleRect(0, 0, VoyageQuest.X_RESOLUTION,VoyageQuest.Y_RESOLUTION));
         entityInstances = new HashMap<>();
         entityList = new ArrayList<>();
