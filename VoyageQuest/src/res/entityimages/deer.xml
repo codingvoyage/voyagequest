@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+    VoyageQuest Sprite Data
+    Created by Edmund Qiu
+-->
+
+<sheet>
+    <!-- Deer Left -->
+    <sprite name="deerleft1" x="0" y="0" width="128" height="128" />
+    <sprite name="deerleft2" x="64" y="0" width="128" height="128" />
+    <sprite name="deerleft3" x="0" y="64" width="128" height="128" />
+    <sprite name="deerleft4" x="64" y="64" width="128" height="128" />
+</sheet>

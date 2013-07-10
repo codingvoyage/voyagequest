@@ -466,20 +466,20 @@ public class ScriptReader
             //binds the thing
             //bind threadName entityName    
             
-//            case 23:
-//                String threadName = identifierCheck(currentLine, 0).getStringValue();
-//                String entityName = identifierCheck(currentLine, 1).getStringValue();
-//                
-//                System.out.println(threadName);
-//                System.out.println(entityName);
-//                //Give the thread at threadName 
-//                Thread t = threadManager.getThreadAtName(threadName);
-//                
-//                //Set the entity of Thread t to the entity at entityName
-//                t.setScriptable(EntityGroup.active.get(entityName));
-//                
-//                break;
-//                
+            case 23:
+                String threadName = identifierCheck(currentLine, 0).getStringValue();
+                String entityName = identifierCheck(currentLine, 1).getStringValue();
+
+                System.out.println("THREAD IS" + threadName);
+                //Give the thread at threadName
+                //The threadManager will be whatever is currently it.
+                Thread t = VoyageQuest.battleThreadManager.getThreadAtName(threadName);
+
+                //Set the entity of Thread t to the entity at entityName
+                t.setScriptable(BattleField.entityInstances.get(entityName));
+
+                break;
+
 //            //getLinkedEntityID --> var
 //            case 24:
 //                String linkedEntityID = ((Entity)currentScriptable).getId();
@@ -1097,7 +1097,7 @@ public class ScriptReader
                 int xLoc = (int)identifierCheck(currentLine, 1).getDoubleValue();
                 int yLoc = (int)identifierCheck(currentLine, 2).getDoubleValue();
                 String enemyInstanceName = identifierCheck(currentLine, 3).getStringValue();
-                String threadName = identifierCheck(currentLine, 4).getStringValue();
+                String enemyThreadName = identifierCheck(currentLine, 4).getStringValue();
 
                 System.out.println(xLoc + " " + yLoc);
                 Enemy newEnemy = EntityManager.spawnEnemy(enemyID, xLoc, yLoc);
@@ -1105,14 +1105,11 @@ public class ScriptReader
                 //Now we have to create the thread
                 Thread enemyThread = new Thread(newEnemy.mainScriptID);
                 enemyThread.setLineNumber(0);
-                enemyThread.setName(threadName);
-
-                System.out.println(threadName + " IS DA NAAME!!");
-
+                enemyThread.setName(enemyThreadName);
                 enemyThread.setScriptable(newEnemy);
 
                 newEnemy.setMainThread(enemyThread);
-                newEnemy.associatedThreadInstances.add(threadName);
+                newEnemy.associatedThreadInstances.add(enemyThreadName);
 
                 //Add thread
                 VoyageQuest.battleThreadManager.addThread(enemyThread);
@@ -1172,6 +1169,19 @@ public class ScriptReader
                 currentThread.setVariable(yVariable, new Parameter(scriptableYLoc));
 
                 break;
+
+            //fireWeapon weaponID
+            case 195:
+                String weaponID = identifierCheck(currentLine, 0).getStringValue();
+                System.out.println("weapon is " + weaponID);
+                WeaponManager.fireWeapon(weaponID, currentScriptable);
+                break;
+
+            case 9001:
+                System.out.println(((BattleEntity)currentThread.getScriptable()).r.x);
+
+                break;
+
         }
         
         

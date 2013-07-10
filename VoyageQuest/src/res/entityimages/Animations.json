@@ -193,5 +193,17 @@
             "images" : [ "bluedot","bluedot","bluedot","bluedot","bluedot","bluedot","bluedot","bluedot"],
             "duration" : 5000
         }
+		
+		,
+        {
+            "name" : "Deer Left",
+            "packedSheetID" : "deerleft",
+            "id" : "deerleft",
+            "images" : [ "deerleft1","deerleft2","deerleft3","deerleft4"],
+            "duration" : 5000
+        }
+		
+		
+		
     ]
 }

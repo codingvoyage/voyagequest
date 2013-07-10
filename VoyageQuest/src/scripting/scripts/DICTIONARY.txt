@@ -56,10 +56,6 @@ callthreadfunction 21
 -- getThreadID var
 getThreadID 22
 
--- Sets this Thread's "ourEntity" to the entity marked by entityID
--- bindthreadtomarionette ourID ENTITYID
-bindthreadtomarionette 23
-
 -- getLinkedEntityID --> var
 getLinkedEntityID 24
 
@@ -269,3 +265,11 @@ getLocation 190
 -- setRotation newRotation (Thread's currently affliated Scriptable)
 -- both IN DEGREES
 setRotation 50
+
+
+-- Sets this Thread's "ourEntity" to the entity marked by entityID
+-- setThreadScriptable threadID ENTITYID
+setThreadScriptable 23
+
+
+test 9001

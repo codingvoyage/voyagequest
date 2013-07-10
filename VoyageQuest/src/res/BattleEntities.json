@@ -50,6 +50,37 @@
             "attack" : 100
         },
         {
+            "name" : "Deer",
+            "battleEntityID" : "basicdeer",
+            "description" : "A deer possessed by the powers of evil",
+
+            "width" : 128,
+            "height" : 128,
+            "velocityX" : 0.05,
+            "velocityY" : 0.05,
+			
+            "mainScriptID" : "BASICDEER",
+
+            "collisionX" : 8,
+            "collisionY" : 8,
+            "collisionWidth" : 119,
+            "collisionHeight" : 119,
+
+            "animations" : ["Deer Left"],
+            "startingAnimationName" : "Deer Left",
+
+            "hp" : 1000,
+            "defense" : 50,
+            "attack" : 100
+        },
+		
+		
+		
+		
+		
+		
+		
+        {
             "name" : "Wave Bullet",
             "battleEntityID" : "Wavebullet",
             "description" : "A magic wave bullet",

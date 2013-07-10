@@ -46,6 +46,11 @@
              "streamXMLPackedSheetID" : "oldimages",
              "imageFile" : "res/entityimages/voyageshooterimages.png",
              "xmlFileLocation" : "res/entityimages/voyageshooterimages.xml"
+		},
+		{
+             "streamXMLPackedSheetID" : "deerleft",
+             "imageFile" : "res/entityimages/deerleft.png",
+             "xmlFileLocation" : "res/entityimages/deer.xml"
 		}
     ]
 }

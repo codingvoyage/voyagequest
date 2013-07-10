@@ -3,83 +3,15 @@ fadein
 wait 1000
 
 
-spawnEnemy "Anika" 480 -100 "anika" "anikathread"
+-- spawnEnemy "Anika" 480 -100 "anika" "anikathread"
+
+spawnEnemy "basicdeer" 480 150 "deer" "deerthread"
 
 wait 5000
 
 dialogBox "Sebastian Profile" "OH GOD WHY"
 
-wait 5000000
-endthread
-
-var startAngle 0
-var distanceAway 50
-var bulletVelocity 5.0
-var totaltospawn 5000
-var continueshooting true
-
-
-while continueshooting == true
-
-    -- shoot the 6 bullets
-    for i = 0 and i < 360
-        eval startAngle + i --> thisBulletAngle
-
-        -- Find the center of the enemy
-        -- getLocation --> enemyX enemyY
-        -- eval enemyX + 32 --> enemyCenterX
-        -- eval enemyY + 64 --> enemyCenterY
-
-        -- Calculate the displacement of this bullet
-        toradian thisBulletAngle --> angleInRad
-        cos angleInRad --> cosVal
-        sin angleInRad --> sinVal
-        eval cosVal * distanceAway --> distanceOffsetX
-        eval sinVal * distanceAway --> distanceOffsetY
-
-        var enemyCenterX 500
-        var enemyCenterY 300
-
-        -- Get this bullet's x and y coordinates
-        eval enemyCenterX + distanceOffsetX --> bulletX
-        eval enemyCenterY + distanceOffsetY --> bulletY
-
-        -- The bullet's rotation when spawned is negative
-        -- the angle we have, because Slick rotates the other freaking way
-        eval thisBulletAngle * -1 --> thisBulletAngle
-
-        -- Subtract a further 90 degrees to make up for the fact that
-        -- our bullets face down, not right.
-        eval thisBulletAngle + 0 --> thisBulletAngle
-
-        -- We still need the bullet's velocity!
-        eval cosVal * bulletVelocity --> bulletVx
-        eval sinVal * bulletVelocity --> bulletVy
-
-        -- Now spawn the bullet and cross our fingers
-        spawnProjectile "Bullet" bulletX bulletY bulletVx bulletVy thisBulletAngle "UNFRIENDLY"
-        eval totaltospawn - 1 --> totaltospawn
-
-    next i + 30 --> i
-
-    wait 30
-    eval startAngle + 6 --> startAngle
-
-    if totaltospawn <= 0
-        var continueshooting false
-    endif
-wend
-
-endbattle
-endthread
-
-
-wait 1000
-
--- spawnProjectile projectileID x y vx vy rotation allegiance
--- spawnProjectile "Bullet" 400 600 0.0 -0.5 20 "FRIENDLY"
-wait 500000
-
+wait 50000
 endbattle
 endthread
 

@@ -3,8 +3,8 @@
 
     "loadWeapons": [
         {
-            "weaponID" : "FUNNY BEAR",
-            "weaponScript" : "An odd bear wearing a hat attacks you!",
+            "weaponID" : "Danmaku",
+            "weaponScript" : "Danmaku Script",
             "weaponAttack" : 5
         }
     ]

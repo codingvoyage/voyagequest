@@ -60,8 +60,13 @@ public class Thread {
     public Thread(String scriptID)
     {
         markedForDeletion = false;
-        
+
         setScriptID(scriptID);
+
+        //This line is long-overdue...
+        //Of course for most contexts we need to start with the first command!
+        setLineNumber(0);
+
         baseScriptID = scriptID;
         
         memoryBox = new HashMap<String, Parameter>();

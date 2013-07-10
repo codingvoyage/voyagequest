@@ -2,6 +2,7 @@ package voyagequest;
 
 import battle.BattleField;
 import battle.EntityManager;
+import battle.WeaponManager;
 import gui.GuiManager;
 import gui.VoyageGuiException;
 import gui.special.DialogBox;
@@ -95,6 +96,9 @@ public class VoyageQuest extends BasicGame {
 
         //Initialize all Itemdata
         ItemManager.init();
+
+        //Initialize all the weapon data
+        WeaponManager.init();
 
         // Load all the scripts
         loadScripts();

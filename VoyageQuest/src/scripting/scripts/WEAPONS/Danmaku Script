@@ -1,21 +1,3 @@
--- there is something wrong with the BattleField system
--- I will sort this out later.
--- setRotation -2535
-
-setVelocity 0 1.0
-movePixelAmount 200
-wait 2000
-fireWeapon "Danmaku"
-wait 8000
-setAnimation "Njeri Backwards"
-setVelocity 0 -0.05
-movePixelAmount 500
-
-
-endthread
-
-
-
 var startAngle 0
 var distanceAway 50
 var bulletVelocity 5.0
@@ -24,9 +6,6 @@ var continueshooting true
 
 
 while continueshooting == true
-
-
-    fireWeapon "Danmaku"
 
     -- shoot the 6 bullets
     for i = 0 and i < 360
@@ -76,13 +55,6 @@ while continueshooting == true
         var continueshooting false
     endif
 wend
-
-
-
-
-setAnimation "Njeri Backwards"
-setVelocity 0 -0.05
-movePixelAmount 500
 
 
 endthread
