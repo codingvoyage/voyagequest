@@ -51,6 +51,11 @@
              "streamXMLPackedSheetID" : "deer",
              "imageFile" : "res/entityimages/deer.png",
              "xmlFileLocation" : "res/entityimages/deer.xml"
+		},
+		{
+             "streamXMLPackedSheetID" : "swallow",
+             "imageFile" : "res/entityimages/swallow.png",
+             "xmlFileLocation" : "res/entityimages/swallow.xml"
 		}
     ]
 }

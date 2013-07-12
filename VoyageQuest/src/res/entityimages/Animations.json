@@ -205,8 +205,22 @@
         {
             "name" : "Deer Right",
             "packedSheetID" : "deer",
-            "id" : "deerleft",
+            "id" : "deerright",
             "images" : [ "deerright1","deerright2","deerright3","deerright4"],
+            "duration" : 50
+        },
+        {
+            "name" : "Swallow Left",
+            "packedSheetID" : "swallow",
+            "id" : "swallowleft",
+            "images" : [ "swallowleft1","swallowleft2","swallowleft3","swallowleft4"],
+            "duration" : 50
+        },
+        {
+            "name" : "Swallow Right",
+            "packedSheetID" : "swallow",
+            "id" : "swallowright",
+            "images" : [ "swallowright1","swallowright2","swallowright3","swallowright4"],
             "duration" : 50
         }
 
