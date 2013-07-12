@@ -6,6 +6,11 @@
             "weaponID" : "Danmaku",
             "weaponScript" : "Danmaku Script",
             "weaponAttack" : 5
+        },
+        {
+            "weaponID" : "Egg Bomb",
+            "weaponScript" : "Egg Bomb Script",
+            "weaponAttack" : 5
         }
     ]
 }

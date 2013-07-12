@@ -119,4 +119,8 @@ public class BattleEntity extends Entity {
 
     }
 
+    public DoubleRect getRect()
+    {
+        return getCollRect();
+    }
 }

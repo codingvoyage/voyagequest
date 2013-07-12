@@ -192,6 +192,13 @@
             "id" : "normalbullet",
             "images" : [ "bluedot","bluedot","bluedot","bluedot","bluedot","bluedot","bluedot","bluedot"],
             "duration" : 5000
+        },
+        {
+            "name" : "Egg Bullet",
+            "packedSheetID" : "oldimages",
+            "id" : "eggbullet",
+            "images" : [ "egg","egg","egg","egg","egg","egg","egg","egg"],
+            "duration" : 5000
         }
 		
 		,

@@ -1,0 +1,48 @@
+wait 500
+
+var screenWidth 1024
+var screenHeight 768
+var deerWidth 128
+
+-- Randomly choose for the velocity to be left or right
+rand 0 10 --> rand
+if rand >= 5
+    var xVelocity 0.4
+endif
+if rand < 5
+    var xVelocity -0.4
+endif
+
+while true == true
+    callthreadfunction "swallowthread" [getCurrentState] --> currentState
+
+    -- ======================
+    -- Move back and forth
+    -- ======================
+    if currentState == 0
+
+        getLocation --> locX locY
+        -- Moving left
+        if xVelocity < 0
+            eval locX - 25 --> newDistance
+            setAnimation "Swallow Left"
+        endif
+        -- Moving right
+        if xVelocity > 0
+            eval [ screenWidth - 128 ] - locX --> newDistance
+            setAnimation "Swallow Right"
+        endif
+
+        -- Now move
+        setVelocity xVelocity 0
+        movePixelAmount newDistance
+
+        -- Now flip the velocity
+        eval xVelocity * -1 --> xVelocity
+
+    endif
+
+    wait 50
+wend
+
+endthread

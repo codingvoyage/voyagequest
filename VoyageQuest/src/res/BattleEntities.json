@@ -73,7 +73,30 @@
             "defense" : 50,
             "attack" : 100
         },
-		
+        {
+            "name" : "Swallow",
+            "battleEntityID" : "basicswallow",
+            "description" : "An irate swallow.",
+
+            "width" : 128,
+            "height" : 128,
+            "velocityX" : 0.05,
+            "velocityY" : 0.05,
+
+            "mainScriptID" : "BASICSWALLOW",
+
+            "collisionX" : 42,
+            "collisionY" : 42,
+            "collisionWidth" : 42,
+            "collisionHeight" : 42,
+
+            "animations" : ["Swallow Left", "Swallow Right"],
+            "startingAnimationName" : "Swallow Left",
+
+            "hp" : 1000,
+            "defense" : 50,
+            "attack" : 100
+        },
 		
 		
 		
@@ -87,9 +110,6 @@
 
             "width" : 64,
             "height" : 64,
-            "velocityX" : 0.1,
-            "velocityY" : 0.1,
-
             "collisionX" : 5,
             "collisionY" : 5,
             "collisionWidth" : 59,
@@ -121,6 +141,24 @@
              "startingAnimationName" : "Normal Bullet",
 
              "contactDamage" : 5
+        },
+        {
+             "name" : "Egg Bullet",
+             "battleEntityID" : "Eggbomb",
+             "description" : "An explosive egg.",
+
+             "width" : 30,
+             "height" : 35,
+             "collisionX" : 5,
+             "collisionY" : 5,
+             "collisionWidth" : 20,
+             "collisionHeight" : 25,
+
+             "animations" : ["Egg Bullet"],
+             "explosionAnimation" : "Blast Animation",
+             "startingAnimationName" : "Egg Bullet",
+
+             "contactDamage" : 150
         }
     ]
 }

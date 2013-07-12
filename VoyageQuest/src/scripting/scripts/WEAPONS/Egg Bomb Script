@@ -1,0 +1,10 @@
+-- Simply fires an egg bomb
+
+getLocation --> x y
+
+-- We're going to assume it falls...
+var bulletVelocity 5.0
+
+spawnProjectile "Eggbomb" x y 0 bulletVelocity 0 "UNFRIENDLY"
+
+endthread

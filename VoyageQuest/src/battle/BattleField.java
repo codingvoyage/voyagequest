@@ -76,7 +76,11 @@ public class BattleField {
                 new DoubleRect(0, 0, VoyageQuest.X_RESOLUTION, VoyageQuest.Y_RESOLUTION));
         for (BattleEntity b : entList)
         {
-            g.drawRect((float) b.r.x, (float) b.r.y, (float) b.r.getWidth(), (float) b.r.getHeight());
+            DoubleRect collRect = b.getCollRect();
+            g.drawRect((float) collRect.x,
+                       (float) collRect.y,
+                       (float) collRect.getWidth(),
+                       (float) collRect.getHeight());
         }
     }
 

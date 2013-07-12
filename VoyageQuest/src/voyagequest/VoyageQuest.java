@@ -233,6 +233,7 @@ public class VoyageQuest extends BasicGame {
 
                 //This might be good to know
                 Util.WHITE_FONT.drawString(10, 30, "Instances: " + BattleField.getInstanceCount());
+                Util.WHITE_FONT.drawString(10, 50, "Player HP: " + BattleField.player.health);
 
                 break;
             default:

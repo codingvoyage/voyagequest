@@ -1,0 +1,11 @@
+-- The swallow just fires a weapon called "basic egg bomb" at random times.
+-- It chooses a random time until the next time it poops out a bullet.
+
+while true == true
+    rand 200 2000 --> delayMillis
+    wait delayMillis
+    fireWeapon "Egg Bomb"
+wend
+
+
+endthread
