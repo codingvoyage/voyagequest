@@ -257,6 +257,7 @@ changeAnimationDirection 181
 -- getLocation instanceID --> x y
 getLocation 190
 -- setLocation instanceID x y
+setLocation 191
 -- existsInstance instanceID --> variable
 -- existsThread threadID --> variable
 

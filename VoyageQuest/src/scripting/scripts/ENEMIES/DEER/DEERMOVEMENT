@@ -4,6 +4,9 @@ var screenWidth 1024
 var screenHeight 768
 var deerWidth 128
 var velocity 0.4
+var rushVelocity 1.0
+var dashState 0
+var chargeCount 0
 
 while true == true
 
@@ -13,6 +16,9 @@ while true == true
     -- Wandering sequence
     -- ======================
     if currentState == 0
+        -- We can reset the dashState and chargeCount now
+        var dashState 0
+        var chargeCount 0
 
         -- Select a distance to move in
         rand 100 200 --> chosenDistance
@@ -56,13 +62,109 @@ while true == true
 
     endif
 
-    -- wait 50
+
+    -- ======================
+    -- Rushing off the screen
+    -- ======================
+    if [ currentState == 1 ] && [ dashState != 1 ]
+        print "THAT'S RIGHT, LET'S DASH"
+
+        -- Pause for a moment for dramatic effect
+        wait 1200
+
+        -- It edges towards the player as it rushes of the screen
+        var yVelocity 0.2
+
+        -- Randomly choose for the velocity to be left or right
+        rand 0 10 --> rand
+        if rand >= 5
+            eval rushVelocity * -1 --> xVelocity
+            var target -80
+        endif
+        if rand < 5
+            var xVelocity rushVelocity
+            eval screenWidth + 80 --> target
+        endif
+
+        -- Also calculate how long should the deer move
+        getLocation --> deerX deerY
+        eval [ target - deerX ] / xVelocity --> t
+        eval t * xVelocity --> chosenDistance
+        if chosenDistance < 0
+            eval chosenDistance * -1 --> chosenDistance
+        endif
+
+        -- Move that distance now
+        if xVelocity < 0
+            setAnimation "Deer Left"
+        endif
+        if xVelocity > 0
+            setAnimation "Deer Right"
+        endif
+        setVelocity xVelocity yVelocity
+        movePixelAmount 1200
+        -- movePixelAmount chosenDistance
+
+        print "WE'RE DONE DASHING"
+        var dashState 1
+
+    endif
+
+
+    -- ======================
+    -- CHARGE!!!
+    -- ======================
+    if currentState == 2
+
+        print "PERFORMING CHARGE NOW"
+
+        -- Choose a Y location that's where the player can move
+        eval 0.5 * screenHeight --> lower
+        eval screenHeight - deerWidth --> upper
+        rand lower upper --> chosenYLoc
+        print chosenYLoc + " is the Y Loc"
+
+        -- If velocity is negative, then we're charging from the right
+        -- If velocity is positive then we're charging from the left
+        rand 0 10 --> rand
+
+        if rand >= 5
+            eval rushVelocity * -1 --> xVelocity
+            eval screenWidth + 80 --> chosenXLoc
+            setAnimation "Deer Left"
+        endif
+        if rand < 5
+            var xVelocity rushVelocity
+            var chosenXLoc -80
+            setAnimation "Deer Right"
+        endif
+
+        print chosenXLoc + " is the Y Loc"
+
+        -- CHARGE!!
+        print "we are charging now"
+        setLocation chosenXLoc chosenYLoc
+        setVelocity xVelocity 0
+        movePixelAmount 1300
+
+        eval chargeCount + 1 --> chargeCount
+
+        -- Pause for a bit before charging again
+        wait 800
+
+    endif
+
+    wait 50
 wend
 
 setVelocity 0 1.0
 movePixelAmount 50
 
 
-
-
 endthread
+
+function [isDashComplete]
+return dashState
+
+function [getChargeCount]
+return chargeCount

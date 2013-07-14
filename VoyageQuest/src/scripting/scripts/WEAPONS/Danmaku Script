@@ -48,7 +48,7 @@ while continueshooting == true
 
     next i + 40 --> i
 
-    wait 800
+    wait 80
     eval startAngle + 6 --> startAngle
 
     if totaltospawn <= 0

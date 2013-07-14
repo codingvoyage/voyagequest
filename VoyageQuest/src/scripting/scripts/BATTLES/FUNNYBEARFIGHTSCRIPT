@@ -1,7 +1,7 @@
 fadein
 
 wait 1000
--- spawnEnemy "Anika" 480 -100 "anika" "anikathread"
+spawnEnemy "Anika" 480 -100 "anika" "anikathread"
 spawnEnemy "basicdeer" 480 150 "deer" "deerthread"
 
 spawnEnemy "basicswallow" 480 150 "swallow" "swallowthread"
@@ -10,7 +10,7 @@ wait 5000
 
 -- dialogBox "Sebastian Profile" "OH GOD WHY"
 
+-- wait 10000
 wait 50000
 endbattle
 endthread
-

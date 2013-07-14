@@ -1,3 +1,7 @@
+var screenWidth 1024
+var screenHeight 768
+var deerWidth 128
+
 -- Set up the movement thread
 newThread "DEERMOVEMENT" "movementOfDeer"
 wait 20
@@ -6,7 +10,7 @@ setThreadScriptable "movementOfDeer" "deer"
 -- The current state when starting is the wander state.
 var state 0
 
-fireWeapon "Danmaku"
+-- fireWeapon "Danmaku"
 
 -- The basic deer enemy will cycle between these states
 while true == true
@@ -14,20 +18,41 @@ while true == true
     -- Back to wandering around.
     var state 0
 
+
     -- We just stay in wander state for a set amount of time
     wait 6000
+
+    print "SHOULD DASH OFFSCREEN NOW!!"
 
     -- Switch to state 1, a quick dash offscreen.
     -- State 1 ends when the deer has successfully dashed offscreen,
     -- so we wait until that has happened
+    var state 1
 
     -- Then, we pause just a bit.
-    wait 1000
+    wait 5000
 
+    print "CHARGE STATE BEGINS"
 
-    -- State 2 ends when the deer has made the specified number of charges
+    -- State 2 begins. CHARGE!!
+    var state 2
 
+    -- ends when the deer has made the specified number of charges
+    label [dashDone]
+    callthreadfunction "movementOfDeer" [getChargeCount] --> chargeNumber
+    wait 50
+    if chargeNumber < 6
+        goto [dashDone]
+    endif
 
+    -- Then, we pause just a bit.
+    wait 2000
+
+    -- Teleport the deer back...
+    rand 0 320 --> yLoc
+    eval screenWidth - deerWidth --> xRange
+    rand 0 xRange --> xLoc
+    setLocation xLoc yLoc
 
 wend
 

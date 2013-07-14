@@ -1170,6 +1170,14 @@ public class ScriptReader
 
                 break;
 
+            //setLocation instanceID x y
+            //setLocation x y... I'll do the second one first, too
+            case 191:
+                double newXLoc = identifierCheck(currentLine, 0).getDoubleValue();
+                double newYLoc = identifierCheck(currentLine, 1).getDoubleValue();
+                ((Entity)currentScriptable).place(newXLoc, newYLoc);
+                break;
+
             //fireWeapon weaponID
             case 195:
                 String weaponID = identifierCheck(currentLine, 0).getStringValue();
@@ -1439,12 +1447,12 @@ public class ScriptReader
         //Get the Thread object which threadname refers to
         //String threadName = currentLine.getStringParameter(0);
         String threadName = identifierCheck(currentLine, 0).getStringValue();
-        
+
         Thread jumpedThread = threadManager.getThreadAtName(threadName);
-    
+
         HashMap<String, Parameter> jumpedBox = jumpedThread.getMemoryBox();
-        
-        
+
+
         //Basically, extracting the label [act]
         String labelName = currentLine.getStringParameter(1);
         
@@ -1452,7 +1460,7 @@ public class ScriptReader
         //Thread --> what is its first script ID number?
         //Go find that Script object at the scriptID
         //Get the label index
-       String threadScriptID = jumpedThread.baseScriptID;
+        String threadScriptID = jumpedThread.baseScriptID;
         //System.out.println(threadScriptID + " is the ID of the thread I'm jumping TO");
         
         Script jumpedScript = scr.getScriptAtID(threadScriptID);
