@@ -10,10 +10,6 @@ import voyagequest.VoyageQuest;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-//
-//import spaceinvaders.entity.*;
-
-
 /**
  *
  * @author Edmund
@@ -50,11 +46,6 @@ public class ScriptReader
     {
         threadManager = threadManagerHandle;
     }
-    
-//    public void setEntityHandle(EntityGroup entities)
-//    {
-//        this.entities = entities;
-//    }
     
     public void act(Thread t, double deltaTime)
     {
@@ -263,20 +254,7 @@ public class ScriptReader
                 //            + "of the current thread we're on... which is " + currentThread.getName());
                 //We'll leave this out for now...
                 break;
-                
-//            case 4:
-//                SpaceInvaders.enableKeyboard = false;
-//                break;
-//                
-//            case 5:
-//                SpaceInvaders.enableKeyboard = true;
-//                break;
-                
-            case 6:
-                scr.loadScript(identifierCheck(currentLine, 0).getStringValue(),
-                        (int)identifierCheck(currentLine, 1).getDoubleValue());
-                break;
-                
+
             case 7: //new Thread
                 //newThread scriptID 
                 createNewThread(currentLine);
@@ -502,38 +480,6 @@ public class ScriptReader
             case 31:
                 evaluate(currentLine);
                 break;
-//                
-//                //What line to display, and do we display the character image?
-//                //ASSUME TRUE if no second parameter
-//            case 35:
-//                SpaceInvaders.textManager.isDisplaying = true;
-//                
-//                if (currentLine.getParameterCount() == 1)
-//                {
-//                    //True
-//                    SpaceInvaders.textManager.display(identifierCheck(currentLine, 0).getStringValue(),
-//                        true);
-//                }
-//                else 
-//                {
-//                    //There are multiple Parameters, so hmm...
-//                    //True or flase.
-//                    SpaceInvaders.textManager.display(identifierCheck(currentLine, 0).getStringValue(),
-//                        identifierCheck(currentLine, 1).getBooleanValue());
-//                }
-//                
-//                
-//                break;
-//                
-//            case 36:
-//                currentThread.setVariable(currentLine.getStringParameter(0),
-//                        new Parameter(SpaceInvaders.textManager.isDisplaying));
-//                break;
-//                
-//            case 37:
-//                SpaceInvaders.textManager.isDisplaying = false;
-//                
-//                break;
                 
             //The manipulation of the locations of Displayables goes here
             case 50:
@@ -557,127 +503,6 @@ public class ScriptReader
 
                 break;
 
-//            case 51:
-//                //Moving
-//                System.out.println("Starting to walk....");
-//                double pixelsToWalk = identifierCheck(currentLine, 0).getDoubleValue();
-//                ((MovableEntity)currentScriptable).beginMove(pixelsToWalk,
-//                        currentThread);
-//                continueExecuting = false;
-//                break;
-//                
-//            case 52:
-//                //SPAWN
-//                //Spawn entityType theNameWeGiveIT optionalx optionaly
-//                String entityTypeName = currentLine.getStringParameter(0);
-//                String nameID = identifierCheck(currentLine, 1).getStringValue();
-//                int xLoc = (int)identifierCheck(currentLine, 2).getDoubleValue();
-//                int yLoc = (int)identifierCheck(currentLine, 3).getDoubleValue();
-//                Entity spawnedEntity = entities.spawn(entityTypeName, nameID, xLoc, yLoc);
-//                
-//                //Now, load the thread
-//                String mainScriptID = spawnedEntity.getMainScriptID();
-//                System.out.println("we now create a thread from script ID # " + mainScriptID);
-//                
-//                //I'm just going to name the Thread the same as the Entity
-//                Thread spawnedEntityThread = this.createNewThread(mainScriptID, nameID);
-//                
-//                //Now the entity must know the thread, and vice versa
-//                spawnedEntity.setMainThread(spawnedEntityThread);
-//                spawnedEntityThread.setScriptable(spawnedEntity);
-//                
-//                //Add thread to collection
-//                threadManager.addThread(spawnedEntityThread);
-//                
-//                
-//                break;
-//                
-//            case 53:
-//                //ORBIT
-//                double angle = currentLine.getDoubleParameter(0);
-//                double radius = currentLine.getDoubleParameter(1);
-//                //0 is CW, else CCW6
-//                double direction = currentLine.getDoubleParameter(2);
-//                    ((MovableEntity)currentScriptable).beginOrbit(90, radius, 0,
-//                            EntityGroup.getPlayer(), currentThread);
-//                    
-//                continueExecuting = false;
-//                
-//                break;
-//                
-//                
-//            case 55:
-//                double newx = identifierCheck(currentLine, 0).getDoubleValue();
-//                double newy = identifierCheck(currentLine, 1).getDoubleValue();
-//                ((Entity)currentScriptable).place((float)newx, (float)newy);
-//                break;
-//                
-//            case 56:
-//                //rotate dat
-//                double rotationAngle = identifierCheck(currentLine, 0).getDoubleValue();
-//                ((Entity)currentScriptable).rotate((int)rotationAngle);
-//                break;
-//                
-//            //fires
-//            case 57:
-//                int numberOfParameters = currentLine.getParameterCount();
-//                
-//                //Fire straight ahead
-//                if (numberOfParameters == 0)
-//                {
-//                    ((Enemy)currentScriptable).fire();
-//                }
-//                
-//                //Fire at the angle, but an angle and distance away
-//                if (numberOfParameters == 2)
-//                {
-//                    
-//                    ((Enemy)currentScriptable).fire(
-//                            (float)identifierCheck(currentLine, 0).getDoubleValue(),
-//                            identifierCheck(currentLine, 1).getDoubleValue()
-//                            );
-//                }
-//                
-//                
-//                break;
-//                
-//                
-//            case 58:
-//                //Faces the player
-//                ((Entity)currentScriptable).setRotation(SpaceInvaders.player);
-//                break;
-//                
-//            case 59:
-//                //Faces a point
-//                ((Entity)currentScriptable).setRotation(
-//                        (int)identifierCheck(currentLine, 0).getDoubleValue(),
-//                        (int)identifierCheck(currentLine, 1).getDoubleValue());
-//                break;
-//                
-//            case 60:
-//                //new velocity
-//                double newvx = currentLine.getDoubleParameter(0);
-//                ((MovableEntity)currentScriptable).setVelocity(newvx);
-//                break;
-//                
-//                //get Entity X
-//            case 61:
-//                currentThread.setVariable( currentLine.getStringParameter(0)
-//                        , new Parameter((double)((Entity)currentScriptable).getX()));
-//                break;
-//                
-//                //get Entity Y
-//            case 62:
-//                currentThread.setVariable( currentLine.getStringParameter(0)
-//                        , new Parameter((double)((Entity)currentScriptable).getY()));
-//                break;
-//                
-//                //get Entity rotation NOT IN RADIANS
-//            case 63:
-//                currentThread.setVariable( currentLine.getStringParameter(0)
-//                        , new Parameter((double)((Entity)currentScriptable).getRotation()));
-//                break;
-//                
 //                //getEntityHP "entityname" --> hpvariable
 //            case 64:
 //                int hp = ((Defender)EntityGroup.active.get(identifierCheck(currentLine, 0).getStringValue())).getHp();
@@ -685,25 +510,7 @@ public class ScriptReader
 //                        new Parameter(hp));
 //                
 //                break;
-//                //SPAWNS A BULLET
-//                
-//            case 65:
-//                // spawnbullet xLoc yLoc myAngle
-//                Weapon w = ((Attacker)currentScriptable).getWeapon().fire(
-//                        (float)identifierCheck(currentLine, 0).getDoubleValue(), 
-//                        (float)identifierCheck(currentLine, 1).getDoubleValue(),
-//                        (float)identifierCheck(currentLine, 2).getDoubleValue());
-//                break;
-//                
-//            case 66:
-//                //spawnbulletatvelocity xLoc yLoc myAngle customVelocity
-//                Weapon velW = ((Attacker)currentScriptable).getWeapon().fireAtVelocity(
-//                        (float)identifierCheck(currentLine, 0).getDoubleValue(), 
-//                        (float)identifierCheck(currentLine, 1).getDoubleValue(),
-//                        (float)identifierCheck(currentLine, 2).getDoubleValue(),
-//                        (float)identifierCheck(currentLine, 3).getDoubleValue());
-//                break;
-//                
+
 //            case 67: 
 //                //isThereEntity "entityname" --> resultbool
 //                Entity target = EntityGroup.active.get(

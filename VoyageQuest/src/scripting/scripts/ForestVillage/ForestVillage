@@ -1,3 +1,7 @@
 dialogBox "Sebastian Profile" "What is this madness"
 
+wait 5000
+
+startBattle "FUNNY BEAR"
+
 endthread

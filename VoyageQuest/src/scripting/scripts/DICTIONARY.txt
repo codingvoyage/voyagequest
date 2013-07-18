@@ -2,174 +2,113 @@
 -- Scripting Engine breaks. The Scripting Engine uses this
 -- to map commands to opCodes.
 
--- From 0-9 will be very system-like things
+-- ------------------------------------
+-- Commenting
+-- -----------------------------------
+-- Two dashes and a space indicate a comment
+
+-- ------------------------------------
+-- Command flow
+-- ------------------------------------
 wait 0
 goto 1
-
 label 2
 branch 2
-
 function 3
+return 25
+if 12
+while 15
+wend 16
+for 17
+next 18
 
-lockKeyboard 4
-disableKeyboard 4
-
-enableKeyboard 5
-allowKeyboard 5
-
-
-load 6
-loadscript 6
-
+-- ------------------------------------
+-- Functions and threads
+-- ------------------------------------
 newthread 7
 killthread 8
 endthread 9
+callfunction 19
+callscriptfunction 20
+-- callthreadFunction "threadname" [act] param1 param2 ... --> returned1 returned2 ...
+callthreadfunction 21
+-- getThreadID var
+getThreadID 22
+-- getLinkedEntityID --> var
+getLinkedEntityID 24
 
--- From 10-19 will have to do with data
+-- ------------------------------------
+-- Variables
+-- ------------------------------------
 createVariable 10
 var 10
-
 -- setvar destination source
 setVariable 11
 setvar 11
 set 11
-
-if 12
--- endif
-
 setThreadVariable 13
 
-while 15
-wend 16
-
-for 17
-next 18
-
-
-callfunction 19
-callscriptfunction 20
-
-
--- callthreadFunction "threadname" [act] param1 param2 ... --> returned1 returned2 ...
-callthreadfunction 21
-
--- getThreadID var
-getThreadID 22
-
--- getLinkedEntityID --> var
-getLinkedEntityID 24
-
-return 25
+-- ------------------------------------
+-- Systems commands
+-- ------------------------------------
 
 print 30
-
-evaluate 31
-eval 31
-
-
-messagebox 35
-text 35
-
-isMessageBoxThere 36
-stillText 36
-
-closemessagebox 37
-endtextbox 37
-endtext 37
-
--- From 50-79 are stuff specific to Entities
-move 51
-
--- Here we go...
-spawn 52
-createEntity 52
-spawnEntity 52
-newEntity 52
-
--- 
-orbit 53
-
-place 55
-put 55
-placeself 55
-newlocation 55
-
-rotate 56
-fire 57
-faceplayer 58
-targetplayer 58
-
--- facepoint xLoc yLoc
-facepoint 59
-
-changevelocity 60
-newvelocity 60
-
--- getEntityX/Y var
-getEntityX 61
-getEntityY 62
-
--- NOT IN RADIANS - DEGREES 
-getEntityAngle 63
-
-
--- getEntityHP "entityname" --> hpvariable
-getEntityHP 64
-
--- spawnbullet xLoc yLoc myAngle
-spawnBullet 65
-spawnBulletAtVelocity 66
-
--- isThereEntity "entityname" --> resultbool
-isThereEntity 67
-
-markfordeletion 68
-
 getSystemMilliTime 80
 getSystemNanoTime 81
 
+-- ------------------------------------
+-- Math operations
+-- ------------------------------------
+
+evaluate 31
+eval 31
 -- rand min max --> var
 random 82
 rand 82
 getrand 82
-
 toradian 83
-
-
 -- sin blah --> var
--- sin 5 + 3 --> 
+-- sin 5 + 3 -->
 sin 85
 cos 86
 tan 87
 sqrt 88
 squareroot 88
 
+-- ---------------------------
 -- Array functionality
-
+-- ---------------------------
 -- newArray arrayName size
 newArray 90
-
 -- getArraySize arrayName --> variable
 getArraySize 91
-
 -- getArray arrayName index --> variable
 getArray 92
-
 -- putArray arrayName index <-- variable
 putArray 93
 
+-- getEntityHP "entityname" --> hpvariable
+getEntityHP 64
+
+-- isThereEntity "entityname" --> resultbool
+isThereEntity 67
+
+markfordeletion 68
+
 -- ---------------------------------------------------
 -- ---------------------------------------------------
--- voyagequest functions start here, from 100.
+-- Voyagequest-specific functions start here
 -- ---------------------------------------------------
 -- ---------------------------------------------------
 
+-- ---------------------------
+-- Control of entities.
+-- ---------------------------
 -- setAnimationDirection 0, 1, 2, 3 for north, south, east, and west-appearing movement
 -- setVelocity vx vy
 -- setVelocityStandard vx/vy 0,1,2,3 will do setAnimationDirection too.
 -- moveTileAmount tile_distance
 -- movePixelAmount distance_in_pixels
-
 setAnimationDirection 100
 setVelocity 101
 setVelocityStandard 102
@@ -178,18 +117,27 @@ movePixelAmount 104
 
 entitySetLocation 107
 
+-- ---------------------------
+-- Global State variables
+-- ---------------------------
 -- existsGlobal "VariableName" --> boolVar
 existsGlobal 120
-
 -- writeGlobal NEW_VALUE --> "VariableName"
 writeGlobal 121
-
 -- getGlobal "VariableName" --> variable
 getGlobal 122
 
+
+-- ---------------------------
+-- Stopping thread execution except for one thing
+-- ---------------------------
 freezeThreads 130
-freezeInputs 131
 unfreezeThreads 133
+
+-- ---------------------------
+-- Stopping thread execution except for one thing
+-- ---------------------------
+freezeInputs 131
 unfreezeInputs 134
 
 -- Basically associates this thread with the player and vice versa. 
