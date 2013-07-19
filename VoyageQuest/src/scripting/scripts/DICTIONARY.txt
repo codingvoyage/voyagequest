@@ -8,125 +8,161 @@
 -- Two dashes and a space indicate a comment
 
 -- ------------------------------------
--- Command flow
+-- Basic Command flow
 -- ------------------------------------
+
+-- wait (milliSeconds)
 wait 0
+
+-- goto [labelName]
 goto 1
+
+-- label/branch [labelName]
 label 2
 branch 2
-function 3
-return 25
-if 12
-while 15
-wend 16
-for 17
-next 18
 
--- ------------------------------------
--- Functions and threads
--- ------------------------------------
-newthread 7
-killthread 8
-endthread 9
-callfunction 19
-callscriptfunction 20
--- callthreadFunction "threadname" [act] param1 param2 ... --> returned1 returned2 ...
-callthreadfunction 21
--- getThreadID var
-getThreadID 22
--- getLinkedEntityID --> var
-getLinkedEntityID 24
+-- function [functionName] param1 param2 ...
+function 3
+
+-- return value1 value2 ...
+return 4
+
+-- if (statement)
+if 5
+
+-- while (statement)
+while 6
+wend 7
+
+-- for (var) = (value/statement) and (booleanStatement)
+--     (statements)
+-- next (statement)
+for 8
+next 9
+
+-- Unlike the Thread alternatives, this is local to the script.
+-- callFunction [act] param1 param2 param3 --> returned1 returned2
+callfunction 10
 
 -- ------------------------------------
 -- Variables
 -- ------------------------------------
-createVariable 10
-var 10
+createVariable 11
+var 11
 -- setvar destination source
-setVariable 11
-setvar 11
-set 11
+setVariable 12
+setvar 12
+set 12
 setThreadVariable 13
 
--- ------------------------------------
--- Systems commands
--- ------------------------------------
+-- ---------------------------
+-- Array functionality
+-- ---------------------------
 
-print 30
-getSystemMilliTime 80
-getSystemNanoTime 81
+-- newArray arrayName size
+newArray 15
+
+-- getArraySize arrayName --> variable
+getArraySize 16
+
+-- getArray arrayName index --> variable
+getArray 17
+
+-- putArray arrayName index <-- variable
+putArray 18
 
 -- ------------------------------------
 -- Math operations
 -- ------------------------------------
 
-evaluate 31
-eval 31
+-- eval (statement) --> variable
+evaluate 20
+eval 20
+
+-- functionName input --> outputVariable
+-- e.g. sin 5 + 3 --> result
+sin 21
+cos 22
+tan 23
+sqrt 24
+squareroot 24
+toradian 25
+
 -- rand min max --> var
-random 82
-rand 82
-getrand 82
-toradian 83
--- sin blah --> var
--- sin 5 + 3 -->
-sin 85
-cos 86
-tan 87
-sqrt 88
-squareroot 88
+random 26
+rand 26
 
--- ---------------------------
--- Array functionality
--- ---------------------------
--- newArray arrayName size
-newArray 90
--- getArraySize arrayName --> variable
-getArraySize 91
--- getArray arrayName index --> variable
-getArray 92
--- putArray arrayName index <-- variable
-putArray 93
+-- ------------------------------------
+-- Threads
+-- ------------------------------------
+newthread 30
+endthread 31
+killthread 32
 
--- getEntityHP "entityname" --> hpvariable
-getEntityHP 64
+--
+callscriptfunction 33
 
--- isThereEntity "entityname" --> resultbool
-isThereEntity 67
+-- it's like calling from a script, but it's a specified library script
+library 33
 
-markfordeletion 68
+-- callthreadFunction "threadname" [act] param1 param2 ... --> returned1 returned2 ...
+callthreadfunction 35
+
+-- getThreadID var
+getThreadID 36
+
+-- ------------------------------------
+-- Systems commands
+-- ------------------------------------
+
+print 45
+getSystemMilliTime 46
+getSystemNanoTime 47
+
 
 -- ---------------------------------------------------
 -- ---------------------------------------------------
--- Voyagequest-specific functions start here
+-- VoyageQuest-specific functions start here
 -- ---------------------------------------------------
 -- ---------------------------------------------------
 
 -- ---------------------------
--- Control of entities.
+-- Control of entities (world and battle)
 -- ---------------------------
--- setAnimationDirection 0, 1, 2, 3 for north, south, east, and west-appearing movement
+
 -- setVelocity vx vy
--- setVelocityStandard vx/vy 0,1,2,3 will do setAnimationDirection too.
--- moveTileAmount tile_distance
--- movePixelAmount distance_in_pixels
-setAnimationDirection 100
 setVelocity 101
-setVelocityStandard 102
-moveTileAmount 103
+
+-- movePixelAmount distance_in_pixels
 movePixelAmount 104
 
 entitySetLocation 107
 
 -- ---------------------------
+-- Control of entities (world only)
+-- ---------------------------
+
+-- moveTileAmount tile_distance
+moveTileAmount 103
+
+-- setVelocityStandard vx/vy 0,1,2,3 will do setAnimationDirection too.
+setVelocityStandard 102
+
+-- setAnimationDirection 0, 1, 2, 3 for north, south, east, and west-appearing movement
+setAnimationDirection 60
+
+-- ---------------------------
 -- Global State variables
 -- ---------------------------
+
 -- existsGlobal "VariableName" --> boolVar
 existsGlobal 120
+
 -- writeGlobal NEW_VALUE --> "VariableName"
 writeGlobal 121
+
 -- getGlobal "VariableName" --> variable
 getGlobal 122
-
 
 -- ---------------------------
 -- Stopping thread execution except for one thing
@@ -146,15 +182,27 @@ assumeControlOfPlayer 136
 -- mapChange NameOfNewMap playernewLocX playernewLocY
 mapChange 145
 
+-- ---------------------------
+-- Control of the camera
+-- ---------------------------
+
 -- freezeCamera ULX ULY
 freezeCamera 146
 unfreezeCamera 147
 
+-- Fades the camera in/out
+fadein 161
+fadeout 162
 
--- General boxes that pop up and say something, nobody in particular
+-- ---------------------------
+-- Different dialog/prompt boxes
+-- ---------------------------
+
+-- General box which pops up, but displays nobody
+-- genericMessageBox (text)
 genericMessageBox 150
 
--- the one with a profile animation
+-- A messagebox with a profile animation
 -- dialogbox animationname text
 dialogBox 151
 
@@ -166,21 +214,29 @@ dialogPrompt 152
 -- genericprompt text options --> result
 genericPrompt 153
 
+-- -----------------------------
+-- Music/sound related functions
+-- -----------------------------
+
+-- some sound effects may be automatic with certain actions
+soundEffect 163
+
+-- music is automatic with maps, so this isn't usually necessary
+playMusic 164
+
+
+
+-- ---------------------------------------------------
+-- ---------------------------------------------------
+-- VoyageQuest Battle-specific functions start here
+-- ---------------------------------------------------
+-- ---------------------------------------------------
+
 -- startBattle battleID
 startBattle 154
 
 -- endbattle
 endbattle 155
-
-fadein 161
-fadeout 162
-
--- some sound effects may be automatic with certain actions
-soundEffect 163
--- music is automatic with maps, so this isn't usually necessary
-playMusic 164
-
--- BATTLE
 
 -- 170 to 175 are for spawning things...
 -- spawnEnemy enemyID x y instanceName threadName OR
@@ -220,4 +276,4 @@ setRotation 50
 
 -- Sets this Thread's "ourEntity" to the entity marked by entityID
 -- setThreadScriptable threadID ENTITYID
-setThreadScriptable 23
+setThreadScriptable 233

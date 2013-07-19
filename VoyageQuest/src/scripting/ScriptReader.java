@@ -3,7 +3,6 @@ package scripting;
 import battle.*;
 import map.Entity;
 import map.Map;
-import voyagequest.GameState;
 import voyagequest.Global;
 import voyagequest.VoyageQuest;
 
@@ -233,10 +232,13 @@ public class ScriptReader
         
         switch (currentLine.getCommandID())
         {
-            //Remember, core functions are from 0-9. 
+            /***********************************************************
+                                BASIC COMMAND FLOW
+             ***********************************************************/
+
             case 0: //wait
-                double thisLong = identifierCheck(currentLine, 0).getDoubleValue();
-                currentThread.beginWait(thisLong);
+                double waitDuration = identifierCheck(currentLine, 0).getDoubleValue();
+                currentThread.beginWait(waitDuration);
                 continueExecuting = false;
                 break;
             case 1: //GOTO, huh?
@@ -244,10 +246,7 @@ public class ScriptReader
                 String theLabel = currentLine.getStringParameter(0);
                 int newLineIndex = currentScript.getLabelIndexOnLineList(theLabel);
                 currentThread.setLineNumber(newLineIndex);
-                
                 justJumped = true;
-                
-                
                 break;
             case 2:
                 //System.out.println(currentThread.getCurrentLine() + " is the current line "
@@ -255,36 +254,14 @@ public class ScriptReader
                 //We'll leave this out for now...
                 break;
 
-            case 7: //new Thread
-                //newThread scriptID 
-                createNewThread(currentLine);
+            //The return statement. Returns the thread
+            //to its previous layer.
+            case 4:
+                returnFromFunction(currentLine);
                 break;
-                
-            //killThread by marking the target thread for deletion.
-            case 8:
-                String targetThread = identifierCheck(currentLine, 0).getStringValue();
-                threadManager.markForDeletion(targetThread);
-                break;
-                
-            //This thread is done
-            case 9:
-                currentThread.markForDeletion();
-                //Ending the thread obviously means that you DON'T go to the next line
-                continueExecuting = false;
-                break;
-               
-            //createVariable identifier (Optional value)
-            case 10:
-                createVariable(currentLine);
-                break;
-                
-            //setVariable identifier newValue
-            case 11:
-                setVariable(currentLine);
-                break;
-               
+
             //if statement
-            case 12:
+            case 5:
                 //Evaluate line
                 Parameter result = evaluateExpression(currentLine,
                         0, currentLine.getParameterCount() - 1);
@@ -304,14 +281,7 @@ public class ScriptReader
                 }
                 break;
                 
-                //setThreadVariable
-            case 13:
-                currentThread.modifyVariable(currentLine.getStringParameter(0), 
-                        identifierCheck(currentLine, 1));
-                break;
-            
-                
-            case 15:
+            case 6:
                 //Evaluate line
                 Parameter whileResult = evaluateExpression(currentLine,
                         0, currentLine.getParameterCount() - 1);
@@ -331,7 +301,7 @@ public class ScriptReader
                 }
                 break;
                 
-            case 16:
+            case 7:
                 //wend
                 int newLine = findEndLimiter(scr.getScriptAtID(currentThread.getScriptID()),
                             "wend", "while", currentThread.getCurrentLine() - 1, -1);
@@ -340,7 +310,7 @@ public class ScriptReader
                 
                 break;
                 
-            case 17:
+            case 8:
                 //for ___ = ___ and BLAHBLAH
                 
                 //First, do the declaration and initialization
@@ -380,7 +350,7 @@ public class ScriptReader
                 
                 break;
                 
-            case 18:
+            case 9:
                 //next blah blah blah --> blah
                 
                 //That's actually it. evaluate it.
@@ -419,68 +389,194 @@ public class ScriptReader
                 
                 break;
                 
-            case 19:
+            case 10:
                 callFunction(currentLine);
                 break;
-                
-            //This is like calling a static function.
+
+            /***********************************************************
+                                 VARIABLE MANIPULATION
+             ***********************************************************/
+
+            //createVariable identifier (Optional value)
+            case 11:
+                createVariable(currentLine);
+                break;
+
+            //setVariable identifier newValue
+            case 12:
+                setVariable(currentLine);
+                break;
+
+            //setThreadVariable
+            case 13:
+                currentThread.modifyVariable(currentLine.getStringParameter(0),
+                        identifierCheck(currentLine, 1));
+                break;
+
+            /***********************************************************
+                                ARRAY MANIPULATION
+             ***********************************************************/
+
+            //newArray arrayName size
+            case 15:
+                String newArrayName = currentLine.getStringParameter(0);
+                int newArraySize = currentLine.getIntegerParameter(1);
+                Parameter newArray = new Parameter(new Object[newArraySize]);
+
+                currentThread.setVariable(newArrayName, newArray);
+                break;
+
+            //getArraySize arrayName --> variable
+            case 16:
+                int arraySize = currentThread.getVariable(currentLine.getStringParameter(0)).
+                        getObjectArrayValue().length;
+
+                currentThread.setVariable(
+                        currentLine.getStringParameter(2),
+                        new Parameter(arraySize));
+                break;
+
+            //getArray arrayName index --> variable
+            case 17:
+                //Gets the Parameter with the name arrayName, and grabs the Object[] from that.
+                Object[] objArray = currentThread.getVariable(currentLine.getStringParameter(0)).getObjectArrayValue();
+
+                //Extract variable Index, get parameter at that.
+                int variableIndex = (int)identifierCheck(currentLine, 1).getDoubleValue();
+                Parameter indexedVariable = (Parameter)objArray[variableIndex];
+
+                //Put in variable.
+                currentThread.setVariable(
+                        currentLine.getStringParameter(3),
+                        indexedVariable);
+                break;
+
+            //putArray arrayName index <-- variable
+            case 18:
+                Parameter newVariable = identifierCheck(currentLine, 3);
+                int newVariableIndex = (int)identifierCheck(currentLine, 1).getDoubleValue();
+                Object[] array = currentThread.getVariable(currentLine.getStringParameter(0)).getObjectArrayValue();
+                array[newVariableIndex] = newVariable;
+                break;
+
+            /***********************************************************
+                                    MATH FUNCTIONS
+             ***********************************************************/
+
+            //Evaluating
             case 20:
+                evaluate(currentLine);
+                break;
+
+            //sin blah --> var
+            //sin 5 + 3 -->
+            case 21:
+                double trigresult;
+
+                int arrowIndex = findCorrespondingBracket(currentLine, "-->", 1, 1);
+                if (arrowIndex == 1)
+                {
+                    trigresult = Math.sin(identifierCheck(currentLine, 0).getDoubleValue());
+                }
+                else
+                {
+                    //Evaluate, then take the sine...
+                    Parameter ourParameter = evaluateExpression(currentLine, 0, arrowIndex - 1);
+                    trigresult = Math.sin(ourParameter.getDoubleValue());
+                }
+
+                currentThread.setVariable(currentLine.getStringParameter(arrowIndex + 1),
+                        new Parameter(trigresult));
+
+                break;
+
+            //cos blah --> var
+            case 22:
+                double triganswer;
+
+                int indexOfArrow = findCorrespondingBracket(currentLine, "-->", 1, 1);
+                if (indexOfArrow == 1)
+                {
+                    triganswer = Math.cos(identifierCheck(currentLine, 0).getDoubleValue());
+                }
+                else
+                {
+                    //Evaluate, then take the sine...
+                    Parameter ourParameter = evaluateExpression(currentLine, 0, indexOfArrow - 1);
+                    triganswer = Math.cos(ourParameter.getDoubleValue());
+                }
+
+                currentThread.setVariable(currentLine.getStringParameter(indexOfArrow + 1),
+                        new Parameter(triganswer));
+
+                break;
+
+            //tan blah --> var
+            case 23:
+                break;
+
+            //sqrt blah --> var
+            case 24:
+                Parameter sqrt = new Parameter(
+                        Math.sqrt(identifierCheck(currentLine, 0).getDoubleValue()));
+                currentThread.setVariable(currentLine.getStringParameter(2),
+                        sqrt);
+                break;
+            case 25:
+                //toradian degree --> identifier
+                currentThread.setVariable(currentLine.getStringParameter(2),
+                        new Parameter(Math.toRadians(identifierCheck(currentLine, 0).getDoubleValue())));
+
+                break;
+            case 26:
+                //rand min max --> number
+                double min = identifierCheck(currentLine, 0).getDoubleValue();
+                double max = identifierCheck(currentLine, 1).getDoubleValue();
+                double randomNumber = min + (int)(Math.random() * ((max - min) + 1));
+                String identifier = currentLine.getStringParameter(3);
+                currentThread.setVariable(identifier,
+                        new Parameter(randomNumber));
+                break;
+
+            case 30: //new Thread
+                //newThread scriptID
+                createNewThread(currentLine);
+                break;
+
+            //This thread is done
+            case 31:
+                currentThread.markForDeletion();
+                //Ending the thread obviously means that you DON'T go to the next line
+                continueExecuting = false;
+                break;
+
+            //killThread by marking the target thread for deletion.
+            case 32:
+                String targetThread = identifierCheck(currentLine, 0).getStringValue();
+                threadManager.markForDeletion(targetThread);
+                break;
+
+            //This is like calling a static function, except from a script
+            case 33:
                 callScriptFunction(currentLine);
+                break;
+
+            // Librarycall is like callScriptFunction, but from a certain Script
+            case 34:
                 break;
                 
             //Case 21 works with calling the function
             //located in another thread.
-            case 21:
+            case 35:
                 callThreadFunction(currentLine);
                 break;
                 
-            case 22:
+            case 36:
                 String idOfThread = currentThread.getName();
                 currentThread.setVariable(currentLine.getStringParameter(0), 
                         new Parameter(idOfThread));
-                
-                break;
-                
-            //binds the thing
-            //bind threadName entityName    
-            
-            case 23:
-                String threadName = identifierCheck(currentLine, 0).getStringValue();
-                String entityName = identifierCheck(currentLine, 1).getStringValue();
-
-                System.out.println("THREAD IS" + threadName);
-                //Give the thread at threadName
-                //The threadManager will be whatever is currently it.
-                Thread t = VoyageQuest.battleThreadManager.getThreadAtName(threadName);
-
-                //Set the entity of Thread t to the entity at entityName
-                t.setScriptable(BattleField.entityInstances.get(entityName));
-
                 break;
 
-//            //getLinkedEntityID --> var
-//            case 24:
-//                String linkedEntityID = ((Entity)currentScriptable).getId();
-//                currentThread.setVariable(currentLine.getStringParameter(1),
-//                        new Parameter(linkedEntityID));
-//                break;
-                
-                
-            //The return statement. Returns the thread
-            //to its previous layer.
-            case 25:
-                returnFromFunction(currentLine);
-                break;
-                
-            //Print a variable, for debugging
-            case 30:
-                print(currentLine);
-                break;
-                
-            case 31:
-                evaluate(currentLine);
-                break;
-                
             //The manipulation of the locations of Displayables goes here
             case 50:
                 //Depends on whether it's THIS Scriptable or another one
@@ -503,153 +599,19 @@ public class ScriptReader
 
                 break;
 
-//                //getEntityHP "entityname" --> hpvariable
-//            case 64:
-//                int hp = ((Defender)EntityGroup.active.get(identifierCheck(currentLine, 0).getStringValue())).getHp();
-//                currentThread.setVariable(currentLine.getStringParameter(2), 
-//                        new Parameter(hp));
-//                
-//                break;
-
-//            case 67: 
-//                //isThereEntity "entityname" --> resultbool
-//                Entity target = EntityGroup.active.get(
-//                        identifierCheck(currentLine, 0).getStringValue());
-//                boolean searchResult = EntityGroup.activeList.contains(target);
-//                currentThread.setVariable(currentLine.getStringParameter(2), new Parameter(searchResult));
-//                
-//                break;
-//                
-//            case 68:
-//                //markfordeletion entityID
-//                String entityToDelete = identifierCheck(currentLine, 0).getStringValue();
-//                EntityGroup.active.get(entityToDelete).markForDeletion();
-//                
-//                break;
-                
-            case 80:
+            //Print a variable, for debugging
+            case 45:
+                print(currentLine);
+                break;
+            case 46:
                 getSystemMilliTime(currentLine);
                 break;
-            case 81:
+            case 47:
                 getSystemNanoTime(currentLine);
-                break;
-            case 82:
-                //rand min max --> number
-                double min = identifierCheck(currentLine, 0).getDoubleValue();
-                double max = identifierCheck(currentLine, 1).getDoubleValue();
-                double randomNumber = min + (int)(Math.random() * ((max - min) + 1));
-                String identifier = currentLine.getStringParameter(3);
-                currentThread.setVariable(identifier,
-                            new Parameter(randomNumber));
-                break;
-                
-                
-            case 83:
-                //toradian degree --> identifier
-                currentThread.setVariable(currentLine.getStringParameter(2),
-                            new Parameter(Math.toRadians(identifierCheck(currentLine, 0).getDoubleValue())));
-                
-                break;
-                
-                
-                //sin blah --> var
-                //sin 5 + 3 --> 
-            case 85:
-                double trigresult;
-                
-                int arrowIndex = findCorrespondingBracket(currentLine, "-->", 1, 1);
-                if (arrowIndex == 1)   
-                {
-                    trigresult = Math.sin(identifierCheck(currentLine, 0).getDoubleValue());
-                }
-                else 
-                {
-                    //Evaluate, then take the sine...
-                    Parameter ourParameter = evaluateExpression(currentLine, 0, arrowIndex - 1);
-                    trigresult = Math.sin(ourParameter.getDoubleValue());
-                }
-                    
-                currentThread.setVariable(currentLine.getStringParameter(arrowIndex + 1),
-                            new Parameter(trigresult));
-                
-                break;
-                //cos blah --> var
-            case 86:
-                double triganswer;
-                
-                int indexOfArrow = findCorrespondingBracket(currentLine, "-->", 1, 1);
-                if (indexOfArrow == 1)   
-                {
-                    triganswer = Math.cos(identifierCheck(currentLine, 0).getDoubleValue());
-                }
-                else 
-                {
-                    //Evaluate, then take the sine...
-                    Parameter ourParameter = evaluateExpression(currentLine, 0, indexOfArrow - 1);
-                    triganswer = Math.cos(ourParameter.getDoubleValue());
-                }
-                    
-                currentThread.setVariable(currentLine.getStringParameter(indexOfArrow + 1),
-                            new Parameter(triganswer));
-                
-                break;
-                //tan blah --> var
-            case 87:
-                break;
-
-            //sqrt blah --> var
-            case 88:
-                Parameter sqrt = new Parameter(
-                        Math.sqrt(identifierCheck(currentLine, 0).getDoubleValue()));
-                currentThread.setVariable(currentLine.getStringParameter(2),
-                            sqrt);
-                break;
-
-
-            //newArray arrayName size
-            case 90:
-                String newArrayName = currentLine.getStringParameter(0);
-                int newArraySize = currentLine.getIntegerParameter(1);
-                Parameter newArray = new Parameter(new Object[newArraySize]);
-
-                currentThread.setVariable(newArrayName, newArray);
-                break;
-
-            //getArraySize arrayName --> variable
-            case 91:
-                int arraySize = currentThread.getVariable(currentLine.getStringParameter(0)).
-                        getObjectArrayValue().length;
-
-                currentThread.setVariable(
-                        currentLine.getStringParameter(2),
-                        new Parameter(arraySize));
-                break;
-
-            //getArray arrayName index --> variable
-            case 92:
-                //Gets the Parameter with the name arrayName, and grabs the Object[] from that.
-                Object[] objArray = currentThread.getVariable(currentLine.getStringParameter(0)).getObjectArrayValue();
-
-                //Extract variable Index, get parameter at that.
-                int variableIndex = (int)identifierCheck(currentLine, 1).getDoubleValue();
-                Parameter indexedVariable = (Parameter)objArray[variableIndex];
-
-                //Put in variable.
-                currentThread.setVariable(
-                        currentLine.getStringParameter(3),
-                        indexedVariable);
-                break;
-
-            //putArray arrayName index <-- variable
-            case 93:
-                Parameter newVariable = identifierCheck(currentLine, 3);
-                int newVariableIndex = (int)identifierCheck(currentLine, 1).getDoubleValue();
-                Object[] array = currentThread.getVariable(currentLine.getStringParameter(0)).getObjectArrayValue();
-                array[newVariableIndex] = newVariable;
                 break;
 
             //setAnimationDirection 100
-            case 100:
+            case 60:
                 ((Entity)currentScriptable).setAnimation(
                         (int)identifierCheck(currentLine, 0).getDoubleValue());
                 break;
@@ -992,6 +954,23 @@ public class ScriptReader
                 WeaponManager.fireWeapon(weaponID, currentScriptable);
                 break;
 
+            //binds the thing
+            //bind threadName entityName
+
+            case 233:
+                String threadName = identifierCheck(currentLine, 0).getStringValue();
+                String entityName = identifierCheck(currentLine, 1).getStringValue();
+
+                System.out.println("THREAD IS" + threadName);
+                //Give the thread at threadName
+                //The threadManager will be whatever is currently it.
+                Thread t = VoyageQuest.battleThreadManager.getThreadAtName(threadName);
+
+                //Set the entity of Thread t to the entity at entityName
+                t.setScriptable(BattleField.entityInstances.get(entityName));
+
+                break;
+
         }
         
         
@@ -1197,9 +1176,7 @@ public class ScriptReader
         returnArray[1] = newMemoryBox;
         return returnArray;
     }
-    
-    
-    
+
     //callFunction [act] param1 param2 param3 --> returned1 returned2
     private void callScriptFunction(Line currentLine)
     {
@@ -1209,10 +1186,10 @@ public class ScriptReader
         String scriptID = currentLine.getStringParameter(0);
         Script jumpedScript = scr.getScriptAtID(scriptID);
         
-        //Basically, extracting the label [that'smyshit]
+        //Basically, extracting the label [labelname]
         String labelName = currentLine.getStringParameter(1);
         
-        //Now find the line number that [that'smyshit] is located on
+        //Now find the line number that [labelname] is located on
         int lineNumber = jumpedScript.getLabelIndexOnLineList(labelName);
         
         //But BEFORE setting the currentplace to that line, first store the
@@ -1227,7 +1204,7 @@ public class ScriptReader
         //In order to do that, we need to go all the way to the line we're jumping
         //to and getting a copy of their line object.
         Line functionLine = jumpedScript.getLineAtLabel(labelName);
-        //function [nameblah] param1identifier param2identifier ...
+        //function [labelname] param1identifier param2identifier ...
         
         Object[] formattedLineData = formatFunctionLine(currentLine, functionLine, 2);
         
@@ -1484,8 +1461,7 @@ public class ScriptReader
             //Don't forget
             index += stepDirection;
         }
-        
-        //Done goof'd
+
         return -1;
     }
     
@@ -1524,12 +1500,12 @@ public class ScriptReader
                     }
                 }
             }
-            
+
             //Don't forget
             index += stepDirection;
         }
         
-        return -1; //We failed.
+        return -1;
     }
     
     public int findEndLimiter(Script currentScript, String openingLimiter, String closingLimiter, int start, int stepDirection)
@@ -1572,7 +1548,7 @@ public class ScriptReader
             index += stepDirection;
         }
         
-        return -1; //We failed somehow if we reached this
+        return -1;
     }
     
     public Parameter simpleEvaluate(Parameter p1, Parameter opCode, Parameter p2)
@@ -1704,10 +1680,10 @@ public class ScriptReader
             return result;
         }
 
-        //Crash the program on purpose now
-        int bomb = 0;
-        System.out.println("DROPPING THE NUKE");
-        return new Parameter(1/bomb);
+        //Halt the program and alert user of the scripting error
+        System.out.println("Fatal Error: Unrecognized numerical evaluation");
+        int droppingTheBomb = 1337/0;
+        return new Parameter(droppingTheBomb);
         
     }
     

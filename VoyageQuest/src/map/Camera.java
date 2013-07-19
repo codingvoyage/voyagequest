@@ -4,15 +4,12 @@ import voyagequest.Global;
 import voyagequest.DoubleRect;
 import voyagequest.Util;
 import voyagequest.VoyageQuest;
-import map.Entity;
 
 import java.util.LinkedList;
 import java.util.ListIterator;
-import java.util.HashMap;
 
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Color;
-import org.newdawn.slick.Image;
 import org.newdawn.slick.tiled.Layer;
 import org.newdawn.slick.SlickException;
 
@@ -103,25 +100,17 @@ public class Camera {
         int extraX = -(int)(vRect.x % 64);
         int extraY = -(int)(vRect.y % 64);
 
-        //Let's calculate how many tiles we need...
+        //Calculate the number of tiles necessary
         //The + 2 compensates for that extra tile we would otherwise leak
         int tileColumnsNeeded = (VoyageQuest.X_RESOLUTION / Global.currentMap.TILE_LENGTH) + 2;
         int tileRowsNeeded = (VoyageQuest.Y_RESOLUTION / Global.currentMap.TILE_LENGTH) + 2;
-        
-        
-        //Draw the bottom three layers which are below everything else.
+
+        //Draw the bottom layers which are below everything else.
         for (int layer = 0; layer < Global.currentMap.MAP_ENTITY_LAYER; layer++)
         {
             Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
                     tileColumnsNeeded, tileRowsNeeded, layer, false);
         }
-//        Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
-//                tileColumnsNeeded, tileRowsNeeded, 0, false);
-//        Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
-//                tileColumnsNeeded, tileRowsNeeded, 1, false);
-//        Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
-//                tileColumnsNeeded, tileRowsNeeded, 2, false);
-     
         
         //The deferred list is the list of Entities which must wait...
         LinkedList<Rectangular> drawingDeferrals = new LinkedList<>();
@@ -296,6 +285,7 @@ public class Camera {
             }
         }
 
+        //Draw the layers which tower above the entities
         int layerAfterEntities = Global.currentMap.MAP_ENTITY_LAYER + 1;
         int totalLayers = Global.currentMap.MAP_TILE_LAYERS;
         for (int layer = layerAfterEntities; layer < totalLayers; layer++)
@@ -303,13 +293,8 @@ public class Camera {
             Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
                 tileColumnsNeeded, tileRowsNeeded, layer, false);
         }
-        //Draw the things which tower above all else.
-//        Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
-//                tileColumnsNeeded, tileRowsNeeded, 4, false);
-//        Global.currentMap.tileMap.render(extraX, extraY, startX, startY,
-//                tileColumnsNeeded, tileRowsNeeded, 5, false);
-        
-        //All the extra things we draw on top if we're in debug mode
+
+        //When in debug mode, draw gridlines to assist placement and debugging
         if (VoyageQuest.DEBUG_MODE == true)
         {
             //Draw the tile borders
