@@ -28,9 +28,13 @@ function 3
 return 4
 
 -- if (statement)
+--      (commands)
+-- endif
 if 5
 
 -- while (statement)
+--      (commands)
+-- wend
 while 6
 wend 7
 
@@ -92,6 +96,9 @@ toradian 25
 random 26
 rand 26
 
+-- floor 2.5 --> var
+floor 27
+
 -- ------------------------------------
 -- Threads
 -- ------------------------------------
@@ -136,17 +143,18 @@ setVelocity 101
 -- movePixelAmount distance_in_pixels
 movePixelAmount 104
 
+-- entitySetLocation new_x new_y
 entitySetLocation 107
 
 -- ---------------------------
 -- Control of entities (world only)
 -- ---------------------------
 
--- moveTileAmount tile_distance
-moveTileAmount 103
-
 -- setVelocityStandard vx/vy 0,1,2,3 will do setAnimationDirection too.
 setVelocityStandard 102
+
+-- moveTileAmount tile_distance
+moveTileAmount 103
 
 -- setAnimationDirection 0, 1, 2, 3 for north, south, east, and west-appearing movement
 setAnimationDirection 60
@@ -171,7 +179,7 @@ freezeThreads 130
 unfreezeThreads 133
 
 -- ---------------------------
--- Stopping thread execution except for one thing
+-- Manipulating the way Players handle input
 -- ---------------------------
 freezeInputs 131
 unfreezeInputs 134

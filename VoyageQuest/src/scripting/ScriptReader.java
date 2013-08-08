@@ -9,6 +9,7 @@ import voyagequest.VoyageQuest;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+
 /**
  *
  * @author Edmund
@@ -18,10 +19,6 @@ public class ScriptReader
 {
     private ScriptManager scr;
     private ThreadManager threadManager;
-//    
-//    private EntityGroup entities;
-//    
-//    
     
     //These will get changed every time act(Scriptable s, double deltaTime)
     //is called. It makes it convenient since now the ScriptReader methods
@@ -420,7 +417,7 @@ public class ScriptReader
             //newArray arrayName size
             case 15:
                 String newArrayName = currentLine.getStringParameter(0);
-                int newArraySize = currentLine.getIntegerParameter(1);
+                int newArraySize = (int)identifierCheck(currentLine, 1).getDoubleValue();
                 Parameter newArray = new Parameter(new Object[newArraySize]);
 
                 currentThread.setVariable(newArrayName, newArray);
@@ -468,8 +465,8 @@ public class ScriptReader
                 evaluate(currentLine);
                 break;
 
-            //sin blah --> var
-            //sin 5 + 3 -->
+            //sin (variable) --> resultVar
+            //sin (expression) --> resultVar
             case 21:
                 double trigresult;
 
@@ -490,7 +487,8 @@ public class ScriptReader
 
                 break;
 
-            //cos blah --> var
+            //cos (variable) --> resultVar
+            //cos (expression) --> resultVar
             case 22:
                 double triganswer;
 
@@ -511,11 +509,12 @@ public class ScriptReader
 
                 break;
 
-            //tan blah --> var
+            //tan (variable) --> resultVar
+            //tan (expression) --> resultVar
             case 23:
                 break;
 
-            //sqrt blah --> var
+            //sqrt (variable) --> var
             case 24:
                 Parameter sqrt = new Parameter(
                         Math.sqrt(identifierCheck(currentLine, 0).getDoubleValue()));
@@ -538,10 +537,22 @@ public class ScriptReader
                         new Parameter(randomNumber));
                 break;
 
+            case 27:
+                double needFloor = identifierCheck(currentLine, 0).getDoubleValue();
+                double floored = Math.floor(needFloor);
+                String flooredName = currentLine.getStringParameter(2);
+                currentThread.setVariable(flooredName, new Parameter(floored));
+                break;
+
             case 30: //new Thread
                 //newThread scriptID
                 createNewThread(currentLine);
                 break;
+
+
+            /***********************************************************
+                              THREAD-RELATED FUNCTIONS
+             ***********************************************************/
 
             //This thread is done
             case 31:
@@ -577,28 +588,9 @@ public class ScriptReader
                         new Parameter(idOfThread));
                 break;
 
-            //The manipulation of the locations of Displayables goes here
-            case 50:
-                //Depends on whether it's THIS Scriptable or another one
-                int determinant = currentLine.getParameterCount();
-                if (determinant == 1)
-                {
-                    //This scriptable
-                    int rotation = (int)(identifierCheck(currentLine, 0).getDoubleValue());
-                    ((Entity)currentScriptable).setRotation(rotation);
-                }
-                else if (determinant == 2)
-                {
-                    //InstanceID determines which to set
-                    String instanceID = identifierCheck(currentLine, 0).getStringValue();
-                    int newRotation = (int)identifierCheck(currentLine, 1).getDoubleValue();
-
-                    BattleEntity rotatedEntity = BattleField.entityInstances.get(instanceID);
-                    rotatedEntity.setRotation(newRotation);
-                }
-
-                break;
-
+            /***********************************************************
+                                SYSTEM-RELATED FUNCTIONS
+             ***********************************************************/
             //Print a variable, for debugging
             case 45:
                 print(currentLine);
@@ -610,29 +602,52 @@ public class ScriptReader
                 getSystemNanoTime(currentLine);
                 break;
 
-            //setAnimationDirection 100
-            case 60:
-                ((Entity)currentScriptable).setAnimation(
-                        (int)identifierCheck(currentLine, 0).getDoubleValue());
-                break;
-                
+
+            /***********************************************************
+             ***********************************************************
+                  ---      VoyageQuest Specific Functions    ---
+             ***********************************************************
+             ***********************************************************/
+
+            /***********************************************************
+                       Control of Entities, Both World and Battle
+             ***********************************************************/
             //setVelocity 101
             case 101:
                 double vx = identifierCheck(currentLine, 0).getDoubleValue();
                 double vy = identifierCheck(currentLine, 1).getDoubleValue();
-              
                 ((Entity)currentScriptable).setVelocity(vx, vy);
                 break;
-                
+
+            //movePixelAmount 104
+            //moveByPixels distance_in_pixels
+            case 104:
+                double pixel_distance = (int)identifierCheck(currentLine, 0).getDoubleValue();
+                ((Entity)currentScriptable).beginMove(pixel_distance, currentThread);
+                continueExecuting = false;
+
+                break;
+
+            //entitySetLocation x y
+            case 107:
+
+                double newX = identifierCheck(currentLine, 0).getDoubleValue();
+                double newY = identifierCheck(currentLine, 1).getDoubleValue();
+                ((Entity)currentScriptable).place(newX, newY);
+                break;
+
+            /***********************************************************
+                        Control of Entities, World Only
+             ***********************************************************/
             //setVelocityStandard 102
             //setVelocityStandard vx/vy 0,1,2,3 will do setAnimationDirection too.
             case 102:
                 double velocity = identifierCheck(currentLine, 0).getDoubleValue();
                 int direction = (int)identifierCheck(currentLine, 1).getDoubleValue();
-                
+
                 double velocity_x = 0.0d;
                 double velocity_y = 0.0d;
-                
+
                 switch (direction)
                 {
                     //NORTH/UP
@@ -653,59 +668,72 @@ public class ScriptReader
                         break;
                 }
                 ((Entity)currentScriptable).setVelocity(velocity_x, velocity_y);
-                
+
                 break;
-                
+
             //moveTileAmount 103
             //moveByTiles tile_distance
             case 103:
                 int tile_distance = (int)identifierCheck(currentLine, 0).getDoubleValue();
                 ((Entity)currentScriptable).beginMove(tile_distance, currentThread);
                 continueExecuting = false;
-                
+
                 break;
-                
-            //movePixelAmount 104
-            //moveByPixels distance_in_pixels
-            case 104:
-                double pixel_distance = (int)identifierCheck(currentLine, 0).getDoubleValue();
-                ((Entity)currentScriptable).beginMove(pixel_distance, currentThread);
-                continueExecuting = false;
-                
+
+            //setAnimationDirection 100
+            case 60:
+                ((Entity)currentScriptable).setAnimation(
+                        (int)identifierCheck(currentLine, 0).getDoubleValue());
                 break;
-                
-                
-            //entitySetLocation x y
-            case 107:
-                
-                double newX = identifierCheck(currentLine, 0).getDoubleValue();
-                double newY = identifierCheck(currentLine, 1).getDoubleValue();
-                ((Entity)currentScriptable).place(newX, newY);
-                break;
-                
+
+            /***********************************************************
+                            GLOBAL VARIABLE STATES
+             ***********************************************************/
+
             //existsGlobal "StringName" --> boolVar
             case 120:
                 String variableName = identifierCheck(currentLine, 0).getStringValue();
                 boolean exists = Global.globalMemory.containsKey(variableName);
                 currentThread.setVariable(
-                        currentLine.getParameter(2).getStringValue(), 
+                        currentLine.getParameter(2).getStringValue(),
                         new Parameter(exists));
                 break;
-                
+
             //writeGlobal NEW_VALUE --> "VariableName"
             case 121:
                 Parameter newValue = currentLine.getParameter(0);
                 Global.globalMemory.put(
-                        currentLine.getParameter(2).getStringValue(), 
+                        currentLine.getParameter(2).getStringValue(),
                         newValue);
                 break;
-                
+
             //getGlobal "GlobalVariableName" --> localvariablename
             case 122:
                 currentThread.setVariable(
                         currentLine.getStringParameter(2),
                         Global.globalMemory.get(currentLine.getStringParameter(0)));
                 break;
+
+
+            /***********************************************************
+             GLOBAL VARIABLE STATES
+             ***********************************************************/
+
+
+
+
+                
+
+                
+
+                
+
+
+                
+                
+
+                
+
                 
             //freezeThreads 130
             case 130:
@@ -953,6 +981,29 @@ public class ScriptReader
                 System.out.println("weapon is " + weaponID);
                 WeaponManager.fireWeapon(weaponID, currentScriptable);
                 break;
+
+            //The manipulation of the locations of Displayables goes here
+            case 50:
+                //Depends on whether it's THIS Scriptable or another one
+                int determinant = currentLine.getParameterCount();
+                if (determinant == 1)
+                {
+                    //This scriptable
+                    int setRotation = (int)(identifierCheck(currentLine, 0).getDoubleValue());
+                    ((Entity)currentScriptable).setRotation(setRotation);
+                }
+                else if (determinant == 2)
+                {
+                    //InstanceID determines which to set
+                    String instanceID = identifierCheck(currentLine, 0).getStringValue();
+                    int newRotation = (int)identifierCheck(currentLine, 1).getDoubleValue();
+
+                    BattleEntity rotatedEntity = BattleField.entityInstances.get(instanceID);
+                    rotatedEntity.setRotation(newRotation);
+                }
+
+                break;
+
 
             //binds the thing
             //bind threadName entityName

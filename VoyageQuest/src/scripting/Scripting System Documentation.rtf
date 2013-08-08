@@ -1,0 +1,689 @@
+{\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset134 SimSun;}}
+{\colortbl ;\red0\green0\blue255;}
+{\*\generator Msftedit 5.41.21.2509;}\viewkind4\uc1\pard\sl276\slmult1\lang9\f0\fs30 Comprehensive Documentation of the Scripting Engine\fs22\par
+\par
+\ul Overview:\par
+\ulnone\par
+The goal of the Scripting Engine is to provide scriptable behavior for the VoyageQuest game. The Scripting Engine consists of a core set of commands and functionality, and a set of functionality specific to VoyageQuest. Therefore, this documentation covers the design of VoyageQuest to a deep extent as well, because that behavior is tied to the Scripting Engine.\par
+\par
+\ul Table of Contents:\ulnone\par
+\par
+1. An explanation of the basic syntax\par
+2. A discussion of the structure of the language (how it should be used to implement game functionality) and the specific little things that you should know\par
+\par
+\ul Part One - The basic syntax:\par
+\par
+Variables:\ulnone\par
+\pard\li720\sl240\slmult1\par
+\ul Declaring them\ulnone\par
+\b var variable_name optional_value\par
+\par
+var message \ldblquote Hello, Bakesale\rdblquote\par
+var i 530\par
+var continuesLooping true\b0\par
+\par
+It will determine the type of the variable by itself.\par
+\par
+\ul Changing them\ulnone\par
+setvar variable_name new_value\par
+\par
+\b setvar message \ldblquote I poke you\rdblquote\par
+setvar i 23\par
+setvar continuesLooping false\b0\par
+\par
+\ul Performing mathematical operations\ulnone\par
+\par
+This is somewhat chunky, and a testament to the fact that I wrote this scripting engine without any former knowledge of writing interpreters or something more legitimate.\par
+\par
+\b eval EXPRESSIONS --> variable\b0\par
+\par
+The expression takes on the format of variable, operator, variable\par
+eval 3 + 4 --> resultVar, resultVar is going to end up being 7\par
+\par
+\b var i 3\par
+var j 4\par
+eval i + j --> resultVar, same thing.\b0\par
+\par
+To make more complicated expressions, basically replace a variable with another expression in square brackets.\par
+\par
+\b eval EXPRESSION operation EXPRESSION --> resultVar\b0\par
+\par
+e.g.\par
+\par
+\b eval [ 10 + 8 ] / [ 5 - 2 ] \lang2052\f1\'a1\'fa\lang1033\f0  resultVar, resultVar will be 18/3, which is 6. \b0\par
+\par
+You're probably thinking, "What's with the ugly brackets? Why does it have to have such a clunky format?" Well. It gets worse.\par
+\par
+Notice how there is exactly one space between everything. I'm afraid that's mandatory. I know. It's painful. You'd rather have a nice, freeform Java/C++ resultVar = (10 + 8) / ( 5 - 2), but because we are fresh out of AP Comp Sci and have yet to take classes on formal grammars, automata, and compiler design, we can't have nice things!\par
+\par
+\ul Here are the following operations:\ulnone\par
+\par
+\i Basic Maths:\i0\par
++\par
+-\par
+*\par
+/\par
+%\par
+\par
+\i Boolean Logic:\i0\par
+&&\par
+||\par
+==\par
+!=\par
+<\par
+<= \par
+>\par
+>=\par
+\par
+\ul Concatenation of Strings\ulnone\par
++ also concatenates strings, and will concatenate a string and something else too.\par
+\par
+\b var number_of_bananas 9001\par
+eval [ "Now I have " + number_of_bananas ] + " bananas!" --> message\par
+print message\b0\par
+\par
+"Now I have 9001 bananas!"\par
+\par
+By the way, if you use an unrecognized opcode, the program will crash the program on purpose in order to alert you to your failure to script properly. Here is my code for crashing the program: \par
+\par
+\lang9 //Halt the program and alert user of the scripting error\par
+System.out.println("Fatal Error: Unrecognized numerical evaluation");\par
+int droppingTheBomb = 1337/0;\par
+return new Parameter(droppingTheBomb);\lang1033\par
+\ul\par
+\pard\sl240\slmult1 Program Flow:\ulnone\par
+\pard\li720\sl240\slmult1\par
+\ul If Statements:\par
+\ulnone\par
+\i Java:\i0\par
+\b if (Boolean_expression)\par
+\{\par
+\tab //Statements will execute if the Boolean expression is true\par
+\}\b0\par
+\par
+\i VoyageScript:\i0\par
+\b if Boolean_expression\par
+\tab -- Statements\par
+endif\b0\par
+\par
+\i Example:\i0\par
+\b if i < 5\par
+\tab print "HELLO WORLD!"\par
+endif\b0\par
+\par
+For Boolean_expression, you can use anything.\par
+\par
+\b var doIFeelLikeSayingMemes true\par
+var number_of_bananas 9001\par
+\par
+if [ doIFeelLikeSayingMemes == true ] && [ number_of_bananas > 9000 ]\par
+\tab print "THE NUMBER OF BANANAS IS OVER 9000!!!"\par
+endif\b0\par
+\par
+There are no if-else statements, so enjoy making your own if-else statements using goto statements. \par
+\par
+\b var doIFeelLikeSayingMemes true\par
+var number_of_bananas 9001\b0\par
+\par
+\b if [ doIFeelLikeSayingMemes == true ] && [ number_of_bananas > 9000 ]\par
+\tab print "IT'S OVER NINE-THOUSAND!!"\par
+\tab goto [qwertyuiop]\par
+endif\par
+\tab print "Stahp."\par
+label [qwertyuiop]\par
+\b0\par
+See how if the boolean expression does not evaluate to true, the program execution skips to after endif, causing "Stahp." to be printed? If it does evaluate to true, then it won't print "Stahp." because a goto statement will send us to after the expression. \par
+\par
+\ul While Loops\ulnone\par
+\par
+\i Java:\i0\par
+\b while (Boolean_expression) \par
+\{\par
+\tab //Statements\par
+\}\b0\par
+\par
+\i VoyageScript:\i0\par
+\b while Boolean_expression\par
+\tab -- Statements\par
+wend\b0\par
+\par
+\i Example:\i0\par
+\b while done != true\par
+\tab -- This would be an infinite loop\par
+\tab -- We would have to use goto to leave.\par
+\tab print "Hello World!"\par
+wend\b0\par
+\par
+\ul\par
+For Loops:\ulnone\par
+\par
+\i Java:\i0\par
+\b for (initialization; Boolean_expression; update)\par
+\{\par
+\tab //Statements \par
+\}\b0\par
+\par
+\i VoyageScript:\i0\par
+\b for var = value and Boolean_expression\par
+\tab -- Statements\par
+next update_statement\b0\par
+\par
+\i Example:\i0\par
+\b for i = 0 and i < 5\par
+\tab print "Hello World!"\par
+next i + 1 --> i\b0\par
+\ul\par
+\par
+Goto and Labeling:\ulnone\par
+\par
+GOTO Statement Considered Harmful? Hmm. That's just too bad.\par
+\par
+\b branch [myBranch] \b0 OR label \b [myBranch]\par
+\b0\par
+To jump there, use...\par
+\b goto [myBranch]\b0\par
+\par
+Having the branch name be between brackets is not mandatory, but please do so out of convention.\par
+\i\par
+Example:\par
+\lang9\i0 -- I'm going to translate the above example of a for loop into if/goto statements\par
+\lang1033\b\par
+for i = 0 and i < 5\par
+\tab print "Hello World!"\par
+next i + 1 --> i\par
+\par
+\b0 ... is the equivalent of ... \b\par
+\par
+var i 0\par
+label [loop]\par
+print "Hello World!"\par
+eval i + 1 --> i\par
+if i < 5\par
+\tab goto [loop]\par
+endif\lang9\b0\par
+\par
+\ul\par
+Arrays:\par
+\par
+\ulnone To create a new array, use the following:\ul\par
+\ulnone\b newArray arrayName size\par
+\par
+\b0 To get the size of an array:\par
+\b getArraySize arrayName --> variable\b0\par
+\par
+To get an element of an array\par
+\b getArray arrayName index --> variable\b0\par
+\par
+To insert an element into an array\par
+\b putArray arrayName index <-- variable\par
+\par
+\tab\par
+\pard\sl276\slmult1\b0\tab\ul Threads:\par
+\ulnone\par
+\pard\li720\sl276\slmult1 For a better discussion of what a thread is exactly, please look below. \par
+\par
+To create a new thread, use...\par
+\b newthread scriptID nameOfNewThread\b0\par
+\pard\li1440\sl276\slmult1 scriptID has to be one of the IDs of one of the loaded script files\par
+nameOfNewThread should be a unique name \par
+\pard\li720\sl276\slmult1\par
+Ending this thread:\par
+\b endthread\b0\par
+\pard\li1440\sl276\slmult1 When ThreadManager reaches this thread, it will remove it, and then it will be garbage collected.\par
+\pard\li720\sl276\slmult1\par
+Deleting another thread:\par
+\b killthread targetThread\b0\par
+\tab Marks targetThread for deletion by ThreadManager\par
+\par
+\ul Functions:\ulnone\par
+\pard\sl276\slmult1\par
+\pard\li720\sl276\slmult1 You declare a function like this\par
+\b function [functionName] var1 var2 \'85\par
+\tab -- Procedure comes here\par
+return return1 return2 return3...\b0\par
+\pard\sl276\slmult1\par
+\tab Note how on top of multiple parameters, it also supports multiple returns.\par
+\par
+\pard\li720\sl276\slmult1 An example from the VoyageShooter project...\par
+\b\fs12 function [shootRowNonCenteredVelocity] angle distanceFromStart bulletCount displacement initialDisplacement velocity\par
+\tab setvar currentDisplacement initialDisplacement\par
+    \tab for j = 0 and j < bulletCount\par
+        \tab\tab callscriptfunction 1 [shootPerpendicularAtAngleDistanceVelocity] angle distanceFromStart currentDisplacement velocity\par
+        \tab\tab eval currentDisplacement + displacement --> currentDisplacement\par
+   \tab  next j + 1 --> j\par
+return\b0\fs22\par
+\pard\sl276\slmult1\par
+\pard\li720\sl276\slmult1\i However, there are several different commands for calling functions. It depends on where that function is, relative to the Thread calling it.\i0\par
+\par
+\ul Calling a function from another thread\ulnone\par
+\par
+\pard\li1440\sl276\slmult1\b callthreadfunction ThreadName  [functionName] param1 param2 param3 \'85 --> returnvalue1 returnvalue2 returnvalue3...\par
+\b0\par
+e.g. callthreadfunction "movementthread" [isInitialEntranceDone] --> complete\par
+\par
+This one would go to movementthread, and run the [isInitialEntranceDone] function. It doesn\rquote t take any parameters, so it just does it, and then the [isInitialEntranceDone] function will return only one value.\par
+\par
+\i Something as simple as this could be the function:\i0\par
+\par
+\b function [isInitialEntranceDone]\par
+\tab -- Does nothing...\par
+return initialEntranceDone\b0\par
+\pard\li720\sl276\slmult1\par
+\par
+\ul Calling a static function from a script file\ulnone\par
+\par
+\pard\li1440\sl276\slmult1 Recall how in the VoyageShooter project, there was a large "library" script file that contained a lot of commands. That library had no commands besides functions, so it couldn't be instantiated as a Thread. Instead, other Threads that needed to perform a type of computation repeatedly took advantage of that library.\par
+\par
+\b callscriptfunction scriptID [functionName] param1 param2 param3 \'85 --> return1 return2 return3...\b0\par
+\par
+\b callscriptfunction LIBRARY [getDistanceToPoint] xplace yplace 450 150 --> moveDistance\b0\par
+\pard\li720\sl276\slmult1\par
+\par
+\ul Calling a function from the same thread and same script\ulnone\par
+\par
+\pard\li1440\sl276\slmult1\b callFunction [Function_Name] param1 param2 param3 \'85 --> returnvalue1 returnvalue2 returnvalue3...\b0\par
+\par
+This could be thought of as a subroutine, except with passed parameters. There are a LOT of big examples of that right below, so not examples here.\par
+\par
+\pard\sl276\slmult1\ul Practice:\ulnone\par
+\par
+Now that we have these tools, what can we make?\par
+\par
+\i Recursion is possible, actually\i0 . Functions can call themselves. There's no problem with that. \par
+To maximize the lulz this guide can provide, let's attempt to code something relatively complicated using VoyageScript.\par
+\par
+1. A simple recursive program\par
+2. A sorting algorithm\par
+3. A recursive sorting algorithm\par
+\par
+\b Let's start with a simple recursive fibonacci function.\b0\par
+\par
+\pard\li720\sl276\slmult1 The 0th Fibonacci number is 0, right?\par
+The 1st Fibonacci Number is 1, right?\par
+Any other than those, we'll compute recursively. Let's go!\par
+\par
+\b var whichFibonacciNumber 35\par
+callfunction [fibonacci] whichFibonacciNumber --> result\par
+print result\par
+endthread\par
+\par
+function [fibonacci] number\par
+\tab if number == 0\par
+\tab\tab return 0\par
+\tab endif\par
+\par
+\tab if number == 1\par
+\tab\tab return 1\par
+\tab endif\par
+\par
+\tab eval number - 1 --> term1\par
+\tab eval number - 2 --> term2\par
+\par
+\tab callfunction [fibonacci] term1 --> a\par
+\tab callfunction [fibonacci] term2 --> b\par
+\par
+\tab eval a + b --> fibonacciNumber\par
+return fibonacciNumber\par
+\par
+\b0 For added amusement, use the time functions available to VoyageScript to benchmark the Fibonacci computation, and figure out how many times slower this is than Java. Seriously though, VoyageScript is slow and not very efficient, probably owing to my amateurness. We discovered in testing that computations run faster a second or third time, which is probably because some variables become stored in memory. \par
+\par
+For all scripting purposes, however, don't worry at all about the speed of VoyageScript. Although it's possible to have hundreds of Threads running, the bottom line is that just not many VoyageQuest commands are called per tick. In the RPG world, we have less than a dozen entities actively moving at once. In the battle, things get more computationally expensive, but the parts that actually serve as the bottlenecks are the collision detection QuadTree and the graphics. \par
+\pard\sl276\slmult1\par
+\par
+\b Now let's program bubble sort:\par
+\par
+\pard\li750\sl276\slmult1\b0 We're going to fill an array of numbers with random numbers, and then sort them. This is really a demonstration of array functions. Arrays are variables, and since variables can be placed in arrays, arrays too can be placed in arrays. Therefore, if you wanted to monkey around with multidimensional arrays, then it would probably work! Then, try writing a procedure to perform stuff like manipulating matrices. Trololol\par
+\par
+\b -- Create the array of numbers\par
+var numElements 93\par
+newArray unsortedArray numElements\par
+for i = 0 and i < numElements\par
+\tab rand 0 1000 --> number\par
+\tab putArray unsortedArray i <-- number\par
+next i + 1 --> i\par
+\par
+-- Print out the unsorted numbers\par
+-- Also formatting them in nice rows of 10 for readability\par
+print "The unsorted numbers: "\par
+var numbersPerRow 10\par
+var currentLineCount 0\par
+var thisRow ""\par
+for i = 0 and i < numElements\par
+\tab getArray unsortedArray i --> variable\par
+\tab eval [ thisRow + variable ] + " " --> thisRow\par
+\tab eval currentLineCount + 1 --> currentLineCount\par
+\par
+\tab -- Print if we reached 10, or we're on the last row\par
+\tab if [ currentLineCount == numbersPerRow ] || [ i == [ numElements - 1 ] ]\par
+\tab\tab print thisRow\par
+\tab\tab var thisRow ""\par
+\tab\tab var currentLineCount 0\par
+\tab endif\par
+next i + 1 --> i\par
+\par
+callFunction [bubbleSort] unsortedArray --> sortedArray\par
+\par
+-- Print out the sorted numbers\par
+print "The sorted numbers: "\par
+var numbersPerRow 10\par
+var currentLineCount 0\par
+var thisRow ""\par
+for i = 0 and i < numElements\par
+\tab getArray sortedArray i --> variable\par
+\tab eval [ thisRow + variable ] + " " --> thisRow\par
+\tab eval currentLineCount + 1 --> currentLineCount\par
+\par
+\tab -- Print if we reached 10, or we're on the last row\par
+\tab if [ currentLineCount == numbersPerRow ] || [ i == [ numElements - 1 ] ]\par
+\tab\tab print thisRow\par
+\tab\tab var thisRow ""\par
+\tab\tab var currentLineCount 0\par
+\tab endif\par
+next i + 1 --> i\par
+\par
+endthread\par
+\par
+-- Perform bubble sort. I was really lazy so I got it off of\par
+-- {\field{\*\fldinst{HYPERLINK "http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort"}}{\fldrslt{\ul\cf1 http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort}}}\f0\fs22\par
+\pard\li741\sl276\slmult1 function [bubbleSort] array\par
+\tab getArraySize array --> size\par
+\pard\li741\sl240\slmult1\tab var done false\par
+\tab while done == false\par
+\tab var done true\par
+\tab\tab for i = 0 and i < [ size - 1 ]\par
+\tab\tab\tab eval i + 1 --> nextIndex \par
+\tab\tab\tab getArray array i --> current\par
+\tab\tab\tab getArray array nextIndex --> next\par
+\tab\tab\tab if current > next\par
+\tab\tab\tab\tab -- Then we swap the two values\par
+\tab\tab\tab\tab var done false\par
+\tab\tab\tab\tab putArray array i <-- next\par
+\tab\tab\tab\tab putArray array nextIndex <-- current\par
+\tab\tab\tab endif\par
+\tab\tab next i + 1 --> i\par
+\tab wend\par
+return array\b0\par
+\pard\li1470\sl276\slmult1\tab\par
+\par
+\pard\sl276\slmult1\b Finally, a recursive sorting algorithm!\par
+\par
+\pard\fi-53\li741\sl276\slmult1\tab\b0 We're just going to implement mergesort in VoyageQuest. This time too, I will port the program over from the Java implementation available at rosettacode.org. Since the implementation uses Comparable, I'm going to use helper functions as well.\par
+\pard\li741\sl276\slmult1\par
+\b -- Perform merge sort on an array\par
+function [mergeSort] array\par
+\tab getArraySize array --> size\par
+\tab if size <= 1\par
+\tab\tab return array\par
+\tab endif\par
+\par
+\tab -- We split this array in half\par
+\tab eval size / 2 --> middle\par
+\tab floor middle --> middle\par
+\tab callFunction [subList] array 0 middle --> left\par
+\tab callFunction [subList] array middle size --> right\par
+\par
+\tab -- We sort each half before merging them together\par
+\tab callFunction [mergeSort] left --> left\par
+\tab callFunction [mergeSort] right --> right\par
+\tab callFunction [merge] left right --> result\par
+return result\par
+\par
+-- Merges the left and right arrays and returns a merged array\par
+function [merge] left right\par
+\tab var i 0\par
+\tab var j 0\par
+\tab var k 0\par
+\par
+\tab getArraySize left --> leftSize\par
+\tab getArraySize right --> rightSize\par
+\tab eval leftSize + rightSize --> combinedSize\par
+\tab newArray result combinedSize\par
+\par
+\tab while [ i < leftSize ] || [ j < rightSize ]\par
+\tab\tab if [ i != leftSize ] && [ j != rightSize ]\par
+\tab\tab\tab getArray left i --> leftVal\par
+\tab\tab\tab getArray right j --> rightVal\par
+\tab\tab\tab callFunction [compareTo] leftVal rightVal --> compResult\par
+\par
+\tab\tab\tab if compResult <= 0\par
+\tab\tab\tab\tab getArray left i --> value\par
+\tab\tab\tab\tab putArray result k <-- value\par
+\tab\tab\tab\tab eval k + 1 --> k\par
+\tab\tab\tab\tab eval i + 1 --> i\par
+\tab\tab\tab\tab goto [done]\par
+\tab\tab\tab endif\par
+\tab\tab\tab\tab getArray right j --> value\par
+\tab\tab\tab\tab putArray result k <-- value\par
+\tab\tab\tab\tab eval k + 1 --> k\par
+\tab\tab\tab\tab eval j + 1 --> j\par
+\tab\tab\tab label [done]\par
+\tab\tab\tab goto [next]\par
+\tab\tab endif\par
+\tab\tab if i < leftSize\par
+\tab\tab\tab getArray left i --> value\par
+\tab\tab\tab putArray result k <-- value\par
+\tab\tab\tab eval k + 1 --> k\par
+\tab\tab\tab eval i + 1 --> i\par
+\tab\tab\tab goto [next]\par
+\tab\tab endif\par
+\tab\tab if j < rightSize\par
+\tab\tab\tab getArray right j --> value\par
+\tab\tab\tab putArray result k <-- value\par
+\tab\tab\tab eval k + 1 --> k\par
+\tab\tab\tab eval j + 1 --> j\par
+\tab\tab endif\par
+\par
+\tab\tab label [next]\par
+\tab wend\par
+return result\par
+\par
+\par
+-- Returns a view of the portion of this list between the specified\par
+-- fromIndex, inclusive, and toIndex, exclusive.\par
+function [subList] array fromIndex toIndex\par
+\tab eval toIndex - fromIndex --> subListSize\par
+\tab newArray subList subListSize\par
+\tab for i = 0 and i < subListSize\par
+\tab\tab eval fromIndex + i --> oldArrayIndex\par
+\tab\tab getArray array oldArrayIndex --> oldValue\par
+\tab\tab putArray subList i <-- oldValue\par
+\tab next i + 1 --> i\par
+return subList\par
+\par
+-- compareTo... Returns 0 if a and b are equal, -1\par
+-- if a is less than b, and 1 if a is greater than b\par
+function [compareTo] a b\par
+\tab if a == b\par
+\tab\tab return 0\par
+\tab endif\par
+\tab if a < b\par
+\tab\tab return -1\par
+\tab endif\par
+\tab if a > b\par
+\tab\tab return 1\par
+\tab endif\par
+return 1337\b0\par
+\pard\sl276\slmult1\par
+\pard\li741\sl276\slmult1 As you can see, \i mergeSort\i0  made use of the helper functions \i subList\i0  and \i merge\i0 , and \i merge\i0  in turn uses \i compareTo\i0 . Computer science textbooks emphasize that regardless of little details like computer power or language of implementation, the big O of the algorithm rears its head eventually. I saw that with \i bubbleSort\i0 , the program didn't finish sorting 10000 doubles in over a minute, but the same task was accomplished in 0.5 seconds using \i mergeSort\i0 . \i mergeSort\i0  even handled 100000 doubles in less than 10 seconds. \par
+\par
+This is really ugly though:\par
+\b getArray left i --> value\par
+putArray result k <-- value\par
+eval k + 1 --> k\par
+eval i + 1 --> i\par
+\par
+\b0 It's the equivalent of one, clear, simple line of Java: (Not sure if it works the same way in C++ too... maybe it does? Can someone confirm?)\par
+\b result[k++] = left[i++];\par
+\b0\par
+Of course, that will translate to some bytecode equivalent that takes up multiple instructions, but the Java is so much easier to understand, given that we know about operator precedence.\par
+\pard\sl276\slmult1\par
+\par
+For additional pleasure, \i the reader should try to implement matrix operations using multidimensional arrays\i0 !\i  \i0 The naive implementation of the Gauss-Jordan Elimination algorithm is big-O n^3, however. Have fun testing that with VoyageScript.\b\par
+\par
+\b0\par
+\ul Language Design - Threads:\par
+\par
+\ulnone I'm pretty sure there's a formal way to describe what the scripting language is like - the idea that there are parallel threads of execution. \par
+\par
+1. The program loads every script it can find within the script directory and holds the scripts in memory.\par
+2. The DICTIONARY replace the command names with opcode numbers, which lets it run faster than if it were all strings.\par
+3. Either some in-game trigger or another thread decides to create a thread from a script. This is said to instantiate the script.\par
+4. The thread runs until it reaches the "endthread" opcode.\par
+\par
+There are two types of commands:\par
+\b - Normal commands\b0\par
+\pard\li720\sl276\slmult1 For example, the following will finish running in one tick of the clock:\par
+\par
+\b -- Calculates and prints the sine of 23\par
+toRadian 23 --> var\par
+sin var --> result\par
+print result\b0\par
+\par
+What's wrong here? Well, we forget "endthread". Without that, the thread will continue trying to go beyond "print result", and the entire game will crash with a nasty IndexOutOfBoundException. Don't ever forget "endthread"\par
+\par
+\b -- Calculates and prints the sine of 23\par
+toRadian 23 --> var\par
+sin var --> result\par
+print result\par
+endthread\b0\par
+\pard\sl276\slmult1\ul\b\par
+\ulnone - Thread-pausing commands.\b0\par
+\tab This one, however...\par
+\par
+\b\tab for i = 0 and i < 11\par
+\tab\tab print i\par
+\tab\tab wait 500\par
+\tab next i + i --> i\b0\par
+\par
+\pard\li720\sl276\slmult1 It prints "0". When it hits wait, the thread pauses execution. After enough ticks happen, the "wait 500" condition will be fulfilled, and the program marches on. It increments i by 1, returns to for, and then prints "1". The thread pauses again. So on, and so forth, until i is equal to 11. Then, this code ends.\par
+\par
+Keep in mind that each tick should be 20 milliseconds. If you used "wait 15", it's likely not to get any faster. It will just pause for one tick, and then restart on the next. Therefore, for all intents and purposes, consider "wait 20" to be the fastest possible wait statement.\par
+\par
+Each thread-pausing command has a termination condition. "wait" will wait until the amount of time in milliseconds passes, but other commands behave differently.\par
+\pard\sl276\slmult1\par
+\tab\b dialogBox "Sebastian Profile" "I want to eat some cheesecake..."\par
+\tab dialogBox "Njeri Profile" "How about no?"\par
+\tab endthread\b0\par
+\par
+\pard\li720\sl276\slmult1 The termination condition is the player pressing the z-key while input remains enabled. Until then, the thread stays paused on the command. \par
+\par
+Now, what happens if we need to have a thread wait until some condition is fulfilled? Sometimes we need a thread to sit back in the background and wait until something happens before acting. We can call such a script a \i background thread\i0  or a \i listener\i0 . Let's try writing one... Say we're scripting a battle. A few monsters have been spawned, and we need to wait for all of them to die before spawning the boss. Then we have to wait for the boss to die, before ending the battle.\par
+\par
+\b -- (Enemies are spawned here) \par
+\par
+var continue false\par
+while continue == false\par
+\tab if all enemies are dead\par
+\tab\tab var continue true\tab\par
+\tab endif\par
+wend\b0\par
+\par
+What's wrong with this? It seems to be written correctly, right? I left out the specifics regarding checking whether enemies are dead, but this should work, right?\par
+\par
+\i No\i0 . Because there's no wait statement, it will run on an infinite loop and cause the entire application to crash. You don't need the thread to check every tick of the clock. Perhaps once every half of a second is fine:\par
+\par
+\b -- (Enemies are spawned here) \par
+\par
+var continue false\par
+while continue == false\par
+\tab if all enemies are dead\par
+\tab\tab var continue true\tab\par
+\tab endif\par
+\tab wait 500\par
+wend\par
+\par
+-- (Boss is spawned here)\par
+\par
+var continue false\par
+while continue == false\par
+\tab if the boss is dead dead\par
+\tab\tab var continue true\tab\par
+\tab endif\par
+\tab wait 500\par
+wend\par
+\par
+genericMessageBox "You win! LOL"\par
+\par
+endbattle\par
+endthread\b0\par
+\pard\sl276\slmult1\tab\par
+\tab\ul\par
+\par
+Event-Oriented Scripting Model:\ulnone\par
+As the project evolved, the system has become increasingly event-oriented. That means that scripted functionality is triggered by events. The types of events available are hardcoded with Java and specified using JSON or through the .TMX map file. \par
+\par
+1. A trigger is triggered.\par
+\par
+\pard\sl240\slmult1 Bumping into an Entity in the RPG\par
+Clicking an event-object\par
+Walking into an event-object\par
+\par
+2. A script runs in response.\par
+\par
+Triggers have the name of a corresponding script, so when the trigger is triggered, then the corresponding script begins to run. For example, suppose that we have a map called Dock. In this map, there is a warehouse, and hence it requires a door which lets us transition from the Dock to Warehouse. We can have this transition occur in two ways:\par
+\par
+A. After defining a map-transition through the .TMX Map Editor, have the program automatically begin the map-change when the player walks into the map-transition event.\par
+\par
+B. When the player walks into the map-transition event, the corresponding script, Dock_To_Warehouse is loaded, then executed by the scripting engine.\par
+\par
+\i Why is option B better? \i0 Let's say the Warehouse can only be accessed after a quest involving a merchant is started. Or, let's say that during the main storyline, the Warehouse is occupied by a rebel faction, which transforms the warehouse into their headquarters. We need to turn the player away if the story is not up to the merchant quest yet, and once the rebels occupy it we need to bring the player to an alternate version of the map. Scripting provides the maximum flexibility for responding based on these conditions! \par
+\par
+Let's combine the two situations.\par
+\par
+\i Suppose we have the global variables:\i0\par
+\pard\li720\sl240\slmult1 HELP_THE_MERCHANT :\par
+\tab State 5 - The player has agreed to help, and therefore the merchant has given the player the keys to the warehouse.\par
+\par
+MAIN_QUEST_STATE : \par
+\tab State 220 - We've reached a point at which we need to access the warehouse no matter what.\par
+\tab State 581 - The rebels have occupied the warehouse.\par
+\pard\sl240\slmult1\par
+Rule: Only after a certain point in the main storyline can the warehouse be accessed at all, unless we agreed to help a merchant find something in the warehouse. Then, at an even later point, the warehouse transforms into the rebel headquarters.\par
+\par
+\b -- This is actually what the script should look like, by the way\par
+getGlobal "HELP_THE_MERCHANT" --> merchantQuestState\par
+getGlobal "MAIN_QUEST_STATE" --> mainQuestState\par
+\par
+-- If the rebels have occupied the warehouse, then bring us there.\par
+if mainQuestState >= 581\par
+\tab mapChange "RebelWarehouse" 580 1056\par
+\tab endthread\par
+endif\par
+\par
+-- If either the merchant quest has started or the main quest has reached state 220\par
+-- then allow the player to move there. We use >= because any further quest states\par
+-- should have a higher number, and also permit access to the warehouse.\par
+if [ mainQuestState >= 220 ] || [ merchantQuestState >= 5 ]\par
+\tab mapChange "Warehouse" 580 1056\par
+\tab endthread\par
+endif\par
+\par
+-- If we've reached this point, then we clearly weren't able to access. Have the player\par
+-- say something about not having permission before walking away.\par
+dialogbox "SebastianProfile" "I don't think I have permission to go in here... I'd better leave"\par
+assumecontrolofplayer\par
+wait 20\par
+setAnimationDirection 1\par
+setVelocity 0 0.25\par
+movePixelAmount 30\par
+\par
+endthread\par
+\b0\par
+And there you have it. A word of warning - For each tick of the clock for which the player's collision box intersects with the event box, another instance of the script will be generated. This can result in a multitude of dialogboxes opening up at the same time. Then, each of the dozens of scripts will execute "movePixelAmount" individually, which basically forces the player to walk back a huge distance in total, which inevitably gets the player stuck on something.\par
+\par
+This usually happens when the player walks into the entrance from the side, such that when you're forced away from the door by the "movePixelAmount", you're still being pushed through the side of the event box. A cheap solution to the problem is to write what I call an "singleton guard". We're basically going to take advantage of Global Variables. When the script runs, see if there exists a global variable titled "DockToWarehouseRunning." If it exists and it's "true", then end the thread right there. If it exists and is "false" or if it doesn't exist, then create the variable, set it to true, and then perform the rest of the commands in the script. Right before ending the thread, set the variable to false. This guarantees that there can only be one version running at a time, mitigating the painful glitch.\par
+\par
+\par
+\ul Behind the Scenes:\b\par
+\par
+\ulnone\b0\i Now that you are more familiar with the design paradigm that our scripting system follows, as well as the syntax of the language, it's time to discuss more nit-picky aspects that come to play when scripting content.\par
+\par
+\i0\par
+\par
+\par
+\pard\sl276\slmult1\par
+\pard\sl240\slmult1\ul Future Plans:\par
+\ulnone\par
+Future projects should explore using other scripting language, such as Lua. The VoyageScript functionality was developed without formal compiler expertise, and hence its usefulness is quite limited. Although it would be hilarious to try to implement complex data structures and algorithms with VoyageScript, it would also be very painful. However, in a scripting language like Lua, it would be more than reasonable to implement an actual AI. \par
+}
+ 

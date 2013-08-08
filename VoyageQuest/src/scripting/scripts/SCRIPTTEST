@@ -1,0 +1,164 @@
+-- Create the array of numbers
+var numElements 1000
+newArray unsortedArray numElements
+for i = 0 and i < numElements
+	rand 0 100000 --> number
+	putArray unsortedArray i <-- number
+next i + 1 --> i
+
+-- Print out the unsorted numbers
+-- Also formatting them in nice rows of 10 for readability
+print "The unsorted numbers: "
+var numbersPerRow 25
+var currentLineCount 0
+var thisRow ""
+for i = 0 and i < numElements
+	getArray unsortedArray i --> variable
+	eval [ thisRow + variable ] + " " --> thisRow
+	eval currentLineCount + 1 --> currentLineCount
+
+	-- Print if we reached 10, or we're on the last row
+	if [ currentLineCount == numbersPerRow ] || [ i == [ numElements - 1 ] ]
+		print thisRow
+		var thisRow ""
+		var currentLineCount 0
+	endif
+next i + 1 --> i
+
+callFunction [mergeSort] unsortedArray --> sortedArray
+-- callFunction [bubbleSort] unsortedArray --> sortedArray
+
+-- Print out the sorted numbers
+print "The sorted numbers: "
+var currentLineCount 0
+var thisRow ""
+for i = 0 and i < numElements
+	getArray sortedArray i --> variable
+	eval [ thisRow + variable ] + " " --> thisRow
+	eval currentLineCount + 1 --> currentLineCount
+
+	-- Print if we reached 10, or we're on the last row
+	if [ currentLineCount == numbersPerRow ] || [ i == [ numElements - 1 ] ]
+		print thisRow
+		var thisRow ""
+		var currentLineCount 0
+	endif
+next i + 1 --> i
+
+endthread
+
+-- Perform merge sort. I looked online in general to get this in Java,
+-- then ported it. Too lazy to figure it out now
+function [mergeSort] array
+	getArraySize array --> size
+	if size <= 1
+		return array
+	endif
+
+	eval size / 2 --> middle
+	floor middle --> middle
+	callFunction [subList] array 0 middle --> left
+	callFunction [subList] array middle size --> right
+
+	callFunction [mergeSort] left --> left
+	callFunction [mergeSort] right --> right
+	callFunction [merge] left right --> result
+return result
+
+-- Merges the left and right arrays and returns a merged array
+function [merge] left right
+	var i 0
+	var j 0
+	var k 0
+
+	getArraySize left --> leftSize
+	getArraySize right --> rightSize
+	eval leftSize + rightSize --> combinedSize
+    newArray result combinedSize
+
+	while [ i < leftSize ] || [ j < rightSize ]
+		if [ i != leftSize ] && [ j != rightSize ]
+
+			getArray left i --> leftVal
+			getArray right j --> rightVal
+
+			callFunction [compareTo] leftVal rightVal --> compResult
+			if compResult <= 0
+				getArray left i --> value
+				putArray result k <-- value
+				eval k + 1 --> k
+				eval i + 1 --> i
+				goto [done]
+			endif
+				getArray right j --> value
+				putArray result k <-- value
+				eval k + 1 --> k
+				eval j + 1 --> j
+			label [done]
+			goto [next]
+		endif
+		if i < leftSize
+			getArray left i --> value
+			putArray result k <-- value
+			eval k + 1 --> k
+			eval i + 1 --> i
+			goto [next]
+		endif
+		if j < rightSize
+			getArray right j --> value
+			putArray result k <-- value
+			eval k + 1 --> k
+			eval j + 1 --> j
+		endif
+
+		label [next]
+	wend
+return result
+
+
+-- Returns a view of the portion of this list between the specified
+-- fromIndex, inclusive, and toIndex, exclusive.
+function [subList] array fromIndex toIndex
+	eval toIndex - fromIndex --> subListSize
+	newArray subList subListSize
+	for i = 0 and i < subListSize
+		eval fromIndex + i --> oldArrayIndex
+		getArray array oldArrayIndex --> oldValue
+		putArray subList i <-- oldValue
+	next i + 1 --> i
+return subList
+
+-- compareTo... Returns 0 if a and b are equal, -1
+-- if a is less than b, and 1 if a is greater than b
+function [compareTo] a b
+	if a == b
+		return 0
+	endif
+	if a < b
+		return -1
+	endif
+	if a > b
+		return 1
+	endif
+	-- Really though. If those were not numbers, it should have crashed already
+	return 1337
+return compResult
+
+function [bubbleSort] array
+	getArraySize array --> size
+	var done false
+	while done == false
+	var done true
+		for i = 0 and i < [ size - 1 ]
+			eval i + 1 --> nextIndex
+			getArray array i --> current
+			getArray array nextIndex --> next
+			if current > next
+				-- Then we swap the two values
+				var done false
+				putArray array i <-- next
+				putArray array nextIndex <-- current
+			endif
+		next i + 1 --> i
+	wend
+return array
