@@ -1,5 +1,6 @@
 package map;
 
+import java.util.HashMap;
 import java.util.Properties;
 
 import org.newdawn.slick.*;
@@ -18,6 +19,7 @@ import scripting.*;
  */
 public class Entity extends ScriptableClass implements Rectangular {
     public String name;
+    public String instanceID;
     
     /** The entity's boundary rectangle. For this, r.x and r.y are
       * the actual coordinates of the Entity in Map space. Width and
@@ -42,6 +44,9 @@ public class Entity extends ScriptableClass implements Rectangular {
     //Automated movement with scripting uses these
     public double velocityX;
     public double velocityY;
+
+    /** BattleEntity handles Animation quite differently, so do this instead */
+    public HashMap<String, Animation> animations;
 
     public Animation forward;
     public Animation backward;
@@ -72,7 +77,7 @@ public class Entity extends ScriptableClass implements Rectangular {
         onTouchScript = null;
         onClickScript = null;
     }
-    
+
     public void setAnimation(int index)
     {
         switch (index)
@@ -102,6 +107,12 @@ public class Entity extends ScriptableClass implements Rectangular {
                 }
                 break;
         }
+    }
+
+    public void setAnimation(String animationID)
+    {
+        currentAnimation = animations.get(animationID);
+        resetAnimationTiming();
     }
     
     public void resetAnimationTiming()

@@ -1,6 +1,9 @@
-newthread "SCRIPTTEST" "LEL"
+-- newthread "SCRIPTTEST" "LEL"
 dialogBox "Sebastian Profile" "What is this madness"
 
+assumeControlOfPlayer
+setVelocity 0.10 0
+movePixelAmount 500
 wait 5000
 
 startBattle "FUNNY BEAR"

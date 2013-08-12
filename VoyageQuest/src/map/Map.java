@@ -1,5 +1,6 @@
 package map;
 
+import org.newdawn.slick.Animation;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.tiled.GroupObject;
 import org.newdawn.slick.tiled.Layer;
@@ -12,6 +13,7 @@ import voyagequest.Res;
 import voyagequest.special.LoadEntity;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import static voyagequest.VoyageQuest.threadManager;
@@ -40,6 +42,7 @@ public class Map {
     
     /**all the entities */
     public static LinkedList<Entity> entities;
+    public static HashMap<String, Entity> entityLookup;
 
     /**The length and width of each tile. */
     public static int TILE_LENGTH;
@@ -95,6 +98,7 @@ public class Map {
         allCollisions = new LinkedList<>();
         allBoundaries = new LinkedList<>();
         entities = new LinkedList<>();
+        entityLookup = new HashMap<>();
         
         //Initialize the QuadTrees of collisions and boundaries
         collisions = new QuadTree<>(20, 10, MAP_RECT);
@@ -198,23 +202,32 @@ public class Map {
             e.setMainScriptID(mainScriptID);
         
             e.name = l.getName();
-            
+
+            //Loads animations. Basically, we're retaining the
+            //forward-backward-left-right system, but we also let other animations
+            //get loaded too. Will gradually phase out.
             LinkedList<String> animations = l.getAnimations();
+            e.animations = new HashMap<>();
+            for (String animationName : animations)
+            {
+                Animation namedAnimation = Res.animations.get(animationName);
+                e.animations.put(animationName, namedAnimation);
+            }
             e.forward = Res.animations.get(animations.get(0));
             e.backward = Res.animations.get(animations.get(1));
             e.left = Res.animations.get(animations.get(2));
             e.right = Res.animations.get(animations.get(3));
 
-            if (animations.size() > 4) {
-                e.profile = Res.animations.get(animations.get(4));
-                e.profLeft = l.getOrientation();
+            //Not sure... if this was ever loaded
+            e.profLeft = l.getOrientation();
 
-            }
-
+            //Don't forget an initial animation direction!
             e.setAnimation(l.getStartingAnimationDirection());
-            
+
+            //Loading complete - add to lists now.
             entities.add(e);
             collisions.addEntity(e);
+            entityLookup.put(e.name, e);
         }
     }
 

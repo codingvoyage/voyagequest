@@ -1,6 +1,7 @@
-{\rtf1\ansi\ansicpg932\deff0\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset134 SimSun;}}
+{\rtf1\ansi\ansicpg932\deff0\nouicompat\deflang1033\deflangfe1041{\fonttbl{\f0\fnil\fcharset0 Calibri;}{\f1\fnil\fcharset134 SimSun;}}
 {\colortbl ;\red0\green0\blue255;}
-{\*\generator Msftedit 5.41.21.2509;}\viewkind4\uc1\pard\sl276\slmult1\lang9\f0\fs30 Comprehensive Documentation of the Scripting Engine\fs22\par
+{\*\generator Riched20 6.2.9200}\viewkind4\uc1 
+\pard\sl276\slmult1\f0\fs30\lang9 Comprehensive Documentation of the Scripting Engine\fs22\par
 \par
 \ul Overview:\par
 \ulnone\par
@@ -14,6 +15,7 @@ The goal of the Scripting Engine is to provide scriptable behavior for the Voyag
 \ul Part One - The basic syntax:\par
 \par
 Variables:\ulnone\par
+
 \pard\li720\sl240\slmult1\par
 \ul Declaring them\ulnone\par
 \b var variable_name optional_value\par
@@ -50,7 +52,7 @@ To make more complicated expressions, basically replace a variable with another 
 \par
 e.g.\par
 \par
-\b eval [ 10 + 8 ] / [ 5 - 2 ] \lang2052\f1\'a1\'fa\lang1033\f0  resultVar, resultVar will be 18/3, which is 6. \b0\par
+\b eval [ 10 + 8 ] / [ 5 - 2 ] \f1\lang2052\'a1\'fa\f0\lang1033  resultVar, resultVar will be 18/3, which is 6. \b0\par
 \par
 You're probably thinking, "What's with the ugly brackets? Why does it have to have such a clunky format?" Well. It gets worse.\par
 \par
@@ -91,7 +93,9 @@ System.out.println("Fatal Error: Unrecognized numerical evaluation");\par
 int droppingTheBomb = 1337/0;\par
 return new Parameter(droppingTheBomb);\lang1033\par
 \ul\par
+
 \pard\sl240\slmult1 Program Flow:\ulnone\par
+
 \pard\li720\sl240\slmult1\par
 \ul If Statements:\par
 \ulnone\par
@@ -186,8 +190,8 @@ To jump there, use...\par
 Having the branch name be between brackets is not mandatory, but please do so out of convention.\par
 \i\par
 Example:\par
-\lang9\i0 -- I'm going to translate the above example of a for loop into if/goto statements\par
-\lang1033\b\par
+\i0\lang9 -- I'm going to translate the above example of a for loop into if/goto statements\par
+\b\lang1033\par
 for i = 0 and i < 5\par
 \tab print "Hello World!"\par
 next i + 1 --> i\par
@@ -200,7 +204,7 @@ print "Hello World!"\par
 eval i + 1 --> i\par
 if i < 5\par
 \tab goto [loop]\par
-endif\lang9\b0\par
+endif\b0\lang9\par
 \par
 \ul\par
 Arrays:\par
@@ -217,33 +221,44 @@ To get an element of an array\par
 To insert an element into an array\par
 \b putArray arrayName index <-- variable\par
 \par
+\b0 By the way, there is no restriction to the type of thing you can place into an array. You can place a string in index 0, a double in index 1, and another array in index 2. Don't mix things up!\b\par
 \tab\par
+
 \pard\sl276\slmult1\b0\tab\ul Threads:\par
 \ulnone\par
+
 \pard\li720\sl276\slmult1 For a better discussion of what a thread is exactly, please look below. \par
 \par
 To create a new thread, use...\par
 \b newthread scriptID nameOfNewThread\b0\par
+
 \pard\li1440\sl276\slmult1 scriptID has to be one of the IDs of one of the loaded script files\par
 nameOfNewThread should be a unique name \par
+
 \pard\li720\sl276\slmult1\par
 Ending this thread:\par
 \b endthread\b0\par
+
 \pard\li1440\sl276\slmult1 When ThreadManager reaches this thread, it will remove it, and then it will be garbage collected.\par
+
 \pard\li720\sl276\slmult1\par
 Deleting another thread:\par
 \b killthread targetThread\b0\par
 \tab Marks targetThread for deletion by ThreadManager\par
 \par
 \ul Functions:\ulnone\par
+
 \pard\sl276\slmult1\par
+
 \pard\li720\sl276\slmult1 You declare a function like this\par
 \b function [functionName] var1 var2 \'85\par
 \tab -- Procedure comes here\par
 return return1 return2 return3...\b0\par
+
 \pard\sl276\slmult1\par
 \tab Note how on top of multiple parameters, it also supports multiple returns.\par
 \par
+
 \pard\li720\sl276\slmult1 An example from the VoyageShooter project...\par
 \b\fs12 function [shootRowNonCenteredVelocity] angle distanceFromStart bulletCount displacement initialDisplacement velocity\par
 \tab setvar currentDisplacement initialDisplacement\par
@@ -252,11 +267,14 @@ return return1 return2 return3...\b0\par
         \tab\tab eval currentDisplacement + displacement --> currentDisplacement\par
    \tab  next j + 1 --> j\par
 return\b0\fs22\par
+
 \pard\sl276\slmult1\par
+
 \pard\li720\sl276\slmult1\i However, there are several different commands for calling functions. It depends on where that function is, relative to the Thread calling it.\i0\par
 \par
 \ul Calling a function from another thread\ulnone\par
 \par
+
 \pard\li1440\sl276\slmult1\b callthreadfunction ThreadName  [functionName] param1 param2 param3 \'85 --> returnvalue1 returnvalue2 returnvalue3...\par
 \b0\par
 e.g. callthreadfunction "movementthread" [isInitialEntranceDone] --> complete\par
@@ -268,23 +286,28 @@ This one would go to movementthread, and run the [isInitialEntranceDone] functio
 \b function [isInitialEntranceDone]\par
 \tab -- Does nothing...\par
 return initialEntranceDone\b0\par
+
 \pard\li720\sl276\slmult1\par
 \par
 \ul Calling a static function from a script file\ulnone\par
 \par
+
 \pard\li1440\sl276\slmult1 Recall how in the VoyageShooter project, there was a large "library" script file that contained a lot of commands. That library had no commands besides functions, so it couldn't be instantiated as a Thread. Instead, other Threads that needed to perform a type of computation repeatedly took advantage of that library.\par
 \par
 \b callscriptfunction scriptID [functionName] param1 param2 param3 \'85 --> return1 return2 return3...\b0\par
 \par
 \b callscriptfunction LIBRARY [getDistanceToPoint] xplace yplace 450 150 --> moveDistance\b0\par
+
 \pard\li720\sl276\slmult1\par
 \par
 \ul Calling a function from the same thread and same script\ulnone\par
 \par
+
 \pard\li1440\sl276\slmult1\b callFunction [Function_Name] param1 param2 param3 \'85 --> returnvalue1 returnvalue2 returnvalue3...\b0\par
 \par
-This could be thought of as a subroutine, except with passed parameters. There are a LOT of big examples of that right below, so not examples here.\par
+This could be thought of as a subroutine, except with passed parameters. There are a LOT of big examples of that right below, so there are no examples here.\par
 \par
+
 \pard\sl276\slmult1\ul Practice:\ulnone\par
 \par
 Now that we have these tools, what can we make?\par
@@ -298,6 +321,7 @@ To maximize the lulz this guide can provide, let's attempt to code something rel
 \par
 \b Let's start with a simple recursive fibonacci function.\b0\par
 \par
+
 \pard\li720\sl276\slmult1 The 0th Fibonacci number is 0, right?\par
 The 1st Fibonacci Number is 1, right?\par
 Any other than those, we'll compute recursively. Let's go!\par
@@ -328,11 +352,13 @@ return fibonacciNumber\par
 \b0 For added amusement, use the time functions available to VoyageScript to benchmark the Fibonacci computation, and figure out how many times slower this is than Java. Seriously though, VoyageScript is slow and not very efficient, probably owing to my amateurness. We discovered in testing that computations run faster a second or third time, which is probably because some variables become stored in memory. \par
 \par
 For all scripting purposes, however, don't worry at all about the speed of VoyageScript. Although it's possible to have hundreds of Threads running, the bottom line is that just not many VoyageQuest commands are called per tick. In the RPG world, we have less than a dozen entities actively moving at once. In the battle, things get more computationally expensive, but the parts that actually serve as the bottlenecks are the collision detection QuadTree and the graphics. \par
+
 \pard\sl276\slmult1\par
 \par
 \b Now let's program bubble sort:\par
 \par
-\pard\li750\sl276\slmult1\b0 We're going to fill an array of numbers with random numbers, and then sort them. This is really a demonstration of array functions. Arrays are variables, and since variables can be placed in arrays, arrays too can be placed in arrays. Therefore, if you wanted to monkey around with multidimensional arrays, then it would probably work! Then, try writing a procedure to perform stuff like manipulating matrices. Trololol\par
+
+\pard\li750\sl276\slmult1\b0 We're going to fill an array with random numbers, and then sort them. This is really a demonstration of array functions. Arrays are variables, and since variables can be placed in arrays, arrays too can be placed in arrays. Therefore, if you wanted to monkey around with multidimensional arrays, then it would probably work! Then, try writing a procedure to perform stuff like manipulating matrices. Trololol.\par
 \par
 \b -- Create the array of numbers\par
 var numElements 93\par
@@ -384,9 +410,11 @@ next i + 1 --> i\par
 endthread\par
 \par
 -- Perform bubble sort. I was really lazy so I got it off of\par
--- {\field{\*\fldinst{HYPERLINK "http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort"}}{\fldrslt{\ul\cf1 http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort}}}\f0\fs22\par
+-- {{\field{\*\fldinst{HYPERLINK http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort }}{\fldrslt{http://rosettacode.org/wiki/Sorting_algorithms/Bubble_sort\ul0\cf0}}}}\f0\fs22\par
+
 \pard\li741\sl276\slmult1 function [bubbleSort] array\par
 \tab getArraySize array --> size\par
+
 \pard\li741\sl240\slmult1\tab var done false\par
 \tab while done == false\par
 \tab var done true\par
@@ -403,11 +431,15 @@ endthread\par
 \tab\tab next i + 1 --> i\par
 \tab wend\par
 return array\b0\par
+
 \pard\li1470\sl276\slmult1\tab\par
 \par
+
 \pard\sl276\slmult1\b Finally, a recursive sorting algorithm!\par
 \par
+
 \pard\fi-53\li741\sl276\slmult1\tab\b0 We're just going to implement mergesort in VoyageQuest. This time too, I will port the program over from the Java implementation available at rosettacode.org. Since the implementation uses Comparable, I'm going to use helper functions as well.\par
+
 \pard\li741\sl276\slmult1\par
 \b -- Perform merge sort on an array\par
 function [mergeSort] array\par
@@ -503,7 +535,9 @@ function [compareTo] a b\par
 \tab\tab return 1\par
 \tab endif\par
 return 1337\b0\par
+
 \pard\sl276\slmult1\par
+
 \pard\li741\sl276\slmult1 As you can see, \i mergeSort\i0  made use of the helper functions \i subList\i0  and \i merge\i0 , and \i merge\i0  in turn uses \i compareTo\i0 . Computer science textbooks emphasize that regardless of little details like computer power or language of implementation, the big O of the algorithm rears its head eventually. I saw that with \i bubbleSort\i0 , the program didn't finish sorting 10000 doubles in over a minute, but the same task was accomplished in 0.5 seconds using \i mergeSort\i0 . \i mergeSort\i0  even handled 100000 doubles in less than 10 seconds. \par
 \par
 This is really ugly though:\par
@@ -516,6 +550,7 @@ eval i + 1 --> i\par
 \b result[k++] = left[i++];\par
 \b0\par
 Of course, that will translate to some bytecode equivalent that takes up multiple instructions, but the Java is so much easier to understand, given that we know about operator precedence.\par
+
 \pard\sl276\slmult1\par
 \par
 For additional pleasure, \i the reader should try to implement matrix operations using multidimensional arrays\i0 !\i  \i0 The naive implementation of the Gauss-Jordan Elimination algorithm is big-O n^3, however. Have fun testing that with VoyageScript.\b\par
@@ -532,6 +567,7 @@ For additional pleasure, \i the reader should try to implement matrix operations
 \par
 There are two types of commands:\par
 \b - Normal commands\b0\par
+
 \pard\li720\sl276\slmult1 For example, the following will finish running in one tick of the clock:\par
 \par
 \b -- Calculates and prints the sine of 23\par
@@ -546,6 +582,7 @@ toRadian 23 --> var\par
 sin var --> result\par
 print result\par
 endthread\b0\par
+
 \pard\sl276\slmult1\ul\b\par
 \ulnone - Thread-pausing commands.\b0\par
 \tab This one, however...\par
@@ -555,16 +592,19 @@ endthread\b0\par
 \tab\tab wait 500\par
 \tab next i + i --> i\b0\par
 \par
+
 \pard\li720\sl276\slmult1 It prints "0". When it hits wait, the thread pauses execution. After enough ticks happen, the "wait 500" condition will be fulfilled, and the program marches on. It increments i by 1, returns to for, and then prints "1". The thread pauses again. So on, and so forth, until i is equal to 11. Then, this code ends.\par
 \par
 Keep in mind that each tick should be 20 milliseconds. If you used "wait 15", it's likely not to get any faster. It will just pause for one tick, and then restart on the next. Therefore, for all intents and purposes, consider "wait 20" to be the fastest possible wait statement.\par
 \par
 Each thread-pausing command has a termination condition. "wait" will wait until the amount of time in milliseconds passes, but other commands behave differently.\par
+
 \pard\sl276\slmult1\par
 \tab\b dialogBox "Sebastian Profile" "I want to eat some cheesecake..."\par
 \tab dialogBox "Njeri Profile" "How about no?"\par
 \tab endthread\b0\par
 \par
+
 \pard\li720\sl276\slmult1 The termination condition is the player pressing the z-key while input remains enabled. Until then, the thread stays paused on the command. \par
 \par
 Now, what happens if we need to have a thread wait until some condition is fulfilled? Sometimes we need a thread to sit back in the background and wait until something happens before acting. We can call such a script a \i background thread\i0  or a \i listener\i0 . Let's try writing one... Say we're scripting a battle. A few monsters have been spawned, and we need to wait for all of them to die before spawning the boss. Then we have to wait for the boss to die, before ending the battle.\par
@@ -606,6 +646,7 @@ genericMessageBox "You win! LOL"\par
 \par
 endbattle\par
 endthread\b0\par
+
 \pard\sl276\slmult1\tab\par
 \tab\ul\par
 \par
@@ -614,6 +655,7 @@ As the project evolved, the system has become increasingly event-oriented. That 
 \par
 1. A trigger is triggered.\par
 \par
+
 \pard\sl240\slmult1 Bumping into an Entity in the RPG\par
 Clicking an event-object\par
 Walking into an event-object\par
@@ -631,12 +673,14 @@ B. When the player walks into the map-transition event, the corresponding script
 Let's combine the two situations.\par
 \par
 \i Suppose we have the global variables:\i0\par
+
 \pard\li720\sl240\slmult1 HELP_THE_MERCHANT :\par
 \tab State 5 - The player has agreed to help, and therefore the merchant has given the player the keys to the warehouse.\par
 \par
 MAIN_QUEST_STATE : \par
 \tab State 220 - We've reached a point at which we need to access the warehouse no matter what.\par
 \tab State 581 - The rebels have occupied the warehouse.\par
+
 \pard\sl240\slmult1\par
 Rule: Only after a certain point in the main storyline can the warehouse be accessed at all, unless we agreed to help a merchant find something in the warehouse. Then, at an even later point, the warehouse transforms into the rebel headquarters.\par
 \par
@@ -681,7 +725,9 @@ This usually happens when the player walks into the entrance from the side, such
 \i0\par
 \par
 \par
+
 \pard\sl276\slmult1\par
+
 \pard\sl240\slmult1\ul Future Plans:\par
 \ulnone\par
 Future projects should explore using other scripting language, such as Lua. The VoyageScript functionality was developed without formal compiler expertise, and hence its usefulness is quite limited. Although it would be hilarious to try to implement complex data structures and algorithms with VoyageScript, it would also be very painful. However, in a scripting language like Lua, it would be more than reasonable to implement an actual AI. \par

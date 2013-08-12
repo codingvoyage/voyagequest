@@ -3,10 +3,13 @@ fadein
 wait 1000
 spawnEnemy "Anika" 480 -100 "anika" "anikathread"
 spawnEnemy "basicdeer" 480 150 "deer" "deerthread"
-
 spawnEnemy "basicswallow" 480 150 "swallow" "swallowthread"
 
-wait 5000
+
+setThisThreadScriptable "anika"
+assumeControlOfPlayer
+setVelocity 0 -0.05
+movePixelAmount 20000
 
 -- dialogBox "Sebastian Profile" "OH GOD WHY"
 

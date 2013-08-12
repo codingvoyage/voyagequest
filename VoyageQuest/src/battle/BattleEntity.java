@@ -21,9 +21,6 @@ import java.util.ListIterator;
 public class BattleEntity extends Entity {
     public int health;
 
-    /** BattleEntity handles Animation quite differently, so do this instead */
-    public HashMap<String, Animation> animations;
-
     /** Determines what hurts what */
     public Allegiance entityAllegiance;
 
@@ -54,11 +51,6 @@ public class BattleEntity extends Entity {
         associatedThreadInstances = new ArrayList<>();
     }
 
-    public void setAnimation(String animationID)
-    {
-        currentAnimation = animations.get(animationID);
-        resetAnimationTiming();
-    }
 
 
     /**

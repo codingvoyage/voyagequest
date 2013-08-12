@@ -3,11 +3,14 @@ package scripting;
 import battle.*;
 import map.Entity;
 import map.Map;
+import voyagequest.GameState;
 import voyagequest.Global;
 import voyagequest.VoyageQuest;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static voyagequest.GameState.*;
 
 
 /**
@@ -150,13 +153,6 @@ public class ScriptReader
             case 0: //Waiting
                 result = currentThread.continueWait(currentDeltaTime);
                 break;
-//            case 51: //Moving... something only an Entity could do
-//                result = ((MovableEntity)currentScriptable).continueMove(currentDeltaTime, currentThread);
-//                break;
-//            case 53:
-//                System.out.println("continuing le orbitee");
-//                result = ((MovableEntity)currentScriptable).continueOrbit(currentDeltaTime, currentThread);
-//                break;
             case 103:
             case 104:
                 result = ((Entity)currentScriptable).continueMove(currentDeltaTime, currentThread);
@@ -758,10 +754,21 @@ public class ScriptReader
                 break;
                 
             //assumeControlOfPlayer
+            //sets the scriptable of this thread to that of the player
+            //recently updated to make it work in both RPG and Battle modes
             case 136:
-                System.out.println("ASSUMING DIRECT CONTROL");
-                currentThread.setScriptable(VoyageQuest.player);
-                VoyageQuest.player.setMainThread(currentThread);
+                switch (VoyageQuest.state)
+                {
+                    case RPG:
+                        currentThread.setScriptable(VoyageQuest.player);
+                        VoyageQuest.player.setMainThread(currentThread);
+                        break;
+                    case COMBAT:
+                        currentThread.setScriptable(BattleField.player);
+                        break;
+                }
+
+                currentScriptable = currentThread.getScriptable();
                 break;
                 
                 //mapChange NameOfNewMap playernewLocX playernewLocY
@@ -779,9 +786,9 @@ public class ScriptReader
                 } 
                 catch (Exception e) {
                     System.out.println("LOADING MAP FAILED");
-                }  //Swallow any exceptions because I'm a rebel like that.
+                }
 
-                // Change background music if needed
+                //Change background music if needed
                 System.out.println(Global.currentMap.getMusic() + " is " + voyagequest.Res.getAudio(Global.currentMap.getMusic()).isPlaying());
                 voyagequest.Res.playMusic(Global.currentMap.getMusic());
 
@@ -793,7 +800,7 @@ public class ScriptReader
                 Global.currentMap.entities.add(player);
                 Global.currentMap.collisions.addEntity(player);
                 
-                //Fade in, son
+                //Fade in.
                 Thread fadeIn = new Thread("FADEIN");
                 fadeIn.setLineNumber(0);
                 fadeIn.setRunningState(false);
@@ -896,22 +903,22 @@ public class ScriptReader
                 String enemyInstanceName = identifierCheck(currentLine, 3).getStringValue();
                 String enemyThreadName = identifierCheck(currentLine, 4).getStringValue();
 
-                System.out.println(xLoc + " " + yLoc);
+                //Spawn the enemy based on its name and location, and set instanceID
                 Enemy newEnemy = EntityManager.spawnEnemy(enemyID, xLoc, yLoc);
+                newEnemy.instanceID = enemyInstanceName;
 
-                //Now we have to create the thread
+                //Now we have to create the main thread of this enemy
                 Thread enemyThread = new Thread(newEnemy.mainScriptID);
                 enemyThread.setLineNumber(0);
                 enemyThread.setName(enemyThreadName);
                 enemyThread.setScriptable(newEnemy);
-
                 newEnemy.setMainThread(enemyThread);
                 newEnemy.associatedThreadInstances.add(enemyThreadName);
 
-                //Add thread
+                //Add new thread to the battleThreadManager
                 VoyageQuest.battleThreadManager.addThread(enemyThread);
 
-                //Finally, add to spawns
+                //Finally, add the generated Enemy instance to spawns
                 BattleField.addBattleEntity(newEnemy, enemyInstanceName);
 
                 break;
@@ -1005,25 +1012,90 @@ public class ScriptReader
                 break;
 
 
-            //binds the thing
-            //bind threadName entityName
-
+            //Given a threadID and the ID of an entity, binds the
+            //entity as the Scriptable of the thread.
+            //setThreadScriptable threadID ENTITYID
             case 233:
                 String threadName = identifierCheck(currentLine, 0).getStringValue();
                 String entityName = identifierCheck(currentLine, 1).getStringValue();
 
                 System.out.println("THREAD IS" + threadName);
                 //Give the thread at threadName
-                //The threadManager will be whatever is currently it.
-                Thread t = VoyageQuest.battleThreadManager.getThreadAtName(threadName);
+                Thread t;
+                switch (VoyageQuest.state)
+                {
+                    case RPG:
+                        t = VoyageQuest.threadManager.getThreadAtName(threadName);
+                        t.setScriptable(Global.currentMap.entityLookup.get(entityName));
+                        break;
 
-                //Set the entity of Thread t to the entity at entityName
-                t.setScriptable(BattleField.entityInstances.get(entityName));
-
+                    case COMBAT:
+                        t = VoyageQuest.battleThreadManager.getThreadAtName(threadName);
+                        t.setScriptable(BattleField.entityInstances.get(entityName));
+                        break;
+                }
                 break;
 
+            //setThisThreadScriptable ENTITYID
+            case 234:
+                String entityID = identifierCheck(currentLine, 0).getStringValue();
+                switch (VoyageQuest.state)
+                {
+                    case RPG:
+                        currentThread.setScriptable(Global.currentMap.entityLookup.get(entityID));
+                        break;
+
+                    case COMBAT:
+                        Scriptable test = BattleField.entityInstances.get(entityID);
+                        currentThread.setScriptable(test);
+                        break;
+                }
+                //We need to refresh the currentScriptable, since we just modified it!
+                currentScriptable = currentThread.getScriptable();
+                break;
+
+            //getThreadScriptable threadID --> variable
+            case 235:
+                String threadID = identifierCheck(currentLine, 0).getStringValue();
+                String var = identifierCheck(currentLine, 2).getStringValue();
+
+                Thread selectedThread;
+                switch (VoyageQuest.state)
+                {
+                    case RPG:
+                        selectedThread = VoyageQuest.threadManager.getThreadAtName(threadID);
+                        String RPGinstanceID = ((Entity)selectedThread.getScriptable()).name;
+                        currentThread.setVariable(var, new Parameter(RPGinstanceID));
+                        break;
+
+                    case COMBAT:
+                        selectedThread = VoyageQuest.battleThreadManager.getThreadAtName(threadID);
+                        String instanceID = ((BattleEntity)selectedThread.getScriptable()).instanceID;
+                        currentThread.setVariable(var, new Parameter(instanceID));
+                        break;
+                }
+                break;
+
+            //getThisThreadScriptable --> variable
+            case 236:
+                String scriptableVarName = identifierCheck(currentLine, 1).getStringValue();
+                switch (VoyageQuest.state)
+                {
+                    case RPG:
+                        String RPGinstanceID = ((Entity)currentThread.getScriptable()).name;
+                        currentThread.setVariable(scriptableVarName, new Parameter(RPGinstanceID));
+                        break;
+
+                    case COMBAT:
+                        String instanceID = ((BattleEntity)currentThread.getScriptable()).instanceID;
+                        currentThread.setVariable(scriptableVarName, new Parameter(instanceID));
+                        break;
+                }
+                currentScriptable = currentThread.getScriptable();
+                break;
+
+
         }
-        
         
         //Returns whether to continue loading more commands
         return continueExecuting;
