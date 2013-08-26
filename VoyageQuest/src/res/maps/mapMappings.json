@@ -4,11 +4,6 @@
             
     "mapLoadingMappings": [
         {
-            "mapID" : "ForestVillage",
-            "mapURL" : "res/maps/ForestVillage.tmx",
-            "mapJsonURL" : "res/maps/ForestVillage.json"
-        },
-        {
             "mapID" : "Beach",
             "mapURL" : "res/maps/Beach.tmx",
             "mapJsonURL" : "res/maps/Beach.json"
