@@ -206,6 +206,7 @@ fadeout 162
 -- General box which pops up, but displays nobody
 -- genericMessageBox (text)
 genericMessageBox 150
+messageBox 150
 
 -- A messagebox with a profile animation
 -- dialogbox animationname text

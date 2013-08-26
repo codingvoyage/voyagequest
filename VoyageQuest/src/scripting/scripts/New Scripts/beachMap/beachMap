@@ -1,1 +1,15 @@
+print "HAYYYYYY"
+
+existsGlobal "mainVillage" --> mainStarted
+if mainStarted == false
+    writeGlobal 0 --> mainVillage
+endif
+
+getGlobal "mainVillage" --> gameState
+if gameState == 0
+
+    messageBox "[Sebastian] wakes up 3 hours later only to find [him/her]self on some mysterious beach."
+    dialogBox "Sebastian Profile" "Huh? What happened? Where am I?"
+
+endif
 endthread
