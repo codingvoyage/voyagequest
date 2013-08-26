@@ -3,9 +3,9 @@ dialogBox "Sebastian Profile" "What is this madness"
 
 assumeControlOfPlayer
 setVelocity 0.10 0
-movePixelAmount 500
+-- movePixelAmount 500
 wait 5000
 
-startBattle "FUNNY BEAR"
+-- startBattle "FUNNY BEAR"
 
 endthread

@@ -1,0 +1,12 @@
+{
+    "about_file": "This is the beach Map 2",
+
+    "mapName" : "Beach Map 2",
+
+    "mapBackgroundScript": "crabMap",
+
+    "allEntities": [
+    ],
+
+    "music" : "Lith Harbor"
+}

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="25" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="desert_ground" tilewidth="64" tileheight="64">
+  <image source="tilesets/desert_ground.png" width="512" height="512"/>
+ </tileset>
+ <tileset firstgid="65" name="TREE" tilewidth="64" tileheight="64">
+  <image source="tilesets/TREE.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="257" name="GRS2ROC" tilewidth="64" tileheight="64">
+  <image source="tilesets/GRS2ROC.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="449" name="CLIFVEG2" tilewidth="64" tileheight="64">
+  <image source="tilesets/CLIFVEG2.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="641" name="PathAndObjects_0" tilewidth="64" tileheight="64">
+  <image source="tilesets/PathAndObjects_0.png" width="512" height="512"/>
+ </tileset>
+ <layer name="Ground" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJyllsEOxCAIRK3txbX//73bw5JMXgCxe5isURGYAbpHa+0Q9Afngwv7GdSGWNmOZH/Iufq4gUqMY4FVfpU3iM+D+YtxFvx2saH9LWvjwrtDTqhnl/uXo53GHtWD7jEG5Yt3q7UV2TAP3TP/GktVG+qkeejeTk+s8lIfjOdfP6zb7vin3pW+iLSwM69HOQcYg9aR1zO0s99sXnlxZvPImzGnc4+xs1YybtlP1TlX6YvobNXLHk/q2+tr+mA+u32gmlB/6jqaz1ukH229GmM+1MjWWT0YvHlsOSqfqkn2pq2ngLxTG6+2V9+3ilY6Q7xZ+vbdU3jROo36lFq/QZRH9K7OoV0wt4yL3f8Xhi827gqp
+  </data>
+ </layer>
+ <layer name="Water" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBi6QIMRgUftGP52IJs/aseoHaN2DC870M2mlT+Gix3Y7Bm1gzjzh5MdADFND7M=
+  </data>
+ </layer>
+ <layer name="Cliff thing" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJyTYWJgkEHDnEB8jZE8zAXUywvEskCcBsU6WLAk1B4uEjEPkvm6QFwGxTZYsCbUHikSsQyS+YSAJdQeLRKxDpHmI9tjRSIGhYEtCXaMglEwCkbBKBgFo2DoAAAcfBn4
+  </data>
+ </layer>
+ <layer name="Entity Layer" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJxjYBgFxIIWIG6lsR1TgHgqje1YAsRLaWwHpWEVgcbexYSphtywgpmdAaV3MiHY6AA9rDKJtAOXebQCxLprqAN650FahetgzoOk+HkklVfhDAwNYUBMrh3oYRUFxNFAHIMklg40P40CO9DDKguIs4E4h1wDsYDRenBwAQA8fCAK
+  </data>
+ </layer>
+ <layer name="Tile Layer 5" width="25" height="25">
+  <data encoding="base64" compression="zlib">
+   eJztwQENAAAAwqD3T20ON6AAAHgzCcQAAQ==
+  </data>
+ </layer>
+ <objectgroup name="Collisions" width="25" height="25">
+  <object x="439" y="261" width="259" height="40"/>
+  <object x="669" y="268" width="305" height="36"/>
+  <object x="952" y="281" width="283" height="16"/>
+  <object x="1212" y="225" width="36" height="68"/>
+  <object x="1249" y="195" width="63" height="36"/>
+  <object x="1291" y="143" width="83" height="51"/>
+  <object x="1360" y="111" width="85" height="51"/>
+  <object x="1413" y="67" width="28" height="551"/>
+  <object x="1337" y="369" width="33" height="517"/>
+  <object x="1213" y="1001" width="87" height="121"/>
+  <object x="1324" y="905" width="44" height="136"/>
+  <object x="1287" y="1115" width="57" height="116"/>
+  <object x="1304" y="1216" width="39" height="208"/>
+  <object x="1285" y="1409" width="61" height="193"/>
+  <object x="1437" y="60" width="185" height="84"/>
+  <object x="21" y="139" width="315" height="17"/>
+  <object x="339" y="161" width="65" height="43"/>
+  <object x="377" y="195" width="80" height="71"/>
+  <object x="12" y="207" width="104" height="353"/>
+  <object x="9" y="788" width="105" height="743"/>
+  <object x="1159" y="478" width="48" height="23"/>
+  <object x="1224" y="445" width="31" height="23"/>
+  <object x="1031" y="452" width="43" height="19"/>
+  <object x="903" y="520" width="40" height="18"/>
+  <object x="1095" y="604" width="47" height="20"/>
+  <object x="1285" y="423" width="46" height="17"/>
+  <object x="905" y="993" width="45" height="16"/>
+  <object x="590" y="1250" width="98" height="19"/>
+  <object x="205" y="869" width="38" height="11"/>
+  <object x="295" y="1302" width="106" height="26"/>
+  <object x="267" y="547" width="39" height="12"/>
+ </objectgroup>
+ <objectgroup name="Boundaries" width="25" height="25">
+  <object x="1282" y="386" width="57" height="58"/>
+  <object x="1219" y="386" width="57" height="122"/>
+  <object x="1154" y="450" width="57" height="58"/>
+  <object x="1027" y="387" width="57" height="122"/>
+  <object x="900" y="452" width="54" height="119"/>
+  <object x="1091" y="581" width="58" height="54"/>
+  <object x="579" y="1157" width="120" height="118"/>
+  <object x="259" y="1221" width="182" height="119"/>
+  <object x="196" y="836" width="53" height="56"/>
+  <object x="899" y="962" width="57" height="57"/>
+  <object x="258" y="517" width="55" height="53"/>
+ </objectgroup>
+ <objectgroup name="Events" width="25" height="25">
+  <object name="hi" type="onTouch" x="-8" y="1563" width="1269" height="29">
+   <properties>
+    <property name="runScript" value="beachToCrab"/>
+   </properties>
+  </object>
+  <object type="onTouch" x="17" y="575" width="80" height="204">
+   <properties>
+    <property name="runScript" value="beachToVillage"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

@@ -1,0 +1,12 @@
+{
+    "about_file": "This is the beach Map",
+
+    "mapName" : "Beach Map",
+
+    "mapBackgroundScript": "beachMap",
+
+    "allEntities": [
+    ],
+
+    "music" : "Elinia"
+}

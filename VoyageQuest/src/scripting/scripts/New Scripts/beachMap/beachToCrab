@@ -1,0 +1,4 @@
+assumeControlOfPlayer
+getLocation --> x y
+mapChange "Crab" x 0
+endthread
