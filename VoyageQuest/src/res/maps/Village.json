@@ -1,0 +1,12 @@
+{
+    "about_file": "This is the first village the player encounters",
+
+    "mapName" : "Friendly Farming Village",
+
+    "mapBackgroundScript": "villageMap",
+
+    "allEntities": [
+    ],
+
+    "music" : "Elinia"
+}

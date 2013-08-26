@@ -12,6 +12,11 @@
             "mapID" : "Crab",
             "mapURL" : "res/maps/Crab.tmx",
             "mapJsonURL" : "res/maps/Crab.json"
+        },
+		{
+            "mapID" : "Village",
+            "mapURL" : "res/maps/Village.tmx",
+            "mapJsonURL" : "res/maps/Village.json"
         }
     ]
 }
