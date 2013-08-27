@@ -1,15 +1,40 @@
-print "HAYYYYYY"
-
+-- If the 'mainVillage' ID doesn't exist, then we just started the game
+-- so create the mainVillage ID and set it to 0
 existsGlobal "mainVillage" --> mainStarted
 if mainStarted == false
     writeGlobal 0 --> mainVillage
 endif
 
+-- So basically the below code will only run if it's your first time on the map
+-- playing the game for the first time.
 getGlobal "mainVillage" --> gameState
 if gameState == 0
 
+    -- PC finds self on a beach
+    freezeInputs
     messageBox "[Sebastian] wakes up 3 hours later only to find [him/her]self on some mysterious beach."
     dialogBox "Sebastian Profile" "Huh? What happened? Where am I?"
+    unfreezeInputs
+
+    -- Continuously check whether we've wandered far enough...
+    assumeControlOfPlayer
+    var "outside" false
+    while outside == false
+        getLocation --> playerX playerY
+        if [ playerX < 600 ] || [ playerY > 830 ]
+            var outside true
+        endif
+        wait 100
+    wend
+
+    -- Hear the screams of the Elder
+    freezeInputs
+    messageBox "... ... ... aaah!"
+    dialogBox "Sebastian Profile" "Huh?"
+    messageBox "*bump* ughhh"
+    dialogBox "Sebastian Profile" "Wow. I hear somebody in distress from the south..."
+    writeGlobal 5 --> mainVillage
+    unfreezeInputs
 
 endif
 endthread
