@@ -1,5 +1,3 @@
-print "HAYYYYYY"
-
 existsGlobal "mainVillage" --> mainStarted
 if mainStarted == false
     writeGlobal 0 --> mainVillage
@@ -8,8 +6,25 @@ endif
 getGlobal "mainVillage" --> gameState
 if gameState == 0
 
+    -- Initial landing - Player is very confused --
+    freezeInputs
+
     messageBox "[Sebastian] wakes up 3 hours later only to find [him/her]self on some mysterious beach."
     dialogBox "Sebastian Profile" "Huh? What happened? Where am I?"
 
+    unfreezeInputs
+
+
+    -- A strong breeze to attempt to foreshadow evil --
+    wait 7000
+    soundEffect "Wind Howl"
+
+    freezeInputs
+
+    dialogBox "Sebastian Profile" "That breeze gave me a weird feeling in my head. Not sure how to describe it. Ah well, I need to figure out what in the world happened."
+
+    unfreezeInputs
+
 endif
+
 endthread

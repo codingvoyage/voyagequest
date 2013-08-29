@@ -39,6 +39,12 @@
             "type" : "effect"
         },
         {
+            "name" : "Wind Howl",
+            "path" : "res/sounds/windHowl.ogg",
+            "credit" : "Maplestory",
+            "type" : "effect"
+        },
+        {
             "name" : "Explosion",
             "path" : "res/sounds/teleport.ogg",
             "credit" : "Unknown",

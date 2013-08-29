@@ -224,6 +224,9 @@ genericPrompt 153
 -- Music/sound related functions
 -- -----------------------------
 
+-- soundEffect/playMusic "Music Name"
+-- Refer to /res/Audio.json
+
 -- some sound effects may be automatic with certain actions
 soundEffect 163
 
