@@ -31,9 +31,6 @@ public class Script {
     private ArrayList<Line> lineList;
     private HashMap<String, Integer> labelMap;
     private HashMap<String, Integer> commandDictionary;
-    
-    /** path to scripts folder */
-    public final String SCRIPT_FOLDER = "scripting/scripts/";
 
     public Script(String filename, HashMap<String, Integer> commandDictionary)
     {
@@ -61,7 +58,8 @@ public class Script {
     {
         //So like script.txt would end up being scripts/script.txt
         //which is where it should be...
-        InputStream is = getClass().getClassLoader().getResourceAsStream(SCRIPT_FOLDER + filename);
+        InputStream is = getClass().getClassLoader().getResourceAsStream(
+                ScriptManager.SCRIPT_FOLDER + filename);
         
         if (is == null)
             System.out.println("Script doesn't exist");

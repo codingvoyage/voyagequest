@@ -1,7 +1,0 @@
-freezeInputs
-
-dialogBox "Sebastian Profile" "This is Anika, my Commander. I was assigned to her when I joined the Malentian military."
-
-unfreezeInputs
-
-endthread

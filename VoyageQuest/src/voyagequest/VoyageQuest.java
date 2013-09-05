@@ -141,6 +141,8 @@ public class VoyageQuest extends BasicGame {
         Thread loadingThread = new Thread("INITIALSCRIPT");
         loadingThread.setLineNumber(0);
         threadManager.addThread(loadingThread);
+
+        System.out.println("beep");
         threadManager.act(0.0);
     }
 
@@ -150,7 +152,8 @@ public class VoyageQuest extends BasicGame {
     private void loadScripts() throws SlickException {
         //Initialize the ScriptManager, which loads every script
         scriptCollection = new ScriptManager();
-        
+
+        System.out.println("...");
         //Initialize ScriptReader, passing it the ScriptManager handle
         scriptReader = new ScriptReader(scriptCollection);
 
@@ -159,6 +162,7 @@ public class VoyageQuest extends BasicGame {
         battleThreadManager = new ThreadManager(scriptReader);
 
         scriptReader.setThreadHandle(threadManager);
+        System.out.println("...");
     }
     
     /**

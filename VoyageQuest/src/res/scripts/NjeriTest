@@ -1,0 +1,20 @@
+
+while true == true
+
+    -- move right a bit now
+    setAnimationDirection 3
+    setVelocity 0.25 0
+    moveTileAmount 3.5
+    setAnimationDirection 0
+
+    wait 2000
+
+    -- move left a bit now
+    setAnimationDirection 2
+    setVelocity -0.25 0
+    moveTileAmount 3.5
+    setAnimationDirection 0
+
+    wait 2000
+
+wend

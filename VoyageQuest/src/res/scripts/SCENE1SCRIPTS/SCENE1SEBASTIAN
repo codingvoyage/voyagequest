@@ -1,0 +1,58 @@
+
+while true == true
+    -- move up a bit now
+    setAnimationDirection 0
+    setVelocity 0 -0.25
+    moveTileAmount 2.5
+    setAnimationDirection 1
+
+    -- move right a bit now
+    setAnimationDirection 3
+    setVelocity 0.25 0
+    moveTileAmount 2.5
+    setAnimationDirection 1
+
+    -- move down a bit now
+    setAnimationDirection 1
+    setVelocity 0 0.25
+    moveTileAmount 2.5
+
+
+    getGlobal GAME_STATE --> asdfasdf
+    if asdfasdf == 5
+        goto [DONEPANICKING]
+    endif
+
+    setAnimationDirection 0
+
+
+    -- move left a bit now
+    setAnimationDirection 2
+    setVelocity -0.25 0
+    moveTileAmount 2.5
+    setAnimationDirection 1
+
+wend
+
+label [DONEPANICKING]
+
+var continue false
+while continue == false
+    wait 100
+    getGlobal GAME_STATE --> asdfasdf
+    if asdfasdf == 10
+        var continue true
+    endif
+wend
+
+-- face up, walk up
+setAnimationDirection 0
+setVelocity 0 -0.25
+moveTileAmount 3.5
+
+-- face right, walk right
+setAnimationDirection 3
+setVelocity 0.25 0
+moveTileAmount 1000
+
+endthread

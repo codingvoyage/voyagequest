@@ -712,23 +712,9 @@ public class ScriptReader
 
 
             /***********************************************************
-             GLOBAL VARIABLE STATES
+
              ***********************************************************/
 
-
-
-
-                
-
-                
-
-                
-
-
-                
-                
-
-                
 
                 
             //freezeThreads 130
@@ -780,12 +766,12 @@ public class ScriptReader
                 voyagequest.Res.playEffect("Teleport");
 
                 //Load map with name
+                String newMapName = identifierCheck(currentLine, 0).getStringValue();
                 try {
-                Global.currentMap =
-                        new Map(identifierCheck(currentLine, 0).getStringValue());
-                } 
-                catch (Exception e) {
-                    System.out.println("LOADING MAP FAILED");
+                    Global.currentMap =
+                        new Map(newMapName);
+                } catch (Exception e) {
+                    System.out.println("Error: failed to load the map called " + newMapName);
                 }
 
                 //Change background music if needed
@@ -868,7 +854,13 @@ public class ScriptReader
             // endbattle
             case 155:
                 BattleManager.endBattle();
+                break;
 
+            // inBattleMode --> variable
+            case 156:
+                currentThread.setVariable(
+                        currentLine.getStringParameter(1),
+                        new Parameter(VoyageQuest.state == GameState.COMBAT));
                 break;
 
 
@@ -1112,7 +1104,7 @@ public class ScriptReader
                         referencedParam);
     }
     
-     public void getSystemNanoTime(Line currentLine)
+    public void getSystemNanoTime(Line currentLine)
     {
         String variableIdentifier = currentLine.getStringParameter(0);
         Parameter referencedParam = new Parameter(System.nanoTime());

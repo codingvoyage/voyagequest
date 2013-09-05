@@ -1,0 +1,91 @@
+
+
+
+getGlobal GAME_STATE --> gameState
+
+-- When we're supposed to talk to her
+if gameState == 55
+        freezeInputs
+
+        -- goto [SKIPDIALOGLOL]
+
+        dialogBox "Njeri Profile" "... Sebastian, is it? It's a pleasure to meet you. What seems to be the matter?" 
+
+        dialogBox "Sebastian Profile" "..."
+        dialogBox "Sebastian Profile" "... ..."
+        dialogBox "Sebastian Profile" "... ... ..."
+
+        var l1 "This is terrible... but unfortunately, unsurprising. I've heard reports of the "
+        var l2 "recent military coup during which the king of Maelloc was overthrown by his advisors "
+        var l3 "and commanders. I have a real suspicion that the current ruling body of Maelloc is after "
+        var l4 "the mineral deposits in your country. I know that there's really no time to waste but right now "
+        var l5 "I am unfortunately very preoccupied with some urgent matters here. "
+        eval [ l1 + l2 ] + [ l3 + [ l4 + l5 ] ] --> herspeech
+        dialogBox "Njeri Profile" herspeech 
+
+        dialogBox "Njeri Profile" "..." 
+        dialogBox "Njeri Profile" "Oh wait, you're willing to help us out?" 
+
+        var l1 "Alright, basically I am about to send you on a wild goose chase that will occupy a lot of time "
+        var l2 "and make it look like the game actually has some semblance of a story, and to make the players "
+        var l3 "think that there was a lot of thought put into this game and that it wasn't made in the last minute. "
+        var l4 "So yeah. Thanks a lot for agreeing to help out!"
+        eval [ l1 + l2 ] + [ l3 + l4 ] --> herspeech
+        dialogBox "Njeri Profile" herspeech 
+
+        dialogBox "Njeri Profile" "So, here's what I need you to do..." 
+        dialogBox "Njeri Profile" "An associate of mine, Li Fei, is currently in the city..." 
+
+        var l1 "Isn't he the guy who negotiated some treaty between Malentia and the "
+        var l2 "Telfrinz Hegemony?"
+        eval l1 + l2 --> msg
+        dialogBox "Sebastian Profile" msg
+
+        dialogBox "Njeri Profile" "Yeah, same guy. He's currently looking for some help. Go to him, Sebastian." 
+
+        dialogBox "Sebastian Profile" "Okay. Coolbeanz."
+
+        label [SKIPDIALOGLOL]
+
+        unfreezeInputs
+        writeGlobal 60 --> GAME_STATE
+
+        endthread
+endif
+
+if gameState == 60
+        freezeInputs
+        dialogBox "Njeri Profile" "Weren't you supposed to meet with Li Fei?" 
+        unfreezeInputs
+endif
+
+if gameState == 80
+        freezeInputs
+        dialogBox "Sebastian Profile" "Hold on... I need to talk to Li Fei first!"
+        unfreezeInputs
+endif
+
+-- At this point, Njeri finds out about the time travel shenanigans
+-- You could say that at this point, shit has gotten real.
+if gameState == 85
+        freezeInputs
+
+        var l1 "Sebastian... when you were passed out, a letter fell out of your coat. I thought maybe "
+        var l2 "you'd forgotten to show it to me, but upon reading it, I realized just what was going on. "
+        var l3 "You're from the future! For hiding that, I really don't blame you, but the problem is "
+        var l4 "that that isn't all! That's not the least of it! ... Do you know what steganography is? "
+        var l5 "No? Well, it's a way of hiding secrets in your messages. It's not like normal ciphers. "
+        var l6 "Long story short, your commander sent a hidden message to herself in her letter, just so that "
+        var l7 "nobody else could read it but her! And in the hours in which you were passed out, I figured out "
+        var l8 "what was hidden!"
+            eval [ [ l1 + l2 ] + [ l3 + l4 ] ] + [ [ l5 + l6 ] + [ l7 + l8 ] ] --> herspeech
+            dialogBox "Njeri Profile" herspeech 
+
+        dialogBox "Njeri Profile" "*takes a deep breath*" 
+
+        genericMessageBox "OMG WHAT WILL SEBASTIAN DISCOVER NOW??"
+        genericMessageBox "THE FINAL MYSTERY WILL BE REVEALED... NEXT TIME. WE WILL INFORM THE CLASS WHEN ALL IS COMPLETE FOR REALZ."
+        unfreezeInputs
+endif
+
+endthread

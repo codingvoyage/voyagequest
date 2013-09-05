@@ -1,0 +1,71 @@
+-- wait until sebastian finishes looking around his room
+var continue false
+while continue == false
+    wait 100
+    getGlobal GAME_STATE --> asdfasdf
+    if asdfasdf == 15
+        print "YESSS"
+        var continue true
+    endif
+wend
+
+-- warp him to outside sebastian's room
+entitySetLocation 600 1100
+
+genericMessageBox "Stop right there!"
+
+dialogBox "Sebastian Profile" "(Oh shit...!)"
+
+-- move up now to apprehend sebastian
+setAnimationDirection 0
+setVelocity 0 -0.25
+moveTileAmount 8
+setAnimationDirection 3
+
+genericMessageBox "Hey, we've got someone here!"
+
+
+var m1 "I don't know what you're trying to pull, but I have orders to apprehend every officer "
+var m2 "of the Malentia kingdom I can find. Please stop casting your spell, and surrender immediately."
+eval m1 + m2 --> msg
+genericMessageBox msg
+
+-- SPIN FASTER
+writeGlobal 20 --> GAME_STATE
+wait 1000
+
+genericMessageBox "Uh..."
+
+var m1 "For real tho. I'm not kidding around - your king is dead. The area is soon to be annexed by Maelloc, "
+var m2 "and we're hoping to secure the cooperation of the existing administration."
+eval m1 + m2 --> msg
+genericMessageBox msg
+
+-- FASTER!!
+writeGlobal 25 --> GAME_STATE
+wait 1000
+
+genericMessageBox "Alright, that's it...!"
+
+-- signal that we're about to fly away!
+writeGlobal 30 --> GAME_STATE
+wait 300
+
+-- move right now to apprehend sebastian
+setVelocity 0.5 0
+moveTileAmount 5
+setAnimationDirection 3
+
+wait 1500
+
+genericMessageBox "Oh, what the fuck??"
+
+wait 700
+
+-- Game state 35 means that we're done with this scene.
+writeGlobal 35 --> GAME_STATE
+getGlobal GAME_STATE --> asdfasdf
+print "yoo"
+print asdfasdf
+
+endthread

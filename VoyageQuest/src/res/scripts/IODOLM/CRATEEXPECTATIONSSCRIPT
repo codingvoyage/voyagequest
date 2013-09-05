@@ -1,0 +1,70 @@
+-- There is an obligatory comment about the sheer number of crates that must 
+-- be made here..
+existsGlobal "DAMN_CRATES" --> result
+
+wait 5000
+fadeout
+startBattle "FUNNY BEAR"
+endthread
+
+if result == false
+    writeGlobal true --> "DAMN_CRATES"
+
+    wait 2000
+    freezeInputs
+
+    dialogBox "Sebastian Profile" " ... wow... "
+
+    newArray testOptions 4
+        putArray testOptions 0 <-- "I hate crates"
+        putArray testOptions 1 <-- "I hate crates even more"
+        putArray testOptions 2 <-- "CRATES FTW"
+        putArray testOptions 3 <-- "We need more crates.. seriously"
+    var promptquestion "Do I love crates? Who doesn't love crates? Crates are amazing and totally do not cause headaches. Agreed?"
+
+    dialogPrompt "Sebastian Profile" promptquestion testOptions --> result
+
+    if result == 0
+        dialogBox "Sebastian Profile" "The number of crates in this room... "
+        dialogBox "Sebastian Profile" "Is. Too. Damn. High!"
+    endif
+    if result == 1
+        dialogBox "Sebastian Profile" "GODDAMN CRATES. UGHHHH!!"
+        dialogBox "Sebastian Profile" "I WANT TO TEAR EVERY CRATE HERE APART!!"
+    endif
+    if result == 2
+        var luvcrates1 "I am a crate aficionado. A craficionado. "
+        var luvcrates2 "This is totally crate! Get it?? Crate? Great? Ahahaha... haha ... haaaahhhh uh no. "
+        var luvcrates3 "Alright that was terrible. But damn, crates ARE great."
+        eval luvcrates1 + [ luvcrates2 + luvcrates3 ] --> luvcrates
+        dialogBox "Sebastian Profile" luvcrates
+    endif
+    if result == 3
+        dialogBox "Sebastian Profile" "Why are there not more crates in here!"
+        dialogBox "Sebastian Profile" "There are only 300 crates in this room. I demand to see more. Crates are crate!"
+    endif
+
+    dialogBox "Sebastian Profile" "But hold on a second... I can see the hat all the way across the room..."
+    freezeCamera -100 1900
+    wait 1000
+    dialogBox "Sebastian Profile" "... damn, it's a really shiny hat. Oh look, Panther's sabre-sword is there too!"
+    dialogBox "Sebastian Profile" "I just need to make my way through this maze of crates to get there."
+    dialogBox "Sebastian Profile" "Maybe I can climb over some of them ..."
+    wait 500
+    unfreezeCamera
+    unfreezeInputs
+
+    wait 15000
+    dialogBox "Sebastian Profile" "Way... too many crates"
+
+    wait 10000
+    dialogBox "Sebastian Profile" "Crate Expectations, by Charles Dickens..."
+
+    wait 10000
+    dialogBox "Sebastian Profile" "UGH!!"
+
+
+endif
+
+
+endthread

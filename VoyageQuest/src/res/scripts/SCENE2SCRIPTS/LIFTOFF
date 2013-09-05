@@ -1,0 +1,20 @@
+-- wait until the GAME_STATE equals 30, which means it's liftoff
+var continue false
+while continue == false
+    wait 100
+    getGlobal GAME_STATE --> asdfasdf
+    if asdfasdf == 30
+        var continue true
+    endif
+wend
+
+wait 300
+
+assumeControlOfPlayer
+
+-- NOW FLY
+setAnimationDirection 0
+setVelocity 0 -1.0
+movePixelAmount 1000
+
+endthread

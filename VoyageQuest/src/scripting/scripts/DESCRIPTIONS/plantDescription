@@ -1,9 +1,0 @@
-freezeInputs
-
-dialogBox "Sebastian Profile" "A generic potted plant."
-dialogBox "Sebastian Profile" "I just clicked on a potted plant."
-dialogBox "Sebastian Profile" "What is my life??"
-
-unfreezeInputs
-
-endthread

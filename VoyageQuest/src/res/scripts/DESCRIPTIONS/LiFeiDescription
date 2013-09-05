@@ -1,0 +1,19 @@
+freezeInputs
+
+getGlobal GAME_STATE --> gameState
+
+if gameState < 60
+    dialogBox "Sebastian Profile" "I shouldn't stare at random people whom I do not know...."
+endif
+
+if gameState >= 60
+    var m1p1 "This is Li Fei. He's a diplomat and statesman who works in the Telfrinz Hegemony. " 
+    var m1p2 "I need to help him out."
+    eval m1p1 + m1p2 --> message1
+    dialogBox "Sebastian Profile" message1
+endif
+
+
+unfreezeInputs
+
+endthread

@@ -1,0 +1,45 @@
+getGlobal GAME_STATE --> asdfasdf
+
+-- goto [debug]
+
+-- Sebastian will have to make a comment about having traveled to the past
+-- only if it's right after SCENE2, after which the global GAME_STATE = 35
+if asdfasdf == 35
+    dialogBox "Sebastian Profile" "Ugh...... "
+    dialogBox "Sebastian Profile" "Am I ..."
+
+    var m1 "... in the past now? Why am I in a forest? Oh wait, that's not really too surprising. "
+    var m2 "I don't really think I had exactly control over where and when I'd end up."
+        eval m1 + m2 --> msg
+        dialogBox "Sebastian Profile" msg
+    dialogBox "Sebastian Profile" "Eh. This should be several weeks into the past."
+    var m1 "I think I know this place actually... it's close to the Malentia capital... "
+    var m2 "I've been picnicking here before in my childhood. "
+        eval m1 + m2 --> msg
+        dialogBox "Sebastian Profile" msg
+    wait 1500
+
+    dialogBox "Sebastian Profile" "..."
+    dialogBox "Sebastian Profile" "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAARGHHHHHH."
+
+    var m1 "That was the most craptastic headache I've ever had!! I don't think I can use magic again for a LONG while after "
+    var m2 "pulling that stunt off. I need to find my way around without it for now... "
+        eval m1 + m2 --> msg
+        dialogBox "Sebastian Profile" msg
+
+    -- Let the player use their keyboard and mouse again
+    unfreezeInputs
+
+    -- Now advance to state 50, which indicates we can now freely explore, then 
+    -- reach the next quest point, talking to the commander again
+    writeGlobal 50 --> GAME_STATE
+endif
+
+
+endthread
+
+label [debug]
+writeGlobal 50 --> GAME_STATE
+
+unfreezeInputs
+endthread

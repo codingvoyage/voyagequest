@@ -1,0 +1,35 @@
+getGlobal GAME_STATE --> gameState
+print "!!!"
+print gameState
+
+
+-- If GAME_STATE is 65, we've just been sent to get the picture.
+-- Now wait for the player to get near the table...
+if gameState == 65
+
+    while true == true
+        getGlobal GAME_STATE --> gameState
+
+        print gameState
+
+        if gameState == 70
+            -- Show the picture
+            entitySetLocation 300 760
+        endif
+
+        if gameState == 75
+            -- Stop displaying it
+            entitySetLocation 5000 5000
+
+            endthread
+        endif
+
+
+        wait 200
+    wend
+
+
+endif
+
+endthread
+

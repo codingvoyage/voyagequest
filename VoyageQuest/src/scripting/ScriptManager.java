@@ -31,8 +31,8 @@ public class ScriptManager {
     public final HashMap<String, Integer> commandIDDictionary;
 
     /** path to scripts folder */
-    public final String SCRIPT_FOLDER = "scripting/scripts/";
-    
+    public static final String SCRIPT_FOLDER = "res/scripts/";
+
     public ScriptManager() 
     {
         //Let's make space for scripts
@@ -47,6 +47,10 @@ public class ScriptManager {
         
         //Now based on our definition file, load the IDDictionary
         commandIDDictionary = createIDDictionary("DICTIONARY.txt");
+
+
+        System.out.println("POKE");
+
 
         loadAllScripts();
     }
@@ -112,7 +116,6 @@ public class ScriptManager {
         //This is the location of our program, whether JAR or in the IDE
         CodeSource src = getClass().getProtectionDomain().getCodeSource();
         String programPath = src.getLocation().getPath();
-
 
         try
         {

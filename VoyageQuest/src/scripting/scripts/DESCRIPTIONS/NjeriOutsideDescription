@@ -1,8 +1,0 @@
-freezeInputs
-
-var m2p1 "Oh wait... is that Njeri? I should meet her inside and speak with her soon..."
-dialogBox "Sebastian Profile" m2p1
-
-unfreezeInputs
-
-endthread

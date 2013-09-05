@@ -1,0 +1,43 @@
+getGlobal GAME_STATE --> gameState
+
+-- If GAME_STATE is 65, we've just been sent to get the picture.
+if gameState == 65
+    -- Cue the picture showing up and Sebastian commenting.
+
+    freezeInputs
+
+    -- Just a bit of dialogue before displaying the picture
+    var m1 "Alright... I guess this is the artifact? Looks really dusty, I should wipe it "
+    var m2 "clean before giving it back to Li Fei."
+        eval m1 + m2 --> msg
+        dialogBox "Sebastian Profile" msg
+    genericMessageBox "*SEBASTIAN PICKS UP AND CLEANS THE ARTIFACT"
+    wait 600
+    dialogBox "Sebastian Profile" "Did I do it correctly? ................................"
+    wait 600
+
+    -- GAME_STATE is now 70. DISPLAY
+    writeGlobal 70 --> GAME_STATE
+
+    dialogBox "Sebastian Profile" "Oh God what is this."
+    dialogBox "Sebastian Profile" "Whut."
+
+    wait 1000
+
+    dialogBox "Sebastian Profile" "Whut."
+
+    wait 1000
+
+    dialogBox "Sebastian Profile" "... ooookay then."
+
+    -- STOP DISPLAYING
+    writeGlobal 75 --> GAME_STATE
+
+    dialogBox "Sebastian Profile" "Back to Li Fei..."
+
+    unfreezeInputs
+
+
+endif
+
+endthread

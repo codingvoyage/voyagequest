@@ -1,0 +1,19 @@
+freezeInputs
+
+var m1 "Oh wow, what is this. This is an intense magical field. "
+var m2 "Normally I'd be able to break though this but right now my mana still needs recovering... "
+eval m1 + m2 --> msg
+dialogBox "Sebastian Profile" msg
+
+assumeControlOfPlayer
+wait 20
+
+-- WALK BACK LEFT
+setAnimationDirection 2
+setVelocity -0.25 0
+moveTileAmount 2
+setAnimationDirection 1
+
+unfreezeInputs
+
+endthread

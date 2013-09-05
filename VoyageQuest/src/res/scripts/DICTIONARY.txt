@@ -1,0 +1,297 @@
+-- Absolutely do not delete DICTIONARY.txt, or else the entire
+-- Scripting Engine breaks. The Scripting Engine uses this
+-- to map commands to opCodes.
+
+-- ------------------------------------
+-- Commenting
+-- -----------------------------------
+-- Two dashes and a space indicate a comment
+
+-- ------------------------------------
+-- Basic Command flow
+-- ------------------------------------
+
+-- wait (milliSeconds)
+wait 0
+
+-- goto [labelName]
+goto 1
+
+-- label/branch [labelName]
+label 2
+branch 2
+
+-- function [functionName] param1 param2 ...
+function 3
+
+-- return value1 value2 ...
+return 4
+
+-- if (statement)
+--      (commands)
+-- endif
+if 5
+
+-- while (statement)
+--      (commands)
+-- wend
+while 6
+wend 7
+
+-- for (var) = (value/statement) and (booleanStatement)
+--     (statements)
+-- next (statement)
+for 8
+next 9
+
+-- Unlike the Thread alternatives, this is local to the script.
+-- callFunction [act] param1 param2 param3 --> returned1 returned2
+callfunction 10
+
+-- ------------------------------------
+-- Variables
+-- ------------------------------------
+createVariable 11
+var 11
+-- setvar destination source
+setVariable 12
+setvar 12
+set 12
+setThreadVariable 13
+
+-- ---------------------------
+-- Array functionality
+-- ---------------------------
+
+-- newArray arrayName size
+newArray 15
+
+-- getArraySize arrayName --> variable
+getArraySize 16
+
+-- getArray arrayName index --> variable
+getArray 17
+
+-- putArray arrayName index <-- variable
+putArray 18
+
+-- ------------------------------------
+-- Math operations
+-- ------------------------------------
+
+-- eval (statement) --> variable
+evaluate 20
+eval 20
+
+-- functionName input --> outputVariable
+-- e.g. sin 5 + 3 --> result
+sin 21
+cos 22
+tan 23
+sqrt 24
+squareroot 24
+toradian 25
+
+-- rand min max --> var
+random 26
+rand 26
+
+-- floor 2.5 --> var
+floor 27
+
+-- ------------------------------------
+-- Threads
+-- ------------------------------------
+newthread 30
+endthread 31
+killthread 32
+
+--
+callscriptfunction 33
+
+-- it's like calling from a script, but it's a specified library script
+library 33
+
+-- callthreadFunction "threadname" [act] param1 param2 ... --> returned1 returned2 ...
+callthreadfunction 35
+
+-- getThreadID var
+getThreadID 36
+
+-- ------------------------------------
+-- Systems commands
+-- ------------------------------------
+
+print 45
+getSystemMilliTime 46
+getSystemNanoTime 47
+
+
+-- ---------------------------------------------------
+-- ---------------------------------------------------
+-- VoyageQuest-specific functions start here
+-- ---------------------------------------------------
+-- ---------------------------------------------------
+
+-- ---------------------------
+-- Control of entities (world and battle)
+-- ---------------------------
+
+-- setVelocity vx vy
+setVelocity 101
+
+-- movePixelAmount distance_in_pixels
+movePixelAmount 104
+
+-- entitySetLocation new_x new_y
+entitySetLocation 107
+
+-- ---------------------------
+-- Control of entities (world only)
+-- ---------------------------
+
+-- setVelocityStandard vx/vy 0,1,2,3 will do setAnimationDirection too.
+setVelocityStandard 102
+
+-- moveTileAmount tile_distance
+moveTileAmount 103
+
+-- setAnimationDirection 0, 1, 2, 3 for north, south, east, and west-appearing movement
+setAnimationDirection 60
+
+-- ---------------------------
+-- Global State variables
+-- ---------------------------
+
+-- existsGlobal "VariableName" --> boolVar
+existsGlobal 120
+
+-- writeGlobal NEW_VALUE --> "VariableName"
+writeGlobal 121
+
+-- getGlobal "VariableName" --> variable
+getGlobal 122
+
+-- ---------------------------
+-- Stopping thread execution except for one thing
+-- ---------------------------
+freezeThreads 130
+unfreezeThreads 133
+
+-- ---------------------------
+-- Manipulating the way Players handle input
+-- ---------------------------
+freezeInputs 131
+unfreezeInputs 134
+
+-- mapChange NameOfNewMap playernewLocX playernewLocY
+mapChange 145
+
+-- ---------------------------
+-- Control of the camera
+-- ---------------------------
+
+-- freezeCamera ULX ULY
+freezeCamera 146
+unfreezeCamera 147
+
+-- Fades the camera in/out
+fadein 161
+fadeout 162
+
+-- ---------------------------
+-- Different dialog/prompt boxes
+-- ---------------------------
+
+-- General box which pops up, but displays nobody
+-- genericMessageBox (text)
+genericMessageBox 150
+messageBox 150
+
+-- A messagebox with a profile animation
+-- dialogbox animationname text
+dialogBox 151
+
+-- dialog boxes with options
+-- dialogprompt animationname text options --> result
+dialogPrompt 152
+
+-- generic dialog box with options
+-- genericprompt text options --> result
+genericPrompt 153
+
+-- -----------------------------
+-- Music/sound related functions
+-- -----------------------------
+
+-- soundEffect/playMusic "Music Name"
+-- Refer to /res/Audio.json
+
+-- some sound effects may be automatic with certain actions
+soundEffect 163
+
+-- music is automatic with maps, so this isn't usually necessary
+playMusic 164
+
+
+
+-- ---------------------------------------------------
+-- ---------------------------------------------------
+-- VoyageQuest Battle-specific functions start here
+-- ---------------------------------------------------
+-- ---------------------------------------------------
+
+-- startBattle battleID
+startBattle 154
+
+-- endbattle
+endbattle 155
+
+-- inBattleMode --> variable
+inBattleMode 156
+
+-- 170 to 175 are for spawning things...
+-- spawnEnemy enemyID x y instanceName threadName OR
+-- spawnEnemy enemyID x y --> instanceName threadName,
+--          which basically comes up with names for you.
+-- spawnProjectile projectileID x y vx vy rotation allegiance
+-- spawnPlayer
+spawnEnemy 170
+spawnProjectile 171
+spawnPlayer 172
+
+
+-- setAnimation animationID. This is for BattleEntities
+setAnimation 180
+
+-- changeAnimationDirection 1/-1
+changeAnimationDirection 181
+
+-- getHP instanceID --> variable
+-- setHP instanceID newHP
+
+-- getLocation instanceID --> x y
+getLocation 190
+-- setLocation instanceID x y
+setLocation 191
+-- existsInstance instanceID --> variable
+-- existsThread threadID --> variable
+
+-- fireWeapon weaponID
+fireWeapon 195
+
+-- setRotation instanceID newRotation OR
+-- setRotation newRotation (Thread's currently affliated Scriptable)
+-- both IN DEGREES
+setRotation 50
+
+
+-- Sets this Thread's "ourEntity" to the entity marked by entityID
+-- setThreadScriptable threadID ENTITYID
+setThreadScriptable 233
+setThisThreadScriptable 234
+getThreadScriptable 235
+getThisThreadScriptable 236
+
+-- Basically associates this thread with the player and vice versa.
+assumeControlOfPlayer 136
