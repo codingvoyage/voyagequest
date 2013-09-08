@@ -1,4 +1,6 @@
 assumeControlOfPlayer
 getLocation --> x y
+
+fadeout
 mapChange "Crab" x 0
 endthread

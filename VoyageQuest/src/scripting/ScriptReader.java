@@ -172,10 +172,10 @@ public class ScriptReader
                 
             //fade in
             case 161:
-                //Relies on VoyageQuest.fade
-                if (VoyageQuest.fade < 255)
+                //Relies on Global.camera.fade
+                if (Global.camera.fade < 255)
                 {
-                    VoyageQuest.fade += 8;
+                    Global.camera.fade += 8;
                     result = true;
                 }
                 else
@@ -191,10 +191,10 @@ public class ScriptReader
                 
             //fade out
             case 162:
-                //Relies on VoyageQuest.fade
-                if (VoyageQuest.fade > 50)
+                //Relies on Global.camera.fade
+                if (Global.camera.fade > 50)
                 {
-                    VoyageQuest.fade -= 4;
+                    Global.camera.fade -= 4;
                     result = true;
                 }
                 else
@@ -756,56 +756,7 @@ public class ScriptReader
 
                 currentScriptable = currentThread.getScriptable();
                 break;
-                
-                //mapChange NameOfNewMap playernewLocX playernewLocY
-            case 145:
-                //Clear the threads of the current map
-                VoyageQuest.threadManager.clear();
 
-                // Play teleport music
-                voyagequest.Res.playEffect("Teleport");
-
-                //Load map with name
-                String newMapName = identifierCheck(currentLine, 0).getStringValue();
-                try {
-                    Global.currentMap =
-                        new Map(newMapName);
-                } catch (Exception e) {
-                    System.out.println("Error: failed to load the map called " + newMapName);
-                }
-
-                //Change background music if needed
-                System.out.println(Global.currentMap.getMusic() + " is " + voyagequest.Res.getAudio(Global.currentMap.getMusic()).isPlaying());
-                voyagequest.Res.playMusic(Global.currentMap.getMusic());
-
-                //Now put the player where the player is supposed to be
-                Entity player = VoyageQuest.player;
-                player.r.x = identifierCheck(currentLine, 1).getDoubleValue();
-                player.r.y = identifierCheck(currentLine, 2).getDoubleValue();
-
-                Global.currentMap.entities.add(player);
-                Global.currentMap.collisions.addEntity(player);
-                
-                //Fade in.
-                Thread fadeIn = new Thread("FADEIN");
-                fadeIn.setLineNumber(0);
-                fadeIn.setRunningState(false);
-                fadeIn.setName("FADEIN");
-                VoyageQuest.threadManager.addThread(fadeIn);
-                
-                break;
-                
-            //freezeCamera ULX ULY
-            case 146:
-                Global.camera.freezeAt(
-                        (int)identifierCheck(currentLine, 0).getDoubleValue(),
-                        (int)identifierCheck(currentLine, 1).getDoubleValue());
-                break;
-                
-            //unfreezeCamera
-            case 147:
-                Global.camera.unfreeze();
-                break;
                 
             case 150:
             //genericMessageBox text
@@ -845,24 +796,44 @@ public class ScriptReader
                 continueExecuting = false;
                 break;
 
-            // startBattle battleID
-            case 154:
-                String battleID = identifierCheck(currentLine, 0).getStringValue();
-                BattleManager.initBattle(battleID);
-                break;
 
-            // endbattle
-            case 155:
-                BattleManager.endBattle();
-                break;
+            //mapChange NameOfNewMap playernewLocX playernewLocY
+            case 160:
+                //Clear the threads of the current map
+                VoyageQuest.threadManager.clear();
 
-            // inBattleMode --> variable
-            case 156:
-                currentThread.setVariable(
-                        currentLine.getStringParameter(1),
-                        new Parameter(VoyageQuest.state == GameState.COMBAT));
-                break;
+                // Play teleport music
+                voyagequest.Res.playEffect("Teleport");
 
+                //Load map with name
+                String newMapName = identifierCheck(currentLine, 0).getStringValue();
+                try {
+                    Global.currentMap =
+                            new Map(newMapName);
+                } catch (Exception e) {
+                    System.out.println("Error: failed to load the map called " + newMapName);
+                }
+
+                //Change background music if needed
+                System.out.println(Global.currentMap.getMusic() + " is " + voyagequest.Res.getAudio(Global.currentMap.getMusic()).isPlaying());
+                voyagequest.Res.playMusic(Global.currentMap.getMusic());
+
+                //Now put the player where the player is supposed to be
+                Entity player = VoyageQuest.player;
+                player.r.x = identifierCheck(currentLine, 1).getDoubleValue();
+                player.r.y = identifierCheck(currentLine, 2).getDoubleValue();
+
+                Global.currentMap.entities.add(player);
+                Global.currentMap.collisions.addEntity(player);
+
+                //Fade in.
+                Thread fadeIn = new Thread("FADEIN");
+                fadeIn.setLineNumber(0);
+                fadeIn.setRunningState(false);
+                fadeIn.setName("FADEIN");
+                VoyageQuest.threadManager.addThread(fadeIn);
+
+                break;
 
             //fade in
             case 161:
@@ -877,18 +848,64 @@ public class ScriptReader
                 continueExecuting = false;
                 break;
 
-            // sound effect
+            //setlight 0-255
             case 163:
+                int newLightValue = (int)identifierCheck(currentLine, 0).getDoubleValue();
+                Global.camera.fade = newLightValue;
+                break;
+
+            //cavelighton 164
+            case 164:
+                Global.camera.lightSourceOn = true;
+                break;
+
+            //cavelightoff 165
+            case 165:
+                Global.camera.lightSourceOn = false;
+                break;
+
+            //freezeCamera ULX ULY
+            case 170:
+                Global.camera.freezeAt(
+                        (int)identifierCheck(currentLine, 0).getDoubleValue(),
+                        (int)identifierCheck(currentLine, 1).getDoubleValue());
+                break;
+
+            //unfreezeCamera
+            case 171:
+                Global.camera.unfreeze();
+                break;
+
+            // sound effect
+            case 175:
                 voyagequest.Res.playEffect(identifierCheck(currentLine, 0).getStringValue());
                 break;
 
             // play background music
-            case 164:
+            case 176:
                 voyagequest.Res.playMusic(identifierCheck(currentLine, 0).getStringValue());
                 break;
 
+            // startBattle battleID
+            case 200:
+                String battleID = identifierCheck(currentLine, 0).getStringValue();
+                BattleManager.initBattle(battleID);
+                break;
+
+            // endbattle
+            case 201:
+                BattleManager.endBattle();
+                break;
+
+            // inBattleMode --> variable
+            case 202:
+                currentThread.setVariable(
+                        currentLine.getStringParameter(1),
+                        new Parameter(VoyageQuest.state == GameState.COMBAT));
+                break;
+
             //spawnEnemy enemyID x y instanceName threadName
-            case 170:
+            case 210:
                 String enemyID = identifierCheck(currentLine, 0).getStringValue();
                 int xLoc = (int)identifierCheck(currentLine, 1).getDoubleValue();
                 int yLoc = (int)identifierCheck(currentLine, 2).getDoubleValue();
@@ -916,7 +933,7 @@ public class ScriptReader
                 break;
 
             //spawnProjectile projectileID x y vx vy rotation allegiance
-            case 171:
+            case 211:
                 String projectileID = identifierCheck(currentLine, 0).getStringValue();
                 int projectileX = (int)identifierCheck(currentLine, 1).getDoubleValue();
                 int projectileY = (int)identifierCheck(currentLine, 2).getDoubleValue();
@@ -942,13 +959,13 @@ public class ScriptReader
                 break;
 
             //setAnimation animationID
-            case 180:
+            case 230:
                 ((BattleEntity)currentScriptable).setAnimation(
                         identifierCheck(currentLine, 0).getStringValue());
                 break;
 
             //changeAnimationDirection 1/-1
-            case 181:
+            case 231:
                 ((Entity)currentScriptable).changeAnimationDirection(
                         (int)identifierCheck(currentLine, 0).getDoubleValue());
                 break;

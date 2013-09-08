@@ -39,9 +39,6 @@ if gameState == 0
     writeGlobal 5 --> mainVillage
     unfreezeInputs
 
-    unfreezeInputs
-
-
     -- A strong breeze to attempt to foreshadow evil --
     wait 7000
     soundEffect "Wind Howl"

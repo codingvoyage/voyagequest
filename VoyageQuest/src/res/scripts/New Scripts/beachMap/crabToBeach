@@ -1,4 +1,6 @@
 assumeControlOfPlayer
 getLocation --> x y
-mapChange "Beach" x 1450
+
+fadeout
+mapChange "Beach" x 1415
 endthread

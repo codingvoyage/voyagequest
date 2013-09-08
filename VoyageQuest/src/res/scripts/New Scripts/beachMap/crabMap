@@ -1,1 +1,10 @@
 endthread
+wait 5000
+setlight 130
+wait 1000
+cavelightOn
+wait 1000
+cavelightOff
+wait 5000
+setlight 255
+endthread

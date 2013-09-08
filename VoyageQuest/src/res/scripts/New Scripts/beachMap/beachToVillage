@@ -21,5 +21,6 @@ if check == true
     endif
 endif
 
+fadeout
 mapChange "Village" 6240 1344
 endthread

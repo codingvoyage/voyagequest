@@ -57,12 +57,6 @@ public class VoyageQuest extends BasicGame {
     
     public static Entity player;
     public DialogBox dialog;
-
-    // The alpha map being applied for cave effect
-    private Image alphaMap;
-
-    //Fade is how visible the screen is. 255 for max, 0 for completely dark.
-    public static int fade = 255;
     
     
     /**
@@ -132,17 +126,11 @@ public class VoyageQuest extends BasicGame {
         //Load the battle entities, shouldn't be too bad...
         EntityManager.init();
 
-        //Load the lighting... This will be changed later, of course.
-        InputStream is = getClass().getClassLoader().getResourceAsStream("res/alphamini.png");
-        alphaMap = new Image(is, "res/alphamini.png", false, Image.FILTER_NEAREST);
-
         //Now that we're done with the player and camera, we can load the map itself...
         threadManager.clear();
         Thread loadingThread = new Thread("INITIALSCRIPT");
         loadingThread.setLineNumber(0);
         threadManager.addThread(loadingThread);
-
-        System.out.println("beep");
         threadManager.act(0.0);
     }
 
@@ -224,7 +212,6 @@ public class VoyageQuest extends BasicGame {
             case RPG:
                 //If there isn't a full screen GUI... draw what the Camera sees
                 Global.camera.display(g);
-                fading(g);
 
                 Util.WHITE_FONT.drawString(10, 40,
                         "Coordinates of player: (" + player.r.x + ", " + player.r.y + ")");
@@ -260,49 +247,7 @@ public class VoyageQuest extends BasicGame {
     }
 
     
-    /*
-     * This technique I gained from the slick2D forums - Edmund
-     * The idea is to draw to the alpha channel.
-     * Basically, drawing black makes things light
-     * Drawing white makes things dark.
-     */
-    private void fading(Graphics g) {
 
-        //Scale the light map down so it can be a small light map
-        float invSizeX = 1f / 20;
-        float invSizeY = 1f / 15;
-        g.scale(20, 15);
-
-        //Setting alpha channel ready
-        g.clearAlphaMap();
-        GL11.glBlendFunc(GL11.GL_SRC_ALPHA, GL11.GL_ONE);
-
-        //This light map works because of reasons stated below - it is like a light source,
-        //revealing a part of the map where the AlphaMap image is dark. Black = light, basically
-        //drawCentered(X_RESOLUTION/2 * invSizeX, Y_RESOLUTION/2 * invSizeY);
-        
-        //The faded variable... the color is black, but the alpha channel basically changes,
-        //Taking the color from black, to grey, to white. As a result because of the alpha channel
-        //the game environment grows from bright to dark.
-        //255 --> 0
-        g.setColor(new Color(0, 0, 0, fade)); 
-
-        //#faded
-        g.fill(new Rectangle(0, 0, X_RESOLUTION * invSizeX, Y_RESOLUTION * invSizeY));
-
-        //Now scale the light map up again
-        g.scale(invSizeX, invSizeY);
-
-        //Setting alpha channel for clearing everything but light map just added
-        GL11.glBlendFunc(GL11.GL_ONE, GL11.GL_DST_ALPHA);
-
-        //Paint everything else with black
-        g.fillRect(0, 0, X_RESOLUTION, Y_RESOLUTION);
-
-        //Setting drawing mode back to normal
-        g.setDrawMode(Graphics.MODE_NORMAL);
-
-   }
     
     /**
      * The main method<br/>

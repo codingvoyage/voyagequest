@@ -184,20 +184,6 @@ unfreezeThreads 133
 freezeInputs 131
 unfreezeInputs 134
 
--- mapChange NameOfNewMap playernewLocX playernewLocY
-mapChange 145
-
--- ---------------------------
--- Control of the camera
--- ---------------------------
-
--- freezeCamera ULX ULY
-freezeCamera 146
-unfreezeCamera 147
-
--- Fades the camera in/out
-fadein 161
-fadeout 162
 
 -- ---------------------------
 -- Different dialog/prompt boxes
@@ -220,6 +206,27 @@ dialogPrompt 152
 -- genericprompt text options --> result
 genericPrompt 153
 
+
+
+-- ---------------------------
+-- Control of the camera
+-- ---------------------------
+
+-- mapChange NameOfNewMap playernewLocX playernewLocY
+mapChange 160
+
+-- Fades the camera in/out
+-- setlight 255 (full brightness)
+fadein 161
+fadeout 162
+setlight 163
+cavelighton 164
+cavelightoff 165
+
+-- freezeCamera ULX ULY
+freezeCamera 170
+unfreezeCamera 171
+
 -- -----------------------------
 -- Music/sound related functions
 -- -----------------------------
@@ -228,10 +235,10 @@ genericPrompt 153
 -- Refer to /res/Audio.json
 
 -- some sound effects may be automatic with certain actions
-soundEffect 163
+soundEffect 175
 
 -- music is automatic with maps, so this isn't usually necessary
-playMusic 164
+playMusic 176
 
 
 
@@ -242,13 +249,13 @@ playMusic 164
 -- ---------------------------------------------------
 
 -- startBattle battleID
-startBattle 154
+startBattle 200
 
 -- endbattle
-endbattle 155
+endbattle 201
 
 -- inBattleMode --> variable
-inBattleMode 156
+inBattleMode 202
 
 -- 170 to 175 are for spawning things...
 -- spawnEnemy enemyID x y instanceName threadName OR
@@ -256,16 +263,16 @@ inBattleMode 156
 --          which basically comes up with names for you.
 -- spawnProjectile projectileID x y vx vy rotation allegiance
 -- spawnPlayer
-spawnEnemy 170
-spawnProjectile 171
-spawnPlayer 172
+spawnEnemy 210
+spawnProjectile 211
+spawnPlayer 212
 
 
 -- setAnimation animationID. This is for BattleEntities
-setAnimation 180
+setAnimation 230
 
 -- changeAnimationDirection 1/-1
-changeAnimationDirection 181
+changeAnimationDirection 231
 
 -- getHP instanceID --> variable
 -- setHP instanceID newHP
