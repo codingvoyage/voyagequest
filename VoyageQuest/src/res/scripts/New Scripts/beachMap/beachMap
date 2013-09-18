@@ -16,6 +16,10 @@ if gameState == 0
     -- Initial landing - Player is very confused --
 
     messageBox "[Sebastian] wakes up 3 hours later only to find [him/her]self on some mysterious beach."
+
+    unfreezeInputs
+    startBattle "FUNNY BEAR"
+
     dialogBox "Sebastian Profile" "Huh? What happened? Where am I?"
     unfreezeInputs
 

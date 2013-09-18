@@ -163,15 +163,7 @@ public class VoyageQuest extends BasicGame {
     public void update(GameContainer gc, int delta) throws SlickException {
         switch (state) {
             case RPG:
-                //Not sure of this actually does anything... I don't think it does.
-                //No. It really doesn't. I'll keep this here just in case in the future
-                //we somehow need to call act on all the RPG entities.
-//                for (int i = 0; i < Global.currentMap.entities.size(); i++) {
-//                    Entity e = Global.currentMap.entities.get(i);
-//                    if (e != null)
-//                        e.act(delta);
-//                }
-
+                //Update the scripting engine and update the keyboard input
                 EventListener.keyboardControl(player, delta);
                 threadManager.act(delta);
 
@@ -184,6 +176,7 @@ public class VoyageQuest extends BasicGame {
 
                 BattleField.update(delta);
 
+                //Separate set of controls for battle
                 EventListener.battleKeyboardControl(BattleField.player, delta);
 
                 break;

@@ -1,4 +1,4 @@
-mapChange "Beach" 1200 400
+mapChange "Beach" 1200 450
 writeGlobal 0 --> mainVillage
 writeGlobal 50 --> GAME_STATE
 -- mapChange "MALENTIA" 70 4280

@@ -48,7 +48,7 @@ public abstract class EventListener {
             player.attemptMove(0, -step, delta);
             player.setAnimation(0);
         }
-        
+
         if(input.isKeyDown(Input.KEY_DOWN)) {
             player.attemptMove(0, step, delta);
             player.setAnimation(1);

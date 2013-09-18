@@ -17,6 +17,11 @@
             "mapID" : "Village",
             "mapURL" : "res/maps/Village.tmx",
             "mapJsonURL" : "res/maps/Village.json"
+        },
+		{
+            "mapID" : "Battle1",
+            "mapURL" : "res/maps/BATTLEMAP1.tmx",
+            "mapJsonURL" : "res/maps/shitmanidk.json"
         }
     ]
 }

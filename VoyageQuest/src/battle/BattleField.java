@@ -6,9 +6,12 @@ import map.TreeNode;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.tiled.TiledMapPlus;
 import scripting.*;
 import voyagequest.DoubleRect;
 import voyagequest.Global;
+import voyagequest.Res;
 import voyagequest.VoyageQuest;
 
 import java.util.ArrayList;
@@ -37,6 +40,13 @@ public class BattleField {
     //Easy access to the player
     public static Player player;
 
+    /** Current BattleField background map */
+    public static TiledMapPlus backgroundMap;
+    public static int backgroundMapWidth;
+    public static int backgroundMapHeight;
+    public static double currentScrollDistance;
+    private static boolean scrollVertically = false;
+    public static double scrollVelocity = 100;
 
     static
     {
@@ -54,13 +64,26 @@ public class BattleField {
         player = EntityManager.spawnPlayer("sebastianplayer", playerX, playerY);
         addBattleEntity(player);
 
+        //Load the default scrolling battle map
+        newBackgroundMap("Battle1");
+    }
+
+    /**
+     * Set the BattleField current background map to a new one
+     * @param newBackgroundMapID the String in mapMappings that refers to a TileMap
+     */
+    public static void newBackgroundMap(String newBackgroundMapID)
+    {
+        backgroundMap = Res.allMaps.get(newBackgroundMapID);
+        backgroundMapWidth = backgroundMap.getWidth()*backgroundMap.getTileWidth();
+        backgroundMapHeight = backgroundMap.getHeight()*backgroundMap.getTileWidth();
+        currentScrollDistance = 0;
 
     }
 
-
-
     public static void render(GameContainer gc, Graphics g)
     {
+        drawBackground(g);
         for (BattleEntity b : entityList)
         {
                 b.draw(g, (float)b.r.x, (float)b.r.y);
@@ -68,6 +91,23 @@ public class BattleField {
         drawCollRects(g);
         drawPartitions(g);
     }
+
+    public static void drawBackground(Graphics g)
+    {
+        int scrollTile = (int)currentScrollDistance / 64;
+        int inBetweenSpace = (int)currentScrollDistance % 64;
+
+        if (scrollVertically)
+            backgroundMap.render(0, -inBetweenSpace, 0, scrollTile,
+                    VoyageQuest.X_RESOLUTION / 64 + 4,
+                    VoyageQuest.Y_RESOLUTION / 64 + 4);
+        else
+            backgroundMap.render(-inBetweenSpace, 0, scrollTile, 0,
+                VoyageQuest.X_RESOLUTION / 64 + 4,
+                VoyageQuest.Y_RESOLUTION / 64 + 4);
+
+    }
+
 
     public static void drawCollRects(Graphics g)
     {
@@ -99,6 +139,8 @@ public class BattleField {
 
     public static void update(int delta)
     {
+
+        //UPDATE ALL THE ENTITIES
         boolean cont = !entityList.isEmpty();
         int index = 0;
         while (cont)
@@ -121,6 +163,22 @@ public class BattleField {
                 cont = false;
             }
         }
+
+        //Update our cool scrolling map
+        double projectedScrollLoc = currentScrollDistance + delta*(scrollVelocity/1000);//backgroundScrollVelocity;
+
+        boolean resetScroll = (scrollVertically) ?
+                projectedScrollLoc > backgroundMapHeight - VoyageQuest.Y_RESOLUTION :
+                projectedScrollLoc > backgroundMapWidth - VoyageQuest.X_RESOLUTION;
+
+        if (resetScroll)
+            currentScrollDistance = 0;
+        else
+            currentScrollDistance = projectedScrollLoc;
+
+
+
+
 
 
     }
