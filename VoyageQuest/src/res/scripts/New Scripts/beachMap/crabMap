@@ -1,5 +1,14 @@
+getGlobal "mainVillage" --> gameState
+if gameState == 5
+    assumecontrolofplayer
+    setAnimationDirection 3
+    setVelocity 0 0.25
+    moveTileAmount 5
+    -- setAnimationDirection 0
 
-endthread
+
+endif
+
 wait 5000
 setlight 130
 wait 1000
@@ -9,3 +18,7 @@ cavelightOff
 wait 5000
 setlight 255
 endthread
+
+
+    startBattle "FUNNY BEAR"
+    endif

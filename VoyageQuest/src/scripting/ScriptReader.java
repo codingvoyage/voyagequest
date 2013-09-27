@@ -676,10 +676,17 @@ public class ScriptReader
 
                 break;
 
-            //setAnimationDirection 100
+            //setAnimationDirection NORTH SOUTH EAST WEST
             case 60:
-                ((Entity)currentScriptable).setAnimation(
-                        (int)identifierCheck(currentLine, 0).getDoubleValue());
+                String dir = identifierCheck(currentLine, 0).getStringValue();
+                if (dir.equalsIgnoreCase("NORTH"))
+                    ((Entity)currentScriptable).setAnimation(0);
+                if (dir.equalsIgnoreCase("SOUTH"))
+                    ((Entity)currentScriptable).setAnimation(1);
+                if (dir.equalsIgnoreCase("EAST"))
+                    ((Entity)currentScriptable).setAnimation(2);
+                if (dir.equalsIgnoreCase("WEST"))
+                    ((Entity)currentScriptable).setAnimation(3);
                 break;
 
             /***********************************************************

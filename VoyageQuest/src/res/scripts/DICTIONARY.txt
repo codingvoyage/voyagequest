@@ -157,6 +157,7 @@ setVelocityStandard 102
 moveTileAmount 103
 
 -- setAnimationDirection 0, 1, 2, 3 for north, south, east, and west-appearing movement
+-- setAnimationDirection NORTH, SOUTH, EAST, WEST
 setAnimationDirection 60
 
 -- ---------------------------

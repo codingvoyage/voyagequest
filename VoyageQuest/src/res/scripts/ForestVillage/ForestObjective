@@ -1,8 +1,0 @@
-freezeInputs
-
-genericMessageBox "Welcome to the Mystic Forest!"
-genericMessageBox "Please find the mystic tree for further instructions."
-
-unfreezeInputs
-
-endthread

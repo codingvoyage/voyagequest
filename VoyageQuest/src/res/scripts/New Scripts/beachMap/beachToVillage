@@ -11,7 +11,7 @@ if check == true
 
         dialogBox "Sebastian Profile" "I can't just leave now...!"
 
-        setAnimationDirection 3
+        setAnimationDirection "EAST"
         setVelocity 0.25 0
         movePixelAmount 50
 

@@ -6,6 +6,19 @@
     "mapBackgroundScript": "crabMap",
 
     "allEntities": [
+        {
+            "name" : "Elder",
+            "initialX" : 515,
+            "initialY" : 700,
+            "width" : 64,
+            "height" : 128,
+            "mainScriptID" : "BeachElderScript",
+            "mainThreadName" : "Elderthread",
+            "animations" : [
+                "Soldier Forward", "Soldier Backwards", "Soldier Left", "Soldier Right"
+            ],
+            "startingAnimationDirection" : 0
+        }
     ],
 
     "music" : "Lith Harbor"
