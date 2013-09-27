@@ -45,7 +45,7 @@ public class BattleField {
     public static int backgroundMapWidth;
     public static int backgroundMapHeight;
     public static double currentScrollDistance;
-    private static boolean scrollVertically = false;
+    private static boolean scrollVertically = true;
     public static double scrollVelocity = 100;
 
     static

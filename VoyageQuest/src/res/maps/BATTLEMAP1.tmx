@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="50" height="20" tilewidth="64" tileheight="64">
+ <tileset firstgid="1" name="desert_ground" tilewidth="64" tileheight="64">
+  <image source="tilesets/TILES RESIZED/Allacrost graphics/tilesets/desert_ground.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="Tile Layer 1" width="50" height="20">
+  <data encoding="base64" compression="zlib">
+   eJzNlsGOgzAMREP/gFZ8AFXLnaLd//+0zYFRzch23CRoe5hDC8n4ZZyEW0rp9kUasi4nzTOd5KVpzLqexPHs4DUE+eese2Xtcr3HgGeN1yjm9ljWrFclB9YbHtJT8/W8uAcl+xzMpLWf0C/wLPFg3LLL41h3RTJp0Zje/QLPSfDAm/0lBzQp7227eD5vXWtY5/TuF4x/7v/B+5qO+9ti43Ngo1xK/TUoc0QFBm08crmn4/5GLfw+nwOb4mVlAoaWc4trgA9yeaXj/sZz9pPnADNIH2aRDKsztqSJaihlixq0swv7wcuE+0sy1J692A+lbLx9YNUc6a9BMLRysErZWD0c5cAc6Kde9T+cZ1rN7Ls4DBYHMunRT179Vs3ROrknrUx69xL0k/XrPF/ot5eD7EkrE4uh9j5ENiWOaBZYb+8+8dTrO76VQVvvTzha78P/ZrfW4Nv0SSYR/QGUfFJF
+  </data>
+ </layer>
+</map>
