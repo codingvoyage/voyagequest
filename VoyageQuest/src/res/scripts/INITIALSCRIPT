@@ -1,5 +1,6 @@
-mapChange "Beach" 1200 450
-writeGlobal 0 --> mainVillage
+-- mapChange "Beach" 1200 450
+writeGlobal 5 --> mainVillage
+mapChange "Crab" 750 0
 writeGlobal 50 --> GAME_STATE
 -- mapChange "MALENTIA" 70 4280
 -- mapChange "CRATEEXPECTATIONS" 300 2100

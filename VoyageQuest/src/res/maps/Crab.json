@@ -9,11 +9,24 @@
         {
             "name" : "Elder",
             "initialX" : 515,
-            "initialY" : 700,
+            "initialY" : 1000,
             "width" : 64,
             "height" : 128,
             "mainScriptID" : "BeachElderScript",
             "mainThreadName" : "Elderthread",
+            "animations" : [
+                "Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right"
+            ],
+            "startingAnimationDirection" : 0
+        },
+        {
+            "name" : "Crab",
+            "initialX" : 515,
+            "initialY" : 1192,
+            "width" : 64,
+            "height" : 128,
+            "mainScriptID" : "BeachCrabScript",
+            "mainThreadName" : "Crabthread",
             "animations" : [
                 "Soldier Forward", "Soldier Backwards", "Soldier Left", "Soldier Right"
             ],

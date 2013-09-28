@@ -22,7 +22,7 @@ public class DialogBox {
     public static final int DEFAULT_HEIGHT = 160;
 
     public static final int DEFAULT_X = (voyagequest.VoyageQuest.X_RESOLUTION / 2) - DEFAULT_WIDTH / 2;
-    public static final int DEFAULT_Y = voyagequest.VoyageQuest.Y_RESOLUTION - 300;
+    public static final int DEFAULT_Y = voyagequest.VoyageQuest.Y_RESOLUTION - (int)(DEFAULT_HEIGHT * 1.4);
 
     public String animationId;
     

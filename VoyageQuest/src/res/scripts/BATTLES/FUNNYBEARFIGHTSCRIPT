@@ -5,6 +5,9 @@ spawnEnemy "Anika" 480 -100 "anika" "anikathread"
 spawnEnemy "basicdeer" 480 150 "deer" "deerthread"
 spawnEnemy "basicswallow" 480 150 "swallow" "swallowthread"
 
+wait 10000
+endbattle
+endthread
 
 setThisThreadScriptable "anika"
 assumeControlOfPlayer

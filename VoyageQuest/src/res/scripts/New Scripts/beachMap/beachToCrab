@@ -1,6 +1,11 @@
 assumeControlOfPlayer
 getLocation --> x y
 
+getGlobal "mainVillage" --> gameState
+if gameState == 5
+    mapChange "Crab" 750 0
+endif
+
 fadeout
 mapChange "Crab" x 0
 endthread

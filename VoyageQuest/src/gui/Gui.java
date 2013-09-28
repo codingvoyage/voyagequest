@@ -29,7 +29,7 @@ public class Gui<E extends Displayable> implements Displayable {
     public final float CORNER_RADIUS;
     
     /** gradient start color */
-    private Color start = new Color(166, 250, 252, 195); // Color: #A6FAFC with alpha
+    private Color start = new Color(0, 29, 255, 195); // Color: #001dff with alpha
     /** gradient end color */
     private Color end = new Color(205, 255, 145, 195); // Color #CDFF91 with alpha
     

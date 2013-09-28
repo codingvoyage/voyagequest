@@ -1,11 +1,62 @@
 getGlobal "mainVillage" --> gameState
 if gameState == 5
     assumecontrolofplayer
+    freezeInputs
     setAnimationDirection "SOUTH"
     setVelocity 0 0.25
     moveTileAmount 5
     -- setAnimationDirection 0
+    dialogbox "Sebastian Profile" "I swear I heard a noise here..."
 
+    wait 1000
+
+    -- Begin Elderly Rescue
+    playMusic "Evil Encounter"
+    dialogbox "Njeri Profile" "Help! Help! Save me! Don't just stand there! This old lady over here needs help!"
+    wait 500
+    dialogbox "Sebastian Profile" "Huh?"
+    wait 500
+    moveTileAmount 8
+    dialogBox "Njeri Profile" "Hey! Why are you just standing there? You can't just leave an elderly in trouble!"
+    dialogBox "Njeri Profile" "OUCH!"
+
+    newArray helpElder 2
+            putArray helpElder 0 <-- "Of course!"
+            putArray helpElder 1 <-- "Absolutely not!!"
+    genericPrompt "Will [Sebastian] help the elderly lady?" helpElder --> choice
+
+    if choice == 0
+        callThreadFunction "Elderthread" [saveElder] true
+        callThreadFunction "Crabthread" [saveElder] true
+
+        setThisThreadScriptable "Elder"
+
+        var elderReached false
+        while elderReached == false
+            getLocation --> x y
+            if [ y < 1005 ] && [ x < 520 ]
+                var elderReached true
+            endif
+            wait 20
+        wend
+
+        assumeControlOfPlayer
+        setVelocity -0.50 0.15
+        moveTileAmount 4
+
+        startBattle "FUNNY BEAR"
+
+        print "BATTLE BEGINS NOW"
+    endif
+
+    if choice == 1
+        moveTileAmount -1.0
+        dialogBox "Njeri Profile" "Hey, wait help me!"
+
+        callThreadFunction "Elderthread" [saveElder] false
+        callThreadFunction "Crabthread" [saveElder] false
+        print "BATTLE BEGINS NOW"
+    endif
 
 endif
 
@@ -17,6 +68,7 @@ wait 1000
 cavelightOff
 wait 5000
 setlight 255
+playMusic "Lith Harbor"
 endthread
 
 

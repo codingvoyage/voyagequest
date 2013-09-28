@@ -27,9 +27,21 @@
             "type" : "music"
         },
         {
+            "name" : "Evil Encounter",
+            "path" : "res/music/teamZephyrEncounter.ogg",
+            "credit" : "Pokemon Fanmade - http://www.youtube.com/watch?v=wbC-npIn2oE",
+            "type" : "music"
+        },
+        {
             "name" : "Boss Battle",
             "path" : "res/music/teamgear.ogg",
             "credit" : "Pokemon Fanmade - http://www.youtube.com/watch?v=eefNrNwsMaM",
+            "type" : "music"
+        },
+        {
+            "name" : "Boss Battle 2",
+            "path" : "res/music/xyDecisive.ogg",
+            "credit" : "Pokemon Fanmade - http://www.youtube.com/watch?v=z-AwA1efIsM",
             "type" : "music"
         },
         {
