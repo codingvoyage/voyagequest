@@ -3,7 +3,9 @@ package scripting;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
+import voyagequest.GameState;
 import voyagequest.Global;
+import voyagequest.VoyageQuest;
 
 /**
  *
@@ -74,6 +76,8 @@ public class ThreadManager {
     //encounter is we used a ListIterator.
     public void act(double delta)
     {
+        boolean partOfBattle = VoyageQuest.state == GameState.COMBAT;
+
         boolean continueStepping = !threadCollection.isEmpty();
         int index = 0;
         Thread currentThread;
@@ -94,6 +98,11 @@ public class ThreadManager {
                 if (!Global.isFrozen)
                 {
                     scriptReader.act(currentThread, delta);
+
+                    //See if we left a battle, then abort execution of threads
+                    //immediately.
+                    if (partOfBattle && (VoyageQuest.state != GameState.COMBAT))
+                        return;
                 }
                 else
                 {
