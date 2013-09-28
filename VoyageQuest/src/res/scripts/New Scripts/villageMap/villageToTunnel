@@ -1,0 +1,12 @@
+freezeInputs
+assumeControlOfPlayer
+
+dialogBox "Sebastian Profile" "Okay... there are really quite a lot of boulders blocking the entrance. Guess I can't go through this tunnel yet..."
+
+setAnimationDirection "SOUTH"
+setVelocity 0 0.25
+movePixelAmount 65
+setAnimationDirection "NORTH"
+
+unfreezeInputs
+endthread

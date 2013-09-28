@@ -1,0 +1,24 @@
+getGlobal "mainVillage" --> mainQuestState
+if mainQuestState < 15
+
+    freezeInputs
+    assumeControlOfPlayer
+
+    dialogBox "Sebastian Profile" "I should first meet with the lady I saved before heading out... didn't she tell me she was the head of a village somewhere closeby?"
+
+    setAnimationDirection "EAST"
+    setVelocity 0.25 0
+    movePixelAmount 70
+    setAnimationDirection "WEST"
+
+    unfreezeInputs
+    endthread
+
+endif
+
+-- else, move to the forest
+
+-- FOREST MOVE NOW!!!
+fadeout
+
+endthread

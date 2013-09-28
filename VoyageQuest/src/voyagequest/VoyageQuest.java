@@ -118,7 +118,7 @@ public class VoyageQuest extends BasicGame {
             player.right = Res.animations.get("Sebastian Right");
             player.name = "Sebastian";
             player.profile = Res.animations.get("Sebastian Profile");
-            player.setAnimation(0);
+            player.setAnimation(1);
 
         //Now create the Camera.
         Global.camera = new Camera();
@@ -280,7 +280,7 @@ public class VoyageQuest extends BasicGame {
     */
    @Override
    public void mouseDragged(int oldx, int oldy, int newx, int newy) {
-       EventListener.mouseDragged(oldx, oldy, newx, newy);
+       //EventListener.mouseDragged(oldx, oldy, newx, newy);
    }
 
    /**
@@ -288,6 +288,6 @@ public class VoyageQuest extends BasicGame {
     */
    @Override
    public void mouseClicked(int button, int x, int y, int clickCount) {
-      EventListener.mouseClicked(button, x, y, clickCount);
+      //EventListener.mouseClicked(button, x, y, clickCount);
    }
 }

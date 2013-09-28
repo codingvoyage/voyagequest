@@ -1,0 +1,7 @@
+freezeInputs
+
+dialogBox "Sebastian Profile" "Why am I staring at this rock...?"
+
+unfreezeInputs
+endthread
+
