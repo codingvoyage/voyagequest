@@ -1,7 +1,7 @@
 getGlobal "mainVillage" --> gameState
 if gameState == 5
     assumecontrolofplayer
-    setAnimationDirection 3
+    setAnimationDirection "SOUTH"
     setVelocity 0 0.25
     moveTileAmount 5
     -- setAnimationDirection 0

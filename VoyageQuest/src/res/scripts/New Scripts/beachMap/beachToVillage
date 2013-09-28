@@ -13,7 +13,7 @@ if check == true
 
         setAnimationDirection "EAST"
         setVelocity 0.25 0
-        movePixelAmount 50
+        movePixelAmount 70
 
         unfreezeInputs
         endthread

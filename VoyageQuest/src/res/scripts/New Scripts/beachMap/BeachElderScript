@@ -1,18 +1,18 @@
 while true == true
 
     -- move right a bit now
-    setAnimationDirection EAST
+    setAnimationDirection "EAST"
     setVelocity 0.25 0
     moveTileAmount 3.5
-    setAnimationDirection NORTH
+    setAnimationDirection "NORTH"
 
     wait 2000
 
     -- move left a bit now
-    setAnimationDirection WEST
+    setAnimationDirection "WEST"
     setVelocity -0.25 0
     moveTileAmount 3.5
-    setAnimationDirection NORTH
+    setAnimationDirection "NORTH"
 
     wait 2000
 

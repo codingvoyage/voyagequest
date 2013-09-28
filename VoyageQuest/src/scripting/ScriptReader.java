@@ -683,9 +683,9 @@ public class ScriptReader
                     ((Entity)currentScriptable).setAnimation(0);
                 if (dir.equalsIgnoreCase("SOUTH"))
                     ((Entity)currentScriptable).setAnimation(1);
-                if (dir.equalsIgnoreCase("EAST"))
-                    ((Entity)currentScriptable).setAnimation(2);
                 if (dir.equalsIgnoreCase("WEST"))
+                    ((Entity)currentScriptable).setAnimation(2);
+                if (dir.equalsIgnoreCase("EAST"))
                     ((Entity)currentScriptable).setAnimation(3);
                 break;
 
