@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="25" height="30" tilewidth="64" tileheight="64" backgroundcolor="#3b3b3b">
+ <tileset firstgid="1" name="desert_cave_ground" tilewidth="64" tileheight="64">
+  <image source="tilesets/TILES RESIZED/Allacrost graphics/tilesets/desert_cave_ground.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="Grass and Ground" width="25" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC9WWTU4CQRCFi4USYSuGwFYxwqU8jzdAEmWNGA+ghtkT9QCisPcH9/5gVaZepihmmgHcWMmXgNP9Xlf360Gi1arPVJnLFeetUjfqcfuPPCJmaCgpVfO5zJwpnTX0+0ZLqCnQLrvn8Dsn6ubR93NFu2m+1xU8q7nxIR9+Rm0zz8+FvvUqq7/tcRTwuSc6buscrDtNf0vZDvgMMvoQj5KOb1FyDvAS3SOmouzpONsbSPOQfRrS4t5Df9doC0UzpkWL/aZ5DE0Pdr/3eV9Zv2vXjx78XmIOa3UvAh4+lwc8vhKz4GH30fYk+tdLPOqU5KrB+qzX3XEehxSfub83gwx964GxyJasy5+F7cVmMJQneNg12WzBoxjvHaEn5Ap7m8cDa6o59lW7oc/t9zyZRUXsMdJ1NR1eJw28X0IeUq8UvweEJ+aZ5nMcYsxMKM5UqL7UR3hj3mkxlwCayOqU+aDsTHkf4Zv5ofQ7YDVxF2YyuZDDwNUDzWcAHlYzz7pD+lnviqsNdL0H1m/PVvZf/i8ZOqIcv3++JjR/18FdBp01POQ8kd9TBXqPytj8LYp/plerQpJfeJwwPeZFmVKS4XUL+e0ZH/n8qcwoyfCm1XPYWvde+LI9eI+/qlAfy+oX3ctks7gLAAA=
+  </data>
+ </layer>
+ <layer name="Lower Background" width="25" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAgHcDDVuG2rgLAAA=
+  </data>
+ </layer>
+ <layer name="Still Behind Entities" width="25" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAgHcDDVuG2rgLAAA=
+  </data>
+ </layer>
+ <layer name="Entity Layer" width="25" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAW0Bi+B+BWN7fgJxL8oNGMnEO+iglvwgZNAfIoE9eS46SYQ3yJBPaluIgeQ6qZRMDjBYMwj5IDR9DgKRsEoGAVDEwAAc+jHl7gLAAA=
+  </data>
+ </layer>
+ <layer name="Above Entity" width="25" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAgHcDDVuG2rgLAAA=
+  </data>
+ </layer>
+ <layer name="Highest Layer" width="25" height="30">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BMQEAAADCoPVPbQ0PoAAAgHcDDVuG2rgLAAA=
+  </data>
+ </layer>
+ <objectgroup name="Collisions" width="25" height="30" visible="0">
+  <object x="1164" y="520" width="99" height="45"/>
+  <object x="915" y="279" width="92" height="29"/>
+  <object x="417" y="473" width="81" height="29"/>
+  <object x="479" y="980" width="79" height="32"/>
+  <object x="952" y="9" width="21" height="185"/>
+  <object x="972" y="184" width="221" height="11"/>
+  <object x="1212" y="187" width="65" height="23"/>
+  <object x="1265" y="224" width="20" height="24"/>
+  <object x="1287" y="247" width="67" height="23"/>
+  <object x="1363" y="259" width="43" height="32"/>
+  <object x="1399" y="293" width="28" height="20"/>
+  <object x="1417" y="320" width="53" height="27"/>
+  <object x="1464" y="361" width="40" height="20"/>
+  <object x="1505" y="392" width="37" height="27"/>
+  <object x="1524" y="431" width="19" height="212"/>
+  <object x="1464" y="648" width="64" height="27"/>
+  <object x="1415" y="692" width="67" height="21"/>
+  <object x="1392" y="735" width="23" height="351"/>
+  <object x="1287" y="1100" width="129" height="25"/>
+  <object x="1151" y="1144" width="133" height="31"/>
+  <object x="1053" y="1211" width="89" height="25"/>
+  <object x="1157" y="1184" width="24" height="57"/>
+  <object x="991" y="1209" width="85" height="37"/>
+  <object x="903" y="1237" width="89" height="8"/>
+  <object x="900" y="1257" width="33" height="84"/>
+  <object x="932" y="1356" width="45" height="31"/>
+  <object x="972" y="1397" width="231" height="12"/>
+  <object x="1211" y="1411" width="43" height="32"/>
+  <object x="1271" y="1467" width="12" height="75"/>
+  <object x="1227" y="1564" width="43" height="48"/>
+  <object x="1191" y="1640" width="32" height="57"/>
+  <object x="1084" y="1641" width="99" height="19"/>
+  <object x="924" y="1605" width="153" height="25"/>
+  <object x="892" y="1635" width="12" height="279"/>
+  <object x="612" y="1655" width="24" height="259"/>
+  <object x="560" y="1608" width="72" height="33"/>
+  <object x="481" y="1576" width="60" height="33"/>
+  <object x="420" y="1527" width="67" height="44"/>
+  <object x="416" y="1445" width="27" height="71"/>
+  <object x="416" y="1360" width="29" height="68"/>
+  <object x="436" y="1320" width="68" height="21"/>
+  <object x="491" y="1272" width="17" height="20"/>
+  <object x="543" y="1171" width="29" height="100"/>
+  <object x="496" y="1161" width="25" height="23"/>
+  <object x="513" y="1235" width="21" height="31"/>
+  <object x="355" y="1153" width="131" height="28"/>
+  <object x="272" y="1101" width="59" height="47"/>
+  <object x="217" y="1061" width="52" height="43"/>
+  <object x="177" y="916" width="21" height="139"/>
+  <object x="172" y="779" width="24" height="117"/>
+  <object x="172" y="677" width="19" height="84"/>
+  <object x="179" y="585" width="21" height="69"/>
+  <object x="212" y="560" width="31" height="32"/>
+  <object x="237" y="445" width="15" height="97"/>
+  <object x="248" y="364" width="44" height="55"/>
+  <object x="307" y="312" width="44" height="60"/>
+  <object x="339" y="296" width="60" height="13"/>
+  <object x="364" y="247" width="61" height="23"/>
+  <object x="408" y="204" width="65" height="37"/>
+  <object x="449" y="167" width="148" height="28"/>
+  <object x="608" y="167" width="151" height="28"/>
+  <object x="740" y="7" width="21" height="157"/>
+ </objectgroup>
+ <objectgroup name="Boundaries" width="25" height="30" visible="0">
+  <object x="1158" y="390" width="113" height="181"/>
+  <object x="902" y="197" width="113" height="118"/>
+  <object x="389" y="325" width="116" height="183"/>
+  <object x="453" y="837" width="118" height="180"/>
+ </objectgroup>
+ <objectgroup name="Events" width="25" height="30">
+  <object type="onTouch" x="640" y="1835" width="253" height="68">
+   <properties>
+    <property name="runScript" value="tunnelToVillage"/>
+   </properties>
+  </object>
+  <object x="781" y="8" width="160" height="56"/>
+  <object type="onTouch" x="781" y="8" width="160" height="56">
+   <properties>
+    <property name="runScript" value="tunnelToNPC"/>
+   </properties>
+  </object>
+  <object type="onClick" x="1158" y="480" width="115" height="90">
+   <properties>
+    <property name="runScript" value="stalagmiteDescription"/>
+   </properties>
+  </object>
+  <object type="onClick" x="890" y="236" width="119" height="80">
+   <properties>
+    <property name="runScript" value="rockScript"/>
+   </properties>
+  </object>
+  <object type="onClick" x="441" y="918" width="126" height="94">
+   <properties>
+    <property name="runScript" value="stalagmiteDescription"/>
+   </properties>
+  </object>
+  <object type="onClick" x="390" y="435" width="117" height="79">
+   <properties>
+    <property name="runScript" value="stalagmiteDescription"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

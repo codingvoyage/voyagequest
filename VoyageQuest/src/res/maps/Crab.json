@@ -9,7 +9,7 @@
         {
             "name" : "Elder",
             "initialX" : 515,
-            "initialY" : 1000,
+            "initialY" : 900,
             "width" : 64,
             "height" : 128,
             "mainScriptID" : "BeachElderScript",
@@ -22,7 +22,7 @@
         {
             "name" : "Crab",
             "initialX" : 515,
-            "initialY" : 1192,
+            "initialY" : 1092,
             "width" : 64,
             "height" : 128,
             "mainScriptID" : "BeachCrabScript",

@@ -1,0 +1,7 @@
+freezeInputs
+
+dialogBox "Sebastian Profile" "Wow. This is a really large stalagmite. I wonder how many thousands of years it took to form... amazing!"
+
+unfreezeInputs
+endthread
+

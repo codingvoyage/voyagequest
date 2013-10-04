@@ -1,3 +1,6 @@
+mapChange "Tunnel" 736 1700
+endthread
+
 freezeInputs
 assumeControlOfPlayer
 

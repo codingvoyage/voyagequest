@@ -1,17 +1,6 @@
 -- mapChange "Beach" 1200 450
-writeGlobal 5 --> mainVillage
-mapChange "Crab" 750 0
-writeGlobal 50 --> GAME_STATE
--- mapChange "MALENTIA" 70 4280
--- mapChange "CRATEEXPECTATIONS" 300 2100
--- mapChange "ELINIA" 300 300
--- mapChange "ForestVillage" 100 2500
-endthread
-
-
-mapChange "SCENE1" 5000 5000
-freezeCamera 100 500
-writeGlobal 0 --> GAME_STATE
-freezeInputs
-
+mapChange "Village" 2550 450
+writeGlobal 10 --> mainVillage
+-- mapChange "Crab" 750 0
+-- writeGlobal 50 --> GAME_STATE
 endthread

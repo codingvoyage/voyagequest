@@ -206,6 +206,11 @@ public class ScriptReader
                 
                 break;
 
+            //continue panning
+            case 173:
+                result = Global.camera.continuePan(currentDeltaTime, currentThread);
+                break;
+
 
         }
         
@@ -882,6 +887,22 @@ public class ScriptReader
             case 171:
                 Global.camera.unfreeze();
                 break;
+
+            //setCameraPanVelocity v_x v_y
+            case 172:
+                Global.camera.setPanVelocity(
+                    identifierCheck(currentLine, 0).getDoubleValue(),
+                    identifierCheck(currentLine, 1).getDoubleValue()
+                );
+                break;
+
+
+            //panCamera distance
+            case 173:
+                Global.camera.beginPan(
+                        identifierCheck(currentLine, 0).getDoubleValue(),
+                        currentThread);
+                continueExecuting = false;
 
             // sound effect
             case 175:

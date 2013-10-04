@@ -19,6 +19,11 @@
             "mapJsonURL" : "res/maps/Village.json"
         },
 		{
+            "mapID" : "Tunnel",
+            "mapURL" : "res/maps/Tunnel.tmx",
+            "mapJsonURL" : "res/maps/Tunnel.json"
+		},
+		{
             "mapID" : "Battle1",
             "mapURL" : "res/maps/BATTLEMAP1.tmx",
             "mapJsonURL" : "res/maps/shitmanidk.json"
