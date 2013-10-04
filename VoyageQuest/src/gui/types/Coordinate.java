@@ -5,14 +5,14 @@ package gui.types;
  * @author Brian Yang
  */
 public class Coordinate<E> {
-    
+
     /** the object */
     private E object;
     /** x coordinate */
     private float x;
     /** y coordinate */
     private float y;
-    
+
     /**
      * Map an object to coordinates
      * @param object the object
@@ -24,7 +24,7 @@ public class Coordinate<E> {
         this.x = x;
         this.y = y;
     }
-    
+
     /**
      * Retrieve the object
      * @return the object
@@ -32,7 +32,7 @@ public class Coordinate<E> {
     public E getObject() {
         return object;
     }
-    
+
     /**
      * Retrieve the object's position
      * @return an array of the x and y positions
@@ -41,5 +41,5 @@ public class Coordinate<E> {
         float[] position = {x, y};
         return position;
     }
-    
+
 }

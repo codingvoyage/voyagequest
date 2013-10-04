@@ -214,7 +214,7 @@ public class Thread {
      * Make a person speak with options using an Animation Profile
      * @param text the dialog text
      */
-    public void speak(String text, String animation, Object[] options, Parameter resultVar) {
+    public void speak(String text, String animation, String[] options, Parameter resultVar) {
         dialog = new DialogBox(text, animation, options);
         dialog.start();
         setRunningState(true);
@@ -226,7 +226,7 @@ public class Thread {
      * Make a generic dialog with options using an Animation Profile
      * @param text the dialog text
      */
-    public void speak(String text, Object[] options, Parameter resultVar) {
+    public void speak(String text, String[] options, Parameter resultVar) {
         dialog = new DialogBox(text, options);
         dialog.start();
         setRunningState(true);
@@ -251,7 +251,7 @@ public class Thread {
             System.out.println("oh no");
             setRunningState(false);
 
-            int selection = dialog.getDialog().getParser().getOption();
+            int selection = dialog.getDialog().getParserOption();
             Parameter choice = new Parameter(selection);
             this.getMemoryBox().put(getTemporaryParameter().getStringValue(),
                     choice);

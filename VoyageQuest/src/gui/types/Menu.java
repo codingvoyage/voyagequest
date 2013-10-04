@@ -54,8 +54,8 @@ public class Menu implements Displayable {
             this.options[i] = options[i].toString();
         }
 
-        x += DialogParser.DIALOG_PADDING;
-        y += DialogParser.DIALOG_PADDING * 0.5;
+        x += Dialog.DIALOG_PADDING;
+        y += Dialog.DIALOG_PADDING * 0.5;
         boolean first = true;
         for (String s : this.options) {
             Util.p(s + " being drawn at " + x + ", " + y);
@@ -71,10 +71,9 @@ public class Menu implements Displayable {
     }
 
     /**
-     * Print the Menu
+     * Draw the Menu
      */
-    @Override
-    public void print() throws VoyageGuiException {
+    public void draw() {
         ListIterator<Coordinate> print = coordinates.listIterator();
         while (print.hasNext()) {
             Coordinate<String> next = print.next();
@@ -82,7 +81,6 @@ public class Menu implements Displayable {
         }
         ShapeRenderer.draw(box);
     }
-
     /**
      * Update with delta time
      * @param delta delta time

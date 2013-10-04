@@ -784,10 +784,16 @@ public class ScriptReader
 
             case 152:
             // dialogprompt animationname text options --> result
+                Object[] objectArray = identifierCheck(currentLine, 2).getObjectArrayValue();
+                String[] options = new String[objectArray.length];
+                for (int i = 0; i < objectArray.length; i++) {
+                    options[i] = objectArray[i].toString();
+                }
+
                 currentThread.speak(
                         identifierCheck(currentLine, 1).getStringValue(),
                         identifierCheck(currentLine, 0).getStringValue(),
-                        identifierCheck(currentLine, 2).getObjectArrayValue(),
+                        options,
                         currentLine.getParameter(4));
 
                 continueExecuting = false;
@@ -795,9 +801,15 @@ public class ScriptReader
 
             case 153:
             // genericprompt text options --> result
+                Object[] objectArray2 = identifierCheck(currentLine, 1).getObjectArrayValue();
+                String[] options2 = new String[objectArray2.length];
+                for (int i = 0; i < objectArray2.length; i++) {
+                    options2[i] = objectArray2[i].toString();
+                }
+
                 currentThread.speak(
                         identifierCheck(currentLine, 0).getStringValue(),
-                        identifierCheck(currentLine, 1).getObjectArrayValue(),
+                        options2,
                         currentLine.getParameter(3));
 
                 continueExecuting = false;

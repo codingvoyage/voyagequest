@@ -1,22 +1,23 @@
 package gui;
 
+import org.newdawn.slick.GameContainer;
+
 import java.util.LinkedList;
 import java.util.ListIterator;
-import org.newdawn.slick.GameContainer;
-import voyagequest.Util;
 
 /**
- * Manages all active Gui objects
+ * GUIManager manages all active Gui objects
  * @author Brian Yang
+ * @version 2.0
  */
 public abstract class GuiManager {
-    
+
     /** sorted list of active GUI objects, arranged with the active object at the end */
     private static LinkedList<Gui> activeGui = new LinkedList<>();
-    
+
     /** deleted objects */
     private static LinkedList<Gui> removedGui = new LinkedList<>();
-    
+
     /**
      * Draw the Gui element
      */
@@ -25,7 +26,7 @@ public abstract class GuiManager {
         while (activeIterator.hasNext())
             activeIterator.next().draw();
     }
-    
+
     /**
      * Set a Gui element as active (draw on top)
      * @param select the selected Gui
@@ -34,7 +35,7 @@ public abstract class GuiManager {
         activeGui.remove(select);
         activeGui.offer(select);
     }
-    
+
     /**
      * Add a new Gui element to the screen
      * @param open the Gui to open
@@ -42,7 +43,7 @@ public abstract class GuiManager {
     public static void add(Gui open) {
         activeGui.offer(open);
     }
-    
+
     /**
      * Close a Gui element by marking it for deletion
      * @param close the Gui to close
@@ -50,7 +51,7 @@ public abstract class GuiManager {
     public static void close(Gui close) {
         removedGui.offer(close);
     }
-    
+
     /**
      * Removes closed items and call the update method of each Gui element
      * @param gc game container
@@ -61,12 +62,12 @@ public abstract class GuiManager {
         while (removeIterator.hasNext())
             activeGui.remove(removeIterator.next());
         removedGui.clear();
-        
+
         ListIterator<Gui> activeIterator = activeGui.listIterator();
         while (activeIterator.hasNext())
             activeIterator.next().next(gc, delta);
     }
-    
+
     /**
      * Display the contained element in each Gui
      * @throws VoyageGuiException something went wrong
@@ -74,14 +75,14 @@ public abstract class GuiManager {
     public static void display() throws VoyageGuiException {
         ListIterator<Gui> activeIterator = activeGui.listIterator();
         while (activeIterator.hasNext())
-            activeIterator.next().display();
+            activeIterator.next().draw();
     }
-        
+
     /**
      * Called when the mouse is moved
      */
     public static void mouseMoved(int oldx, int oldy, int newx, int newy) {
-        Util.p("Moved");
+
     }
 
     /**
@@ -91,12 +92,9 @@ public abstract class GuiManager {
         ListIterator<Gui> activeIterator = activeGui.listIterator();
         while (activeIterator.hasNext()) {
             Gui next = activeIterator.next();
-            Util.p(next.getX() + ", " + next.getY());
             if (next.getRect().contains(oldx, oldy)) {
                 next.setX(newx);
                 next.setY(newy);
-                Util.p("Expected: " + newy + ", " + newy);
-                Util.p("New: " + next.getX() + ", " + next.getY());
             }
         }
     }
@@ -105,9 +103,9 @@ public abstract class GuiManager {
      * Called when the mouse is clicked (but not dragged)
      */
     public static void mouseClicked(int button, int x, int y, int clickCount) {
-        Util.p("Clicked");
+
     }
-    
+
     /**
      * Retrieve a list of Gui elements
      * @return linked list of Gui element
@@ -115,7 +113,7 @@ public abstract class GuiManager {
     public static LinkedList<Gui> getList() {
         return activeGui;
     }
-    
+
     /**
      * Retrieve the size of the linked list
      * @return the number of active Gui elements
@@ -123,5 +121,5 @@ public abstract class GuiManager {
     public int getSize() {
         return activeGui.size();
     }
-    
+
 }

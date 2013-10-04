@@ -44,7 +44,7 @@ public class DialogBox {
      */
     public DialogBox(String text, Color start, Color end) {
         dialog = new Dialog(DEFAULT_X, DEFAULT_Y, text, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-        this.window = new Gui<>(DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT, start, end, dialog);
+        this.window = new Gui<>(DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT, dialog);
         dialog.setWindow(window);
     }
     
@@ -63,7 +63,7 @@ public class DialogBox {
      * @param text 
      * @param options
      */
-    public DialogBox(String text, Object[] options) {
+    public DialogBox(String text, String[] options) {
         dialog = new Dialog(DEFAULT_X, DEFAULT_Y, text, DEFAULT_WIDTH, DEFAULT_HEIGHT, options);
         this.window = new Gui<>(DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT, dialog);
         dialog.setWindow(window);
@@ -73,7 +73,7 @@ public class DialogBox {
      * Default dialog box with default coordinates
      * @param text
      */
-    public DialogBox(String text, String animationId, Object[] options) {
+    public DialogBox(String text, String animationId, String[] options) {
         dialog = new Dialog(DEFAULT_X, DEFAULT_Y, text, DEFAULT_WIDTH, DEFAULT_HEIGHT, animationId, options);
         this.window = new Gui<>(DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT, dialog);
         dialog.setWindow(window);
@@ -86,15 +86,15 @@ public class DialogBox {
      * @param start
      * @param end 
      */
-    public DialogBox(String text, Object[] options, Color start, Color end) {
+    public DialogBox(String text, String[] options, Color start, Color end) {
         dialog = new Dialog(DEFAULT_X, DEFAULT_Y, text, DEFAULT_WIDTH, DEFAULT_HEIGHT);
-        this.window = new Gui<>(DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT, start, end, dialog);
+        this.window = new Gui<>(DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT, dialog);
         dialog.setWindow(window);
     }
     
-    public DialogBox(String text, Object[] options, Color start, Color end, String AnimationId) {
+    public DialogBox(String text, String[] options, Color start, Color end, String AnimationId) {
         dialog = new Dialog(DEFAULT_X, DEFAULT_Y, text, DEFAULT_WIDTH, DEFAULT_HEIGHT, animationId);
-        this.window = new Gui<>(DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT, start, end, dialog);
+        this.window = new Gui<>(DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT, dialog);
         dialog.setWindow(window);
     }
     
@@ -158,6 +158,6 @@ public class DialogBox {
      * @return whether or not it is continuing to print
      */
     public boolean continuePrinting() {
-        return dialog.getParser().getStatus();
+        return dialog.getParserStatus();
     }
 }
