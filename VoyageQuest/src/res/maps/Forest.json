@@ -1,0 +1,11 @@
+{
+    "about_file": "This is the forest between the desert and the village maps",
+
+    "mapName" : "Forest",
+
+    "mapBackgroundScript": "forestMapScript",
+
+    "allEntities": [],
+
+    "music" : "Route 3"
+}

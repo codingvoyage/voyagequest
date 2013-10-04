@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="19" height="15" tilewidth="64" tileheight="64" backgroundcolor="#3b3b3b">
+ <tileset firstgid="1" name="VILINT" tilewidth="64" tileheight="64">
+  <image source="tilesets/VILINT.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="193" name="PAVEANDVILFLR" tilewidth="64" tileheight="64">
+  <image source="tilesets/PAVEANDVILFLR.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="385" name="TABLE1" tilewidth="64" tileheight="64">
+  <image source="tilesets/TABLE1.png" width="1024" height="768"/>
+ </tileset>
+ <tileset firstgid="577" name="mountain_house_interior" tilewidth="64" tileheight="64">
+  <image source="tilesets/TILES RESIZED/Allacrost graphics/tilesets/mountain_house_interior.png" width="1024" height="1024"/>
+ </tileset>
+ <tileset firstgid="833" name="celiannatilee" tilewidth="64" tileheight="64">
+  <image source="tilesets/TILES RESIZED/DeviantArtists/CELIANNA/celiannatilee.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="Grass and Ground" width="19" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAXkACVG8jGtzdIapO5Cxip49KLLUcNdOiSYRSj8tIg0SwePGWpo/iQXEBP2pJqlQoEZxJgFADbrRIt0BAAA
+  </data>
+ </layer>
+ <layer name="Lower Background" width="19" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgoC4QAmJhIBYlA0sCsRSSWUpArAzEqmRgTSDWQjLLCIiNgdgUCzbHIQ7DlkBshWRWEZlhAwNRSOwgKppFTXeN+pEwqEJiTwLiyUToiQHiWCg7DojjgXgmEM9CUrMIiBcD8VICOAdJTx4Q50PFV5HoDxBAj6MorKqIA+jhWoXGBwAgjE9ddAQAAA==
+  </data>
+ </layer>
+ <layer name="Still Behind Entities" width="19" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGLrAkZmBwYkZwi4E0kXMCJpUEAjUEwTV1wikm5gRNKkgEagniQx9o2AUjAQAADkJsg90BAAA
+  </data>
+ </layer>
+ <layer name="Entity Layer" width="19" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAXkgglMDA1+TAwM/kAcwATmkw0WAM2KA+qPB+IEJjCfIpAH1J8PxAUUmjMKRgG1AQASQzosdAQAAA==
+  </data>
+ </layer>
+ <layer name="Above Entity" width="19" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMAvoBAAXGLOd0BAAA
+  </data>
+ </layer>
+ <layer name="Highest Layer" width="19" height="15">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC2NgGAWjYBSMAvoBAAXGLOd0BAAA
+  </data>
+ </layer>
+ <objectgroup name="Collisions" width="19" height="15">
+  <object x="113" y="225" width="993" height="17"/>
+  <object x="1095" y="232" width="12" height="588"/>
+  <object x="960" y="768" width="143" height="27"/>
+  <object x="960" y="781" width="27" height="183"/>
+  <object x="739" y="773" width="23" height="187"/>
+  <object x="117" y="767" width="628" height="25"/>
+  <object x="109" y="231" width="17" height="580"/>
+  <object x="455" y="343" width="44" height="33"/>
+  <object x="201" y="341" width="45" height="35"/>
+  <object x="268" y="312" width="164" height="124"/>
+  <object x="584" y="158" width="107" height="157"/>
+ </objectgroup>
+ <objectgroup name="Boundaries" width="19" height="15" visible="0">
+  <object x="259" y="260" width="181" height="181"/>
+  <object x="453" y="259" width="54" height="118"/>
+  <object x="195" y="262" width="57" height="119"/>
+ </objectgroup>
+ <objectgroup name="Events" width="19" height="15" visible="0">
+  <object type="onTouch" x="772" y="889" width="177" height="67">
+   <properties>
+    <property name="runScript" value="villageHouseToVillage"/>
+   </properties>
+  </object>
+ </objectgroup>
+</map>

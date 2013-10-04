@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<map version="1.0" orientation="orthogonal" width="30" height="60" tilewidth="64" tileheight="64" backgroundcolor="#3b3b3b">
+ <tileset firstgid="1" name="desert_ground" tilewidth="64" tileheight="64">
+  <image source="tilesets/TILES RESIZED/Allacrost graphics/tilesets/desert_ground.png" width="1024" height="1024"/>
+ </tileset>
+ <tileset firstgid="257" name="MataraelfayForest4-Camp" tilewidth="64" tileheight="64">
+  <image source="tilesets/TILES RESIZED/DeviantArtists/MataraelFayForest/MataraelfayForest4-Camp.png" width="1024" height="1024"/>
+ </tileset>
+ <layer name="Grass and Ground" width="30" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2YS3ITQQxAe+0kF0jCCeIAJwDWjl3Zm/EF/LkAZVfNDhIfAIg37IBbos5IsUqWutWdSQqoLF459kzrjfo36qxDCGfAOfIKWCOrENoZcMV+yzFmQLu2gU+NeO8F80ZOhPtjF+MhnuWUHmjXLuFTY224uX/RxXiIN+n6IDra+PcYv0sPtGs9faS5yb9g8WZ7x/04NPidPEfAMUOLycfjU8ZPcVbMscIc58yptZXw8bhluQ8Rq92xgbzvEuO9Bt4AGxwzPh53LGdP/6e4FDHeAe+Zd8CuTUTO0j00SDkHIs4WvXQtOmeYs9XGwlr/GjvmJefK6fF6ree+djg9OZfkS32tOWnuvVXaaNdKvTsjT5p7H5zXLK/2jKPQ7blbXO+pHDX4/ZZXe8Zp6OZV3N9gTbVWjtbz8PtL+hn2Ndrv773Wfak+j8h9Ue4XGrh3tFvne6MPZ2SC3l2hV/qGGafcE+Mauu6cLq/X9xn4AtwoedK63Sa8g4RT840x9lfgG/A97OsUuT/tHPmeCSfN2ZGI22Dsn8Av4HfY1ylyf4r1yajSOxVxl+FwH1oYv8d5NU308yDhnSfi0rq3con1ylzsWdp9MJ4/zoX/JBGX1r11fcPGN3cvvftL/BZjrEM5nnapmju3NmheNYKrgue5KHDLebUU4Bw9eJ5Jj26tpsc5evA8M3E+4OuPu60al6PVrRZ0TmvwfMDXn1xrOay6NeVe4nlhnvBaNS9xV+i14F7P+7D23UvE9XFU6KT5nKo3ctQ4S71y7dc6yVvS1/xsW+skr7fO0c62Nc6It84pralypOocy/kYH5Grc57CGUnVOXIP6ssZ0eqcU8WbO3+cFnrlPmvl6zlflrBJjK/05mq1vpBeXn95//dR6107+rmPfqCauaRNrg7VKJ2HfY1xaRwtt5qxrumjv5HnWmvS81z997+M0wsv/Iv8AfUujJUgHAAA
+  </data>
+ </layer>
+ <layer name="Lower Background" width="30" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQEAAACCIP+vbkhAAQAAAAAAAC8GEkQVBiAcAAA=
+  </data>
+ </layer>
+ <layer name="Still Behind Entities" width="30" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQEAAACCIP+vbkhAAQAAAAAAAC8GEkQVBiAcAAA=
+  </data>
+ </layer>
+ <layer name="Entity Layer" width="30" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+2UO2sCQRRG5/oo1EpjCrUyJoVaxUehVnlYRH+5AaOtQh59MLEXxGOVFM5md9nJ4nIPHLiwM/eDHfiMURRFURRFCc4Mn2PIXeE6hlwl+XzGlLuLKfc/0J44L0SMSWEaM5iVn28u37JITgkvsIyXv3KDvOUcX3CBSx/n6+RcYQOv8Ub+vnOKV3zDd/zwcf6WnA52sYf9kLkb/MJv3Po4f0fOPT7gI45D5h7Zh796FuT4N3ksiH12QYW9VayJfXZBk70tbIt9dsGAvUMciX12wRN7JzgV+5x0vPreJV5975Ko+j4oUfV9UKLse0VRFCXZHAD4A8ueIBwAAA==
+  </data>
+ </layer>
+ <layer name="Above Entity" width="30" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQEAAACCIP+vbkhAAQAAAAAAAC8GEkQVBiAcAAA=
+  </data>
+ </layer>
+ <layer name="Highest Layer" width="30" height="60">
+  <data encoding="base64" compression="gzip">
+   H4sIAAAAAAAAC+3BAQEAAACCIP+vbkhAAQAAAAAAAC8GEkQVBiAcAAA=
+  </data>
+ </layer>
+ <objectgroup name="Collisions" width="30" height="60">
+  <object x="1296" y="1569" width="37" height="18"/>
+  <object x="1244" y="1163" width="63" height="22"/>
+  <object x="1001" y="1731" width="41" height="21"/>
+  <object x="671" y="1998" width="56" height="17"/>
+  <object x="1420" y="2172" width="57" height="47"/>
+  <object x="1000" y="1427" width="190" height="27"/>
+  <object x="1183" y="1388" width="33" height="30"/>
+  <object x="1209" y="1363" width="109" height="26"/>
+  <object x="1312" y="1321" width="38" height="34"/>
+  <object x="1345" y="1300" width="60" height="27"/>
+  <object x="1521" y="1319" width="60" height="32"/>
+  <object x="1562" y="1346" width="136" height="48"/>
+  <object x="1683" y="1321" width="77" height="33"/>
+  <object x="1736" y="1291" width="49" height="28"/>
+  <object x="1772" y="1256" width="36" height="26"/>
+  <object x="1804" y="1230" width="35" height="17"/>
+  <object x="1832" y="1200" width="36" height="22"/>
+  <object x="1863" y="1178" width="25" height="17"/>
+  <object x="1377" y="1155" width="142" height="21"/>
+  <object x="1509" y="1180" width="28" height="20"/>
+  <object x="1536" y="1210" width="23" height="22"/>
+  <object x="1557" y="1237" width="28" height="17"/>
+  <object x="1591" y="1261" width="62" height="17"/>
+  <object x="1662" y="1249" width="17" height="15"/>
+  <object x="1685" y="1233" width="20" height="14"/>
+  <object x="1700" y="1207" width="35" height="17"/>
+  <object x="1873" y="1040" width="20" height="11"/>
+  <object x="1860" y="1061" width="19" height="16"/>
+  <object x="1835" y="1080" width="22" height="23"/>
+  <object x="1814" y="1102" width="15" height="23"/>
+  <object x="1780" y="1130" width="35" height="24"/>
+  <object x="1755" y="1153" width="27" height="24"/>
+  <object x="1739" y="1176" width="43" height="27"/>
+  <object x="1846" y="331" width="20" height="223"/>
+  <object x="1805" y="483" width="17" height="57"/>
+  <object x="1865" y="589" width="13" height="166"/>
+  <object x="1852" y="796" width="14" height="36"/>
+  <object x="1815" y="822" width="24" height="85"/>
+  <object x="1844" y="905" width="36" height="36"/>
+  <object x="1878" y="941" width="12" height="90"/>
+  <object x="974" y="1374" width="31" height="47"/>
+  <object x="988" y="1326" width="23" height="37"/>
+  <object x="1020" y="1304" width="24" height="26"/>
+  <object x="1031" y="1289" width="27" height="17"/>
+  <object x="1081" y="1324" width="37" height="13"/>
+  <object x="1132" y="1329" width="36" height="7"/>
+  <object x="1165" y="1308" width="16" height="11"/>
+  <object x="1183" y="1292" width="27" height="11"/>
+  <object x="1210" y="1271" width="71" height="13"/>
+  <object x="1286" y="1255" width="19" height="16"/>
+  <object x="1301" y="1241" width="22" height="11"/>
+  <object x="1322" y="1227" width="24" height="12"/>
+  <object x="1344" y="1204" width="23" height="11"/>
+  <object x="1354" y="1189" width="15" height="10"/>
+  <object x="1366" y="1162" width="5" height="19"/>
+  <object x="77" y="1645" width="223" height="18"/>
+  <object x="303" y="1663" width="37" height="21"/>
+  <object x="345" y="1686" width="13" height="17"/>
+  <object x="362" y="1710" width="21" height="18"/>
+  <object x="395" y="1719" width="293" height="15"/>
+  <object x="341" y="1825" width="360" height="15"/>
+  <object x="77" y="1768" width="235" height="15"/>
+  <object x="71" y="1670" width="13" height="90"/>
+  <object x="320" y="1794" width="19" height="19"/>
+  <object x="706" y="1733" width="13" height="15"/>
+  <object x="725" y="1758" width="13" height="20"/>
+  <object x="745" y="1774" width="11" height="13"/>
+  <object x="764" y="1797" width="20" height="16"/>
+  <object x="786" y="1823" width="18" height="14"/>
+  <object x="814" y="1837" width="16" height="10"/>
+  <object x="838" y="1847" width="56" height="12"/>
+  <object x="899" y="1829" width="14" height="9"/>
+  <object x="918" y="1807" width="15" height="15"/>
+  <object x="939" y="1804" width="8" height="16"/>
+  <object x="952" y="1836" width="36" height="17"/>
+  <object x="980" y="1866" width="18" height="27"/>
+  <object x="979" y="1904" width="44" height="34"/>
+  <object x="920" y="1942" width="60" height="23"/>
+  <object x="813" y="1939" width="100" height="23"/>
+  <object x="775" y="1918" width="28" height="15"/>
+  <object x="742" y="1892" width="40" height="15"/>
+  <object x="714" y="1866" width="34" height="15"/>
+  <object x="707" y="1845" width="24" height="12"/>
+  <object x="4" y="918" width="110" height="228"/>
+  <object x="2" y="1134" width="56" height="268"/>
+  <object x="-10" y="1394" width="122" height="122"/>
+  <object x="4" y="1516" width="48" height="142"/>
+  <object x="1" y="1791" width="57" height="496"/>
+  <object x="9" y="2179" width="103" height="192"/>
+  <object x="11" y="2369" width="45" height="257"/>
+  <object x="21" y="2596" width="95" height="141"/>
+  <object x="5" y="2724" width="17" height="96"/>
+ </objectgroup>
+ <objectgroup name="Boundaries" width="30" height="60">
+  <object x="1352" y="1992" width="240" height="241"/>
+  <object x="1284" y="1477" width="55" height="117"/>
+  <object x="964" y="1672" width="113" height="111"/>
+  <object x="1220" y="1092" width="117" height="115"/>
+  <object x="646" y="1925" width="107" height="113"/>
+ </objectgroup>
+ <objectgroup name="Events" width="30" height="60"/>
+</map>

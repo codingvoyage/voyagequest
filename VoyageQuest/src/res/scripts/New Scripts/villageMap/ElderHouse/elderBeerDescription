@@ -1,0 +1,7 @@
+freezeInputs
+
+dialogBox "Sebastian Profile" "Hmm... yup! It's quality beer!"
+
+unfreezeInputs
+endthread
+

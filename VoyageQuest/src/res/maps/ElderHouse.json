@@ -1,0 +1,25 @@
+{
+    "about_file": "This map is the house of the Village Elder",
+
+    "mapName" : "Elder House",
+
+    "mapBackgroundScript": "elderHouseMap",
+
+    "allEntities": [
+		{
+            "name" : "Elder",
+            "initialX" : 1530,
+            "initialY" : 320,
+            "width" : 64,
+            "height" : 128,
+            "mainScriptID" : "elderInHouseWalk",
+            "mainThreadName" : "houseelderthread",
+            "animations" : [
+                "Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right"
+            ],
+            "startingAnimationDirection" : 0
+        }
+	],
+
+    "music" : "Route 3"
+}

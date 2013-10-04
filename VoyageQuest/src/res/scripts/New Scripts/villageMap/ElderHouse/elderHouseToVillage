@@ -1,0 +1,4 @@
+fadeout
+mapChange "Village" 4960 3230
+wait 50
+endthread
