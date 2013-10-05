@@ -1,1 +1,7 @@
+-- Stop the game from automatically lighting everything up with the "FADEIN" thread,
+-- make everything dark, and then apply the proper lighting
+killThread "FADEIN"
+setlight 30
+cavelightOn
+
 endthread
