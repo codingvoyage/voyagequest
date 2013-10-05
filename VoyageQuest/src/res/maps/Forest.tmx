@@ -36,7 +36,7 @@
    H4sIAAAAAAAAC+3XNxIBUBRG4aeUtbJW1spaWStbJ5tzlqDjmXNmvv6/5Q3BzMzMzMzMzMzsP0smQkghjQyyyCGPQuLb6z6vyNYSyqigihrqaER0R5OtLbTRQRc99DGI6I4hW0cYY4IpZphjEdEdS7ausMYGW+ywxyGiO45sPeGMC6644Y5HRHeYmZmZmdlv9+S/ePljmEXRG+uNXZIQJwAA
   </data>
  </layer>
- <objectgroup name="Collisions" width="50" height="50" visible="0">
+ <objectgroup name="Collisions" width="50" height="50">
   <object x="2987" y="2727" width="156" height="116"/>
   <object x="2825" y="2570" width="44" height="39"/>
   <object x="2824" y="2254" width="45" height="39"/>
@@ -85,18 +85,8 @@
   <object x="3094" y="1854" width="47" height="282"/>
   <object x="2956" y="1807" width="152" height="62"/>
   <object x="40" y="225" width="313" height="70"/>
-  <object type="onTouch" x="973" y="194" width="52" height="451">
-   <properties>
-    <property name="runScript" value="forestToDesert"/>
-   </properties>
-  </object>
-  <object type="onTouch" x="854" y="953" width="52" height="451">
-   <properties>
-    <property name="runScript" value="forestToDesert"/>
-   </properties>
-  </object>
  </objectgroup>
- <objectgroup name="Boundaries" width="50" height="50" visible="0">
+ <objectgroup name="Boundaries" width="50" height="50">
   <object x="2952" y="2508" width="233" height="357"/>
   <object x="2819" y="2181" width="55" height="117"/>
   <object x="2820" y="2501" width="51" height="115"/>

@@ -21,7 +21,7 @@ if gameState == 5
     dialogbox "Njeri Profile" "Help! ... Help!!"
     dialogbox "Sebastian Profile" "Oh no..."
     wait 500
-    moveTileAmount 8
+    moveTileAmount 7.5
 
     -- Camera pans down to reveal the crab chasing the Village Elder
 
@@ -65,10 +65,14 @@ if gameState == 5
         -- The player rushes towards them and catches the crab from behind
 
         assumeControlOfPlayer
-        setVelocity -0.50 0.15
-        moveTileAmount 4
+        setAnimationDirection "WEST"
+        setVelocity -0.30 0.10
+        movePixelAmount 160
 
         -- Let the player control stuff again and fight
+
+        wait 1000
+        dialogbox "Sebastian Profile" "EMC, on!"
 
         unfreezeInputs
         startBattle "FUNNY BEAR"

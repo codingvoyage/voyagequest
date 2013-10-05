@@ -1,3 +1,10 @@
+-- If we are done with the tutorial, anytime after, these should be hidden off the map
+getGlobal "mainVillage" --> gameState
+if gameState != 5
+    setLocation 9001 9001
+    endthread
+endif
+
 var break false
 var save true
 
@@ -22,9 +29,10 @@ while break == false
 wend
 
 if save == true
-    setVelocity 0 -0.7
+    setVelocity 0 -0.6
     setAnimationDirection "NORTH"
     moveTileAmount 4
+    setAnimationDirection "EAST"
 endif
 if save == false
 

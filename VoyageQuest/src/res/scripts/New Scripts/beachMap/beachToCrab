@@ -1,9 +1,13 @@
 assumeControlOfPlayer
 getLocation --> x y
 
+-- If we're on the beginning of the tutorial section involving the crab
+-- then please move to a certain coordinate (750, 0)
 getGlobal "mainVillage" --> gameState
 if gameState == 5
+    fadeout
     mapChange "Crab" 750 0
+    endthread
 endif
 
 fadeout

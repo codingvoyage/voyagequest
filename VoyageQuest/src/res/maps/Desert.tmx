@@ -8,7 +8,7 @@
  </tileset>
  <layer name="Grass and Ground" width="30" height="60">
   <data encoding="base64" compression="gzip">
-   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
+   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
   </data>
  </layer>
  <layer name="Lower Background" width="30" height="60">
@@ -23,7 +23,7 @@
  </layer>
  <layer name="Entity Layer" width="30" height="60">
   <data encoding="base64" compression="gzip">
-   H4sIAAAAAAAAC+2UO2sCQRRG5/oo1EpjCrUyJoVaxUehVnlYRH+5AaOtQh59MLEXxGOVFM5md9nJ4nIPHLiwM/eDHfiMURRFURRFCc4Mn2PIXeE6hlwl+XzGlLuLKfc/0J44L0SMSWEaM5iVn28u37JITgkvsIyXv3KDvOUcX3CBSx/n6+RcYQOv8Ub+vnOKV3zDd/zwcf6WnA52sYf9kLkb/MJv3Po4f0fOPT7gI45D5h7Zh796FuT4N3ksiH12QYW9VayJfXZBk70tbIt9dsGAvUMciX12wRN7JzgV+5x0vPreJV5975Ko+j4oUfV9UKLse0VRFCXZHAD4A8ueIBwAAA==
+   H4sIAAAAAAAAC+2UMU8CQRBGbxQKpRKwUCpACqACpEArEQvll2ui0EIC2hvB3sTwqKBg4fZy6+bOeclLJrnd+ZLb5AsCRVEURVEUe57xxUPuBKcecpX08+kp98dT7l+gPZEsRILgCI8xg1nZfHP5lmfk5LGARTzfyrV5y1d8wxGOQ5wvk1PBKl5hTQ7f2cUM5/iOHyHOt8hpYwevsRsx9wsXuMTvEOfvyOnjPQ7wIWLumt/oVxPBCf/mFHNinl1wwd5LLIl5dkGdvQ1sinl2QY+9N3gr5tkFj+x9wqGY57Syr+ddsq/nXRJXz9sSV8/bEmfPK4qiKP+DFTO2QLcgHAAA
   </data>
  </layer>
  <layer name="Above Entity" width="30" height="60">
@@ -70,7 +70,7 @@
   <object x="1780" y="1130" width="35" height="24"/>
   <object x="1755" y="1153" width="27" height="24"/>
   <object x="1739" y="1176" width="43" height="27"/>
-  <object x="1846" y="331" width="20" height="223"/>
+  <object x="1835" y="448" width="60" height="120"/>
   <object x="1805" y="483" width="17" height="57"/>
   <object x="1865" y="589" width="13" height="166"/>
   <object x="1852" y="796" width="14" height="36"/>
@@ -121,14 +121,68 @@
   <object x="714" y="1866" width="34" height="15"/>
   <object x="707" y="1845" width="24" height="12"/>
   <object x="4" y="918" width="110" height="228"/>
-  <object x="2" y="1134" width="56" height="268"/>
-  <object x="-10" y="1394" width="122" height="122"/>
+  <object x="5" y="1136" width="56" height="268"/>
+  <object x="8" y="1392" width="86" height="122"/>
   <object x="4" y="1516" width="48" height="142"/>
-  <object x="1" y="1791" width="57" height="496"/>
+  <object x="7" y="1795" width="57" height="496"/>
   <object x="9" y="2179" width="103" height="192"/>
   <object x="11" y="2369" width="45" height="257"/>
   <object x="21" y="2596" width="95" height="141"/>
   <object x="5" y="2724" width="17" height="96"/>
+  <object x="1843" y="1343" width="69" height="129"/>
+  <object x="1835" y="1472" width="69" height="53"/>
+  <object x="1800" y="1509" width="47" height="67"/>
+  <object x="1832" y="1555" width="75" height="37"/>
+  <object x="1853" y="1578" width="60" height="77"/>
+  <object x="1862" y="1636" width="51" height="49"/>
+  <object x="1881" y="1659" width="31" height="56"/>
+  <object x="1868" y="1284" width="49" height="56"/>
+  <object x="1877" y="1249" width="37" height="44"/>
+  <object x="1864" y="357" width="45" height="84"/>
+  <object x="1867" y="753" width="29" height="44"/>
+  <object x="1164" y="2429" width="160" height="120"/>
+  <object x="1363" y="2428" width="155" height="131"/>
+  <object x="1556" y="2421" width="149" height="144"/>
+  <object x="239" y="2061" width="248" height="111"/>
+  <object x="1385" y="2856" width="235" height="80"/>
+  <object x="1880" y="2086" width="33" height="135"/>
+  <object x="1861" y="2132" width="25" height="55"/>
+  <object x="1799" y="2476" width="35" height="33"/>
+  <object x="1824" y="2503" width="33" height="33"/>
+  <object x="1848" y="2543" width="47" height="37"/>
+  <object x="1854" y="2589" width="60" height="34"/>
+  <object x="1869" y="2669" width="47" height="32"/>
+  <object x="1878" y="2708" width="35" height="42"/>
+  <object x="1889" y="2634" width="25" height="32"/>
+  <object x="1836" y="2347" width="21" height="111"/>
+  <object x="1824" y="2449" width="25" height="25"/>
+  <object x="1853" y="2308" width="37" height="33"/>
+  <object x="1871" y="2281" width="41" height="13"/>
+  <object x="1892" y="2245" width="24" height="35"/>
+  <object x="1807" y="2831" width="49" height="53"/>
+  <object x="1821" y="2800" width="95" height="60"/>
+  <object x="1865" y="2771" width="52" height="31"/>
+  <object x="1784" y="2864" width="117" height="81"/>
+  <object x="1873" y="2853" width="36" height="25"/>
+  <object x="1881" y="2954" width="33" height="48"/>
+  <object x="195" y="299" width="43" height="124"/>
+  <object x="9" y="301" width="184" height="16"/>
+  <object x="255" y="429" width="33" height="67"/>
+  <object x="268" y="481" width="44" height="43"/>
+  <object x="252" y="512" width="36" height="29"/>
+  <object x="232" y="551" width="27" height="20"/>
+  <object x="213" y="565" width="27" height="28"/>
+  <object x="197" y="588" width="17" height="29"/>
+  <object x="179" y="613" width="27" height="21"/>
+  <object x="151" y="635" width="31" height="20"/>
+  <object x="115" y="660" width="43" height="24"/>
+  <object x="97" y="687" width="23" height="36"/>
+  <object x="65" y="713" width="37" height="20"/>
+  <object x="33" y="732" width="45" height="25"/>
+  <object x="9" y="764" width="47" height="21"/>
+  <object x="5" y="788" width="27" height="24"/>
+  <object x="8" y="845" width="28" height="63"/>
+  <object x="37" y="892" width="45" height="29"/>
  </objectgroup>
  <objectgroup name="Boundaries" width="30" height="60">
   <object x="1352" y="1992" width="240" height="241"/>
@@ -136,6 +190,47 @@
   <object x="964" y="1672" width="113" height="111"/>
   <object x="1220" y="1092" width="117" height="115"/>
   <object x="646" y="1925" width="107" height="113"/>
+  <object x="1155" y="2312" width="181" height="304"/>
+  <object x="1351" y="2313" width="176" height="300"/>
+  <object x="1543" y="2312" width="176" height="300"/>
+  <object x="196" y="1927" width="305" height="301"/>
+  <object x="1352" y="2699" width="300" height="296"/>
  </objectgroup>
- <objectgroup name="Events" width="30" height="60"/>
+ <objectgroup name="Events" width="30" height="60">
+  <object type="onTouch" x="1395" y="1197" width="172" height="152">
+   <properties>
+    <property name="runScript" value="desertToDesertCave"/>
+   </properties>
+  </object>
+  <object type="onTouch" x="1860" y="125" width="54" height="217">
+   <properties>
+    <property name="runScript" value="desertToPlains"/>
+   </properties>
+  </object>
+  <object type="onTouch" x="15" y="5" width="404" height="36">
+   <properties>
+    <property name="runScript" value="desertToBulienRoute"/>
+   </properties>
+  </object>
+  <object type="onTouch" x="15" y="18" width="287" height="100">
+   <properties>
+    <property name="runScript" value="desertToBulienRoute"/>
+   </properties>
+  </object>
+  <object type="onTouch" x="53" y="98" width="140" height="116">
+   <properties>
+    <property name="runScript" value="desertToBulienRoute"/>
+   </properties>
+  </object>
+  <object type="onTouch" x="10" y="126" width="140" height="165">
+   <properties>
+    <property name="runScript" value="desertToBulienRoute"/>
+   </properties>
+  </object>
+  <object type="onTouch" x="1852" y="1726" width="60" height="339">
+   <properties>
+    <property name="runScript" value="desertToForest"/>
+   </properties>
+  </object>
+ </objectgroup>
 </map>
