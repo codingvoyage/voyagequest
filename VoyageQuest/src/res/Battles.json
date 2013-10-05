@@ -13,6 +13,12 @@
             "description" : "An evil deer rushes at you!!",
             "ScriptID" : "DARKDEERFIGHTSCRIPT",
             "rewardScript" : "DARKDEERREWARDSCRIPT"
-        }
+        },
+		{
+			"battleID" : "CRAB BATTLE",
+            "description" : "You fight three angry looking crabs!",
+            "ScriptID" : "CrabTutorialFight",
+            "rewardScript" : "FUNNYBEARREWARDSCRIPT"
+		}
     ]
 }

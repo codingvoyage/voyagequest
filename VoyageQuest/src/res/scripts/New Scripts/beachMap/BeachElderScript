@@ -1,9 +1,16 @@
+-- If we are done with the tutorial, anytime after, these should be hidden off the map
+getGlobal "mainVillage" --> gameState
+if gameState != 5
+    setLocation 9001 9001
+    endthread
+endif
+
+
 -- if break is true, then the elder stops going in circles
 var break false
 var save true
 
 while break == false
-
 
     setVelocity 0.5 0
     setAnimationDirection "EAST"
@@ -25,7 +32,7 @@ while break == false
 wend
 
 if save == true
-    setVelocity 0 -0.5
+    setVelocity 0 -0.7
     setAnimationDirection "NORTH"
     moveTileAmount 4
 endif

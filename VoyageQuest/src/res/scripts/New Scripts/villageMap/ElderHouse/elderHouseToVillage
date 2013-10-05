@@ -1,4 +1,4 @@
 fadeout
-mapChange "Village" 4960 3230
+mapChange "Village" 4960 3180
 wait 50
 endthread
