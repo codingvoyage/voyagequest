@@ -24,6 +24,9 @@ public class DialogBox {
     public static final int DEFAULT_X = (voyagequest.VoyageQuest.X_RESOLUTION / 2) - DEFAULT_WIDTH / 2;
     public static final int DEFAULT_Y = voyagequest.VoyageQuest.Y_RESOLUTION - (int)(DEFAULT_HEIGHT * 1.4);
 
+    public static final Color DEFAULT_COLOR_START = new Color(179, 223, 129, 98);
+    public static final Color DEFAULT_COLOR_END = new Color(152, 223, 108, 98);
+
     public String animationId;
     
     /**
@@ -34,6 +37,7 @@ public class DialogBox {
         dialog = new Dialog(DEFAULT_X, DEFAULT_Y, text, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         this.window = new Gui<>(DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT, dialog);
         dialog.setWindow(window);
+        window.setColor(DEFAULT_COLOR_START, DEFAULT_COLOR_END);
     }
     
     /**
@@ -46,6 +50,7 @@ public class DialogBox {
         dialog = new Dialog(DEFAULT_X, DEFAULT_Y, text, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         this.window = new Gui<>(DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT, dialog);
         dialog.setWindow(window);
+        window.setColor(DEFAULT_COLOR_START, DEFAULT_COLOR_END);
     }
     
     /**
@@ -56,6 +61,7 @@ public class DialogBox {
         dialog = new Dialog(DEFAULT_X, DEFAULT_Y, text, DEFAULT_WIDTH, DEFAULT_HEIGHT, animationId);
         this.window = new Gui<>(DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT, dialog);
         dialog.setWindow(window);
+        window.setColor(DEFAULT_COLOR_START, DEFAULT_COLOR_END);
     }
     
     /**
@@ -67,6 +73,7 @@ public class DialogBox {
         dialog = new Dialog(DEFAULT_X, DEFAULT_Y, text, DEFAULT_WIDTH, DEFAULT_HEIGHT, options);
         this.window = new Gui<>(DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT, dialog);
         dialog.setWindow(window);
+        window.setColor(DEFAULT_COLOR_START, DEFAULT_COLOR_END);
     }
 
     /**
@@ -77,6 +84,7 @@ public class DialogBox {
         dialog = new Dialog(DEFAULT_X, DEFAULT_Y, text, DEFAULT_WIDTH, DEFAULT_HEIGHT, animationId, options);
         this.window = new Gui<>(DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT, dialog);
         dialog.setWindow(window);
+        window.setColor(DEFAULT_COLOR_START, DEFAULT_COLOR_END);
     }
     
     /**
@@ -90,12 +98,14 @@ public class DialogBox {
         dialog = new Dialog(DEFAULT_X, DEFAULT_Y, text, DEFAULT_WIDTH, DEFAULT_HEIGHT);
         this.window = new Gui<>(DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT, dialog);
         dialog.setWindow(window);
+        window.setColor(start, end);
     }
     
     public DialogBox(String text, String[] options, Color start, Color end, String AnimationId) {
         dialog = new Dialog(DEFAULT_X, DEFAULT_Y, text, DEFAULT_WIDTH, DEFAULT_HEIGHT, animationId);
         this.window = new Gui<>(DEFAULT_X, DEFAULT_Y, DEFAULT_WIDTH, DEFAULT_HEIGHT, dialog);
         dialog.setWindow(window);
+        window.setColor(start, end);
     }
     
     /**
@@ -108,7 +118,7 @@ public class DialogBox {
     /**
      * Draw the window
      */
-    public void draw() {
+    public void draw() throws VoyageGuiException {
         window.draw();
     }
     
@@ -119,14 +129,6 @@ public class DialogBox {
      */
     public void next(GameContainer gc, int delta) {
         window.next(gc, delta);
-    }
-    
-    /**
-     * 
-     * @throws VoyageGuiException 
-     */
-    public void printNext() throws VoyageGuiException {
-        window.display();
     }
     
     /**

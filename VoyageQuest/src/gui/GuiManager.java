@@ -21,7 +21,7 @@ public abstract class GuiManager {
     /**
      * Draw the Gui element
      */
-    public static void draw() {
+    public static void draw() throws VoyageGuiException {
         ListIterator<Gui> activeIterator = activeGui.listIterator();
         while (activeIterator.hasNext())
             activeIterator.next().draw();

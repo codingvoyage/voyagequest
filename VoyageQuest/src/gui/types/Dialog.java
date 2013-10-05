@@ -61,6 +61,8 @@ public class Dialog implements Displayable {
      * @param text
      */
     public Dialog(float x, float y, String text, int width, int height) {
+        this.x = x;
+        this.y = y;
         this.text = text;
         this.width = width;
         this.height = height;
@@ -76,6 +78,8 @@ public class Dialog implements Displayable {
      * @param text
      */
     public Dialog(float x, float y, String text, int width, int height, String animationId) {
+        this.x = x;
+        this.y = y;
         this.text = text;
         this.width = width;
         this.height = height;
@@ -93,6 +97,8 @@ public class Dialog implements Displayable {
      * @param options
      */
     public Dialog(float x, float y, String text, int width, int height, String[] options) {
+        this.x = x;
+        this.y = y;
         this.text = text;
         this.width = width;
         this.height = height;
@@ -111,6 +117,8 @@ public class Dialog implements Displayable {
      * @param options
      */
     public Dialog(float x, float y, String text, int width, int height, String animationId, String[] options) {
+        this.x = x;
+        this.y = y;
         this.text = text;
         this.width = width;
         this.height = height;
@@ -129,6 +137,7 @@ public class Dialog implements Displayable {
     /**
      * Draw the window
      */
+    @Override
     public void draw() throws VoyageGuiException {
         parser.drawNext();
     }
@@ -255,6 +264,10 @@ public class Dialog implements Displayable {
         /** are we printing? */
         private boolean optionsDisplaying;
 
+        /**
+         * Create a dialog parser instance
+         * @param text the text to be printed
+         */
         public DialogParser(String text) {
             this.x = Dialog.this.x;
             this.y = Dialog.this.y;
@@ -264,6 +277,7 @@ public class Dialog implements Displayable {
 
             xStart = x + DIALOG_PADDING;
             yStart = y + DIALOG_PADDING;
+
             this.x += DIALOG_PADDING;
             this.y += DIALOG_PADDING;
             totalWidth = Dialog.this.width + (int)xStart - (int)DIALOG_PADDING * 3;
@@ -304,9 +318,6 @@ public class Dialog implements Displayable {
         /**
          * Print a new dialog message
          * @param text the text to print
-         * @param box the box to print it in
-         * @param x x-coordinate of this
-         * @param y y-coordinate of this
          * @param animationId name of profile animation
          */
         public DialogParser(String text, String animationId) {
@@ -321,9 +332,6 @@ public class Dialog implements Displayable {
         /**
          * Print a new dialog message
          * @param text the text to print
-         * @param box the box to print it in
-         * @param x x-coordinate of this
-         * @param y y-coordinate of this
          * @param animationId name of profile animation
          * @param options dialog options
          */
@@ -335,9 +343,6 @@ public class Dialog implements Displayable {
         /**
          * Print a new dialog message
          * @param text the text to print
-         * @param box the box to print it in
-         * @param x x-coordinate of this
-         * @param y y-coordinate of this
          * @param options dialog options
          */
         public DialogParser(String text, String[] options) {
@@ -352,7 +357,7 @@ public class Dialog implements Displayable {
         private void initOptions(String[] options) {
             this.options = options;
             float optionsX = xStart;
-            float optionsY = y - (FONT.getLineHeight() * options.length);
+            float optionsY = y - (FONT.getLineHeight() * options.length) - 50;
             float optionsYStart = optionsY;
             int maxWidth = 0;
             Util.p("Printing options at " + optionsX + ", " + optionsY);
@@ -366,6 +371,7 @@ public class Dialog implements Displayable {
             optionsY += DIALOG_PADDING;
             menu = new Gui<>(optionsX, optionsYStart, maxWidth, (int)(optionsY - optionsYStart),
                     new Menu(optionsX, optionsYStart, (int)maxWidth, (int)optionsY, this.options));
+            menu.setColor(gui.special.DialogBox.DEFAULT_COLOR_START, gui.special.DialogBox.DEFAULT_COLOR_END);
             menuObject = menu.getObject();
         }
 
@@ -480,14 +486,13 @@ public class Dialog implements Displayable {
                     }
 
                     FONT.drawString(x, y, next);
-                    System.out.println("Drawing this: "+ next);
                     printedChars.add(new Coordinate<>(next, x, y));
                     x += FONT.getWidth(next);
 
                 }
             } else {
                 if (blink)
-                    Util.WHITE_FONT.drawString(xStart + Dialog.this.width, yStart + Dialog.this.height, "Press Z");
+                    FONT.drawString(xStart + Dialog.this.width, yStart + Dialog.this.height, "Press E");
             }
 
         }
@@ -522,8 +527,8 @@ public class Dialog implements Displayable {
                 profile.draw(xStart, yStart - 530);
                 Util.WHITE_FONT.drawString(xStart, yStart - 256, name);
             } else {
-                profile.draw(totalWidth - 305, yStart - 525);
-                Util.WHITE_FONT.drawString(totalWidth - 305, yStart - 256, name);
+                profile.draw(totalWidth - 290, yStart - 525);
+                Util.WHITE_FONT.drawString(totalWidth - 275, yStart - 256, name);
             }
 
         }

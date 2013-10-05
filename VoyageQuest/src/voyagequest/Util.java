@@ -18,7 +18,7 @@ public final class Util {
     static {
         UnicodeFont newFont;
         try {
-            InputStream is = Util.class.getClassLoader().getResourceAsStream("voyagequest/DroidSans.ttf");
+            InputStream is = Util.class.getClassLoader().getResourceAsStream("voyagequest/Roboto-Regular.ttf");
             Font droid = Font.createFont(Font.TRUETYPE_FONT, is);
             newFont = new UnicodeFont(droid, 24, false, false);
             newFont.addAsciiGlyphs();
@@ -35,11 +35,11 @@ public final class Util {
     static {
         UnicodeFont newFont;
         try {
-            InputStream is = Util.class.getClassLoader().getResourceAsStream("voyagequest/DroidSans.ttf");
+            InputStream is = Util.class.getClassLoader().getResourceAsStream("voyagequest/Roboto-Regular.ttf");
             Font droid = Font.createFont(Font.TRUETYPE_FONT, is);
             newFont = new UnicodeFont(droid, 24, false, false);
             newFont.addAsciiGlyphs();
-            newFont.getEffects().add(new org.newdawn.slick.font.effects.ColorEffect(new java.awt.Color(0, 0, 0)));
+            newFont.getEffects().add(new org.newdawn.slick.font.effects.ColorEffect(new java.awt.Color(89, 89, 89)));
             newFont.loadGlyphs();
         } catch (Exception e) {
             newFont = new UnicodeFont(new java.awt.Font("Arial", java.awt.Font.PLAIN, 24));

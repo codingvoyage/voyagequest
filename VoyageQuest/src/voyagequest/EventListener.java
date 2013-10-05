@@ -47,24 +47,24 @@ public abstract class EventListener {
         //We can't move if Input is frozen
         if (Global.isInputFrozen) return;
         
-        double step = STEP_SIZE*delta;
-        if(input.isKeyDown(Input.KEY_UP)) {
+        double step = STEP_SIZE * delta;
+        if(input.isKeyDown(Input.KEY_W)) {
             player.attemptMove(0, -step, delta);
             player.setAnimation(0);
             playerOrientation = "NORTH";
         }
 
-        if(input.isKeyDown(Input.KEY_DOWN)) {
+        if(input.isKeyDown(Input.KEY_S)) {
             player.attemptMove(0, step, delta);
             player.setAnimation(1);
             playerOrientation = "SOUTH";
         }
         
-        if (input.isKeyDown(Input.KEY_LEFT)) {
+        if (input.isKeyDown(Input.KEY_A)) {
             player.attemptMove(-step, 0, delta);
             
             //unless we're moving up or down already in animation
-            if (!input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP))
+            if (!input.isKeyDown(Input.KEY_S) && !input.isKeyDown(Input.KEY_W))
             {
                 player.setAnimation(2);
                 playerOrientation = "WEST";
@@ -72,19 +72,14 @@ public abstract class EventListener {
 
         }
 
-        if(input.isKeyDown(Input.KEY_RIGHT)) {
+        if(input.isKeyDown(Input.KEY_D)) {
             player.attemptMove(step, 0, delta);
             
-            if (!input.isKeyDown(Input.KEY_DOWN) && !input.isKeyDown(Input.KEY_UP))
+            if (!input.isKeyDown(Input.KEY_S) && !input.isKeyDown(Input.KEY_W))
             {
                 player.setAnimation(3);
                 playerOrientation = "EAST";
             }
-        }
-
-        if(input.isKeyDown(Input.KEY_ENTER))
-        {
-
         }
 
         if (input.isKeyDown(Input.KEY_E))
@@ -115,30 +110,25 @@ public abstract class EventListener {
         //We can't move if Input is frozen
         if (Global.isInputFrozen) return;
 
-        double step = STEP_SIZE*delta;
-        if(input.isKeyDown(Input.KEY_UP)) {
+        double step = STEP_SIZE * delta;
+        if(input.isKeyDown(Input.KEY_W)) {
             player.attemptMove(0, -step, delta);
             player.changeAnimationDirection(1);
         }
 
-        if(input.isKeyDown(Input.KEY_DOWN)) {
+        if(input.isKeyDown(Input.KEY_S)) {
             player.attemptMove(0, step, delta);
             player.changeAnimationDirection(-1);
         }
 
-        if (input.isKeyDown(Input.KEY_LEFT)) {
+        if (input.isKeyDown(Input.KEY_A)) {
             player.attemptMove(-step, 0, delta);
             player.changeAnimationDirection(1);
         }
 
-        if(input.isKeyDown(Input.KEY_RIGHT)) {
+        if(input.isKeyDown(Input.KEY_D)) {
             player.attemptMove(step, 0, delta);
             player.changeAnimationDirection(1);
-        }
-
-        if(input.isKeyDown(Input.KEY_ENTER))
-        {
-
         }
     }
 
@@ -168,7 +158,7 @@ public abstract class EventListener {
                 menu.up();
             if (key == Input.KEY_DOWN)
                 menu.down();
-            if (key == Input.KEY_Z)
+            if (key == Input.KEY_E)
                 menu.select();
         }
     }

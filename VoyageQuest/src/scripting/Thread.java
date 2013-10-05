@@ -248,7 +248,6 @@ public class Thread {
     {
         if (dialog.continuePrinting() == false)
         {
-            System.out.println("oh no");
             setRunningState(false);
 
             int selection = dialog.getDialog().getParserOption();

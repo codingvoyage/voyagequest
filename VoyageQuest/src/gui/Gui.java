@@ -16,15 +16,15 @@ import org.newdawn.slick.geom.Vector2f;
  * @version 2.0
  *
  * Changes from v1.0
- * - Completely rewritten from scratch
- * - Absolutely no dependency on the rest of the game
+ * - Absolutely no dependencies on the rest of the game.
  * - Minimized the number of options available in the constructors
  * - Options like colors are now set via a separate method. Default color available.
- * - Gui elements by default cannot be dragged. This option is toggled by a method.
- * - Gui elements are not clickable by default. This option is toggled by a method.
- * - Easier to understand wrapper classes for game-specific Gui objects, such as dialogs and windows
+ * - (Coming soon) Gui elements by default cannot be dragged. This option is toggled by a method.
+ * - (Coming soon) Gui elements are not clickable by default. This option is toggled by a method.
+ * - Easier to understand wrapper classes for game-specific Gui objects, such as dialogs and windows.
  * - Dialog parser is now a nested class since its only used within Dialog
  * - Due to modifications with the scripting command, dialog options are now accepted as a String[] instead of an Object[]
+ * - New font: Roboto from Android 4.0 (Source: Google Web Fonts)
  */
 public class Gui<E extends Displayable> implements Displayable {
 
@@ -66,12 +66,19 @@ public class Gui<E extends Displayable> implements Displayable {
      *
      */
     @Override
-    public void draw() {
+    public void draw() throws VoyageGuiException {
         ShapeRenderer.fill(rect, (new GradientFill(0, 0, start, width / 3, height / 3, end, true)));
+        object.draw();
     }
 
-    public void display() throws VoyageGuiException {
-        object.draw();
+    /**
+     * Set Color
+     * @param start start color
+     * @param end end color
+     */
+    public void setColor(Color start, Color end) {
+        this.start = start;
+        this.end = end;
     }
 
     /**

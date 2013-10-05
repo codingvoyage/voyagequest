@@ -780,6 +780,7 @@ public class ScriptReader
                         identifierCheck(currentLine, 0).getStringValue());
                 
                 continueExecuting = false;
+
                 break;
 
             case 152:
