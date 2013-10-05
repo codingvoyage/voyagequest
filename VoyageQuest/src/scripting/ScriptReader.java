@@ -1,6 +1,7 @@
 package scripting;
 
 import battle.*;
+import map.Camera;
 import map.Entity;
 import map.Map;
 import voyagequest.GameState;
@@ -184,17 +185,15 @@ public class ScriptReader
                     currentThread.setRunningState(false);
                     result = false;
                 }
-                
-                
-                
                 break;
                 
             //fade out
             case 162:
+            case 166:
                 //Relies on Global.camera.fade
-                if (Global.camera.fade > 50)
+                if (Global.camera.fade > Camera.fadeOutTarget)
                 {
-                    Global.camera.fade -= 4;
+                    Global.camera.fade -= Global.camera.fadeRate;
                     result = true;
                 }
                 else
@@ -203,7 +202,6 @@ public class ScriptReader
                     currentThread.setRunningState(false);
                     result = false;
                 }
-                
                 break;
 
             //continue panning
@@ -869,6 +867,7 @@ public class ScriptReader
                 
             //fade out
             case 162:
+                Global.camera.fadeOutTarget = 50;
                 currentThread.setRunningState(true);
                 continueExecuting = false;
                 break;
@@ -887,6 +886,12 @@ public class ScriptReader
             //cavelightoff 165
             case 165:
                 Global.camera.lightSourceOn = false;
+                break;
+
+            case 166:
+                currentThread.setRunningState(true);
+                continueExecuting = false;
+                Global.camera.fadeOutTarget = (int)(identifierCheck(currentLine, 0)).getDoubleValue();
                 break;
 
             //freezeCamera ULX ULY

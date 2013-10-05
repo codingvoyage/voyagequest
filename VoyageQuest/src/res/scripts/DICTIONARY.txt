@@ -226,6 +226,10 @@ setlight 163
 cavelighton 164
 cavelightoff 165
 
+-- Darkens until a certain point
+-- fadeoutto brightness
+fadeoutto 166
+
 -- freezeCamera ULX ULY
 freezeCamera 170
 unfreezeCamera 171

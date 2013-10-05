@@ -39,7 +39,12 @@
  </layer>
  <layer name="Building bottoms" width="100" height="80">
   <data encoding="base64" compression="zlib">
-   eJzt0TEKgDAQBMArQh6koL126gvU/7/D1NFStMgMLNseexEAvG3JEWuVLf99Vbv2sv1R5fQPAAAAAAAAAAAAAAAAAAAAAAAAAOAnXYro07351lA2H0umkvmhAQAAAAAAAACgZReg8weQ
+   eJzt0TEOQEAQBdApxIFI6OlwAlzXvax2qW3Ce8nPtJP/I4AvmOqIOctSl/7qv9bU/ZZlt0cx1x5HFnsAAAAAAAAAAAAAAAAAAAAAAAAAAKU0VURb3S/v6lLnfcqQMj5cAAAAAAAAAAD4sxMcYAt+
+  </data>
+ </layer>
+ <layer name="HackLayerForTunnel" width="100" height="80">
+  <data encoding="base64" compression="zlib">
+   eJztzrENACAMBLGvMgdr0zEqC1BHEbLLqy4BgL/tynm01X8CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADDfBbVlAf8=
   </data>
  </layer>
  <layer name="Entity Layer" width="100" height="80">
@@ -156,7 +161,7 @@
     <property name="runScript" value="villageToForest"/>
    </properties>
   </object>
-  <object type="onTouch" x="2741" y="135" width="423" height="63">
+  <object type="onTouch" x="2731" y="191" width="423" height="63">
    <properties>
     <property name="runScript" value="villageToTunnel"/>
    </properties>

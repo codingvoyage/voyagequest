@@ -43,6 +43,8 @@ public class Camera {
 
     //Fade is how visible the screen is. 255 for max, 0 for completely dark.
     public static int fade = 255;
+    public static int fadeOutTarget = 50;
+    public static int fadeRate = 3;
     
     public Camera() 
     {
