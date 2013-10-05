@@ -1,3 +1,6 @@
+mapChange "Forest" 3040 2304
+endthread
+
 getGlobal "mainVillage" --> mainQuestState
 if mainQuestState < 15
 

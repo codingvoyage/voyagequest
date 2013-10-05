@@ -1,0 +1,12 @@
+freezeInputs
+assumeControlOfPlayer
+
+dialogBox "Sebastian Profile" "The New Port City map hasn't been created yet... The game will crash if I decide to go any further so I'm out of here."
+
+setAnimationDirection "SOUTH"
+setVelocity 0 0.25
+movePixelAmount 65
+setAnimationDirection "NORTH"
+
+unfreezeInputs
+endthread

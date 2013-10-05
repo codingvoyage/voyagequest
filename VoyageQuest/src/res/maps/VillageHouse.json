@@ -1,0 +1,11 @@
+{
+    "about_file": "This is the house of a villager who needs your help",
+
+    "mapName" : "Village House",
+
+    "mapBackgroundScript": "villageHouseScript",
+
+    "allEntities": [],
+
+    "music" : "Route 3"
+}

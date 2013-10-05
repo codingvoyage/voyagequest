@@ -3,6 +3,8 @@ package map;
 import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.geom.Rectangle;
+import scripting.Parameter;
+import scripting.Thread;
 import voyagequest.Global;
 import voyagequest.DoubleRect;
 import voyagequest.Util;
@@ -23,11 +25,16 @@ import org.newdawn.slick.SlickException;
  */
 
 public class Camera {
+    //Locations of camera relative to map
     private double x, y;
-    
     private double screenCenterX;
     private double screenCenterY;
-    
+
+    //Pan information
+    private double panVx = 0;
+    private double panVy = 0;
+
+    //Is the Camera being frozen to a specific location?
     private boolean frozen;
 
     // The alpha map being applied for cave effect
@@ -57,9 +64,66 @@ public class Camera {
         x = 0.0d;
         y = 0.0d;
     }
-    
+
+    public void setPanVelocity(double panVx, double panVy)
+    {
+        this.panVx = panVx;
+        this.panVy = panVy;
+    }
+
+    public boolean continuePan(double delta, Thread actingThread)
+    {
+        //Get the distance left to move...
+        Parameter tempParam = actingThread.getTemporaryParameter();
+
+        //Calculate the movement in this tick
+        double xStep = panVx * delta;
+        double yStep = panVy * delta;
+
+        //Move
+        this.x += xStep;
+        this.y += yStep;
+
+        //Successfully moved, update temporary variable
+        double movedDistance = Math.sqrt(xStep*xStep + yStep*yStep);
+        tempParam.setDoubleValue(
+                tempParam.getDoubleValue() -
+                        movedDistance);
+
+        //The next line might be redundant? I think...
+        actingThread.setTemporaryParameter(tempParam);
+
+        if (tempParam.getDoubleValue() < 0)
+        {
+            //Oh, so we're done moving. Great.
+            actingThread.setRunningState(false);
+            return false;
+        }
+
+        //Alright, we still have to move. Keep moving.
+        return true;
+
+    }
+
+    public void beginPan(double pixelsToMove, Thread actingThread)
+    {
+        System.out.println("!!" + x + " " +  y);
+
+        //Umm yeah this part isn't so easy because there is something that has to do with
+        //the map rendering routine involved here. I need to work harder to figure this out.
+        //Also need to have some sort of a center-on function. Anyway, try to figure out
+        //Exactly what the viewRect means..
+        x = getViewRect().x;
+        y = getViewRect().y;
+        frozen = true;
+
+        actingThread.setTemporaryParameter(new Parameter(pixelsToMove));
+        actingThread.setRunningState(true);
+    }
+
     public void freezeAt(int screenUL_X, int screenUL_Y)
     {
+
         frozen = true;
         x = screenUL_X;
         y = screenUL_Y;

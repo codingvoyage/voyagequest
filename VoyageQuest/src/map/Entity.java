@@ -217,7 +217,6 @@ public class Entity extends ScriptableClass implements Rectangular {
         if (didWeMove)
         {
             //Successfully moved, update temporary variable
-            // !! Why am I using sqrt() D: D: D: D:
             double movedDistance = Math.sqrt(xStep*xStep + yStep*yStep);
 
             tempParam.setDoubleValue(

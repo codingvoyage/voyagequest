@@ -24,7 +24,7 @@ wend
 if save == true
     setVelocity 0 -0.7
     setAnimationDirection "NORTH"
-    moveTileAmount 6
+    moveTileAmount 4
 endif
 if save == false
 

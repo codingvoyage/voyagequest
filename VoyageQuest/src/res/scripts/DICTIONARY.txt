@@ -230,6 +230,11 @@ cavelightoff 165
 freezeCamera 170
 unfreezeCamera 171
 
+-- setCameraPanVelocity 100 0
+setCameraPanVelocity 172
+-- panCamera distanceInPixels
+panCamera 173
+
 -- -----------------------------
 -- Music/sound related functions
 -- -----------------------------

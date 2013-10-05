@@ -1,36 +1,58 @@
+-- The initial scene where the Village Elder gets chased around
+-- by a crab, and there is a cutscene during which the player must
+-- rescue her
+
 getGlobal "mainVillage" --> gameState
 if gameState == 5
+
+    -- The player walks in, confused
+
     assumecontrolofplayer
     freezeInputs
     setAnimationDirection "SOUTH"
     setVelocity 0 0.25
     moveTileAmount 5
-    -- setAnimationDirection 0
     dialogbox "Sebastian Profile" "I swear I heard a noise here..."
+    wait 1500
 
-    wait 1000
+    -- Music plays, player continues walking
 
-    -- Begin Elderly Rescue
     playMusic "Evil Encounter"
-    dialogbox "Njeri Profile" "Help! Help! Save me! Don't just stand there! This old lady over here needs help!"
-    wait 500
-    dialogbox "Sebastian Profile" "Huh?"
+    dialogbox "Njeri Profile" "Help! ... Help!!"
+    dialogbox "Sebastian Profile" "Oh no..."
     wait 500
     moveTileAmount 8
-    dialogBox "Njeri Profile" "Hey! Why are you just standing there? You can't just leave an elderly in trouble!"
-    dialogBox "Njeri Profile" "OUCH!"
 
+    -- Camera pans down to reveal the crab chasing the Village Elder
+
+    setCameraPanVelocity 0 0.2
+    panCamera 250
+
+    -- Short conversation, followed by prompt to rescue
+
+    dialogbox "Njeri Profile" "Ahhhh!"
+    wait 500
+    dialogBox "Njeri Profile" "Hey! Why are you just standing there? Save me! I can't just keep running for that much longer!"
+    dialogBox "Njeri Profile" "OUCH!"
     newArray helpElder 2
             putArray helpElder 0 <-- "Of course!"
             putArray helpElder 1 <-- "Absolutely not!!"
     genericPrompt "Will [Sebastian] help the elderly lady?" helpElder --> choice
 
+    -- If the player responds 'yes'
     if choice == 0
+
+        dialogbox "Sebastian Profile" "Alright... here goes!"
+
+        -- Signal the Elder and Crab threads of decision
         callThreadFunction "Elderthread" [saveElder] true
         callThreadFunction "Crabthread" [saveElder] true
 
-        setThisThreadScriptable "Elder"
+        -- First, we wait until the elder reaches the upper-left corner
+        -- of the box she's walking in. At that point, the Elder will
+        -- walk straight up, the crab will chase her, and...
 
+        setThisThreadScriptable "Elder"
         var elderReached false
         while elderReached == false
             getLocation --> x y
@@ -40,14 +62,18 @@ if gameState == 5
             wait 20
         wend
 
+        -- The player rushes towards them and catches the crab from behind
+
         assumeControlOfPlayer
         setVelocity -0.50 0.15
         moveTileAmount 4
+
+        -- Let the player control stuff again and fight
+
         unfreezeInputs
-
         startBattle "FUNNY BEAR"
+        wait 800
 
-        print "BATTLE BEGINS NOW"
     endif
 
     if choice == 1
@@ -59,33 +85,73 @@ if gameState == 5
         print "BATTLE BEGINS NOW"
     endif
 
+    -- After the battle, the Elder and Crab should be facing
+    -- the player, and the player should be facing them in turn.
 
-    wait 500
+    setThisThreadScriptable "Elder"
+    setAnimationDirection "SOUTH"
 
-    -- after the battle
-    freezeInputs
     setThisThreadScriptable "Crab"
-    entitySetLocation 9001 9001
+    getLocation --> crabX crabY
+    setAnimationDirection "SOUTH"
 
+    assumeControlOfPlayer
+    eval crabY + 100 --> playerY
+    setLocation crabX playerY
+    setAnimationDirection "NORTH"
+
+    -- Get the scene ready...
+    unfreezeCamera
+    freezeInputs
     fadein
+    wait 400
+    setCameraPanVelocity 0 -0.15
+    panCamera 100
+    wait 300
 
-    dialogBox "Njeri Profile" "Good stuff. talk to me later okay?"
+    -- Have the Crab flicker and disappear
+
+    setThisThreadScriptable "Crab"
+    getLocation --> crabX crabY
+    var flickerTimes 6
+    while flickerTimes > 0
+        entitySetLocation crabX crabY
+        wait 100
+        entitySetLocation 9001 9001
+        wait 100
+        eval flickerTimes - 1 --> flickerTimes
+    wend
+
+    -- Thanks for saving me
+    setThisThreadScriptable "Elder"
+    setVelocity 0 0.50
+    setAnimationDirection "SOUTH"
+    moveTileAmount 3
+    dialogBox "Njeri Profile" "Wow, thanks so much for saving me! I guess I should introduce myself. I'm Njeri, the head of a village to the west of here. I was just here going on a stroll by the beach... I didn't expect these crabs to show up. Who are you?"
+    dialogBox "Sebastian Profile" "I'm Sebastian."
+    dialogBox "Njeri Profile" "Hey, I really need to leave right now. Please come to the village sometime later."
+    dialogBox "Sebastian Profile" "Yeah, alright."
     writeGlobal 10 --> mainVillage
-    dialogBox "Sebastian Profile" "Cool."
 
-
+    -- Leaves
     setThisThreadScriptable "Elder"
     setVelocity 0 -0.4
     setAnimationDirection "NORTH"
-    moveTileAmount 6
+    moveTileAmount 8
     entitySetLocation 9001 9001
 
+    fadeout
     unfreezeInputs
-
-
+    unfreezeCamera
+    fadein
 
 
 endif
+
+playMusic "Lith Harbor"
+endthread
+
+-- Lighting test
 
 wait 5000
 setlight 130
@@ -95,9 +161,3 @@ wait 1000
 cavelightOff
 wait 5000
 setlight 255
-playMusic "Lith Harbor"
-endthread
-
-
-    startBattle "FUNNY BEAR"
-    endif

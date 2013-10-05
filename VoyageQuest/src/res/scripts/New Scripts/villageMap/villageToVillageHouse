@@ -1,0 +1,4 @@
+fadeout
+mapChange "Village House" 815 768
+wait 50
+endthread

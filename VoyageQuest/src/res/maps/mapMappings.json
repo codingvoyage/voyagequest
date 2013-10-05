@@ -19,9 +19,34 @@
             "mapJsonURL" : "res/maps/Village.json"
         },
 		{
+            "mapID" : "Tunnel",
+            "mapURL" : "res/maps/Tunnel.tmx",
+            "mapJsonURL" : "res/maps/Tunnel.json"
+		},
+		{
+            "mapID" : "Elder House",
+            "mapURL" : "res/maps/ElderHouse.tmx",
+            "mapJsonURL" : "res/maps/ElderHouse.json"
+		},
+		{
+            "mapID" : "Village House",
+            "mapURL" : "res/maps/VillageHouse.tmx",
+            "mapJsonURL" : "res/maps/VillageHouse.json"
+		},
+		{
+            "mapID" : "Forest",
+            "mapURL" : "res/maps/Forest.tmx",
+            "mapJsonURL" : "res/maps/Forest.json"
+		},
+		{
+            "mapID" : "Desert",
+            "mapURL" : "res/maps/Desert.tmx",
+            "mapJsonURL" : "res/maps/Desert.json"
+		},
+		{
             "mapID" : "Battle1",
             "mapURL" : "res/maps/BATTLEMAP1.tmx",
-            "mapJsonURL" : "res/maps/shitmanidk.json"
+            "mapJsonURL" : "filler.json"
         }
     ]
 }
