@@ -1,0 +1,50 @@
+getGlobal "mainVillage" --> gameState
+
+if gameState == 20
+    freezeInputs
+    wait 1000
+
+    -- Teleport the player to a location close to the road
+    -- and also put the child there.
+    fadeout
+    assumeControlOfPlayer
+    entitySetLocation 2112 2112
+
+    callThreadFunction "Child Thread" [putInLocation] 2100 1400
+    fadein
+
+    assumeControlOfPlayer
+    wait 1200
+    setAnimationDirection "SOUTH"
+    wait 1200
+    setAnimationDirection "EAST"
+    wait 1200
+    setAnimationDirection "WEST"
+
+    dialogBox "Sebastian Profile" "Hmm... where might that kid be? ... Aha!"
+    setAnimationDirection "NORTH"
+    wait 500
+
+    setCameraPanVelocity -0.20 -0.40
+    panCamera 800
+
+    dialogBox "Sebastian Profile" "Alright, I should try to catch up with him."
+
+    callThreadFunction "Child Thread" [setInMotion]
+    wait 1500
+
+    dialogBox "Sebastian Profile" "Oh wait. No. Come back!"
+
+    fadeout
+    unfreezeInputs
+    unfreezeCamera
+    fadein
+
+
+
+    writeGlobal 25 --> mainVillage
+    unfreezeInputs
+endif
+
+
+endthread

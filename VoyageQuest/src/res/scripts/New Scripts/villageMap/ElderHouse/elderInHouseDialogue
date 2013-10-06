@@ -1,0 +1,17 @@
+freezeInputs
+
+getGlobal "mainVillage" --> gameState
+
+if gameState == 10
+    dialogBox "Njeri Profile" "In this conversation, we begin a quickly scripted scene in which the elder expresses thanks, and a bunch of villagers are also in the house. Then, the elder asks the player to help deliver something to New Port City, after the player mentions his or her intention to actually go there. The elder then recommends that the player help some villagers out, and to prepare and get stronger or something like that."
+    writeGlobal 15 --> mainVillage
+endif
+
+if gameState == 15
+    dialogBox "Njeri Profile" "Get moving, kid."
+endif
+
+unfreezeInputs
+
+
+endthread

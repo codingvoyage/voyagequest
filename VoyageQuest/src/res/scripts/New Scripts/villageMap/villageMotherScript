@@ -1,0 +1,28 @@
+while true == true
+    wait 200
+wend
+
+endthread
+
+
+function [putInLocation] xcoord ycoord
+    setThisThreadScriptable "Mother"
+    entitySetLocation xcoord ycoord
+return
+
+function [walkToPlayer] distanceToWalk
+   setThisThreadScriptable "Mother"
+
+   setAnimationDirection "NORTH"
+   setVelocity 0 -0.3
+   movePixelAmount distanceToWalk
+return
+
+function [walkAwayFromPlayer] distanceToWalk
+   setThisThreadScriptable "Mother"
+
+   setAnimationDirection "SOUTH"
+   setVelocity 0 0.3
+   movePixelAmount distanceToWalk
+   entitySetLocation 9001 9001
+return

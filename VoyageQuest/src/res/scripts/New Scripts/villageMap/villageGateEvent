@@ -1,0 +1,33 @@
+getGlobal "mainVillage" --> gameState
+
+if gameState == 15
+    freezeInputs
+    wait 500
+
+    messageBox "... wait!"
+
+    -- Player faces direction of sound
+    wait 300
+    assumeControlOfPlayer
+    setAnimationDirection "SOUTH"
+    wait 500
+
+    var motherWalkDistance 300
+    getLocation --> x y
+    eval y + [ motherWalkDistance + 100 ] --> y
+    callThreadFunction "Mother Thread" [putInLocation] x y
+    callThreadFunction "Mother Thread" [walkToPlayer] motherWalkDistance
+
+    wait 800
+
+    dialogBox "Anika Profile" "You're Sebastian, aren't you? Hello, I'm Anika and I'm the village doctor. While I was treating a villager who was injured in the farm, my son wandered off. He usually wanders off into the far end of the farm area. Right now I'm really busy with treating that villager... if you could find my son and tell him to run back soon, it'd be really appreciated. Thanks a lot."
+
+    callThreadFunction "Mother Thread" [walkAwayFromPlayer] motherWalkDistance
+
+    dialogBox "Sebastian Profile" "I... didn't even have a chance to agree or disagree, so I guess I have to help."
+
+    writeGlobal 20 --> mainVillage
+    unfreezeInputs
+endif
+
+endthread

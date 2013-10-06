@@ -6,6 +6,32 @@
     "mapBackgroundScript": "villageMap",
 
     "allEntities": [
+		{
+            "name" : "Child",
+            "initialX" : 9001,
+            "initialY" : 9001,
+            "width" : 64,
+            "height" : 128,
+            "mainScriptID" : "villageChildScript",
+            "mainThreadName" : "Child Thread",
+            "animations" : [
+                "Soldier Forward", "Soldier Backwards", "Soldier Left", "Soldier Right"
+            ],
+            "startingAnimationDirection" : 0
+        },
+		{
+            "name" : "Mother",
+            "initialX" : 9001,
+            "initialY" : 9001,
+            "width" : 64,
+            "height" : 128,
+            "mainScriptID" : "villageMotherScript",
+            "mainThreadName" : "Mother Thread",
+            "animations" : [
+                "Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right"
+            ],
+            "startingAnimationDirection" : 0
+        }
     ],
 
     "music" : "Elinia"
