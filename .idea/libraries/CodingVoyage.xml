@@ -4,11 +4,11 @@
       <root url="jar://$PROJECT_DIR$/VoyageQuest/lib/CodingVoyage/slick.jar!/" />
       <root url="jar://$PROJECT_DIR$/VoyageQuest/lib/CodingVoyage/jorbis-0.0.15.jar!/" />
       <root url="jar://$PROJECT_DIR$/VoyageQuest/lib/CodingVoyage/jogg-0.0.7.jar!/" />
-      <root url="jar://$PROJECT_DIR$/VoyageQuest/lib/CodingVoyage/gson-2.2.2.jar!/" />
       <root url="jar://$PROJECT_DIR$/VoyageQuest/lib/CodingVoyage/slick-util.jar!/" />
       <root url="jar://$PROJECT_DIR$/VoyageQuest/lib/CodingVoyage/lwjgl-2.9/jar/jinput.jar!/" />
       <root url="jar://$PROJECT_DIR$/VoyageQuest/lib/CodingVoyage/lwjgl-2.9/jar/lwjgl.jar!/" />
       <root url="jar://$PROJECT_DIR$/VoyageQuest/lib/CodingVoyage/lwjgl-2.9/jar/lwjgl_util.jar!/" />
+      <root url="jar://$PROJECT_DIR$/VoyageQuest/lib/CodingVoyage/gson-2.2.4.jar!/" />
     </CLASSES>
     <JAVADOC>
       <root url="file://$USER_HOME$/Desktop/SlickJavadoc" />
