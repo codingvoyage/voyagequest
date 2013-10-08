@@ -194,4 +194,23 @@ public class Res {
         else
             return null;
     }
+
+    /**
+     * Saves the game by serializing data into a JSON file
+     * @param object the object being serialized
+     * @param type the type of object being serialized
+     * @param file the filename of the output JSON
+     */
+    public static void saveGame(Object object, Class type, String file) {
+        JsonSerializer jsonWriter = new JsonSerializer(object, type, file);
+    }
+
+    /**
+     * Loads a saved game using a JSON save file
+     * @param type the type of object being loaded
+     * @param file the filename of the input JSON
+     */
+    public static void loadGame(Class type, String file) {
+        JsonReader jsonReader = new JsonReader(type, file, true);
+    }
 }

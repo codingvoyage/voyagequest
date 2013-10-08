@@ -1,11 +1,9 @@
 package voyagequest;
 
 import com.google.gson.*;
+
+import java.io.*;
 import java.lang.reflect.Modifier;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
 
 /**
  * Reads JSON Data Files with the GSON Library<br/><br/>
@@ -30,7 +28,10 @@ public class JsonReader<T> {
     
     /** The final parsed object */
     private T data;
-    
+
+    /** whether the json file needs to be a buffered stream (class level json or external) */
+    private boolean buffered = false;
+
     /**
      * Construct a new JsonReader for Entities
      * @param type the type of Object that JSON is being parsed into
@@ -40,25 +41,51 @@ public class JsonReader<T> {
         this.type = type;
         this.file = file;
     }
+
+    /**
+     * Construct a new JsonReader for Entities
+     * @param type the type of Object that JSON is being parsed into
+     * @param file path of JSON file
+     * @param buffered whether or not this is a buffered stream
+     */
+    public JsonReader(Class<T> type, String file, boolean buffered) {
+        this.type = type;
+        this.file = file;
+        this.buffered = buffered;
+    }
     
     /**
      * Read and parse the JSON file
      * @return boolean indicating whether or not the JSON file was successfully parsed
      */
     public boolean readJson(){
-        
 
-        // read the JSON file
-        InputStream jsonPath = getClass().getClassLoader().getResourceAsStream(file);
-        try (BufferedReader read = new BufferedReader(new InputStreamReader(jsonPath))) {
+        Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT, Modifier.VOLATILE).create();
 
-            Gson gson = new GsonBuilder().excludeFieldsWithModifiers(Modifier.TRANSIENT, Modifier.VOLATILE).create();
-            data = gson.fromJson(read, type);
-            
-        } catch (IOException ex) {
-            return false;
+        if (!buffered) {
+            // read the JSON file
+            InputStream jsonPath = getClass().getClassLoader().getResourceAsStream(file);
+            try (BufferedReader read = new BufferedReader(new InputStreamReader(jsonPath))) {
+
+                data = gson.fromJson(read, type);
+
+                read.close();
+
+            } catch (IOException ex) {
+                return false;
+            }
+        } else {
+            // read the JSON file
+            try (FileReader read = new FileReader(file)) {
+
+                data = gson.fromJson(read, type);
+
+                read.close();
+
+            } catch (IOException ex) {
+                return false;
+            }
         }
-
         return true;
     }
     

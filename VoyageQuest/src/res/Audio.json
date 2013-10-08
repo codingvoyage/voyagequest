@@ -45,6 +45,12 @@
             "type" : "music"
         },
         {
+            "name" : "Boss Battle 3",
+            "path" : "res/music/pokemonHnturs12.ogg",
+            "credit" : "Pokemon Fanmade - http://www.youtube.com/watch?v=5jmxPNJ0B3Q",
+            "type" : "music"
+        },
+        {
             "name" : "Teleport",
             "path" : "res/sounds/teleport.ogg",
             "credit" : "Maplestory",
