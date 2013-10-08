@@ -63,7 +63,7 @@ public class VoyageQuest extends BasicGame {
      * Construct a new game
      */
     public VoyageQuest() {
-       super("VoyageQuest 0.3 Pre-Beta - For Testing Purposes Only");
+       super("VoyageQuest 0.4 Pre-Alpha - Not for Public Release");
     }
 
     /**

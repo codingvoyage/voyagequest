@@ -1149,6 +1149,13 @@ public class ScriptReader
                 currentScriptable = currentThread.getScriptable();
                 break;
 
+            // save game
+            case 300:
+
+                voyagequest.Res.saveGame();
+
+            break;
+
 
         }
         

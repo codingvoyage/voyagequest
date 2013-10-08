@@ -1,5 +1,6 @@
 package scripting;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.ListIterator;
 
@@ -11,8 +12,10 @@ import voyagequest.VoyageQuest;
  *
  * @author Edmund
  */
-public class ThreadManager {
-    
+public class ThreadManager implements Serializable {
+
+    private static final long serialVersionUID = 100L;
+
     ArrayList<Thread> threadCollection;
     
     ScriptReader scriptReader;
@@ -120,7 +123,11 @@ public class ThreadManager {
             }
         }
     }
-    
+
+    public ArrayList<Thread> getCollection() {
+        return threadCollection;
+    }
+
     public int getThreadCount()
     {
         return threadCollection.size();

@@ -311,3 +311,6 @@ setThreadScriptable 233
 setThisThreadScriptable 234
 getThreadScriptable 235
 getThisThreadScriptable 236
+
+-- Save Game
+saveGame 300

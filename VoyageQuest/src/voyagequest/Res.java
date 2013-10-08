@@ -197,12 +197,21 @@ public class Res {
 
     /**
      * Saves the game by serializing data into a JSON file
-     * @param object the object being serialized
-     * @param type the type of object being serialized
-     * @param file the filename of the output JSON
      */
-    public static void saveGame(Object object, Class type, String file) {
-        JsonSerializer jsonWriter = new JsonSerializer(object, type, file);
+    public static void saveGame() {
+
+        System.out.println("Attempting a Game Save");
+
+        Object[] saveObjects = {VoyageQuest.threadManager};
+        Class[] saveClasses = {VoyageQuest.threadManager.getClass()};
+        String[] saveNames = {VoyageQuest.threadManager.getClass().getName()};
+
+        for (int i = 0; i < saveObjects.length; i++) {
+            JsonSerializer jsonWriter = new JsonSerializer(saveObjects[i], saveClasses[i], saveNames[i]);
+            jsonWriter.writeJson();
+        }
+
+        System.out.println("Game might have been saved.");
     }
 
     /**
