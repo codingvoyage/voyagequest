@@ -1,0 +1,21 @@
+-- Swallows are normally spawned on. Hide and delete them if we are not in the right
+-- game state with a yet unwritten command, otherwise keep them.
+
+-- Need a loop-animation command too
+setVelocity 0 0
+setAnimationDirection "EAST"
+
+-- This will update the location of the swallow into its proper place once the player
+-- is in the right quest state
+while 1 == 1
+    getGlobal "mainVillage" --> gameState
+    if gameState >= 25
+        setLocation 150 1470
+        scale "Swallow1" 2.5
+        moveTileAmount 5
+        endthread
+    endif
+    wait 50
+wend
+
+endthread

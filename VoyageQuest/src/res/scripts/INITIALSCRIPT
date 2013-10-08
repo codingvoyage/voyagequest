@@ -1,13 +1,13 @@
--- mapChange "Beach" 1200 450
+mapChange "Beach" 1200 450
 
 -- mapChange "Crab" 750 0
 -- writeGlobal 5 --> mainVillage
 
 -- mapChange "Village" 2900 290
 
-mapChange "Village" 4960 3230
--- mapChange "Village" 3200 2230
-writeGlobal 10 --> mainVillage
+-- writeGlobal 15 --> mainVillage
+-- mapChange "Village" 1200 2230
+-- mapChange "Village" 3800 2700
 
 -- mapChange "Forest" 420 420
 -- mapChange "Crab" 750 0

@@ -31,6 +31,19 @@
                 "Njeri Forward", "Njeri Backwards", "Njeri Left", "Njeri Right"
             ],
             "startingAnimationDirection" : 0
+        },
+		{
+            "name" : "Swallow1",
+            "initialX" : 9001,
+            "initialY" : 9001,
+            "width" : 64,
+            "height" : 64,
+            "mainScriptID" : "swallowScript",
+            "mainThreadName" : "swallow1",
+            "animations" : [
+                "Swallow Right", "Swallow Right", "Swallow Right", "Swallow Right"
+            ],
+            "startingAnimationDirection" : 0
         }
     ],
 

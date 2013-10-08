@@ -14,7 +14,7 @@ if gameState == 15
 
     var motherWalkDistance 300
     getLocation --> x y
-    eval y + [ motherWalkDistance + 100 ] --> y
+    eval y + [ motherWalkDistance + 130 ] --> y
     callThreadFunction "Mother Thread" [putInLocation] x y
     callThreadFunction "Mother Thread" [walkToPlayer] motherWalkDistance
 

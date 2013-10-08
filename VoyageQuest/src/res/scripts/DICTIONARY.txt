@@ -254,6 +254,10 @@ playMusic 176
 
 
 
+-- scaleScriptable "scriptableName" scalingFactor
+scale 180
+
+
 -- ---------------------------------------------------
 -- ---------------------------------------------------
 -- VoyageQuest Battle-specific functions start here

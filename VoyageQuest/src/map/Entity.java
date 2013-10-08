@@ -61,6 +61,8 @@ public class Entity extends ScriptableClass implements Rectangular {
 
     public int animationDirection = 1;
     public int rotationInDegrees = 0;
+    public float scalingFactor = 1;
+
 
     /**
      * Constructs an Entity with only its boundary Rectangle
@@ -167,7 +169,8 @@ public class Entity extends ScriptableClass implements Rectangular {
         //Lawd I am sorry for this code.
         Image img = currentAnimation.getImage(currentFrame);
         img.setRotation(rotationInDegrees);
-        img.draw(xOffset, yOffset);
+
+        img.draw(xOffset, yOffset, scalingFactor);
         img.setRotation(0);
 
         //If debugging, then draw the boundary boxes and the collision boxes

@@ -40,8 +40,6 @@ if gameState == 20
     unfreezeCamera
     fadein
 
-
-
     writeGlobal 25 --> mainVillage
     unfreezeInputs
 endif

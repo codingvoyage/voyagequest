@@ -1,0 +1,51 @@
+-- If first time encountering this, then write it to global
+existsGlobal "swallowEncounterNow" --> swallowNow
+if swallowNow == false
+    writeGlobal false --> swallowEncounterNow
+endif
+
+-- If there's an instance of this thread running already, then end immediately
+getGlobal "swallowEncounterNow" --> currentlySwallow
+if currentlySwallow == true
+    goto [endOfCutscene]
+endif
+
+writeGlobal true --> swallowEncounterNow
+
+getGlobal "mainVillage" --> gameState
+if gameState == 25
+    freezeInputs
+    assumeControlOfPlayer
+    setAnimationDirection "WEST"
+    dialogBox "Sebastian Profile" "Wow, there's a large swallow in the way. This is kind of strange... it's definitely a magical creature, but it looks somewhat fatigued and it's not moving. Anyway it's blocking the road and I can't get pass it right now."
+
+    fadeout
+    assumeControlOfPlayer
+    setLocation 770 1400
+    fadein
+
+    unfreezeInputs
+
+    writeGlobal 30 --> mainVillage
+    writeGlobal false --> swallowEncounterNow
+    endthread
+endif
+
+if gameState >= 30
+    freezeInputs
+    assumeControlOfPlayer
+    setAnimationDirection "WEST"
+    dialogBox "Sebastian Profile" "Dude... it's still here."
+
+    fadeout
+    assumeControlOfPlayer
+    setLocation 770 1400
+    fadein
+
+    unfreezeInputs
+    writeGlobal false --> swallowEncounterNow
+    endthread
+endif
+
+label [endOfCutscene]
+endthread

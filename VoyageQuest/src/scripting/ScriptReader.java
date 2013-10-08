@@ -932,6 +932,24 @@ public class ScriptReader
                 voyagequest.Res.playMusic(identifierCheck(currentLine, 0).getStringValue());
                 break;
 
+            //scale "scriptableName" "scalingFactor"
+            case 180:
+                String scaledScriptableName =
+                        identifierCheck(currentLine, 0).getStringValue();
+                Entity e = null;
+                switch (VoyageQuest.state)
+                {
+                    case RPG:
+                        e = Global.currentMap.entityLookup.get(scaledScriptableName);
+                        break;
+
+                    case COMBAT:
+                        e = BattleField.entityInstances.get(scaledScriptableName);
+                        break;
+                }
+                e.scalingFactor = (float)(identifierCheck(currentLine, 1).getDoubleValue());
+                break;
+
             // startBattle battleID
             case 200:
                 String battleID = identifierCheck(currentLine, 0).getStringValue();
