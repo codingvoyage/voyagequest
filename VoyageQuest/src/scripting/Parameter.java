@@ -91,7 +91,13 @@ public class Parameter {
     {
         return d;
     }
-    
+
+    //For when you want it to be converted into an int first
+    public int getIntValue()
+    {
+        return (int)d;
+    }
+
     public double[] getDoubleArrayValue()
     {
         return da;

@@ -5,21 +5,15 @@ import battle.EntityManager;
 import battle.WeaponManager;
 import gui.GuiManager;
 import gui.VoyageGuiException;
-import gui.special.DialogBox;
 import item.ItemManager;
 import map.Camera;
-import map.Entity;
 import map.Player;
-import org.lwjgl.opengl.GL11;
 import org.newdawn.slick.*;
-import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.openal.SoundStore;
 import scripting.ScriptManager;
 import scripting.ScriptReader;
 import scripting.Thread;
 import scripting.ThreadManager;
-
-import java.io.InputStream;
 
 /**
  * Voyage Quest RPG
@@ -51,14 +45,9 @@ public class VoyageQuest extends BasicGame {
     /** Manages all the scripting threads for the Combat */
     public static ThreadManager battleThreadManager;
 
-    
     /** game state */
     public static GameState state = GameState.RPG;
-    
-    public static Entity player;
-    public DialogBox dialog;
-    
-    
+
     /**
      * Construct a new game
      */
@@ -86,14 +75,15 @@ public class VoyageQuest extends BasicGame {
 
     private void initRpg(GameContainer gc) throws SlickException {
 
-        // Initialize the rest of the resource manager
+        // Initialize the resource manager, which handles
+        // animations and audio.
         Res.initAnimations();
         Res.initAudio();
 
-        //Initialize all Itemdata
+        // Initialize all Itemdata
         ItemManager.init();
 
-        //Initialize all the weapon data
+        // Initialize all the weapon data
         WeaponManager.init();
 
         // Load all the scripts
@@ -109,16 +99,16 @@ public class VoyageQuest extends BasicGame {
             playerThread.setName("SebastianThread");
             threadManager.addThread(playerThread);
 
-        player = new Player(new DoubleRect(1400, 4300, 64, 128));
-            player.setMainScriptID("Cutscene.txt");
-            player.setMainThread(threadManager.getThreadAtName("SebastianThread"));
-            player.forward = Res.animations.get("Sebastian Forward");
-            player.backward = Res.animations.get("Sebastian Backwards");
-            player.left = Res.animations.get("Sebastian Left");
-            player.right = Res.animations.get("Sebastian Right");
-            player.name = "Sebastian";
-            player.profile = Res.animations.get("Sebastian Profile");
-            player.setAnimation(1);
+        Global.player = new Player(new DoubleRect(1400, 4300, 64, 128));
+            Global.player.setMainScriptID("Cutscene.txt");
+            Global.player.setMainThread(threadManager.getThreadAtName("SebastianThread"));
+            Global.player.forward = Res.animations.get("Sebastian Forward");
+            Global.player.backward = Res.animations.get("Sebastian Backwards");
+            Global.player.left = Res.animations.get("Sebastian Left");
+            Global.player.right = Res.animations.get("Sebastian Right");
+            Global.player.name = "Sebastian";
+            Global.player.profile = Res.animations.get("Sebastian Profile");
+            Global.player.setAnimation(1);
 
         //Now create the Camera.
         Global.camera = new Camera();
@@ -141,7 +131,6 @@ public class VoyageQuest extends BasicGame {
         //Initialize the ScriptManager, which loads every script
         scriptCollection = new ScriptManager();
 
-        System.out.println("...");
         //Initialize ScriptReader, passing it the ScriptManager handle
         scriptReader = new ScriptReader(scriptCollection);
 
@@ -150,7 +139,6 @@ public class VoyageQuest extends BasicGame {
         battleThreadManager = new ThreadManager(scriptReader);
 
         scriptReader.setThreadHandle(threadManager);
-        System.out.println("...");
     }
     
     /**
@@ -164,7 +152,7 @@ public class VoyageQuest extends BasicGame {
         switch (state) {
             case RPG:
                 //Update the scripting engine and update the keyboard input
-                EventListener.keyboardControl(player, delta);
+                EventListener.keyboardControl(Global.player, delta);
                 threadManager.act(delta);
 
                 break;
@@ -207,7 +195,7 @@ public class VoyageQuest extends BasicGame {
                 Global.camera.display(g);
 
                 Util.WHITE_FONT.drawString(10, 40,
-                        "Coordinates of player: (" + player.r.x + ", " + player.r.y + ")");
+                        "Coordinates of player: (" + Global.player.r.x + ", " + Global.player.r.y + ")");
                 break;
             case COMBAT:
                 //Render the background
@@ -240,8 +228,6 @@ public class VoyageQuest extends BasicGame {
     }
 
     
-
-    
     /**
      * The main method<br/>
      * Create the game window and start the game!
@@ -254,7 +240,6 @@ public class VoyageQuest extends BasicGame {
         app.setAlwaysRender(true);
         app.setTargetFrameRate(60);
         app.start();
-        
     }
 
     /**

@@ -11,8 +11,6 @@ import voyagequest.VoyageQuest;
 import java.util.ArrayList;
 import java.util.HashMap;
 
-import static voyagequest.GameState.*;
-
 
 /**
  *
@@ -30,8 +28,9 @@ public class ScriptReader
     private Scriptable currentScriptable;
     private Thread currentThread;
     private double currentDeltaTime;
+    private Line currentLine;
     
-    private boolean justJumped;
+    private boolean justChangedLines;
     
     public ScriptReader(ScriptManager scriptManagerHandle) 
     {
@@ -67,64 +66,50 @@ public class ScriptReader
         //Now, we get the current line
         Line currentLine = currentScript.getLine(currentLineNumber);
         
-        //Now, our response depends on whether there is a command already in 
-        //execution
+        //If the currentThread is in the middle of something, check if it's done
         if (currentThread.isRunning()) 
         {
-            //Will we continue running the same command?
-            boolean doesContinue = continuesRunning(currentLine);
-            
-            //This only gets called when we JUST finished the current command
-            if (!doesContinue) 
+            //Calls the continuesRunning auxiliary function to update the scripting engine
+            //and to check whether the current Thread is done executing. If so, continue
+            //to the next Line
+            if (!continuesRunning(currentLine))
             {
-                //So since we're not staying on the same command, we now move on
-                //to the next line!
                 currentThread.setLineNumber(
                         currentThread.getCurrentLine() + 1);
             }
         }
         
-        //Now, if by now there is no command already in execution, then...
+        //Now, if by now there is no command already in execution, then continue
+        //stepping through scripting command lines
         if (!currentThread.isRunning()) 
         {
-            
-            //We will go from line to line
             boolean doWeContinue = true;
             while (doWeContinue) 
             {
-                justJumped = false;
+                justChangedLines = false;
                         
-                //First, get the current Line of the current Script
-                //This is kind of a mouthful, so first it gets the ScriptID
-                //from the class implementing Scriptable, and then grabs from
-                //the ScriptManager, using that scriptID, the Script object
-                //itself, and then finally, from that Script object the program
-                //retrieves the line which is located at the line number
-                //specified in the class implementing Scriptable.
+                //Grabs the current Line of the current Script
+                //First it gets the ScriptID from the thread, and then uses
+                //that scriptID to get the Script from the ScriptManager.
+                //Finally, from that Script object we retrieve the line which
+                //is located at the line number specified by the thread.
                 Line thisLine = scr.getScriptAtID(currentThread.getScriptID()).
                         getLine(currentThread.getCurrentLine());
                 
                 //Now that we have the line, we execute it.
                 doWeContinue = executeCommand(thisLine);
-                
-                
-               // if  (!currentThread.functionStack.isEmpty())
-               //     System.out.println(currentThread.getCurrentLine() + " is the current line"
-               //             + "of thread " + currentThread.getName());
-                    
-                //Now, if we aren't halting, then after the line is over, 
+
+                //Now, if we aren't halting, then after the line is over,
                 //move on to the next line! UNLESS it was a goto statement!
                 //Of course, if it is a goto statement, it will remain a
                 //"Yes we continue!" but without switching lines
-                if (doWeContinue && (justJumped == false)) 
+                if (doWeContinue && (justChangedLines == false))
                 {
                     //System.out.println("Next line!");
                     currentThread.setLineNumber(
                         currentThread.getCurrentLine() + 1);
-                
-                
                 }
-                else 
+                else
                 {
                     //Well, we DID stop then, and so we DON'T want to move on
                     //to the next line...
@@ -225,6 +210,7 @@ public class ScriptReader
         //By default it's true, unless the command is the type that makes it
         //false
         boolean continueExecuting = true;
+        this.currentLine = currentLine;
         
         switch (currentLine.getCommandID())
         {
@@ -233,7 +219,7 @@ public class ScriptReader
              ***********************************************************/
 
             case 0: //wait
-                double waitDuration = identifierCheck(currentLine, 0).getDoubleValue();
+                double waitDuration = identifierCheck(0).getDoubleValue();
                 currentThread.beginWait(waitDuration);
                 continueExecuting = false;
                 break;
@@ -242,7 +228,7 @@ public class ScriptReader
                 String theLabel = currentLine.getStringParameter(0);
                 int newLineIndex = currentScript.getLabelIndexOnLineList(theLabel);
                 currentThread.setLineNumber(newLineIndex);
-                justJumped = true;
+                justChangedLines = true;
                 break;
             case 2:
                 //System.out.println(currentThread.getCurrentLine() + " is the current line "
@@ -273,7 +259,7 @@ public class ScriptReader
                             "if", "endif", currentThread.getCurrentLine() + 1, 1);
                     
                     currentThread.setLineNumber(newLine + 1);
-                    justJumped = true;
+                    justChangedLines = true;
                 }
                 break;
                 
@@ -293,7 +279,7 @@ public class ScriptReader
                             "while", "wend", currentThread.getCurrentLine() + 1, 1);
                     
                     currentThread.setLineNumber(newLine + 1);
-                    justJumped = true;
+                    justChangedLines = true;
                 }
                 break;
                 
@@ -302,7 +288,7 @@ public class ScriptReader
                 int newLine = findEndLimiter(scr.getScriptAtID(currentThread.getScriptID()),
                             "wend", "while", currentThread.getCurrentLine() - 1, -1);
                 currentThread.setLineNumber(newLine);
-                justJumped = true;
+                justChangedLines = true;
                 
                 break;
                 
@@ -318,13 +304,12 @@ public class ScriptReader
                 if (andLoc - 2 == equalsLoc)
                 {
                     //Then it's a simple initialization at index 2
-                    Parameter varValue = identifierCheck(currentLine, 2);
+                    Parameter varValue = identifierCheck(2);
                     currentThread.setVariable(varName, varValue);
                 }
                 else
                 {
-                    //Alright, Goddamn. The scripter decided to actually have
-                    //an expression in the for loop initialization. Seriously?
+                    //There is an expression in the for loop initialization.
                     Parameter varValue = evaluateExpression(currentLine, equalsLoc + 1, andLoc - 1);
                     currentThread.setVariable(varName, varValue);
                     
@@ -340,10 +325,8 @@ public class ScriptReader
                     
                     currentThread.setLineNumber(skippingNext + 1);
                     
-                    justJumped = true;
+                    justChangedLines = true;
                 }
-                //Otherwise, we're really just fine. We'll go along with the for loop
-                
                 break;
                 
             case 9:
@@ -375,7 +358,7 @@ public class ScriptReader
                     //Then we will set the line to the one right in front of the for
                     //tag
                     currentThread.setLineNumber(forLocation + 1);
-                    justJumped = true;
+                    justChangedLines = true;
                 }
                 else
                 {
@@ -406,7 +389,7 @@ public class ScriptReader
             //setThreadVariable
             case 13:
                 currentThread.modifyVariable(currentLine.getStringParameter(0),
-                        identifierCheck(currentLine, 1));
+                        identifierCheck(1));
                 break;
 
             /***********************************************************
@@ -416,7 +399,7 @@ public class ScriptReader
             //newArray arrayName size
             case 15:
                 String newArrayName = currentLine.getStringParameter(0);
-                int newArraySize = (int)identifierCheck(currentLine, 1).getDoubleValue();
+                int newArraySize = identifierCheck(1).getIntValue();
                 Parameter newArray = new Parameter(new Object[newArraySize]);
 
                 currentThread.setVariable(newArrayName, newArray);
@@ -438,7 +421,7 @@ public class ScriptReader
                 Object[] objArray = currentThread.getVariable(currentLine.getStringParameter(0)).getObjectArrayValue();
 
                 //Extract variable Index, get parameter at that.
-                int variableIndex = (int)identifierCheck(currentLine, 1).getDoubleValue();
+                int variableIndex = identifierCheck(1).getIntValue();
                 Parameter indexedVariable = (Parameter)objArray[variableIndex];
 
                 //Put in variable.
@@ -449,8 +432,8 @@ public class ScriptReader
 
             //putArray arrayName index <-- variable
             case 18:
-                Parameter newVariable = identifierCheck(currentLine, 3);
-                int newVariableIndex = (int)identifierCheck(currentLine, 1).getDoubleValue();
+                Parameter newVariable = identifierCheck(3);
+                int newVariableIndex = identifierCheck(1).getIntValue();
                 Object[] array = currentThread.getVariable(currentLine.getStringParameter(0)).getObjectArrayValue();
                 array[newVariableIndex] = newVariable;
                 break;
@@ -472,7 +455,7 @@ public class ScriptReader
                 int arrowIndex = findCorrespondingBracket(currentLine, "-->", 1, 1);
                 if (arrowIndex == 1)
                 {
-                    trigresult = Math.sin(identifierCheck(currentLine, 0).getDoubleValue());
+                    trigresult = Math.sin(identifierCheck(0).getDoubleValue());
                 }
                 else
                 {
@@ -494,7 +477,7 @@ public class ScriptReader
                 int indexOfArrow = findCorrespondingBracket(currentLine, "-->", 1, 1);
                 if (indexOfArrow == 1)
                 {
-                    triganswer = Math.cos(identifierCheck(currentLine, 0).getDoubleValue());
+                    triganswer = Math.cos(identifierCheck(0).getDoubleValue());
                 }
                 else
                 {
@@ -516,20 +499,20 @@ public class ScriptReader
             //sqrt (variable) --> var
             case 24:
                 Parameter sqrt = new Parameter(
-                        Math.sqrt(identifierCheck(currentLine, 0).getDoubleValue()));
+                        Math.sqrt(identifierCheck(0).getDoubleValue()));
                 currentThread.setVariable(currentLine.getStringParameter(2),
                         sqrt);
                 break;
             case 25:
                 //toradian degree --> identifier
                 currentThread.setVariable(currentLine.getStringParameter(2),
-                        new Parameter(Math.toRadians(identifierCheck(currentLine, 0).getDoubleValue())));
+                        new Parameter(Math.toRadians(identifierCheck(0).getDoubleValue())));
 
                 break;
             case 26:
                 //rand min max --> number
-                double min = identifierCheck(currentLine, 0).getDoubleValue();
-                double max = identifierCheck(currentLine, 1).getDoubleValue();
+                double min = identifierCheck(0).getDoubleValue();
+                double max = identifierCheck(1).getDoubleValue();
                 double randomNumber = min + (int)(Math.random() * ((max - min) + 1));
                 String identifier = currentLine.getStringParameter(3);
                 currentThread.setVariable(identifier,
@@ -537,7 +520,7 @@ public class ScriptReader
                 break;
 
             case 27:
-                double needFloor = identifierCheck(currentLine, 0).getDoubleValue();
+                double needFloor = identifierCheck(0).getDoubleValue();
                 double floored = Math.floor(needFloor);
                 String flooredName = currentLine.getStringParameter(2);
                 currentThread.setVariable(flooredName, new Parameter(floored));
@@ -562,7 +545,7 @@ public class ScriptReader
 
             //killThread by marking the target thread for deletion.
             case 32:
-                String targetThread = identifierCheck(currentLine, 0).getStringValue();
+                String targetThread = identifierCheck(0).getStringValue();
                 threadManager.markForDeletion(targetThread);
                 break;
 
@@ -613,15 +596,15 @@ public class ScriptReader
              ***********************************************************/
             //setVelocity 101
             case 101:
-                double vx = identifierCheck(currentLine, 0).getDoubleValue();
-                double vy = identifierCheck(currentLine, 1).getDoubleValue();
+                double vx = identifierCheck(0).getDoubleValue();
+                double vy = identifierCheck(1).getDoubleValue();
                 ((Entity)currentScriptable).setVelocity(vx, vy);
                 break;
 
             //movePixelAmount 104
             //moveByPixels distance_in_pixels
             case 104:
-                double pixel_distance = (int)identifierCheck(currentLine, 0).getDoubleValue();
+                double pixel_distance = identifierCheck(0).getIntValue();
                 ((Entity)currentScriptable).beginMove(pixel_distance, currentThread);
                 continueExecuting = false;
 
@@ -630,8 +613,8 @@ public class ScriptReader
             //entitySetLocation x y
             case 107:
 
-                double newX = identifierCheck(currentLine, 0).getDoubleValue();
-                double newY = identifierCheck(currentLine, 1).getDoubleValue();
+                double newX = identifierCheck(0).getDoubleValue();
+                double newY = identifierCheck(1).getDoubleValue();
                 ((Entity)currentScriptable).place(newX, newY);
                 break;
 
@@ -641,8 +624,8 @@ public class ScriptReader
             //setVelocityStandard 102
             //setVelocityStandard vx/vy 0,1,2,3 will do setAnimationDirection too.
             case 102:
-                double velocity = identifierCheck(currentLine, 0).getDoubleValue();
-                int direction = (int)identifierCheck(currentLine, 1).getDoubleValue();
+                double velocity = identifierCheck(0).getDoubleValue();
+                int direction = identifierCheck(1).getIntValue();
 
                 double velocity_x = 0.0d;
                 double velocity_y = 0.0d;
@@ -673,7 +656,7 @@ public class ScriptReader
             //moveTileAmount 103
             //moveByTiles tile_distance
             case 103:
-                int tile_distance = (int)identifierCheck(currentLine, 0).getDoubleValue();
+                int tile_distance = identifierCheck(0).getIntValue();
                 ((Entity)currentScriptable).beginMove(tile_distance, currentThread);
                 continueExecuting = false;
 
@@ -681,7 +664,7 @@ public class ScriptReader
 
             //setAnimationDirection NORTH SOUTH EAST WEST
             case 60:
-                String dir = identifierCheck(currentLine, 0).getStringValue();
+                String dir = identifierCheck(0).getStringValue();
                 if (dir.equalsIgnoreCase("NORTH"))
                     ((Entity)currentScriptable).setAnimation(0);
                 if (dir.equalsIgnoreCase("SOUTH"))
@@ -698,7 +681,7 @@ public class ScriptReader
 
             //existsGlobal "StringName" --> boolVar
             case 120:
-                String variableName = identifierCheck(currentLine, 0).getStringValue();
+                String variableName = identifierCheck(0).getStringValue();
                 boolean exists = Global.globalMemory.containsKey(variableName);
                 currentThread.setVariable(
                         currentLine.getParameter(2).getStringValue(),
@@ -756,8 +739,8 @@ public class ScriptReader
                 switch (VoyageQuest.state)
                 {
                     case RPG:
-                        currentThread.setScriptable(VoyageQuest.player);
-                        VoyageQuest.player.setMainThread(currentThread);
+                        currentThread.setScriptable(Global.player);
+                        Global.player.setMainThread(currentThread);
                         break;
                     case COMBAT:
                         currentThread.setScriptable(BattleField.player);
@@ -771,7 +754,7 @@ public class ScriptReader
             case 150:
             //genericMessageBox text
                 currentThread.speak(
-                        identifierCheck(currentLine, 0).getStringValue());
+                        identifierCheck(0).getStringValue());
                 continueExecuting = false;
                 break;
                 
@@ -779,8 +762,8 @@ public class ScriptReader
             case 151:
             //dialogbox animationname text
                 currentThread.speak(
-                        identifierCheck(currentLine, 1).getStringValue(),
-                        identifierCheck(currentLine, 0).getStringValue());
+                        identifierCheck(1).getStringValue(),
+                        identifierCheck(0).getStringValue());
                 
                 continueExecuting = false;
 
@@ -788,15 +771,15 @@ public class ScriptReader
 
             case 152:
             // dialogprompt animationname text options --> result
-                Object[] objectArray = identifierCheck(currentLine, 2).getObjectArrayValue();
+                Object[] objectArray = identifierCheck(2).getObjectArrayValue();
                 String[] options = new String[objectArray.length];
                 for (int i = 0; i < objectArray.length; i++) {
                     options[i] = objectArray[i].toString();
                 }
 
                 currentThread.speak(
-                        identifierCheck(currentLine, 1).getStringValue(),
-                        identifierCheck(currentLine, 0).getStringValue(),
+                        identifierCheck(1).getStringValue(),
+                        identifierCheck(0).getStringValue(),
                         options,
                         currentLine.getParameter(4));
 
@@ -805,14 +788,14 @@ public class ScriptReader
 
             case 153:
             // genericprompt text options --> result
-                Object[] objectArray2 = identifierCheck(currentLine, 1).getObjectArrayValue();
+                Object[] objectArray2 = identifierCheck(1).getObjectArrayValue();
                 String[] options2 = new String[objectArray2.length];
                 for (int i = 0; i < objectArray2.length; i++) {
                     options2[i] = objectArray2[i].toString();
                 }
 
                 currentThread.speak(
-                        identifierCheck(currentLine, 0).getStringValue(),
+                        identifierCheck(0).getStringValue(),
                         options2,
                         currentLine.getParameter(3));
 
@@ -829,7 +812,7 @@ public class ScriptReader
                 voyagequest.Res.playEffect("Teleport");
 
                 //Load map with name
-                String newMapName = identifierCheck(currentLine, 0).getStringValue();
+                String newMapName = identifierCheck(0).getStringValue();
                 try {
                     Global.currentMap =
                             new Map(newMapName);
@@ -842,9 +825,9 @@ public class ScriptReader
                 voyagequest.Res.playMusic(Global.currentMap.getMusic());
 
                 //Now put the player where the player is supposed to be
-                Entity player = VoyageQuest.player;
-                player.r.x = identifierCheck(currentLine, 1).getDoubleValue();
-                player.r.y = identifierCheck(currentLine, 2).getDoubleValue();
+                Entity player = Global.player;
+                player.r.x = identifierCheck(1).getDoubleValue();
+                player.r.y = identifierCheck(2).getDoubleValue();
 
                 Global.currentMap.entities.add(player);
                 Global.currentMap.collisions.addEntity(player);
@@ -874,7 +857,7 @@ public class ScriptReader
 
             //setlight 0-255
             case 163:
-                int newLightValue = (int)identifierCheck(currentLine, 0).getDoubleValue();
+                int newLightValue = (int)identifierCheck(0).getDoubleValue();
                 Global.camera.fade = newLightValue;
                 break;
 
@@ -891,14 +874,14 @@ public class ScriptReader
             case 166:
                 currentThread.setRunningState(true);
                 continueExecuting = false;
-                Global.camera.fadeOutTarget = (int)(identifierCheck(currentLine, 0)).getDoubleValue();
+                Global.camera.fadeOutTarget = identifierCheck(0).getIntValue();
                 break;
 
             //freezeCamera ULX ULY
             case 170:
                 Global.camera.freezeAt(
-                        (int)identifierCheck(currentLine, 0).getDoubleValue(),
-                        (int)identifierCheck(currentLine, 1).getDoubleValue());
+                        (int)identifierCheck(0).getDoubleValue(),
+                        (int)identifierCheck(1).getDoubleValue());
                 break;
 
             //unfreezeCamera
@@ -909,8 +892,8 @@ public class ScriptReader
             //setCameraPanVelocity v_x v_y
             case 172:
                 Global.camera.setPanVelocity(
-                    identifierCheck(currentLine, 0).getDoubleValue(),
-                    identifierCheck(currentLine, 1).getDoubleValue()
+                    identifierCheck(0).getDoubleValue(),
+                    identifierCheck(1).getDoubleValue()
                 );
                 break;
 
@@ -918,24 +901,24 @@ public class ScriptReader
             //panCamera distance
             case 173:
                 Global.camera.beginPan(
-                        identifierCheck(currentLine, 0).getDoubleValue(),
+                        identifierCheck(0).getDoubleValue(),
                         currentThread);
                 continueExecuting = false;
 
             // sound effect
             case 175:
-                voyagequest.Res.playEffect(identifierCheck(currentLine, 0).getStringValue());
+                voyagequest.Res.playEffect(identifierCheck(0).getStringValue());
                 break;
 
             // play background music
             case 176:
-                voyagequest.Res.playMusic(identifierCheck(currentLine, 0).getStringValue());
+                voyagequest.Res.playMusic(identifierCheck(0).getStringValue());
                 break;
 
             //scale "scriptableName" "scalingFactor"
             case 180:
                 String scaledScriptableName =
-                        identifierCheck(currentLine, 0).getStringValue();
+                        identifierCheck(0).getStringValue();
                 Entity e = null;
                 switch (VoyageQuest.state)
                 {
@@ -947,12 +930,12 @@ public class ScriptReader
                         e = BattleField.entityInstances.get(scaledScriptableName);
                         break;
                 }
-                e.scalingFactor = (float)(identifierCheck(currentLine, 1).getDoubleValue());
+                e.scalingFactor = (float)(identifierCheck(1).getDoubleValue());
                 break;
 
             // startBattle battleID
             case 200:
-                String battleID = identifierCheck(currentLine, 0).getStringValue();
+                String battleID = identifierCheck(0).getStringValue();
                 BattleManager.initBattle(battleID);
                 break;
 
@@ -970,11 +953,11 @@ public class ScriptReader
 
             //spawnEnemy enemyID x y instanceName threadName
             case 210:
-                String enemyID = identifierCheck(currentLine, 0).getStringValue();
-                int xLoc = (int)identifierCheck(currentLine, 1).getDoubleValue();
-                int yLoc = (int)identifierCheck(currentLine, 2).getDoubleValue();
-                String enemyInstanceName = identifierCheck(currentLine, 3).getStringValue();
-                String enemyThreadName = identifierCheck(currentLine, 4).getStringValue();
+                String enemyID = identifierCheck(0).getStringValue();
+                int xLoc = identifierCheck(1).getIntValue();
+                int yLoc = identifierCheck(2).getIntValue();
+                String enemyInstanceName = identifierCheck(3).getStringValue();
+                String enemyThreadName = identifierCheck(4).getStringValue();
 
                 //Spawn the enemy based on its name and location, and set instanceID
                 Enemy newEnemy = EntityManager.spawnEnemy(enemyID, xLoc, yLoc);
@@ -998,12 +981,12 @@ public class ScriptReader
 
             //spawnProjectile projectileID x y vx vy rotation allegiance
             case 211:
-                String projectileID = identifierCheck(currentLine, 0).getStringValue();
-                int projectileX = (int)identifierCheck(currentLine, 1).getDoubleValue();
-                int projectileY = (int)identifierCheck(currentLine, 2).getDoubleValue();
-                double projectileVx = identifierCheck(currentLine, 3).getDoubleValue();
-                double projectileVy = identifierCheck(currentLine, 4).getDoubleValue();
-                int rotation = (int)identifierCheck(currentLine, 5).getDoubleValue();
+                String projectileID = identifierCheck(0).getStringValue();
+                int projectileX = identifierCheck(1).getIntValue();
+                int projectileY = identifierCheck(2).getIntValue();
+                double projectileVx = identifierCheck(3).getDoubleValue();
+                double projectileVy = identifierCheck(4).getDoubleValue();
+                int rotation = identifierCheck(5).getIntValue();
 
                 //Allegiance is unfriendly by default.
                 String allegiance = currentLine.getStringParameter(6);
@@ -1025,13 +1008,13 @@ public class ScriptReader
             //setAnimation animationID
             case 230:
                 ((BattleEntity)currentScriptable).setAnimation(
-                        identifierCheck(currentLine, 0).getStringValue());
+                        identifierCheck(0).getStringValue());
                 break;
 
             //changeAnimationDirection 1/-1
             case 231:
                 ((Entity)currentScriptable).changeAnimationDirection(
-                        (int)identifierCheck(currentLine, 0).getDoubleValue());
+                        identifierCheck(0).getIntValue());
                 break;
 
             // getLocation instanceID --> x y or getLocation --> x y
@@ -1050,14 +1033,14 @@ public class ScriptReader
             //setLocation instanceID x y
             //setLocation x y... I'll do the second one first, too
             case 191:
-                double newXLoc = identifierCheck(currentLine, 0).getDoubleValue();
-                double newYLoc = identifierCheck(currentLine, 1).getDoubleValue();
+                double newXLoc = identifierCheck(0).getDoubleValue();
+                double newYLoc = identifierCheck(1).getDoubleValue();
                 ((Entity)currentScriptable).place(newXLoc, newYLoc);
                 break;
 
             //fireWeapon weaponID
             case 195:
-                String weaponID = identifierCheck(currentLine, 0).getStringValue();
+                String weaponID = identifierCheck(0).getStringValue();
                 System.out.println("weapon is " + weaponID);
                 WeaponManager.fireWeapon(weaponID, currentScriptable);
                 break;
@@ -1069,14 +1052,14 @@ public class ScriptReader
                 if (determinant == 1)
                 {
                     //This scriptable
-                    int setRotation = (int)(identifierCheck(currentLine, 0).getDoubleValue());
+                    int setRotation = identifierCheck(0).getIntValue();
                     ((Entity)currentScriptable).setRotation(setRotation);
                 }
                 else if (determinant == 2)
                 {
                     //InstanceID determines which to set
-                    String instanceID = identifierCheck(currentLine, 0).getStringValue();
-                    int newRotation = (int)identifierCheck(currentLine, 1).getDoubleValue();
+                    String instanceID = identifierCheck(0).getStringValue();
+                    int newRotation = identifierCheck(1).getIntValue();
 
                     BattleEntity rotatedEntity = BattleField.entityInstances.get(instanceID);
                     rotatedEntity.setRotation(newRotation);
@@ -1089,8 +1072,8 @@ public class ScriptReader
             //entity as the Scriptable of the thread.
             //setThreadScriptable threadID ENTITYID
             case 233:
-                String threadName = identifierCheck(currentLine, 0).getStringValue();
-                String entityName = identifierCheck(currentLine, 1).getStringValue();
+                String threadName = identifierCheck(0).getStringValue();
+                String entityName = identifierCheck(1).getStringValue();
 
                 System.out.println("THREAD IS" + threadName);
                 //Give the thread at threadName
@@ -1111,7 +1094,7 @@ public class ScriptReader
 
             //setThisThreadScriptable ENTITYID
             case 234:
-                String entityID = identifierCheck(currentLine, 0).getStringValue();
+                String entityID = identifierCheck(0).getStringValue();
                 switch (VoyageQuest.state)
                 {
                     case RPG:
@@ -1129,8 +1112,8 @@ public class ScriptReader
 
             //getThreadScriptable threadID --> variable
             case 235:
-                String threadID = identifierCheck(currentLine, 0).getStringValue();
-                String var = identifierCheck(currentLine, 2).getStringValue();
+                String threadID = identifierCheck(0).getStringValue();
+                String var = identifierCheck(2).getStringValue();
 
                 Thread selectedThread;
                 switch (VoyageQuest.state)
@@ -1151,7 +1134,7 @@ public class ScriptReader
 
             //getThisThreadScriptable --> variable
             case 236:
-                String scriptableVarName = identifierCheck(currentLine, 1).getStringValue();
+                String scriptableVarName = identifierCheck(1).getStringValue();
                 switch (VoyageQuest.state)
                 {
                     case RPG:
@@ -1201,19 +1184,19 @@ public class ScriptReader
     **************************************************************************/
     
      
-    private Parameter identifierCheck(Parameter iDunno)
+    private Parameter identifierCheck(Parameter parameter)
     {
-        if (iDunno.isIdentifier())
+        if (parameter.isIdentifier())
         {
-            return currentThread.getVariable(iDunno.getStringValue());
+            return currentThread.getVariable(parameter.getStringValue());
         }
-        return iDunno;
+        return parameter;
     }
-    
-    private Parameter identifierCheck(Line currentLine, int indexOnLine)
+
+    private Parameter identifierCheck(int indexOnLine)
     {
-        Parameter iDunno = currentLine.getParameter(indexOnLine);
-        return identifierCheck(iDunno);
+        Parameter parameter = this.currentLine.getParameter(indexOnLine);
+        return identifierCheck(parameter);
     }
     
     private void createVariable(Line currentLine)
@@ -1232,7 +1215,7 @@ public class ScriptReader
             //Now set variableIdentifier to either the literal or to the
             //value pointed to by the identifier
             currentThread.setVariable(variableIdentifier,
-                    identifierCheck(currentLine, 1));
+                    identifierCheck(1));
             
         }
         else 
@@ -1247,7 +1230,7 @@ public class ScriptReader
         String variableIdentifier = currentLine.getStringParameter(0);
         
         currentThread.setVariable(variableIdentifier,
-                    identifierCheck(currentLine, 1));
+                    identifierCheck(1));
         
     }
     
@@ -1274,7 +1257,7 @@ public class ScriptReader
     {
         //Extract from currentLine...
         String scriptID = currentLine.getStringParameter(0);
-        String threadName = identifierCheck(currentLine, 1).getStringValue();
+        String threadName = identifierCheck(1).getStringValue();
 
         //Create a new thread with that scriptID, giving it scriptName
         Thread newThread = createNewThread(scriptID, threadName);
@@ -1426,7 +1409,7 @@ public class ScriptReader
        
         //Get the Thread object which threadname refers to
         //String threadName = currentLine.getStringParameter(0);
-        String threadName = identifierCheck(currentLine, 0).getStringValue();
+        String threadName = identifierCheck(0).getStringValue();
 
         Thread jumpedThread = threadManager.getThreadAtName(threadName);
 
@@ -1541,7 +1524,7 @@ public class ScriptReader
             Parameter currentParam = currentLine.getParameter(i);
             
             //A literal, or a variable?
-            parameters[i] = identifierCheck(currentLine, i);
+            parameters[i] = identifierCheck(i);
         }
         
         //Return, and also decrease the function layer

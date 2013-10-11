@@ -21,9 +21,8 @@ public class Line {
     
     public Line()
     {
-        //My way of saying you done goof'd
         this.commandID = -1;
-        parameterList = new ArrayList<Parameter>();
+        parameterList = new ArrayList<>();
     }
     
     //Setters and getters for commandID

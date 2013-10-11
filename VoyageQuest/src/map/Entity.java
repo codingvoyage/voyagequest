@@ -166,10 +166,9 @@ public class Entity extends ScriptableClass implements Rectangular {
 
     public void draw(Graphics g, float xOffset, float yOffset)
     {
-        //Lawd I am sorry for this code.
+        //Draws the current image at the proper scale and rotation
         Image img = currentAnimation.getImage(currentFrame);
         img.setRotation(rotationInDegrees);
-
         img.draw(xOffset, yOffset, scalingFactor);
         img.setRotation(0);
 
@@ -290,7 +289,6 @@ public class Entity extends ScriptableClass implements Rectangular {
 
         if (collides)
         {
-
             //If we were the player and we collided with an Entity, then see
             //if there is a TouchScript associated with the Entity and
             //respond accordingly.
@@ -305,7 +303,10 @@ public class Entity extends ScriptableClass implements Rectangular {
             //On the other hand if we were the Entity and we collided with the player...
             if (this instanceof Entity &&
                     collRectangular instanceof Player)
-                System.out.println("OMGGG");
+            {
+                System.out.println("Entity on player collision");
+            }
+
         }
         return collides;
     }
@@ -325,16 +326,12 @@ public class Entity extends ScriptableClass implements Rectangular {
 
         if (collides)
         {
-            //Could not move
             return false;
         }
         else
         {
-
             //Update the animation:
             this.updateAnimation(delta);
-        
-        
             //Move to the proposed location
             place(r.x + xMove, r.y + yMove);
             

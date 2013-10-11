@@ -48,7 +48,6 @@ public class Camera {
     
     public Camera() 
     {
-
         //Load the lighting... This will be changed later, of course.
         InputStream is = getClass().getClassLoader().getResourceAsStream("res/alphamini.png");
 
@@ -146,8 +145,8 @@ public class Camera {
                 VoyageQuest.Y_RESOLUTION);
         
         //Using the width and height of the player, arrive at the 
-        double playerCenterX = VoyageQuest.player.r.getX() + VoyageQuest.player.r.width/2.0;
-        double playerCenterY = VoyageQuest.player.r.getY() + VoyageQuest.player.r.height/2.0;
+        double playerCenterX = Global.player.r.getX() + Global.player.r.width/2.0;
+        double playerCenterY = Global.player.r.getY() + Global.player.r.height/2.0;
         
         //Now, compensate for the length of the screen
         double startX = playerCenterX - screenCenterX;
